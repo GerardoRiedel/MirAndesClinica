@@ -37,21 +37,36 @@ class Prefacturas extends CI_Controller {
     {
         $registro       = $this->input->post('fichaElectro');
         $paciente       = $this->input->post('pacId');
-        
+        $reg = $this->ingreso_model->dameUno($registro);
         $fechaIngresoP  = new DateTime($this->input->post('fechaDesde'));
         $fechaIngreso   = $fechaIngresoP->format('Y-m-d');
         $fechaSalida    = new DateTime($this->input->post('fechaHasta'));
         $fechaSalida    = $fechaSalida->format('Y-m-d');
-        
+        //die(var_dump($reg->alta));
+        IF($reg->alta==='si'){
+                            $fechaSalida    = new DateTime($reg->fechaSalidaReal.$reg->horaSalidaReal);
+                            $horaSalida     = $fechaSalida->format('H');
+                            $fechaSalida    = $fechaSalida->format('Y-m-d');
+                            //die($horaSalida);
+                            IF($horaSalida >= 11){
+                                $mas = 1;
+                            }
+                            ELSE{$mas = 0;
+                            }
+        }
+        //die($fechaSalida);
         $fechaRegistroP = new DateTime($this->input->post('fechaIngreso'));
         $fechaRegistro  = $fechaRegistroP->format('Y-m-d');
         
         IF($fechaRegistroP > $fechaIngresoP)$fechaIngreso = $fechaRegistro;
         
-        $datetime1 = new DateTime($this->input->post('fechaDesde'));
-        $datetime2 = new DateTime($this->input->post('fechaHasta'));
+        //$datetime1 = new DateTime($this->input->post('fechaDesde'));
+        //$datetime2 = new DateTime($this->input->post('fechaHasta'));
+        $datetime1 = new DateTime($fechaIngreso);
+        $datetime2 = new DateTime($fechaSalida);
         $interval  = $datetime1->diff($datetime2);
-        $dias      = $interval->format('%a');
+        $dias       = $interval->format('%a');
+        $dias       = $dias+$mas;
         
         IF($this->input->post('fechaHasta') <= $this->input->post('fechaDesde')){
             $dias = 0;
@@ -77,13 +92,13 @@ class Prefacturas extends CI_Controller {
         $valor = $valores->parValor;
 
         $this->prefacturas_model->preDesde          = $fechaIngreso;
-        $this->prefacturas_model->preHasta          = $fechaSalida;
+        $this->prefacturas_model->preHasta           = $fechaSalida;
         $this->prefacturas_model->preRegistro       = $registro;
         $this->prefacturas_model->prePaciente       = $paciente;
-        $this->prefacturas_model->preGes            = $g;
+        $this->prefacturas_model->preGes                = $g;
         $this->prefacturas_model->preUsuario        = $this->session->userdata('id_usuario');
         $this->prefacturas_model->preFechaRegistro  = date('Y-m-d H:i:s');
-        $this->prefacturas_model->preValor          = $valor;
+        $this->prefacturas_model->preValor              = $valor;
         
         $this->prefacturas_model->preNPrefactura    = $num;
         $this->prefacturas_model->preHonorarios     = $this->input->post('preHonorarios');

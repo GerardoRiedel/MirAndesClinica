@@ -36,7 +36,7 @@
     
 </style>
 
-<div style="page-break-after: always; display:none"  id="exportar" >
+<div style="page-break-after: always; display:true"  id="exportar" >
             <div class="col-lg-12" align="left" style="margin-left: 40px">
                 <img src="<?php echo base_url();?>../assets/img/mirAndes.png" class="logo">
             </div>
@@ -153,11 +153,25 @@
                         <td style="border-right: none; border-left:none; border-top:none;width:150px">N° Días Hospitalización:</td>
                         <td style="border-right: none; border-left:none; border-top:none; font-size:15px" align="right"><b>
                             <?php 
+                            $fechaSalida    = new DateTime($datos->fechaSalidaReal.$datos->horaSalidaReal);
+                            $horaSalida     = $fechaSalida->format('H');
+                            $fechaSalida    = $fechaSalida->format('Y-m-d');
+                            //die($horaSalida);
+                            IF($horaSalida >= 11){
+                                $mas = 1;
+                            }
+                            ELSE{$mas = 0;
+                            }
+                    
                                 $fechaD = new DateTime($fechaD);
                                 $fecha  = new DateTime(date($datos->fechaIngreso));
                                 $interval = $fechaD->diff($fecha);
+                                 //die('sdas'.$interval.'asd');
                                 $dias = $interval->format('%a');
-                                echo $interval->format('%a días');
+                                $dias = $dias+$mas;
+                               // die($dias.'s');
+                                echo $dias.' días';
+                                //echo $interval->format('%a días');
                             ?></b>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         </td>
                     </tr>

@@ -197,7 +197,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                         <div class="input-group input-group-sm date datepicker" required data-date="<?php //echo (new DateTime())->format('Y-m-d H:i:s') ?>" data-date-format="dd-mm-yyyy">
                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                             <?php $date = new DateTime($datos[0]->fechaSalidaReal);?>
-                            <input type="text" class="form-control datepicker" placeholder="día-mes-año" style=" width: 158px !important" name="fechaHasta" required data-date-format="dd-mm-yyyy" value="<?php IF(!empty($datos[0]->fechaSalidaReal) && $datos[0]->fechaSalidaReal !== '0000-00-00')echo $date->format('d-m-Y'); ELSE echo date('d-m-Y');?>">
+                            <input type="text" class="form-control datepicker" placeholder="día-mes-año" style=" width: 158px !important" name="fechaHasta" required <?php IF(!empty($datos[0]->fechaSalidaReal) && $datos[0]->fechaSalidaReal !== '0000-00-00')echo 'readonly' ?> data-date-format="dd-mm-yyyy" value="<?php IF(!empty($datos[0]->fechaSalidaReal) && $datos[0]->fechaSalidaReal !== '0000-00-00')echo $date->format('d-m-Y'); ELSE echo date('d-m-Y');?>">
                         </div>
                     </div>
                     <div class="col-lg-12"></div>
