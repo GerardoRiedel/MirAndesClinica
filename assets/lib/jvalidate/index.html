@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+	
+<!-- Mirrored from franciscofernando.github.io/jvalidate/ by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 14 Nov 2013 20:53:25 GMT -->
+<head>
+		<meta charset="utf-8">
+		<title>Jvalidate</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+    	<!--link href="css/normalize.css" rel="stylesheet" media="screen"-->    
+    	<link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
+    	<link href="css/style.css" rel="stylesheet" media="screen">
+       <!--datePicker-->        
+		<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+	<script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+	<script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+		
+		
+        
+<script>
+  $(function() {
+    
+ //Array para dar formato en español
+  $.datepicker.regional['es'] = 
+  {
+  closeText: 'Cerrar', 
+  prevText: 'Previo', 
+  nextText: 'Próximo',
+  
+  monthNames: ['Enero','Febrero','Marzo','Abril','Mayo','Junio',
+  'Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre'],
+  monthNamesShort: ['Ene','Feb','Mar','Abr','May','Jun',
+  'Jul','Ago','Sep','Oct','Nov','Dic'],
+  monthStatus: 'Ver otro mes', yearStatus: 'Ver otro año',
+  dayNames: ['Domingo','Lunes','Martes','Miércoles','Jueves','Viernes','Sábado'],
+  dayNamesShort: ['Dom','Lun','Mar','Mie','Jue','Vie','Sáb'],
+  dayNamesMin: ['Do','Lu','Ma','Mi','Ju','Vi','Sa'],
+  dateFormat: 'dd/mm/yy', firstDay: 0, 
+  initStatus: 'Selecciona la fecha', isRTL: true};
+ $.datepicker.setDefaults($.datepicker.regional['es']);
+ 
+ //miDate: fecha de comienzo D=días | M=mes | Y=año
+ //maxDate: fecha tope D=días | M=mes | Y=año
+    $( "#datepicker" ).datepicker({changeMonth: true,
+			changeYear: true,
+			showOn: "button",
+			buttonImage: "img/calendar.png" ,
+			buttonImageOnly: true
+
+			});
+  });
+  </script>
+ 	
+        
+    
+	</head>
+	<body>
+		<div id="contenedor">
+			<form id="formulario" class="form-horizontal">
+  				<div class="control-group">
+    				<label class="control-label" for="">(*)</label>
+    				<div class="controls">
+      					<input type="text" data-type="text" data-importance="important" placeholder="Text important">
+    				</div>
+  				</div>
+				<div class="control-group">
+    				<label class="control-label" for=""></label>
+    				<div class="controls">
+      					<input type="text" data-type="text" data-min="0" data-max="4" placeholder="Text">
+    				</div>
+  				</div>
+  				<div class="control-group">
+    				<label class="control-label" for=""></label>
+    				<div class="controls">
+      					<input type="text" data-type="number" placeholder="Number">
+    				</div>
+  				</div>
+  				<div class="control-group">
+    				<label class="control-label" for=""></label>
+    				<div class="controls">
+      					<input type="text" id="datepicker" data-importance="important" data-type="date" data-dateConfig="dd/mm/yyyy" placeholder="Date (dd/mm/yyyy)" >
+    				</div>
+  				</div>
+  				<div class="control-group">
+    				<label class="control-label" for=""></label>
+    				<div class="controls">
+      					<input type="text" data-type="email" placeholder="Email">
+    				</div>
+  				</div>
+  				<div class="control-group">
+    				<label class="control-label" for=""></label>
+    				<div class="controls">
+      					<input type="text" data-type="rut" data-importance="important" placeholder="RUT">
+    				</div>
+  				</div>
+          <div class="control-group">
+            <label class="control-label" for=""></label>
+            <div class="controls controls-row">
+                <input class="span4" type="text"  data-importance="important" placeholder="RUT" data-type="rut" data-part="1"> - 
+                <input class="span1" type="text" data-type="rut" data-part="2">
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for=""></label>
+            <div class="controls controls-row">
+                <input class="span4" type="text" data-type="email" data-part="1" placeholder="Email"> @ 
+                <input class="span1" type="text" data-type="email" data-part="2">
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for=""></label>
+            <div class="controls controls-row">
+                <textarea data-type="text" placeholder="Text" style="margin: 0px; width: 370px; height: 94px;"></textarea>
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for="">Checkbox :</label>
+            <div class="controls controls-row">
+                <input type="checkbox" name="check" data-type="checkbox">
+            </div>
+          </div>
+          <div class="control-group">
+            <label class="control-label" for=""></label>
+            <div class="controls">
+                <input type="submit" value="Send / enviar" id="submit" class="btn btn-primary">
+            </div>
+          </div>
+			</form>
+			 
+	</body>
+	<script type="text/javascript" src="../../ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+	
+
+	<script src="js/bootstrap-transition.js"></script>
+    <script src="js/bootstrap-alert.js"></script>
+    <script src="js/bootstrap-modal.js"></script>
+    <script src="js/bootstrap-dropdown.js"></script>
+    <script src="js/bootstrap-scrollspy.js"></script>
+    <script src="js/bootstrap-tab.js"></script>
+    <script src="js/bootstrap-tooltip.js"></script>
+    <script src="js/bootstrap-popover.js"></script>
+    <script src="js/bootstrap-button.js"></script>
+    <script src="js/bootstrap-collapse.js"></script>
+    <script src="js/bootstrap-carousel.js"></script>
+    <script src="js/bootstrap-typeahead.js"></script>
+    <script src="js/bootstrap-affix.js"></script>
+	<script type="text/javascript" src="js/jquery.Jvalidate.js"></script>
+	<script type="text/javascript">
+	$('#formulario').Jvalidate({
+    language: 'es',
+    submit: '#submit',
+    success: function(){
+    	alert('send!');
+      return false;
+    }
+  });
+	</script>
+
+<!-- Mirrored from franciscofernando.github.io/jvalidate/ by HTTrack Website Copier/3.x [XR&CO'2013], Thu, 14 Nov 2013 20:53:36 GMT -->
+</html>

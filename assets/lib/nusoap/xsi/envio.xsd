@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!---->
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified">
+	<xs:element name="LoginInfo">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="User"/>
+				<xs:element ref="Password"/>
+				<xs:element ref="ParamInfoPeritaje"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="User" type="xs:integer"/>
+	<xs:element name="Password" type="xs:string"/>
+	<xs:element name="ParamInfoPeritaje">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="RutCotizante"/>
+				<xs:element ref="DvRutCotizante"/>
+				<xs:element ref="FolioLicencia"/>
+				<xs:element ref="DocumentoPeritaje"/>
+				<xs:element ref="ExtensionDocumento"/>
+				<xs:element ref="ArregloDetalleCanasta"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="RutCotizante" type="xs:string"/>
+	<xs:element name="DvRutCotizante" type="xs:string"/>
+	<xs:element name="FolioLicencia"  type="xs:integer"/>
+	<xs:element name="DocumentoPeritaje" type="xs:base64Binary"/>
+	<xs:element name="ExtensionDocumento" type="xs:string"/>
+	<xs:element name="ArregloDetalleCanasta">
+		<xs:complexType>
+			<xs:sequence>
+				<xs:element ref="CodRespuesta"/>
+				<xs:element ref="GlosaRespuesta"/>
+			</xs:sequence>
+		</xs:complexType>
+	</xs:element>
+	<xs:element name="CodRespuesta" type="xs:integer"/>
+	<xs:element name="GlosaRespuesta" type="xs:string"/>
+</xs:schema>

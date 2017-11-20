@@ -1,0 +1,177 @@
+<?php 
+////////////////////////////////////////////////////
+//Template por defecto
+//Autor: cetep
+//Fecha CreaciÃ³n: 29-6-2007
+//Fecha ModificaciÃ³n:
+//Autor ModificaciÃ³n: 
+////////////////////////////////////////////////////
+
+session_name("agenda2");
+session_start();
+
+
+
+
+?>
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+<title>SmartMenus jQuery Website Menu - jQuery Plugin</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8" />
+
+
+
+
+<!-- jQuery -->
+<script type="text/javascript" src="libs/jquery/jquery.js"></script>
+
+<!-- SmartMenus jQuery plugin -->
+<script type="text/javascript" src="jquery.smartmenus.js"></script>
+
+<!-- SmartMenus jQuery init -->
+<script type="text/javascript">
+	$(function() {
+		$('#main-menu').smartmenus({
+			subMenusSubOffsetX: 1,
+			subMenusSubOffsetY: -8
+		});
+	});
+</script>
+
+
+
+
+<!-- SmartMenus core CSS (required) -->
+<link href="css/sm-core-css.css" rel="stylesheet" type="text/css" />
+
+<!-- "sm-blue" menu theme (optional, you can use your own CSS, too) -->
+<link href="css/sm-mint/sm-mint.css" rel="stylesheet" type="text/css" />
+
+<!-- #main-menu config - instance specific stuff not covered in the theme -->
+<style type="text/css">
+	#main-menu {
+		position:relative;
+		z-index:9999;
+		width:auto;
+	}
+	#main-menu ul {
+		width:12em; /* fixed width only please - you can use the "subMenusMinWidth"/"subMenusMaxWidth" script options to override this if you like */
+	}
+</style>
+
+
+
+
+<!-- YOU DO NOT NEED THIS - demo page content styles -->
+<link href="libs/demo-assets/demo.css" rel="stylesheet" type="text/css" />
+
+
+
+
+</head>
+
+<body>
+
+
+
+
+<!-- Sample menu definition -->
+<ul id="main-menu" class="sm sm-mint">
+  <li><a href="http://www.smartmenus.org/">Home</a></li>
+  <li><a href="http://www.smartmenus.org/about/">About</a>
+    <ul>
+      <li><a href="http://www.smartmenus.org/about/introduction-to-smartmenus-jquery/">Introduction to SmartMenus jQuery</a></li>
+      <li><a href="http://www.smartmenus.org/about/themes/">Themes</a></li>
+      <li><a href="http://vadikom.com/about/#vasil-dinkov">The author</a></li>
+      <li><a href="http://www.smartmenus.org/about/vadikom/">The company</a>
+        <ul>
+          <li><a href="http://vadikom.com/about/">About Vadikom</a></li>
+          <li><a href="http://vadikom.com/projects/">Projects</a></li>
+          <li><a href="http://vadikom.com/services/">Services</a></li>
+          <li><a href="http://www.smartmenus.org/about/vadikom/privacy-policy/">Privacy policy</a></li>
+        </ul>
+      </li>
+      <li><a href="http://www.smartmenus.org/about/old-smartmenus-versions/">Old SmartMenus versions</a></li>
+    </ul>
+  </li>
+ 
+  <li><a href="http://www.smartmenus.org/support/">Configuracion</a>
+    <ul>
+    
+    <li><a href="<?php echo $MODULOS; ?>/usuarios/listado.php" rel="gb_page[800, 700]">Usuarios</a></li>
+                <li><a href="<?php echo $MODULOS; ?>/configuraciones/ciudades.php" rel="gb_page[800, 700]">Ciudades</a></li>
+		 <li><a href="<?php echo $MODULOS; ?>/configuraciones/uf.php" rel="gb_page[800, 700]">Uf</a></li>                
+          <li><a href="<?php echo $MODULOS; ?>/configuraciones/valorPeritaje.php" rel="gb_page[800, 700]">Valor Peritaje</a></li>
+
+          <li><a href="<?php echo $MODULOS; ?>/contabilidad/cobroPrestadores.php" rel="gb_page[600, 400]">Cobro Prestador</a></li>
+    
+    
+    </ul>
+  </li>
+  <li><a href="http://www.smartmenus.org/docs/">Docs</a></li>
+  <li><a href="#">Procesos</a>
+    <ul>
+        <li><a href="#">Horarios...</a>
+                <ul>
+      			<li><a href="<?php echo $MODULOS; ?>/horarios/asignarHorario.php" rel="gb_page[800, 700]">Asignar Horario</a>
+            </li>
+            <li><a href="<?php echo $MODULOS; ?>/horarios/cambiarHorario.php" rel="gb_page[800, 700]">Cambiar Horario</a></li>
+                </ul>
+                
+    <li><a href="#">Pacientes...</a>
+                <ul>
+      			 <li><a href="<?php echo $MODULOS; ?>/horarios/cambiarHorarioPaciente.php" rel="gb_page[800, 700]">Cambiar Horario</a></li>
+                 
+                              
+                </ul>            
+    <li><a href="#">Lista de Espera...</a>
+                <ul>
+      			   <li><a href="<?php echo $MODULOS; ?>/listaEspera/main.php" rel="gb_page[800, 700]">Lista de Espera</a></li>
+                 
+                           
+                </ul>            
+                
+                
+       </ul>
+  </li>
+  <!---item informes-->
+   <li><a href="#">Informes</a>
+    <ul>
+     <li><a href="<?php echo $MODULOS; ?>/informes/numeroPeritajes.php" rel="gb_page[800, 700]">Nº de Peritajes</a></li>
+ 				<li><a href="<?php echo $MODULOS; ?>/informes/ingresoDinero.php" rel="gb_page[800, 700]">Ingreso Dinero</a></li> 	  
+ 				<li><a href="<?php echo $MODULOS; ?>/informes/utilidades.php" rel="gb_page[800, 700]">Utilidades</a></li> 
+				<li class="dropdown-submenu">
+                   <a href="#">Estadisticos..</a>
+                   <ul class="dropdown-menu">
+                   	<li><a href="<?php echo $MODULOS; ?>/informes/poblacionales.php" rel="gb_page[800, 700]">Poblacionales</a></li>
+                    <li><a href="<?php echo $MODULOS; ?>/informes/poblacionalesXLS.php" rel="gb_page[800, 700]">Poblacionales Excel</a></li>
+                       <li><a href="<?php echo $MODULOS; ?>/informes/gestion.php" rel="gb_page[800, 700]">Gestion</a></li>
+                       <li><a href="<?php echo $MODULOS; ?>/informes/calidad.php" rel="gb_page[800, 700]">Calidad</a></li>
+        
+                 
+                           
+    </ul>            
+                
+                
+       </ul>
+  </li>
+  
+   <li><a href="<?php echo $MODULOS; ?>/planillas/BMVidatres.php" rel="gb_page[1300, 500]">Planilla</a></li>
+</ul>
+
+
+
+
+<!-- =============================================================================== -->
+<!-- ================= YOU DO NOT NEED ANYTHING AFTER THIS COMMENT ================= -->
+<!-- =============================================================================== -->
+
+
+
+
+
+
+</body>
+</html>
