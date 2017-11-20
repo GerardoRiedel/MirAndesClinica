@@ -48,7 +48,7 @@ class Prefacturas extends CI_Controller {
                             $horaSalida     = $fechaSalida->format('H');
                             $fechaSalida    = $fechaSalida->format('Y-m-d');
                             //die($horaSalida);
-                            IF($horaSalida >= 11){
+                            IF($horaSalida >= 12){
                                 $mas = 1;
                             }
                             ELSE{$mas = 0;
