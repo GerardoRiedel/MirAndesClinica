@@ -65,7 +65,8 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                                 <th>Solicitudes</th>
                                 <th style=" width: 120px"><table><td style="width: 100px">Signos Vitales</td><td>Licencias Médicas</td></table></th>
                                 <?php IF($this->session->userdata('perfil') === '13' || $this->session->userdata('perfil') === '14' || $this->session->userdata('perfil') === '11'){;?>
-                                <th><table><td>Ingreso Enfermeria</td><td>Evaluación Clínica</td></table></th>
+                                <th>Ingreso Enfermeria</th>
+                                <th>Registro de Intervención</th>
                                 <?php };?>
                                 <th>Registro Ingreso HD</th>
                                 <th style="min-width:120px">Opciones</th>
@@ -90,9 +91,10 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                                 </td>
                                 <?php IF($this->session->userdata('perfil') === '13' || $this->session->userdata('perfil') === '14' || $this->session->userdata('perfil') === '11'){;?>
                                 <td align="center">
-                                    <a class="tip-bottom" title="Registro Enfermeria" href="<?php echo base_url("hd_admision/ingresos/cargarIngresoEnfermeria/" . $item->id )?>"><i class="fa fa-stethoscope" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                
-                                    <a class="tip-bottom" title="Registro Evaluación Clínica" href="<?php echo base_url("hd_admision/ingresos/cargarEvaluacion/" . $item->id )?>"><i class="fa fa-user-md" aria-hidden="true"></i></a>
+                                    <a class="tip-bottom" title="Registro Enfermeria" href="<?php echo base_url("hd_admision/ingresos/cargarIngresoEnfermeria/" . $item->id )?>"><i class="fa fa-stethoscope" aria-hidden="true"></i></a>
+                                </td>
+                                <td align="center">
+                                    <a class="tip-bottom" title="Registro de Intervención" href="<?php echo base_url("hd_admision/ingresos/cargarEvaluacion/" . $item->id )?>"><i class="fa fa-user-md" aria-hidden="true"></i></a>
                                 </td>
                                 <?php };?>
                                 <td align="center">
