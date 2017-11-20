@@ -145,7 +145,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                     <div class="col-lg-12"></div>
                     <div class="col-lg-2"></div>
                     <div class="col-lg-10">
-                    <input id="contar" type="text" style=" border: none">
+                    <input id="contar" type="text" style=" border: none;width:300px">
                     </div>
                     <div class='col-lg-12'><br></div>
                     <div class="col-lg-12" align="center">
@@ -247,4 +247,5 @@ function cuenta(){
     //}
 });  
 </script>
+
   
