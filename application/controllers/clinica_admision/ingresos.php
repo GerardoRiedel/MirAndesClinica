@@ -54,7 +54,10 @@ class Ingresos extends CI_Controller {
     {
         
         $rut        = str_replace(array(".","-"), "", $this->input->post('rut'));
-        $letra      = substr($rut,0,1);if ($letra === "1" || $letra === "2"){$rut = substr($rut, 0, 8);}else {$rut = substr($rut, 0, 7);}
+        $nac = $this->input->post('nac');
+        IF($nac === '1'){
+            $letra      = substr($rut,0,1);if ($letra === "1" || $letra === "2"){$rut = substr($rut, 0, 8);}else {$rut = substr($rut, 0, 7);}
+        }
         $rutApo     = str_replace(array(".","-"), "", $this->input->post('rutApo'));
         $letra      = substr($rutApo,0,1);if ($letra === '1' || $letra === '2'){$rutApo = substr($rutApo, 0, 8);}else {$rutApo = substr($rutApo, 0, 7);}
         $rutTitular = str_replace(array(".","-"), "", $this->input->post('rutTitular'));
@@ -311,7 +314,11 @@ class Ingresos extends CI_Controller {
     {
 
         $rut        = str_replace(array(".","-"), "", $this->input->post('rut'));
-        $letra      = substr($rut,0,1);if ($letra === "1" || $letra === "2"){$rut = substr($rut, 0, 8);}else {$rut = substr($rut, 0, 7);}
+        $nac = $this->input->post('nac');
+        IF($nac === '1'){
+            $letra      = substr($rut,0,1);if ($letra === "1" || $letra === "2"){$rut = substr($rut, 0, 8);}else {$rut = substr($rut, 0, 7);}
+        }
+        //$letra      = substr($rut,0,1);if ($letra === "1" || $letra === "2"){$rut = substr($rut, 0, 8);}else {$rut = substr($rut, 0, 7);}
         $rutApo     = str_replace(array(".","-"), "", $this->input->post('rutApo'));
         $letra      = substr($rutApo,0,1);if ($letra === '1' || $letra === '2'){$rutApo = substr($rutApo, 0, 8);}else {$rutApo = substr($rutApo, 0, 7);}
         $rutEco     = str_replace(array(".","-"), "", $this->input->post('rutApoEco'));

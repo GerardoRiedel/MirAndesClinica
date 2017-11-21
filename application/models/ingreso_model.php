@@ -19,7 +19,7 @@ class Ingreso_model extends CI_Model
         IF(empty($administrador))$this->db->where('alta','no');
         //$alta = Es para filtrar los pacientes que se encuentren con o sin alta registrada
         if(empty($filtro) && empty($inicio) && empty($termino)&& empty($altaDesde) && empty($altaHasta) && empty($alta)){
-            return $this->db->select('c.ctaNombre,c.ctaApellido,c.ctaApellidoM,c.ctaRut,b.banNombre,t.tipNombre,c.ctaNumero,c.ctaEmail, p.fechaNacimiento,p.telefono,p.celular,p.ocupacion,p.direccion,s.comuna comNombre, c.ctaId, r.id, r.ficha, p.nombres, p.apellidoPaterno, p.apellidoMaterno, p.rut, r.dateIn,r.fechaIngreso,r.fechaSalidaReal,r.piso,r.ges')
+            return $this->db->select('p.nacionalidad,c.ctaNombre,c.ctaApellido,c.ctaApellidoM,c.ctaRut,b.banNombre,t.tipNombre,c.ctaNumero,c.ctaEmail, p.fechaNacimiento,p.telefono,p.celular,p.ocupacion,p.direccion,s.comuna comNombre, c.ctaId, r.id, r.ficha, p.nombres, p.apellidoPaterno, p.apellidoMaterno, p.rut, r.dateIn,r.fechaIngreso,r.fechaSalidaReal,r.piso,r.ges')
                         ->from('ficha_ugh_registro r')
                         ->join('ficha_pacientes p','p.id=r.paciente','left')
                         ->join('cuentas_pacientes c','c.ctaRegistro=r.id','left')
@@ -38,7 +38,7 @@ class Ingreso_model extends CI_Model
         else{
             IF (!empty($filtro)){
                 
-            return $this->db->select('c.ctaNombre,c.ctaApellido,c.ctaApellidoM,c.ctaRut,b.banNombre,t.tipNombre,c.ctaNumero,c.ctaEmail, p.fechaNacimiento,p.telefono,p.celular,p.ocupacion,p.direccion,s.comuna comNombre, c.ctaId, r.id, r.ficha, p.nombres, p.apellidoPaterno, p.apellidoMaterno, p.rut, r.dateIn,r.fechaIngreso,r.fechaSalidaReal,r.piso,r.ges')
+            return $this->db->select('p.nacionalidad,c.ctaNombre,c.ctaApellido,c.ctaApellidoM,c.ctaRut,b.banNombre,t.tipNombre,c.ctaNumero,c.ctaEmail, p.fechaNacimiento,p.telefono,p.celular,p.ocupacion,p.direccion,s.comuna comNombre, c.ctaId, r.id, r.ficha, p.nombres, p.apellidoPaterno, p.apellidoMaterno, p.rut, r.dateIn,r.fechaIngreso,r.fechaSalidaReal,r.piso,r.ges')
                        ->from('ficha_ugh_registro r')
                         ->join('ficha_pacientes p','p.id=r.paciente','left')
                         ->join('cuentas_pacientes c','c.ctaRegistro=r.id','left')
@@ -54,7 +54,7 @@ class Ingreso_model extends CI_Model
             }
             ELSEIF (!empty ($inicio) && empty ($altaDesde)){
                 IF(empty($termino))$termino = date('Y-m-d H:i:s');
-                return $this->db->select('c.ctaNombre,c.ctaApellido,c.ctaApellidoM,c.ctaRut,b.banNombre,t.tipNombre,c.ctaNumero,c.ctaEmail, p.fechaNacimiento,p.telefono,p.celular,p.ocupacion,p.direccion,s.comuna comNombre, c.ctaId, r.id, r.ficha, p.nombres, p.apellidoPaterno, p.apellidoMaterno, p.rut, r.dateIn,r.fechaIngreso,r.fechaSalidaReal,r.piso,r.ges')
+                return $this->db->select('p.nacionalidad,c.ctaNombre,c.ctaApellido,c.ctaApellidoM,c.ctaRut,b.banNombre,t.tipNombre,c.ctaNumero,c.ctaEmail, p.fechaNacimiento,p.telefono,p.celular,p.ocupacion,p.direccion,s.comuna comNombre, c.ctaId, r.id, r.ficha, p.nombres, p.apellidoPaterno, p.apellidoMaterno, p.rut, r.dateIn,r.fechaIngreso,r.fechaSalidaReal,r.piso,r.ges')
                    ->from('ficha_ugh_registro r')
                         ->join('ficha_pacientes p','p.id=r.paciente','left')
                         ->join('cuentas_pacientes c','c.ctaRegistro=r.id','left')
@@ -70,7 +70,7 @@ class Ingreso_model extends CI_Model
             }
             ELSEIF (!empty ($altaDesde) && empty ($inicio)){
                 IF(empty($altaHasta))$altaHasta = date('Y-m-d H:i:s');
-                return $this->db->select('c.ctaNombre,c.ctaApellido,c.ctaApellidoM,c.ctaRut,b.banNombre,t.tipNombre,c.ctaNumero,c.ctaEmail, p.fechaNacimiento,p.telefono,p.celular,p.ocupacion,p.direccion,s.comuna comNombre, c.ctaId, r.id, r.ficha, p.nombres, p.apellidoPaterno, p.apellidoMaterno, p.rut, r.dateIn,r.fechaIngreso,r.fechaSalidaReal,r.piso,r.ges')
+                return $this->db->select('p.nacionalidad,c.ctaNombre,c.ctaApellido,c.ctaApellidoM,c.ctaRut,b.banNombre,t.tipNombre,c.ctaNumero,c.ctaEmail, p.fechaNacimiento,p.telefono,p.celular,p.ocupacion,p.direccion,s.comuna comNombre, c.ctaId, r.id, r.ficha, p.nombres, p.apellidoPaterno, p.apellidoMaterno, p.rut, r.dateIn,r.fechaIngreso,r.fechaSalidaReal,r.piso,r.ges')
                     ->from('ficha_ugh_registro r')
                         ->join('ficha_pacientes p','p.id=r.paciente','left')
                         ->join('cuentas_pacientes c','c.ctaRegistro=r.id','left')
@@ -87,7 +87,7 @@ class Ingreso_model extends CI_Model
             ELSE {
                 IF(empty($altaHasta))$altaHasta = date('Y-m-d H:i:s');
                 IF(empty($termino))$termino = date('Y-m-d H:i:s');
-                return $this->db->select('c.ctaNombre,c.ctaApellido,c.ctaApellidoM,c.ctaRut,b.banNombre,t.tipNombre,c.ctaNumero,c.ctaEmail, p.fechaNacimiento,p.telefono,p.celular,p.ocupacion,p.direccion,s.comuna comNombre, c.ctaId, r.id, r.ficha, p.nombres, p.apellidoPaterno, p.apellidoMaterno, p.rut, r.dateIn,r.fechaIngreso,r.fechaSalidaReal,r.piso,r.ges')
+                return $this->db->select('p.nacionalidad,c.ctaNombre,c.ctaApellido,c.ctaApellidoM,c.ctaRut,b.banNombre,t.tipNombre,c.ctaNumero,c.ctaEmail, p.fechaNacimiento,p.telefono,p.celular,p.ocupacion,p.direccion,s.comuna comNombre, c.ctaId, r.id, r.ficha, p.nombres, p.apellidoPaterno, p.apellidoMaterno, p.rut, r.dateIn,r.fechaIngreso,r.fechaSalidaReal,r.piso,r.ges')
                         ->from('ficha_ugh_registro r')
                         ->join('ficha_pacientes p','p.id=r.paciente','left')
                         ->join('cuentas_pacientes c','c.ctaRegistro=r.id','left')
@@ -108,7 +108,7 @@ class Ingreso_model extends CI_Model
     public function dameUno($id)
     {
        // $db = $this->load->database('ugh', TRUE);
-        return $this->db->select('r.ingresoAdministrativo,r.alta,s.esGes, r.ges, r.emergenciaDerivar, r.fechaDerivacion, r.fechaIngreso, r.horaIngreso, r.fechaSalidaReal, r.horaSalidaReal, r.fechaAltaEpicrisis, r.fechaAltaInformada, r.id, r.ficha, r.paciente, e.regNombre regimen, r.dateIn, r.isapre, r.rutTitular, r.diagnosticoDerivacion, r.diagnostico, r.comentario, r.medicoAsignado,m.nombres nombresmedicoAsignado,m.apellidoPaterno apellidomedicoAsignado,m.apellidoMaterno apellidoMmedicoAsignado,m.rut rutmedico,m.email emailmedico, r.nombresMedicoSolicitante, r.apellidoPaternoMedicoSolicitante, r.apellidoMaternoMedicoSolicitante, r.edadPaciente, r.piso, r.emergenciaDerivar, p.nombres, p.apellidoPaterno, p.apellidoMaterno, p.rut, p.fechaNacimiento, p.direccion, p.telefono, p.celular, p.email, p.sexo, p.ocupacion, p.nacionalidad, p.alergia, c.id comId, c.comuna, i.isapre isapreNombre')
+        return $this->db->select('p.nacionalidad,r.ingresoAdministrativo,r.alta,s.esGes, r.ges, r.emergenciaDerivar, r.fechaDerivacion, r.fechaIngreso, r.horaIngreso, r.fechaSalidaReal, r.horaSalidaReal, r.fechaAltaEpicrisis, r.fechaAltaInformada, r.id, r.ficha, r.paciente, e.regNombre regimen, r.dateIn, r.isapre, r.rutTitular, r.diagnosticoDerivacion, r.diagnostico, r.comentario, r.medicoAsignado,m.nombres nombresmedicoAsignado,m.apellidoPaterno apellidomedicoAsignado,m.apellidoMaterno apellidoMmedicoAsignado,m.rut rutmedico,m.email emailmedico, r.nombresMedicoSolicitante, r.apellidoPaternoMedicoSolicitante, r.apellidoMaternoMedicoSolicitante, r.edadPaciente, r.piso, r.emergenciaDerivar, p.nombres, p.apellidoPaterno, p.apellidoMaterno, p.rut, p.fechaNacimiento, p.direccion, p.telefono, p.celular, p.email, p.sexo, p.ocupacion, p.nacionalidad, p.alergia, c.id comId, c.comuna, i.isapre isapreNombre')
                     ->from('ficha_ugh_registro r')
                     ->join('ficha_pacientes p','p.id=r.paciente','left')
                     ->join('ficha_comunas c','p.comuna=c.id','left')
@@ -151,7 +151,7 @@ class Ingreso_model extends CI_Model
     public function dameTodo($paciente)
     {
         //$db = $this->load->database('ugh', TRUE);
-        return $this->db->select('s.esGes, r.ges, r.emergenciaDerivar, r.fechaDerivacion, r.fechaIngreso, r.horaIngreso, r.fechaSalidaReal, r.horaSalidaReal, r.fechaAltaEpicrisis, r.fechaAltaInformada, r.id, r.ficha, r.paciente, r.regimen, r.dateIn, r.isapre, r.rutTitular, r.diagnosticoDerivacion, r.diagnostico, r.comentario, r.medicoAsignado,m.nombres nombresmedicoAsignado,m.apellidoPaterno apellidomedicoAsignado,m.apellidoMaterno apellidoMmedicoAsignado,m.rut rutmedico,m.email emailmedico, r.nombresMedicoSolicitante, r.apellidoPaternoMedicoSolicitante, r.apellidoMaternoMedicoSolicitante, r.edadPaciente, r.piso, r.emergenciaDerivar, p.nombres, p.apellidoPaterno, p.apellidoMaterno, p.rut, p.fechaNacimiento, p.direccion, p.telefono, p.celular, p.email, p.sexo, p.ocupacion, p.nacionalidad, p.alergia, c.id comId, c.comuna, i.isapre isapreNombre')
+        return $this->db->select('p.nacionalidad,s.esGes, r.ges, r.emergenciaDerivar, r.fechaDerivacion, r.fechaIngreso, r.horaIngreso, r.fechaSalidaReal, r.horaSalidaReal, r.fechaAltaEpicrisis, r.fechaAltaInformada, r.id, r.ficha, r.paciente, r.regimen, r.dateIn, r.isapre, r.rutTitular, r.diagnosticoDerivacion, r.diagnostico, r.comentario, r.medicoAsignado,m.nombres nombresmedicoAsignado,m.apellidoPaterno apellidomedicoAsignado,m.apellidoMaterno apellidoMmedicoAsignado,m.rut rutmedico,m.email emailmedico, r.nombresMedicoSolicitante, r.apellidoPaternoMedicoSolicitante, r.apellidoMaternoMedicoSolicitante, r.edadPaciente, r.piso, r.emergenciaDerivar, p.nombres, p.apellidoPaterno, p.apellidoMaterno, p.rut, p.fechaNacimiento, p.direccion, p.telefono, p.celular, p.email, p.sexo, p.ocupacion, p.nacionalidad, p.alergia, c.id comId, c.comuna, i.isapre isapreNombre')
                     ->from('ficha_ugh_registro r')
                     ->join('ficha_pacientes p','p.id=r.paciente','left')
                     ->join('ficha_comunas c','p.comuna=c.id','left')

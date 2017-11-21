@@ -80,7 +80,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                         <label>Rut Paciente</label>
                     </div>
                     <div class='col-lg-4'>
-                        <input name="rut" type="text" readonly="true" id="rut" value="<?php IF(!empty($datos->rut))echo formatearRut($datos->rut);?>">
+                        <input name="rut" type="text" readonly="true" id="rut" value="<?php IF($datos->nacionalidad !== '2')echo formatearRut($datos->rut); ELSE echo $datos->rut; ?>">
                     </div>
                     
                 

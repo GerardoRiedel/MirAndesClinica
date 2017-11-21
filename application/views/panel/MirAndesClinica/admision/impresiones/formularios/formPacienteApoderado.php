@@ -148,7 +148,7 @@
                                         $edad  = '-';
                                     }
                                 ?>
-                                <label>Rut: </label><?php echo formatearRut($datos->rut);?> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label>Edad:</label> <?php echo $edad;?> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label>Isapre: </label><?php echo strtoupper($datos->isapreNombre);?> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label>Titular: </label><?php IF(!empty($datos->rutTitular))echo formatearRut($datos->rutTitular); ?>
+                                <label>Rut: </label><?php IF($datos->nacionalidad !== '2')echo formatearRut($datos->rut); ELSE echo $datos->rut; ?> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label>Edad:</label> <?php echo $edad;?> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label>Isapre: </label><?php echo strtoupper($datos->isapreNombre);?> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<label>Titular: </label><?php IF(!empty($datos->rutTitular))echo formatearRut($datos->rutTitular); ?>
                             </div>
                 <br>
                             <div class="col-lg-12" align="left">

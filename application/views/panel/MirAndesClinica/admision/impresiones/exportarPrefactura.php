@@ -36,7 +36,7 @@
     
 </style>
 
-<div style="page-break-after: always; display:true"  id="exportar" >
+<div style="page-break-after: always; display:none"  id="exportar" >
             <div class="col-lg-12" align="left" style="margin-left: 40px">
                 <img src="<?php echo base_url();?>../assets/img/mirAndes.png" class="logo">
             </div>

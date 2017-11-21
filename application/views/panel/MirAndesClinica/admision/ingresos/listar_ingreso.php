@@ -146,7 +146,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                                 <?php IF(!empty($filtro)){ ?>
                                 <td style=" border-left: transparent;"><?php IF(!empty($item->fechaIngreso)){$dateI = new DateTime($item->fechaIngreso);echo $dateI->format('d-m-Y');}//echo $item->id; ?></td>
                                    <?php } ?>
-                                <td><?php if(!empty($item->rut)) echo formatearRut($item->rut); ?></td>
+                                <td><?php IF($item->nacionalidad !== '2')echo formatearRut($item->rut); ELSE echo $item->rut; ?></td>
                                 <td style="display:none"><?php if(!empty($item->rut)) echo $item->rut; ?></td>
                                 <td><?php echo $item->ficha; ?></td>
                                 <td align="center"><?php IF(!empty($item->ges)){ IF($item->ges === '1') echo 'GES'; ELSEIF($item->ges === '2') echo 'LE'; } ?>

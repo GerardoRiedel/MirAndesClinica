@@ -167,9 +167,9 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                         <table>
                             <tbody>
                             <tr>
-                                <td style=" width: 30px" align="center"><input value="1" type="radio" name="nac" id="chileno" checked="true"></td>
+                                <td style=" width: 30px" align="center"><div id="chi"><input value="1" type="radio" name="nac" id="chileno"></div></td>
                                 <td style=" width: 75px">Chilena</td>
-                                <td style=" width: 30px" align="center"><input value="2" type="radio" name="nac" id="extranjero"></td>
+                                <td style=" width: 30px" align="center"><div id="ext"><input value="2" type="radio" name="nac" id="extranjero"></div></td>
                                 <td style=" width: 75px">Extranjera</td>
                             </tr>
                             </tbody>
@@ -616,6 +616,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
 <script>
     $("#ocupacion").focusout(function(){
         //ENVIAR DATOS GUARDAR
+        if($("input[name='nac']:checked").val() !== '2'){
                     var rut = $( "#rut" ).val();
                     var ficha = $( "#ficha" ).val();
                         if (ficha === 'Sin ficha, se creará al ingreso') ficha = '';
@@ -663,6 +664,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                             }
                         });
                     }
+            }
     });
     
     
@@ -682,6 +684,8 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
         
     focusout:function(){
         
+        
+        
         $.ajax({
             type: "GET",
             url: "<?php echo base_url(); ?>" + "api/session/inicioIngreso/",
@@ -694,16 +698,15 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
             }
         })
         ////LIMPIAR INPUTS
-        document.getElementById("piso").value = "";document.getElementById("licDesde").value = "";document.getElementById("licDias").value = "";document.getElementById("licNumero").value = "";document.getElementById("comentario").value = "";document.getElementById("diagnostico").value = "";document.getElementById("alergias").value = "";document.getElementById("diagnostico").value = "";document.getElementById("emergenciaDerivar").value = "";document.getElementById("telDosOtroContacto").value = "";document.getElementById("telUnoOtroContacto").value = "";document.getElementById("nombreOtroContacto").value = "";document.getElementById("ficha").value = "";document.getElementById("nombres").value = "";document.getElementById("apePat").value = "";document.getElementById("apeMat").value = "";document.getElementById("fecha").value = ""; document.getElementById("telFijo").value = ""; document.getElementById("telCelu").value = ""; document.getElementById("direccion").value  = ""; document.getElementById("email").value = ""; document.getElementById("ocupacion").value  = ""; document.getElementById("rutTitular").value = ""; document.getElementById("rutApo").value = "";$("#fem").removeClass();$("#masc").removeClass();$("#comuna option[value=0]").attr("selected",true);  
+        document.getElementById("piso").value = "";document.getElementById("licDesde").value = "";document.getElementById("licDias").value = "";document.getElementById("licNumero").value = "";document.getElementById("comentario").value = "";document.getElementById("diagnostico").value = "";document.getElementById("alergias").value = "";document.getElementById("diagnostico").value = "";document.getElementById("emergenciaDerivar").value = "";document.getElementById("telDosOtroContacto").value = "";document.getElementById("telUnoOtroContacto").value = "";document.getElementById("nombreOtroContacto").value = "";document.getElementById("ficha").value = "";document.getElementById("nombres").value = "";document.getElementById("apePat").value = "";document.getElementById("apeMat").value = "";document.getElementById("fecha").value = ""; document.getElementById("telFijo").value = ""; document.getElementById("telCelu").value = ""; document.getElementById("direccion").value  = ""; document.getElementById("email").value = ""; document.getElementById("ocupacion").value  = ""; document.getElementById("rutTitular").value = ""; document.getElementById("rutApo").value = "";$("#fem").removeClass();$("#masc").removeClass();$("#chi").removeClass();$("#ext").removeClass();$("#comuna option[value=0]").attr("selected",true);  
         
         var rut = $( "#rut" ).val();
         if (rut === ''){$("#rut").attr("disabled", false).css("box-shadow","0 0 15px red"); $("#divFicha").hide(); event.stopPropagation()}
         
-
-        
+        if($("input[name='nac']:checked").val() !== '2'){
         var validar = validaRut(rut);
         if (validar != true && rut != ''){document.getElementById("rut").value  = '';alert('Rut Invalido');event.stopPropagation()}
-        
+    }
         $("#rut").attr("disabled", false).css("box-shadow","0 0 0px");
         $("#divFicha").show();  
         var rut = rut.replace(".", "");var rut = rut.replace("-", "");var rut = rut.replace(",", ""); var rut = rut.replace(".", "");
@@ -737,6 +740,16 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                     else if(data.sexo === 'MASCULINO'){
                         $('input:radio[name=sexo]')[0].checked = true;
                         $("#masc").removeClass().addClass("iradio_flat-blue checked");
+                    }
+                }
+                 if (data.nacionalidad != undefined){
+                    if(data.nacionalidad === '1'){
+                        $('input:radio[name=nac]')[1].checked = true;
+                        $("#chi").removeClass().addClass("iradio_flat-blue checked");
+                    }
+                    else if(data.nacionalidad === '2'){
+                        $('input:radio[name=nac]')[0].checked = true;
+                        $("#ext").removeClass().addClass("iradio_flat-blue checked");
                     }
                 }
                 if(data.comId != undefined){
@@ -900,6 +913,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
         
                     }
                     //ENVIAR DATOS GUARDAR
+                     if($("input[name='nac']:checked").val() !== '2'){
                     var rut = $( "#rut" ).val();
                     var ficha = $( "#ficha" ).val();
                         if (ficha === 'Sin ficha, se creará al ingreso') ficha = '';
@@ -948,6 +962,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
 
                             }
                         })
+                    }
                     }
                 }
         })
