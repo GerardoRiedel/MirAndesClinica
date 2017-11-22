@@ -17,6 +17,7 @@ class Impresiones extends CI_Controller {
         $this->load->model("isapres_model");
         $this->load->model("bancos_model");
         $this->load->model("hd_model");
+        $this->load->model("hd_historico_model");
         $this->load->model("licencias_model");
         $this->load->model("parametros_model");
         $this->load->model("enfermeria_model");
@@ -194,6 +195,27 @@ class Impresiones extends CI_Controller {
         //$months = floor(($diff - $years * 365*60*60*24) / (30*60*60*24));
         //$days   = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
         return $years;
+    }
+    
+     public function imprimirHistorico($paciente)
+    {
+        $opciones[14]='on';
+        $opciones[12]='off';
+        $opciones[0] = $opciones[1] = $opciones[2] = $opciones[3 ]= $opciones[4] = $opciones[5] = $opciones[6] = $opciones[7] = $opciones[8] = $opciones[9] = $opciones[10] = $opciones[11] = $opciones[13] = 'off';
+        
+        $data['historico'] =   $this->hd_historico_model->dameHistorico($paciente);
+        $id = $this->hd_model->dameIdFicha($paciente);
+        $datos          = $this->hd_model->dameUno($id->id);
+        
+        $data['datos']      = $datos;
+        //$data['datosApo']   = $this->apoderados_model->dameUnoPorFichaHd($id->evaRegistro);
+
+        $data['opciones']   = $opciones;
+        $data['breadcumb']  = "Ingreso";
+        $data['title']      = "Ficha de Ingreso";
+        Layout_Helper::cargaVista($this,'imprimirImprimir',$data,'hd');   
+        
+        
     }
     
 }

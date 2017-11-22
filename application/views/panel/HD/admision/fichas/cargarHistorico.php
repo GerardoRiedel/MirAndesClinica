@@ -108,7 +108,10 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                         <label>Email: </label> <?php IF(!empty($datos->email))echo strtoupper($datos->email); ?>
                     </div>
                
-                
+                    <div class="col-lg-12">
+                        <a class="tip-bottom" title="Imprimir Historico" href="<?php echo base_url("hd_admision/impresiones/imprimirHistorico/".$datos->paciente )?>"><i class="fa fa-print" aria-hidden="true"></i></a>&nbsp;&nbsp;
+                        
+                    </div>
                 
                 <div class="col-lg-12" style=" overflow-x: auto">
                     <table class='table table-bordered table-hover table-striped data-table'>
@@ -133,8 +136,9 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                     <td style="width:85px" ><?php echo strtoupper($eva->uspNombre).' '.strtoupper($eva->uspApellidoP);?></td>
                     <td ><?php echo $eva->evaObservacion;?></td>
                     <td style="width:85px"align="center">
-                        <a class="tip-bottom" title="Imprimir Evaluación" href="<?php echo base_url("hd_admision/impresiones/imprimirEvaluacion/".$eva->evaId )?>"><i class="fa fa-print" aria-hidden="true"></i></a>&nbsp;&nbsp;
                         <!--
+                        <a class="tip-bottom" title="Imprimir Evaluación" href="<?php echo base_url("hd_admision/impresiones/imprimirEvaluacion/".$eva->evaId )?>"><i class="fa fa-print" aria-hidden="true"></i></a>&nbsp;&nbsp;
+                        
                         <a class="tip-bottom" title="Modificar Evaluación" href="<?php echo base_url("hd_admision/ingresos/modificarEvaluacion/" . $eva->evaId )?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
                         <a class="tip-bottom" onclick="return confirm('¿Confirma que desea eliminar este registro?')" style="color:red" title="Eliminar Evaluación" href="<?php echo base_url("hd_admision/ingresos/eliminarEvaluaciones/" . $eva->evaId )?>"><i class="fa fa-trash" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         -->

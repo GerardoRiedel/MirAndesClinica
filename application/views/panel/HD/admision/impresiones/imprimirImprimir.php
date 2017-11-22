@@ -218,6 +218,13 @@
                 ?>
     <!-- FIN FORMULARIO SIGNOS -->
 <?php ENDIF; ?>
+    <?php IF($opciones[14] === 'on'):?>
+    <!-- INICIO FORMULARIO SIGNOS -->
+                <?php
+                $this->load->view('panel/HD/admision/impresiones/formularios/formHistorico');
+                ?>
+    <!-- FIN FORMULARIO SIGNOS -->
+<?php ENDIF; ?>
 </div><!-- DIV IMPRIMIR -->               
         </div><!-- DIV CONTAINER --> 
     </div><!-- DIV ROW --> 

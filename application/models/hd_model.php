@@ -227,7 +227,7 @@ class Hd_model extends CI_Model
     public function dameIdFicha($paciente)
     {
         //$db = $this->load->database('ugh', TRUE);
-        return $this->db->select('id')
+        return $this->db->select('id,ficha')
                     ->from('ficha_hd_registro')
                     ->where('paciente',$paciente)
                     ->order_by('id','desc')
