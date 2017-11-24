@@ -80,7 +80,7 @@ class Login extends CI_Controller
                             echo "<script>".$alert."window.location.href='".base_url()."hd_admision/ingresos/inicio';</script>";}
                             ELSE {redirect(base_url().'hd_admision/ingresos/inicio');}
 			}
-                        else if($this->session->userdata('perfil') == '14'){
+                        else if($this->session->userdata('perfil') >= '14'){
                             IF($nav != 'Chrome'){
                             echo "<script>".$alert."window.location.href='".base_url()."hd_admision/ingresos/inicio';</script>";}
                             ELSE {redirect(base_url().'hd_admision/ingresos/inicio');}

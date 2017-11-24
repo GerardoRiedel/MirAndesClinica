@@ -16,7 +16,7 @@ class Hd_model extends CI_Model
 
     public function dameIngresosHd($filtro='',$inicio='',$termino='',$altaDesde='',$altaHasta='',$alta='',$administrador='')
     {
-        IF(empty($administrador))$this->db->where('fechaSalidaReal','0000-00-00');
+        IF(empty($administrador))$this->db->where('alta','no');
         //$alta = Es para filtrar los pacientes que se encuentren con o sin alta registrada
         if(empty($filtro) && empty($inicio) && empty($termino)&& empty($altaDesde) && empty($altaHasta) && empty($alta)){
             return $this->db->select('r.id, r.ficha,r.fichaRH, p.nombres, p.apellidoPaterno, p.apellidoMaterno, p.rut, r.dateIn,r.fechaSalidaReal,r.piso,r.paciente,r.ingresoMirAndes tipoIngreso')

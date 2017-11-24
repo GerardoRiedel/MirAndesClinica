@@ -66,8 +66,9 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                                 <th style=" width: 120px"><table><td style="width: 100px">Signos Vitales</td><td>Licencias Médicas</td></table></th>
                                 <?php IF($this->session->userdata('perfil') === '13' || $this->session->userdata('perfil') === '14' || $this->session->userdata('perfil') === '11'){;?>
                                 <th>Ingreso Enfermeria</th>
-                                <th>Registro de Intervención</th>
                                 <?php };?>
+                                <th>Registro de Intervención</th>
+                                
                                 <th>Registro Ingreso HD</th>
                                 <th style="min-width:120px">Opciones</th>
                             </tr>
@@ -93,10 +94,11 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                                 <td align="center">
                                     <a class="tip-bottom" title="Registro Enfermeria" href="<?php echo base_url("hd_admision/ingresos/cargarIngresoEnfermeria/" . $item->id )?>"><i class="fa fa-stethoscope" aria-hidden="true"></i></a>
                                 </td>
+                                <?php };?>
                                 <td align="center">
                                     <a class="tip-bottom" title="Registro de Intervención" href="<?php echo base_url("hd_admision/ingresos/cargarEvaluacion/" . $item->id )?>"><i class="fa fa-user-md" aria-hidden="true"></i></a>
                                 </td>
-                                <?php };?>
+                                
                                 <td align="center">
                                     <a class="tip-bottom" title="Registro de Ingreso T.O" href="<?php echo base_url("hd_admision/ingresos/cargarIngresoTO/" . $item->id )?>"><i class="fa fa-calendar-check-o" aria-hidden="true"></i></a>&nbsp;&nbsp;
                                 </td>

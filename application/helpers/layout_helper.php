@@ -154,7 +154,7 @@ class Layout_Helper
         		Layout_Helper::restringido($obj,$data);
 			}
         }
-        else if($obj->session->userdata('perfil') == '14'){
+        else if($obj->session->userdata('perfil') >= '14'){
         	// accesos de some = canalesSome,cesfamSome,enfermedadesSome,especialidadesSome,horasSome,mensajesSome,plataformaSome,principalSome,profesionalesSome,reportesSome,usuariosSome
 			
 			$no_vistas_perfil1 = array("hd");
