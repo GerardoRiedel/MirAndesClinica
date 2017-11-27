@@ -54,6 +54,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                             <tr>
                                 <th>Fecha Registro</th>
                                 <th style="min-width:100px">Run</th>
+                                <th style="display:none">Run</th>
                                 <th>N° Ficha</th>
                                 <th>Tipo Ingreso</th>
                                 <th>Nombres</th>
@@ -67,6 +68,8 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                             <tr>
                                 <td align="center"><?php echo $item->dateIn; ?></td>
                                 <td><?php if(!empty($item->rut)) echo formatearRut($item->rut); ?></td>
+                                <td style="display:none"><?php if(!empty($item->rut)) echo $item->rut; ?></td>
+                                
                                 <td align="center"><?php IF($item->tipoIngreso==='2')echo $item->ficha;     ELSEIF($item->tipoIngreso==='3')echo $item->fichaRH; ?></td>
                                 <td align="center"><?php IF($item->tipoIngreso==='2')echo 'HOSPITAL DE DÍA';ELSEIF($item->tipoIngreso==='3')echo 'REHABILITACIÓN';?></td>
                                 <td><?php echo strtoupper($item->nombres); ?></td>

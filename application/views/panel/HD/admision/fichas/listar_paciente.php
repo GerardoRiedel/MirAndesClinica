@@ -73,6 +73,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                                 <th>N° Ficha RH</th>
                                 -->
                                 <th style=" width: 150px">Run</th>
+                                <th style=" display:none">Run</th>
                                 <th>Nombre</th>
                                 <th>Apellidos</th>
                             </tr>
@@ -95,6 +96,9 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                                         ">
                                         <?php echo formatearRut($item->rut);?>
                                     </a>
+                                </td>
+                                <td style="display:none">
+                                    <?php echo $item->rut;?>
                                 </td>
                                 
                                 <td align="center"><?php echo strtoupper($item->nombres); ?></td>
