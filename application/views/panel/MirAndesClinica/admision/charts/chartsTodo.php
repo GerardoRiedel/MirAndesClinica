@@ -92,7 +92,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                         dias = dias.concat(dia);
                         
                         
-                        if(dia==='Noviembre'){cant2016 = cant2016.concat(20);}else if(dia==='Diciembre'){cant2016 = cant2016.concat(45);}else {cant2016 = cant2016.concat(0);};
+                            if(dia==='Noviembre'){cant2016 = cant2016.concat(20);}else if(dia==='Diciembre'){cant2016 = cant2016.concat(45);}else {cant2016 = cant2016.concat(0);};
                       
                     }
                     Highcharts.setOptions({
@@ -137,10 +137,11 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                         //    verticalAlign: 'middle',
                         //    borderWidth: 0
                         //},
-                        series: [{
-                            name: 'Universo: 65 pacientes 2016',
-                            data: cant2016
-                        },
+                        series: [
+                  //         {
+                   //         name: 'Universo: 65 pacientes 2016',
+                    //        data: cant2016
+                     //   },
                             {
                             name: 'Universo: '+cant2017T+' pacientes 2017',
                             data: cant2017
@@ -442,12 +443,12 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                         
                         }
  //descomentar estas lineas segun el mes a mostrar
-                        efectivo  = efectivo.concat(efecN).concat(efecD).concat(efecE).concat(efecF).concat(efecM)       .concat(efecA)   .concat(efecMA)  .concat(efecJ)  .concat(efecJL)  .concat(efecAG).     concat(efecS).    concat(efecO);
-                        cheque  = cheque.concat(cheqN).concat(cheqD).concat(cheqE).concat(cheqF).concat(cheqM).concat(cheqA)  .concat(cheqMA) .concat(cheqJ) .concat(cheqJL).concat(cheqAG).   concat(cheqS).   concat(cheqO);
-                        trans      = trans.concat(tranN).concat(tranD).concat(tranE).concat(tranF).concat(tranM)               .concat(tranA)   .concat(tranMA)   .concat(tranJ)   .concat(tranJL)  .concat(tranAG).      concat(tranS).     concat(tranO);
-                        web        = web.concat(weN).concat(weD).concat(weE).concat(weF).concat(weM)                        .concat(weA)     .concat(weMA)     .concat(weJ)     .concat(weJL)    .concat(weAG).       concat(weS).      concat(weO);
-                        cred        = cred.concat(creN).concat(creD).concat(creE).concat(creF).concat(creM)                      .concat(creA)    .concat(creMA)     .concat(creJ)    .concat(creJL)    .concat(creAG).       concat(creS).      concat(creO);
-                        deb         = deb.concat(deN).concat(deD).concat(deE).concat(deF).concat(deM)                            .concat(deA)     .concat(deMA)      .concat(deJ)     .concat(deJL)     .concat(deAG).        concat(deS).       concat(deO);
+                        efectivo  = efectivo.concat(efecE).concat(efecF).concat(efecM)       .concat(efecA)   .concat(efecMA)  .concat(efecJ)  .concat(efecJL)  .concat(efecAG).     concat(efecS).    concat(efecO).concat(efecN).concat(efecD);
+                        cheque  = cheque.concat(cheqE).concat(cheqF).concat(cheqM).concat(cheqA)  .concat(cheqMA) .concat(cheqJ) .concat(cheqJL).concat(cheqAG).   concat(cheqS).   concat(cheqO).concat(cheqN).concat(cheqD);
+                        trans      = trans.concat(tranE).concat(tranF).concat(tranM)               .concat(tranA)   .concat(tranMA)   .concat(tranJ)   .concat(tranJL)  .concat(tranAG).      concat(tranS).     concat(tranO).concat(tranN).concat(tranD);
+                        web        = web.concat(weE).concat(weF).concat(weM)                        .concat(weA)     .concat(weMA)     .concat(weJ)     .concat(weJL)    .concat(weAG).       concat(weS).      concat(weO).concat(weN).concat(weD);
+                        cred        = cred.concat(creE).concat(creF).concat(creM)                      .concat(creA)    .concat(creMA)     .concat(creJ)    .concat(creJL)    .concat(creAG).       concat(creS).      concat(creO).concat(creN).concat(creD);
+                        deb         = deb.concat(deE).concat(deF).concat(deM)                            .concat(deA)     .concat(deMA)      .concat(deJ)     .concat(deJL)     .concat(deAG).        concat(deS).       concat(deO).concat(deN).concat(deD);
                     
                     
                     Highcharts.setOptions({
@@ -465,7 +466,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                             title: {
                                 text: 'Mes'
                             },
-                            categories: ['Noviembre','Diciembre','Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre']
+                            categories: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre']
                         },
                         yAxis: {
                             title: {

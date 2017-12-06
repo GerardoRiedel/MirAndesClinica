@@ -167,9 +167,9 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                         <table>
                             <tbody>
                             <tr>
-                                <td style=" width: 30px" align="center"><div id="chi"><input value="1" type="radio" name="nac" id="chileno"></div></td>
+                                <td style=" width: 30px" align="center"><div id="chi"><input value="1" type="radio" name="nac" id="chileno"  <?php IF (empty($datos->nacionalidad) || $datos->nacionalidad === '1') echo 'checked="true"'; ?>></div></td>
                                 <td style=" width: 75px">Chilena</td>
-                                <td style=" width: 30px" align="center"><div id="ext"><input value="2" type="radio" name="nac" id="extranjero"></div></td>
+                                <td style=" width: 30px" align="center"><div id="ext"><input value="2" type="radio" name="nac" id="extranjero" <?php IF (!empty($datos->nacionalidad) || $datos->nacionalidad === '2') echo 'checked="true"'; ?>></div></td>
                                 <td style=" width: 75px">Extranjera</td>
                             </tr>
                             </tbody>
@@ -706,7 +706,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
         if($("input[name='nac']:checked").val() !== '2'){
         var validar = validaRut(rut);
         if (validar != true && rut != ''){document.getElementById("rut").value  = '';alert('Rut Invalido');event.stopPropagation()}
-    }
+        }
         $("#rut").attr("disabled", false).css("box-shadow","0 0 0px");
         $("#divFicha").show();  
         var rut = rut.replace(".", "");var rut = rut.replace("-", "");var rut = rut.replace(",", ""); var rut = rut.replace(".", "");
@@ -744,11 +744,11 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                 }
                  if (data.nacionalidad != undefined){
                     if(data.nacionalidad === '1'){
-                        $('input:radio[name=nac]')[1].checked = true;
+                        $('input:radio[name=nac]')[0].checked = true;
                         $("#chi").removeClass().addClass("iradio_flat-blue checked");
                     }
                     else if(data.nacionalidad === '2'){
-                        $('input:radio[name=nac]')[0].checked = true;
+                        $('input:radio[name=nac]')[1].checked = true;
                         $("#ext").removeClass().addClass("iradio_flat-blue checked");
                     }
                 }

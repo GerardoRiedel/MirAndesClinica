@@ -167,14 +167,16 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                                 </td>
                                 -->
                                 <td align="center">
-                                    <?php IF(!empty($item->ctaId)): ?>
+                                    <?php IF(!empty($item->ctaId)){ ?>
                                     <a class="tip-bottom" title="Imprimir ficha de admisión" href="<?php echo base_url("clinica_admision/impresiones/cargarImprimir/" . $item->id )?>"><i class="fa fa-print" aria-hidden="true"></i></a>&nbsp;&nbsp;
-                                    <?php ELSE: ;?>
-                                    <a class="tip-bottom" onclick="return confirm('¿Confirma que desea eliminar este registro?\r..::Recuerde que el correlativo de fichas depende de este registro::..')" style="color:red" title="Desechar Registro Incompleto" href="<?php echo base_url("clinica_admision/ingresos/eliminar/" . $item->id )?>"><i class="fa fa-trash" aria-hidden="true"></i></a>&nbsp;&nbsp;
-                                    <?php ENDIF; ?>
+                                    <?php } ;?>
+                                    <a class="tip-bottom" onclick="return confirm('¿Confirma que desea eliminar este registro?\r..::Recuerde que el correlativo de fichas puede depender de este registro::..')" style="color:red" title="Desechar Registro Incompleto" href="<?php echo base_url("clinica_admision/ingresos/eliminar/" . $item->id )?>"><i class="fa fa-trash" aria-hidden="true"></i></a>&nbsp;&nbsp;
+                                    
                                     <a class="tip-bottom" title="Modificar registro" href="<?php echo base_url("clinica_admision/ingresos/modificarRegistro/" . $item->id )?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <?php IF($ultimo === $item->id && !empty($item->ctaId)): ?>
-                                        <a class="tip-bottom" onclick="return confirm('¿Confirma que desea eliminar este registro?')" style="color:red" title="Desechar Último Registro" href="<?php echo base_url("clinica_admision/ingresos/eliminar/" . $item->id )?>"><i class="fa fa-trash" aria-hidden="true"></i></a>&nbsp;&nbsp;
+                                        <!--
+                                            <a class="tip-bottom" onclick="return confirm('¿Confirma que desea eliminar este registro?')" style="color:red" title="Desechar Último Registro" href="<?php echo base_url("clinica_admision/ingresos/eliminar/" . $item->id )?>"><i class="fa fa-trash" aria-hidden="true"></i></a>&nbsp;&nbsp;
+                                        -->
                                     <?php ENDIF; ?>
                                     <a class="tip-bottom" style="color:green" title="Salida paciente" href="<?php echo base_url("clinica_admision/salidas/cargarSalida/" . $item->id )?>"><i class="fa fa-sign-in" aria-hidden="true"></i></a>&nbsp;&nbsp;
                                     

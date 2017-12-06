@@ -337,7 +337,7 @@ class Ingresos extends CI_Controller {
         if(!empty($alergia)){
             $this->pacientes_model->alergia         = $alergia;
         }  
-        $paciente   = $this->pacientes_model->dameUno($rut);
+        $paciente   = $this->pacientes_model->dameUnoId($this->input->post('paciente'));
         if(!empty($paciente->id)){$this->pacientes_model->id = $paciente->id;}
             $this->pacientes_model->nombres         = $this->input->post('nombres');
             $this->pacientes_model->apellidoPaterno = $this->input->post('apePat');
@@ -350,7 +350,7 @@ class Ingresos extends CI_Controller {
             $this->pacientes_model->direccion       = $this->input->post('direccion');
             $this->pacientes_model->ocupacion       = $this->input->post('ocupacion');
             $this->pacientes_model->nacionalidad    = $this->input->post('nac');
-            $this->pacientes_model->rut             = $rut;
+            //$this->pacientes_model->rut             = $rut;
             $this->pacientes_model->guardar($rut);
             unset($this->pacientes_model->id,$this->pacientes_model->rut,$this->pacientes_model->ocupacion,$this->pacientes_model->direccion,$this->pacientes_model->sexo,$this->pacientes_model->email,$this->pacientes_model->nombres,$this->pacientes_model->apellidoPaterno,$this->pacientes_model->apellidoMaterno,$this->pacientes_model->fechaNacimiento,$this->pacientes_model->telefono,$this->pacientes_model->celular);
         
@@ -449,7 +449,7 @@ class Ingresos extends CI_Controller {
             $this->ingreso_model->fechaIngreso  = $fechaIngreso;
             $this->ingreso_model->horaIngreso   = $this->input->post('horaIngreso');
             $this->ingreso_model->usuarioIn     = $this->session->userdata('id_usuario');
-            $this->ingreso_model->paciente      = $paciente->id;
+            //$this->ingreso_model->paciente      = $paciente->id;
             $this->ingreso_model->isapre        = $this->input->post('isapre');
             $this->ingreso_model->ficha         = $ficha;
             $this->ingreso_model->edadPaciente  = $this->calculaedad($fecha);

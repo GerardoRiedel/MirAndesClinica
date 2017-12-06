@@ -22,9 +22,9 @@ IF(empty($submenu)){$submenu='';}?>
         <ul>
             <?php IF($this->session->userdata('perfil') == '11' || $this->session->userdata('perfil') == '12'){?>
             <li <?php if($submenu === 'cingreso') echo "class='active'" ?>><a href="<?php echo base_url("hd_admision/ingresos/cargarContacto"); ?>">Registro de Contacto</a></li>
-            <?php };?>
             <li <?php if($submenu === 'ningreso') echo "class='active'" ?>><a href="<?php echo base_url("hd_admision/ingresos"); ?>">Nuevo Ingreso HD</a></li>
             <li <?php if($submenu === 'ringreso') echo "class='active'" ?>><a href="<?php echo base_url("hd_admision/ingresos/ingresoRH"); ?>">Nuevo Ingreso RH</a></li>
+            <?php };?>
             <li <?php if($submenu === 'lingreso')  echo "class='active'" ?>><a href="<?php echo base_url("hd_admision/ingresos/listarIngreso"); ?>">Listar Registros Activos</a></li>            
         </ul> 
 </li>

@@ -67,6 +67,8 @@ class Charts_model extends CI_Model
                 ->join('depositos d','r.id = d.depFichaElectro')
                 //->where('r.ficha >',1)
                 ->where('d.depEstado != "5"')
+               ->where('dateIn >= "2017-01-01"')
+               ->where('fechaSalidaReal >= "2017-01-01"')
                 ->group_by('ano,mes,depTipo')
                 ->get()
                 ->result();

@@ -164,28 +164,28 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                         <label class="titulo">ANTECEDENTES GENERALES</label>
                     </div>
                     <div class="col-lg-12" align="center">
-                        <textarea style=" height: 200px; width:100%" name="ingAntGenerales"><?php IF(!empty($ingresos->ingAntGenerales))echo $ingresos->ingAntGenerales; ?></textarea>
+                        <textarea style=" height: 200px; width:90%" name="ingAntGenerales"><?php IF(!empty($ingresos->ingAntGenerales))echo str_replace("<br>", "\n", $ingresos->ingAntGenerales); ?></textarea>
                     </div>
                     <div class="col-lg-12"><br></div>
                     <div class="col-lg-12">
                         <label class="titulo">ANTECEDENTES DE SALUD MENTAL</label>
                     </div>
                     <div class="col-lg-12" align="center">
-                        <textarea style=" height: 200px; width:100%" name="ingAntSalud"><?php IF(!empty($ingresos->ingAntSalud))echo $ingresos->ingAntSalud; ?></textarea>
+                        <textarea style=" height: 200px; width:90%" name="ingAntSalud"><?php IF(!empty($ingresos->ingAntSalud))echo str_replace("<br>", "\n", $ingresos->ingAntSalud); ?></textarea>
                     </div>
                     <div class="col-lg-12"><br></div>
                     <div class="col-lg-12">
                         <label class="titulo">INFORMACIÓN DEL FAMILIAR</label>
                     </div>
                     <div class="col-lg-12" align="center">
-                        <textarea style=" height: 200px; width:100%" name="ingInfFamiliar"><?php IF(!empty($ingresos->ingInfFamiliar))echo $ingresos->ingInfFamiliar; ?></textarea>
+                        <textarea style=" height: 200px; width:90%" name="ingInfFamiliar"><?php IF(!empty($ingresos->ingInfFamiliar))echo str_replace("<br>", "\n", $ingresos->ingInfFamiliar); ?></textarea>
                     </div>
                     <div class="col-lg-12"><br></div>
                     <div class="col-lg-12">
                         <label class="titulo">CONSIDERACIONES IMPORTANTES</label>
                     </div>
                     <div class="col-lg-12" align="center">
-                        <textarea style=" height: 150px; width:100%" name="ingConsideraciones"><?php IF(!empty($ingresos->ingConsideraciones))echo $ingresos->ingConsideraciones; ?></textarea>
+                        <textarea style=" height: 150px; width:90%" name="ingConsideraciones"><?php IF(!empty($ingresos->ingConsideraciones))echo str_replace("<br>", "\n", $ingresos->ingConsideraciones); ?></textarea>
                     </div>
                      
                 

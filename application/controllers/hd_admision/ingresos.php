@@ -1027,10 +1027,14 @@ class Ingresos extends CI_Controller {
         $this->hd_model->ingRegistro = $registro;
         $this->hd_model->ingUsuario               = $this->session->userdata('id_usuario');
         $this->hd_model->ingFechaRegistro   = date('Y-m-d H:i:s');
-        $this->hd_model->ingAntGenerales     = $this->input->post('ingAntGenerales');
-        $this->hd_model->ingAntSalud              = $this->input->post('ingAntSalud');
-        $this->hd_model->ingInfFamiliar           = $this->input->post('ingInfFamiliar');
-        $this->hd_model->ingConsideraciones = $this->input->post('ingConsideraciones');
+        $ingAntGenerales = str_replace("\n", "<br>", $this->input->post('ingAntGenerales'));
+        $ingAntSalud = str_replace("\n", "<br>", $this->input->post('ingAntSalud'));
+        $ingInfFamiliar = str_replace("\n", "<br>", $this->input->post('ingInfFamiliar'));
+        $ingConsideraciones = str_replace("\n", "<br>", $this->input->post('ingConsideraciones'));
+        $this->hd_model->ingAntGenerales     = $ingAntGenerales;
+        $this->hd_model->ingAntSalud              = $ingAntSalud;
+        $this->hd_model->ingInfFamiliar           = $ingInfFamiliar;
+        $this->hd_model->ingConsideraciones = $ingConsideraciones;
         $this->hd_model->guardarIngresoTO();
         
         redirect(base_url().'hd_admision/ingresos/cargarIngresoTO/'.$registro);

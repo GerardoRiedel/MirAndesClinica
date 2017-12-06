@@ -150,7 +150,7 @@
             <div>
                 <table style="font-size:13px !important; width: 670px">
                     <tr>
-                        <td style="border:none;height: 350px;vertical-align: top" align="justify"><pre><?php IF(!empty($ingresos->ingAntGenerales))echo $ingresos->ingAntGenerales; ?></pre></td>
+                        <td style="border:none;height: 350px;vertical-align: top" align="justify"><tt><?php IF(!empty($ingresos->ingAntGenerales))echo $ingresos->ingAntGenerales; ?></tt></td>
                     </tr>
                    
                 </table>
@@ -161,7 +161,7 @@
             <div>
                 <table style="font-size:13px !important; width: 670px">
                     <tr>
-                        <td style="border:none;height: 350px;vertical-align: top" align="justify"><pre><?php IF(!empty($ingresos->ingAntSalud))echo $ingresos->ingAntSalud; ?></pre></td>
+                        <td style="border:none;height: 350px;vertical-align: top" align="justify"><tt><?php IF(!empty($ingresos->ingAntSalud))echo $ingresos->ingAntSalud; ?></tt></td>
                     </tr>
                 </table>
             </div>
@@ -198,7 +198,7 @@
             <div>
                 <table style="font-size:13px !important; width: 670px">
                     <tr>
-                        <td style="border:none;height: 350px;vertical-align: top" align="justify"><pre><?php IF(!empty($ingresos->ingAntSalud))echo $ingresos->ingAntSalud; ?></pre></td>
+                        <td style="border:none;height: 350px;vertical-align: top" align="justify"><tt><?php IF(!empty($ingresos->ingInfFamiliar))echo $ingresos->ingInfFamiliar; ?></tt></td>
                     </tr>
                 </table>
             </div>
@@ -208,7 +208,7 @@
             <div>
                 <table style="font-size:13px !important; width: 670px">
                     <tr>
-                        <td style="border:none;height: 350px;vertical-align: top" align="justify"><pre><?php IF(!empty($ingresos->ingConsideraciones))echo $ingresos->ingConsideraciones; ?></pre></td>
+                        <td style="border:none;height: 350px;vertical-align: top" align="justify"><tt"><?php IF(!empty($ingresos->ingConsideraciones))echo $ingresos->ingConsideraciones; ?></tt></td>
                     </tr>
                     
                 </table>

@@ -408,6 +408,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                         <div class="col-lg-6">
                             <input type="text" style="width:70%" name="enfQuirurgico1" value="<?php IF(!empty($enfermeria->enfQuirurgico1))echo $enfermeria->enfQuirurgico1;?>">
                         </div>
+                        <div class="col-lg-12"></div>
                         <div class="col-lg-2">
                             <label>Fecha</label>
                         </div>
@@ -423,6 +424,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                         <div class="col-lg-6">
                             <input type="text" style="width:70%" name="enfQuirurgico2" value="<?php IF(!empty($enfermeria->enfQuirurgico2))echo $enfermeria->enfQuirurgico2;?>">
                         </div>
+                        <div class="col-lg-12"></div>
                         <div class="col-lg-2">
                             <label>Fecha</label>
                         </div>
@@ -438,6 +440,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                         <div class="col-lg-6">
                             <input type="text" style="width:70%" name="enfQuirurgico3" value="<?php IF(!empty($enfermeria->enfQuirurgico3))echo $enfermeria->enfQuirurgico3;?>">
                         </div>
+                        <div class="col-lg-12"></div>
                         <div class="col-lg-2">
                             <label>Fecha</label>
                         </div>
