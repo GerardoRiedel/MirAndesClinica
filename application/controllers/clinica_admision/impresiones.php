@@ -41,6 +41,7 @@ class Impresiones extends CI_Controller {
         
         ////INICIO FORMULARIO PACIENTE APODERADO
         $datos              = $this->ingreso_model->dameUno($id);
+        
         $data['datos']      = $datos;
         $data['datosApo']   = $this->apoderados_model->dameUnoPorFicha($id);
         $data['devolucion'] = $this->bancos_model->dameUno($id);

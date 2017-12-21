@@ -230,13 +230,14 @@ class Apoderados_model extends CI_Model
         return $apo;
     }
     
-    public function dameUnoPorFichaEco($ficha)
+    public function dameUnoPorFichaEco($ficha,$tipo='')
     {
+        IF(!empty($tipo))$this->db->where('apoTipo',$tipo);
+        ELSE $this->db->where('apoTipo',2);
         return $this->db->select('a.parNombre, apoId, apoRut, apoNombre, apoApePat, apoApeMat, apoDireccion, apoTelefono, apoCelular, apoEmail, apoParentesco, apoComuna')//, c.id comId, c.comuna comNombre')//i.isapre isaNombre, i.id isaId, 
                         ->from('apoderados')
                         ->join('parentesco a','apoParentesco=a.parId','left')                
                         ->where('apoFichaElectronica',$ficha)
-                        ->where('apoTipo',2)
                         ->get()
                         ->row();
     }

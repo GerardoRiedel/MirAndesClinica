@@ -180,7 +180,7 @@
                 ?>
     <!-- FIN FORMULARIO CUIDADOR-->
 <?php ENDIF; ?>
-<?php IF($opciones[6] === 'on' && ($datos->esGes === 'Si' || $datos->ges === '1')): ?>
+<?php IF($opciones[6] === 'on' && ($datos->ges === '1')):  ?>
     <!-- INICIO FORMULARIO CONSENTIMIENTO -->
     <!-- GES -->
                 <?php
@@ -190,7 +190,7 @@
     <!-- FIN FORMULARIO CONSENTIMIENTO-->
 <?php ENDIF; ?>
 <?php //F($opciones[6] === 'on'): ?>
-<?php IF($opciones[6] === 'on' && $datos->esGes !== 'Si' && $datos->ges !== '1'): ?>
+<?php IF($opciones[6] === 'on' && $datos->ges !== '1'):  ?>
                 <!-- INICIO FORMULARIO CONSENTIMIENTO -->
                 <!-- LIBRE ELECCION -->
                 <?php

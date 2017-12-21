@@ -111,7 +111,7 @@ class Ingresos extends CI_Controller {
             $this->pacientes_model->direccion       = $this->input->post('direccion');
             $this->pacientes_model->ocupacion       = $this->input->post('ocupacion');
             $this->pacientes_model->comuna          = $this->input->post('comuna');
-            $this->pacientes_model->region          = $region->padre;
+            IF(!empty($region->padre))$this->pacientes_model->region = $region->padre;
             $this->pacientes_model->rut             = $rut;
             $this->pacientes_model->guardar($rut);
             unset($this->pacientes_model->id,$this->pacientes_model->rut,$this->pacientes_model->ocupacion,$this->pacientes_model->direccion,$this->pacientes_model->sexo,$this->pacientes_model->email,$this->pacientes_model->nombres,$this->pacientes_model->apellidoPaterno,$this->pacientes_model->apellidoMaterno,$this->pacientes_model->fechaNacimiento,$this->pacientes_model->telefono,$this->pacientes_model->celular);
@@ -661,7 +661,7 @@ class Ingresos extends CI_Controller {
         $this->licencias_model->licApePat   = $this->input->post('apellidoPaterno');
         $this->licencias_model->licApeMat   = $this->input->post('apellidoMaterno');
         $this->licencias_model->licCentro   = $this->input->post('licCentro');
-        $this->licencias_model->licRut      = $rut;
+        $this->licencias_model->licRut      = $this->input->post('rut');;
         $this->licencias_model->licUsuario  = $this->session->userdata('id_usuario');
             
         $this->licencias_model->licNumero   = $licNumero;

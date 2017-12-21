@@ -123,7 +123,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                         <label>Apellido Materno</label>
                     </div>
                     <div class='col-lg-4'>
-                        <input name="apeMat"  type="text" minlength="3" required id="apeMat" value="<?php IF(!empty($datos->apellidoMaterno))echo strtoupper($datos->apellidoMaterno);?>">
+                        <input name="apeMat"  type="text" minlength="3" id="apeMat" value="<?php IF(!empty($datos->apellidoMaterno))echo strtoupper($datos->apellidoMaterno);?>">
                     </div>     
                     <div class="col-lg-2">
                         <label>Sexo</label>
@@ -151,7 +151,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                     <div class="col-lg-3">
                         <div class="input-group input-group-sm date datepicker" required data-date="<?php //echo (new DateTime())->format('Y-m-d H:i:s') ?>" data-date-format="yyyy-mm-dd">
                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                            <input type="text" class="form-control" required placeholder="día-mes-año" style=" width: 158px !important" name="fecha" id="fecha" minlength="10" maxlength="10" title="Ingrese una fecha valida" value="<?php IF(!empty($datos->fechaNacimiento))echo $datos->fechaNacimiento;?>">
+                            <input type="text" class="form-control" placeholder="día-mes-año" style=" width: 158px !important" name="fecha" id="fecha" minlength="10" maxlength="10" title="Ingrese una fecha valida" value="<?php IF(!empty($datos->fechaNacimiento))echo $datos->fechaNacimiento;?>">
                         </div>
                     </div>
                     <div class="col-lg-1" align="middle">
@@ -183,7 +183,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                         <label>Dirección</label>
                     </div>
                     <div class='col-lg-4'>
-                        <input name="direccion"  type="text" minlength="4" required id="direccion" value="<?php IF(!empty($datos->direccion))echo strtoupper($datos->direccion);?>">
+                        <input name="direccion"  type="text" minlength="4" id="direccion" value="<?php IF(!empty($datos->direccion))echo strtoupper($datos->direccion);?>">
                     </div>
                     <div class="col-lg-2">
                         <label>Comuna</label>
@@ -212,14 +212,14 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                         <label>Teléfono Movil</label>
                     </div>
                     <div class='col-lg-4'>
-                        <input name="telMovil" type="text" minlength="9" pattern="[0-9]{9}" required id="telCelu" title="Ingrese 9 números" value="<?php IF(!empty($datos->celular))echo $datos->celular;?>">
+                        <input name="telMovil" type="text" minlength="9" pattern="[0-9]{9}" id="telCelu" title="Ingrese 9 números" value="<?php IF(!empty($datos->celular))echo $datos->celular;?>">
                     </div>
                     <div class="col-lg-12"></div>
                     <div class="col-lg-2">
                         <label>Ocupación</label>
                     </div>
                     <div class='col-lg-4'>
-                        <input name="ocupacion"  type="text" minlength="4" required id="ocupacion" value="<?php IF(!empty($datos->ocupacion))echo $datos->ocupacion;?>">
+                        <input name="ocupacion"  type="text" minlength="4"  id="ocupacion" value="<?php IF(!empty($datos->ocupacion))echo $datos->ocupacion;?>">
                     </div>
                     <div class="col-lg-2">
                         <label>Email</label>
@@ -705,12 +705,12 @@ return number_format( substr ( $rut, 0 , -1 ) , 0, "", ".") . '-' . substr ( $ru
     
     if($("#isapre").val()==='0') {  
         $("#iconIsapre").show();
-        return false;
+       // return false;
     }
     if($('input:radio[name=sexo]:checked').val()===undefined) {  
         $("#iconSexo").show();
-        alert("Campo Requerido");  
-        return false;
+       // alert("Campo Requerido");  
+       // return false;
     }
     if($('input:radio[name=tipoIngreso]:checked').val()===undefined) {  
         $("#iconTipo").show();
@@ -720,12 +720,12 @@ return number_format( substr ( $rut, 0 , -1 ) , 0, "", ".") . '-' . substr ( $ru
     if($('input:radio[name=nac]:checked').val()===undefined) {  
         $("#iconNac").show();
         //alert("Isapre Requerida");  
-        return false;
+     //   return false;
     }
     if($("#comuna").val()==='0') {  
         $("#iconComPas").show();
-        alert("Comuna Requerida");  
-        return false;
+       // alert("Comuna Requerida");  
+      //  return false;
     }
     if($("#ficha").val()==='0') {  
         alert("El N° de ficha no puede contener el valor ingresado");  
@@ -735,13 +735,13 @@ return number_format( substr ( $rut, 0 , -1 ) , 0, "", ".") . '-' . substr ( $ru
     if($("#fecha").val()===0 || $("#fecha").val()==='undefined' || $("#fecha").val()==='0000-00-00') {  
         $("#iconFecha").show();
         //alert("Campo Requerido");  
-        return false;
+     //   return false;
     }
     
     if($('input:radio[name=ges]:checked').val()===undefined) {  
         $("#iconGes").show();
         //alert("Isapre Requerida");  
-        return false;
+     //   return false;
     }
         
 });  

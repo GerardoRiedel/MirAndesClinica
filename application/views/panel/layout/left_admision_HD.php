@@ -53,13 +53,13 @@ IF(empty($submenu)){$submenu='';}?>
             <li <?php if($submenu === 'nvisitas') echo "class='active'" ?>><a href="<?php echo base_url("clinica_admision/visitas/inicio"); ?>">Pacientes</a></li>
         </ul> 
 </li>
-<!--DEPOSITOS
+<!--DEPOSITOS-->
 <li class="submenu <?php if($menu === 'depositos')echo "active open" ?>">
     <a href=""><i class="fa fa-usd" aria-hidden="true" style=" width: 20px;text-align: center"></i> <span> Depositos</span> <i class="arrow fa fa-chevron-right"></i></a>
         <ul>
-            <li <?php if($submenu === 'ndeposito') echo "class='active'" ?>><a href="<?php echo base_url("clinica_admision/devoluciones/listarIngreso"); ?>">Nuevo Deposito</a></li>
-            <li <?php if($submenu === 'ldeposito') echo "class='active'" ?>><a href="<?php echo base_url("clinica_admision/devoluciones/listarDevolucion"); ?>">Listar Depositos Sin Rendir</a></li>            
-            <li <?php if($submenu === 'rdeposito') echo "class='active'" ?>><a href="<?php echo base_url("clinica_admision/devoluciones/listarRendicion"); ?>">Listado de Rendiciones</a></li>            
+            <li <?php if($submenu === 'ndeposito') echo "class='active'" ?>><a href="<?php echo base_url("hd_admision/devoluciones/listarIngreso"); ?>">Nuevo Deposito</a></li>
+            <li <?php if($submenu === 'ldeposito') echo "class='active'" ?>><a href="<?php echo base_url("hd_admision/devoluciones/listarDevolucion"); ?>">Listar Depositos Sin Rendir</a></li>            
+            <li <?php if($submenu === 'rdeposito') echo "class='active'" ?>><a href="<?php echo base_url("hd_admision/devoluciones/listarRendicion"); ?>">Listado de Rendiciones</a></li>            
         </ul> 
 </li>
 <!--

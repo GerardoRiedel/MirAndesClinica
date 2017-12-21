@@ -55,6 +55,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                 <table class='table table-bordered table-hover table-striped data-table'>
                         <thead>
                             <tr>
+                                <th style="display:none"></th>
                                 <th style="width:110px">Fecha Registro</th>
                                 <th style="min-width:100px">Run</th>
                                 <th style="display:none">Run</th>
@@ -77,6 +78,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                         <tbody>
                                 <?php foreach ($datos as $item) : ?>
                             <tr>
+                                <td style="display:none"><?php $item->dateIn; ?></td>
                                 <td align="center"><?php $date = new DateTime($item->dateIn);echo $date->format('d-m-Y H:i'); ?></td>
                                 <td><?php if(!empty($item->rut)) echo formatearRut($item->rut); ?></td>
                                 <td style="display:none"><?php if(!empty($item->rut)) echo $item->rut; ?></td>

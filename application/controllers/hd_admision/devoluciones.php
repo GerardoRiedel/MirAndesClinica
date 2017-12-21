@@ -17,6 +17,8 @@ class Devoluciones extends CI_Controller {
         $this->load->model("isapres_model");
         $this->load->model("bancos_model");
         $this->load->model("ingreso_model");
+        $this->load->model("hd_model");
+         
         $this->load->model("parametros_model");
         $this->load->model("listaDeposito_model");
         //$tiempo = $this->parametros_model->dameValor('TIEMPO_SESSION');
@@ -349,13 +351,13 @@ class Devoluciones extends CI_Controller {
     }
     public function listarIngreso()
     {
-        $data['datos']      = $this->ingreso_model->dameIngresos();
+        $data['datos']      = $this->hd_model->dameIngresosHd();
         $data['breadcumb']  = "Registros";
         $data['title']      = "Listado de Registros de Pacientes";
         
         $data['menu']       = "depositos";
         $data['submenu']    = "ndeposito";
-        Layout_Helper::cargaVista($this,'listar_ingreso',$data,'ingresos');   
+        Layout_Helper::cargaVista($this,'listar_ingreso',$data,'hd');   
     }
     public function filtrolistarIngreso()
     {
@@ -375,9 +377,10 @@ class Devoluciones extends CI_Controller {
     {//CARGA DEPOSITO LUEGO DEL INGRESO
         
         $data['registro']   = $id;
-        $registro           = $this->ingreso_model->dameUno($id);
-        $paciente           = $this->pacientes_model->dameUnoId($registro->paciente);
-        $apoderado          = $this->apoderados_model->dameUnoPorFichaEco($id);
+        $registro           = $this->hd_model->dameUno($id);
+        $paciente           = $this->pacientes_model->dameUnoId($registro->paciente);die($id);
+        $apoderado          = $this->apoderados_model->dameUnoPorFichaEco($id,111);
+        die(var_dump($apoderado));
         IF(empty($apoderado)){
             echo "<script>
                 var c = window.confirm('Paciente sin datos. Desea completar el registro para continuar?'); 
