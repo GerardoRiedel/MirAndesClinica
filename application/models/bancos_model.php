@@ -194,6 +194,15 @@ class Bancos_model extends CI_Model
                 ->get()
                 ->result();
     }
+    public function dameCtasLimpiarHD()
+    {
+        return $this->db->select('depId')
+                ->from('ficha_hd_depositos')
+                ->join('ficha_hd_rendiciones r','depRendicion=r.renNumero','left')
+                ->where('r.renEnviada',1)
+                ->get()
+                ->result();
+    }
     public function dameCtas($filtro='',$inicio='',$termino='')
     {
         
@@ -213,8 +222,9 @@ class Bancos_model extends CI_Model
                         ->order_by('depId','desc')
                         ->get()
                         ->result();
+       // die(var_dump($return));
         return $return;
-        //die(var_dump($return));
+        
         }
         else {
             
@@ -342,6 +352,97 @@ class Bancos_model extends CI_Model
                         ->result();
         }
     }
+    public function dameRendicionesHD($filtro='',$inicio='',$termino='')
+    {
+        if(empty($filtro) && empty($inicio) && empty($termino)){
+        return $this->db->select('depRendicion,r.renFecha,sum(depSuma)monto,r.renId,ctaId,ctaNombre,ctaApellido,ctaApellidoM,ctaFicha,ctaRegistro,b.banNombre,ctaNumero,ctaRut,ctaRutPaciente,ctaNomPaciente,ctaEmail,depId,depFicha,depTipo,depFechaRegistro,tipNombre,depConNombre,depSuma,depSerie,d.banNombre depBanNombre')
+                        ->from('ficha_hd_cuentas')
+                        ->join('bancos b','banId=ctaBanco','left')
+                        ->join('tipos_cuenta','tipId=ctaTipo','left')
+                        ->join('ficha_hd_depositos','ctaRegistro=depFichaElectro','left')
+                        ->join('depositos_conceptos','depConcepto=depConId','left')
+                        ->join('bancos d','d.banId=depBanco','left')
+                        ->join('ficha_hd_rendiciones r','depRendicion=r.renNumero','left')
+                        ->where('r.renEnviada',2)
+                        ->where('depEstado != 5')
+                        ->group_by('r.renId')
+                        ->get()
+                        ->result();
+        }
+        else {
+            IF (!empty($inicio)){
+                $inicio = $inicio.' 00:00:00';
+                IF(empty($termino)){$termino = date('Y-m-d H:i:s');}
+                ELSE {$termino = $termino.' 23:59:59';}
+                //$this->db->where('depFechaRegistro BETWEEN "2016-11-17 00:00:00" AND "'.$termino.'" ');
+                        $this->db->where('depFechaRegistro >=',$inicio);
+                        $this->db->where('depFechaRegistro <=',$termino);
+                        $this->db->where('depEstado != 5');
+                        $this->db->where('depRendicion = 0');
+                        $this->db->or_where('depRendicion != 0 AND r.renEnviada = 1 AND depFechaRegistro >="'.$inicio.'" AND depFechaRegistro <="'.$termino.'" AND depEstado !=5');
+                
+            }
+            ELSE{
+                $this->db->where('depRendicion = 0 OR r.renEnviada = 1')
+                        ->where('depEstado != 5')
+                        ->like('ctaFicha',$filtro)
+                        ->or_like('ctaRutPaciente',$filtro)
+                        ->or_like('ctaRut',$filtro);
+            }
+            return $this->db->select('depRendicion,r.renFecha,sum(depSuma)monto,r.renId,ctaId,ctaNombre,ctaApellido,ctaApellidoM,ctaFicha,ctaRegistro,b.banNombre,ctaNumero,ctaRut,ctaRutPaciente,ctaNomPaciente,ctaEmail,depId,depFicha,depTipo,depFechaRegistro,tipNombre,depConNombre,depSuma,depSerie,d.banNombre depBanNombre')
+                        ->from('ficha_hd_cuentas')
+                        ->join('bancos b','banId=ctaBanco','left')
+                        ->join('tipos_cuenta','tipId=ctaTipo','left')
+                        ->join('ficha_hd_depositos','ctaRegistro=depFichaElectro','left')
+                        ->join('depositos_conceptos','depConcepto=depConId','left')
+                        ->join('bancos d','d.banId=depBanco','left')
+                        ->join('ficha_hd_rendiciones r','depRendicion=r.renNumero','left')
+                        ->where('r.renEnviada',2)
+                        ->group_by('r.renId')
+                        ->get()
+                        ->result();
+        }
+    }
+    public function dameRendicionesImprimirHD()
+    {
+        if(empty($filtro) && empty($inicio) && empty($termino)){
+        return $this->db->select('depRendicion,ctaId,ctaNombre,ctaApellido,ctaApellidoM,ctaFicha,ctaRegistro,b.banNombre,ctaNumero,ctaRut,ctaRutPaciente,ctaNomPaciente,ctaEmail,depId,depFicha,depTipo,depFechaRegistro,tipNombre,depConNombre,depSuma,depSerie,d.banNombre depBanNombre')
+                        ->from('ficha_hd_cuentas')
+                        ->join('bancos b','banId=ctaBanco','left')
+                        ->join('tipos_cuenta','tipId=ctaTipo','left')
+                        ->join('ficha_hd_depositos','ctaRegistro=depFichaElectro','left')
+                        ->join('depositos_conceptos','depConcepto=depConId','left')
+                        ->join('bancos d','d.banId=depBanco','left')
+                        ->join('ficha_hd_rendiciones r','depRendicion=r.renNumero','left')
+                        ->where('r.renEnviada',2)
+                        ->get()
+                        ->result();
+        }
+        else {
+            IF (!empty($inicio)){
+                $inicio = $inicio.' 00:00:00';
+                IF(empty($termino)){$termino = date('Y-m-d H:i:s');}
+                ELSE {$termino = $termino.' 23:59:59';}
+                $this->db->where('depFechaRegistro BETWEEN "'.$inicio.'" AND "'.$termino.'" ');
+            }
+            ELSE{
+                $this->db->like('ctaFicha',$filtro)
+                        ->or_like('ctaRutPaciente',$filtro)
+                        ->or_like('ctaRut',$filtro);
+            }
+            return $this->db->select('depRendicion,ctaId,ctaNombre,ctaApellido,ctaApellidoM,ctaFicha,ctaRegistro,b.banNombre,ctaNumero,ctaRut,ctaRutPaciente,ctaNomPaciente,ctaEmail,depId,depFicha,depTipo,depFechaRegistro,tipNombre,depConNombre,depSuma,depSerie,d.banNombre depBanNombre')
+                        ->from('ficha_hd_cuentas')
+                        ->join('bancos b','banId=ctaBanco','left')
+                        ->join('tipos_cuenta','tipId=ctaTipo','left')
+                        ->join('ficha_hd_depositos','ctaRegistro=depFichaElectro','left')
+                        ->join('depositos_conceptos','depConcepto=depConId','left')
+                        ->join('bancos d','d.banId=depBanco','left')
+                        ->join('ficha_hd_rendiciones r','depRendicion=r.renNumero','left')
+                        ->where('r.renEnviada',2)
+                        ->get()
+                        ->result();
+        }
+    }
     
     public function dameDatosRenId($renId)
     {
@@ -353,6 +454,21 @@ class Bancos_model extends CI_Model
                         ->join('depositos_conceptos','depConcepto=depConId','left')
                         ->join('bancos d','d.banId=depBanco','left')
                         ->join('rendiciones r','depRendicion=r.renNumero','left')
+                        ->where('r.renId',$renId)
+                        ->get()
+                        ->result();
+       
+    }
+     public function dameDatosRenIdHD($renId)
+    {
+        return $this->db->select('depBoleta, depRendicion,ctaId,ctaNombre,ctaApellido,ctaApellidoM,ctaFicha,ctaRegistro,b.banNombre,ctaNumero,ctaRut,ctaRutPaciente,ctaNomPaciente,ctaEmail,depId,depFicha,depTipo,depFechaRegistro,tipNombre,depConNombre,depSuma,depSerie,d.banNombre depBanNombre')
+                        ->from('ficha_hd_cuentas')
+                        ->join('bancos b','banId=ctaBanco','left')
+                        ->join('tipos_cuenta','tipId=ctaTipo','left')
+                        ->join('ficha_hd_depositos','ctaRegistro=depFichaElectro','left')
+                        ->join('depositos_conceptos','depConcepto=depConId','left')
+                        ->join('bancos d','d.banId=depBanco','left')
+                        ->join('ficha_hd_rendiciones r','depRendicion=r.renNumero','left')
                         ->where('r.renId',$renId)
                         ->get()
                         ->result();
@@ -400,6 +516,14 @@ class Bancos_model extends CI_Model
         else{
         $this->db->insert('rendiciones', $this);}
     }
+    public function guardarRendicionHD()
+    {
+        $this->load->database('default');
+        if(isset($this->renId)){
+        $this->db->update('ficha_hd_rendiciones', $this, array('renId' => $this->renId));}
+        else{
+        $this->db->insert('ficha_hd_rendiciones', $this);}
+    }
     public function dameUltimaRendicion()
     {
         
@@ -442,4 +566,112 @@ class Bancos_model extends CI_Model
                     ->get()
                     ->row();
     }
+    public function dameIdRendicionHD($renNumero)
+    {
+        $this->load->database('default');
+        $return= $this->db->select('renId')
+                    ->from('ficha_hd_rendiciones')
+                    ->where('renNumero',$renNumero)
+                    ->order_by('renId','desc')
+                    ->get()
+                    ->row();
+        //die(var_dump($return));
+        return $return;
+    }
+    
+    
+    
+    
+    public function dameCtasHD($filtro='',$inicio='',$termino='')
+    {
+        
+        if(empty($filtro) && empty($inicio) && empty($termino)){
+        $return= $this->db->distinct()
+                        ->select('depBoleta,depRendicion,ctaId,ctaNombre,ctaApellido,ctaApellidoM,ctaFicha,ctaRegistro,b.banNombre,ctaNumero,ctaRut,ctaRutPaciente,ctaNomPaciente,ctaEmail,depId,depFicha,depTipo,depFechaRegistro,tipNombre,depConNombre,depSuma,depSerie,d.banNombre depBanNombre,lisDepDeposito,depEstado,depBoleta')
+                        ->from('ficha_hd_cuentas')
+                        ->join('bancos b','banId=ctaBanco','left')
+                        ->join('tipos_cuenta','tipId=ctaTipo','left')
+                        ->join('ficha_hd_depositos','ctaRegistro=depFichaElectro','left')
+                        ->join('depositos_conceptos','depConcepto=depConId','left')
+                        ->join('bancos d','d.banId=depBanco','left')
+                        ->join('ficha_hd_rendiciones r','depRendicion=r.renNumero','left')
+                        ->join('lista_depositos l','depId=l.lisDepDeposito','left')
+                        ->where('depRendicion = "0" AND depEstado != "5"')
+                        ->or_where('r.renEnviada = "1" AND depEstado !="5"')
+                        ->order_by('depId','desc')
+                        ->get()
+                        ->result();
+        
+        //die(var_dump($return));
+        return $return;
+        }
+        else {
+            
+            IF (!empty($inicio)){
+                $inicio = $inicio.' 00:00:00';
+                IF(empty($termino)){$termino = date('Y-m-d H:i:s');}
+                ELSE {$termino = $termino.' 23:59:59';}
+                //$this->db->where('depFechaRegistro BETWEEN "2016-11-17 00:00:00" AND "'.$termino.'" ');
+                        $this->db->where('depFechaRegistro >=',$inicio);
+                        $this->db->where('depFechaRegistro <=',$termino);
+                        $this->db->where('depRendicion = 0');
+                        $this->db->where('depEstado != 5');
+                        $this->db->or_where('depRendicion != 0 AND r.renEnviada = 1 AND depFechaRegistro >="'.$inicio.'" AND depFechaRegistro <="'.$termino.'" AND depEstado !=5');
+                         
+            }
+            ELSE {
+                $this->db->where('depRendicion = 0 OR r.renEnviada =1')
+                        ->where('depEstado != 5')
+                        ->like('ctaFicha',$filtro)
+                        ->or_like('ctaRutPaciente',$filtro)
+                        ->or_like('ctaRut',$filtro);
+            }
+            return $this->db->select('depRendicion,ctaId,ctaNombre,ctaApellido,ctaApellidoM,ctaFicha,ctaRegistro,b.banNombre,ctaNumero,ctaRut,ctaRutPaciente,ctaNomPaciente,ctaEmail,depId,depFicha,depTipo,depFechaRegistro,tipNombre,depConNombre,depSuma,depSerie,d.banNombre depBanNombre,lisDepDeposito,depEstado,depBoleta')
+                        ->from('ficha_hd_cuentas')
+                        ->join('bancos b','banId=ctaBanco','left')
+                        ->join('tipos_cuenta','tipId=ctaTipo','left')
+                        ->join('ficah_hd_depositos','ctaRegistro=depFichaElectro','left')
+                        ->join('depositos_conceptos','depConcepto=depConId','left')
+                        ->join('bancos d','d.banId=depBanco','left')
+                        ->join('ficha_hd_rendiciones r','depRendicion=r.renNumero','left')
+                        ->join('lista_depositos l','depId=l.lisDepDeposito','left')
+                        ->order_by('depId','asc')
+                        ->get()
+                        ->result();
+        }
+    }
+    
+    public function dameUltimaRendicionHD()
+    {
+        
+        $this->load->database('default');
+        $ultimo = $this->db->select('renId,renNumero')
+                    ->from('ficha_hd_rendiciones')
+                    ->where('renEnviada != 2')
+                    ->order_by('renNumero','desc')
+                    ->get()
+                    ->row();
+        //$numero = $ultimo->renNumero;
+        IF(empty($ultimo->renNumero)){
+                $ultimo = $this->db->select('renId,renNumero')
+                    ->from('ficha_hd_rendiciones')
+                    ->where('renEnviada',2)
+                    ->order_by('renNumero','desc')
+                    ->get()
+                    ->row();
+                $numero = $ultimo->renNumero;
+                $numero += 1;
+                
+                $this->bancos_model->renNumero = $numero;
+                $this->db->insert('ficha_hd_rendiciones', $this);
+                unset($this->bancos_model->renNumero);  
+                
+        }
+        ELSE $numero = $ultimo->renNumero;
+        
+        
+        
+        return $numero;
+    }
+   
 }

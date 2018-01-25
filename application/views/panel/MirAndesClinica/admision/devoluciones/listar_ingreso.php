@@ -87,8 +87,8 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                                 <td><?php echo $item->dateIn; ?></td>
                                 <td><?php if(!empty($item->rut)) echo formatearRut($item->rut); ?></td>
                                 <td><?php echo $item->ficha; ?></td>
-                                <td><?php echo $item->nombres; ?></td>
-                                <td><?php echo $item->apellidoPaterno.' '.$item->apellidoMaterno; ?></td>
+                                <td><?php echo strtoupper($item->nombres); ?></td>
+                                <td><?php echo strtoupper($item->apellidoPaterno).' '.strtoupper($item->apellidoMaterno); ?></td>
                                 <td align="center">
                                     <a class="tip-bottom" title="Agregar Deposito" href="<?php echo base_url("clinica_admision/devoluciones/agregarDeposito/" . $item->id )?>"><i class="fa fa-money" aria-hidden="true"></i></a>
                                 </td>

@@ -238,6 +238,7 @@ class Apoderados_model extends CI_Model
                         ->from('apoderados')
                         ->join('parentesco a','apoParentesco=a.parId','left')                
                         ->where('apoFichaElectronica',$ficha)
+                        ->order_by('apoId','desc')
                         ->get()
                         ->row();
     }

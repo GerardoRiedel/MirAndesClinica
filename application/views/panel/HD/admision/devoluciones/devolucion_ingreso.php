@@ -76,7 +76,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                         <label>Rut</label>
                     </div>
                     <div class='col-lg-10'>
-                        <label><?php echo formatearRut($pacRut); ?></label>
+                        <label><?php IF(!empty($pacRut))echo formatearRut($pacRut); ?></label>
                     </div>
                 
                     <div class="col-lg-2">
@@ -97,13 +97,13 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                 <!-- DATOS DE APODERADO ECONOMICO--> 
             <div id="divEco">
                     <div class="col-lg-12">
-                    <label class="titulo">Datos de Apoderado Economico</label>
+                    <label class="titulo">Datos de Apoderado</label>
                     </div>
                     <div class="col-lg-2">
                         <label>Rut</label>
                     </div>
                     <div class='col-lg-4'>
-                        <?php IF(!empty($apoderado))echo formatearRut($apoderado->apoRut);?>
+                        <?php IF(!empty($apoderado->apoRut))echo formatearRut($apoderado->apoRut);?>
                         <input type="hidden" value="<?php echo $apoderado->apoRut?>" name="rutApoEco">
                     </div> 
                     <div class="col-lg-12"></div>

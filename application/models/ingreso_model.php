@@ -224,7 +224,44 @@ class Ingreso_model extends CI_Model
         }
         return $ficha;
     }
-    
+    public function dameFichaHD($paciente)
+    {
+        //$db = $this->load->database('ugh', TRUE);
+        $ficha = $this->db->select('id, ficha')
+                    ->from('ficha_hd_registro')
+                    ->where('paciente',$paciente)
+                    ->where('ficha >=',0)
+                    ->order_by('ficha','desc')
+                    ->get()
+                    ->row();
+        IF (empty($ficha->id)){
+            $nvaFicha = $this->db->select('id, ficha')
+                                ->from('ficha_hd_registro')
+                                ->order_by('ficha','desc')
+                                ->limit(1)
+                                ->get()
+                                ->row();
+            
+            $n = $nvaFicha->ficha;
+            $nn= $nvaFicha->ficha-10;
+            
+            FOR($i = $nn;$i <= $n; $i++){
+              
+                $checkFicha = $this->db->select('id, ficha')
+                                       ->from('ficha_hd_registro')
+                                       ->where('ficha',$i)
+                                       ->get()
+                                       ->row();
+                IF(empty($checkFicha)){$ficha = $i;}
+            }
+            IF(empty($ficha)){$ficha = $nvaFicha->ficha+1;}
+            
+        }
+        ELSE {
+            $ficha = $ficha->ficha;
+        }
+        return $ficha;
+    }
     public function guardar()
     {
         

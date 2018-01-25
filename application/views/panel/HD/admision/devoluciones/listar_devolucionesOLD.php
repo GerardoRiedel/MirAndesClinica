@@ -25,8 +25,67 @@
         mywindow.document.write('</head><body >');
         mywindow.document.write(data);
         mywindow.document.write('</body></html>');
+        
+        mywindow.PPClose = false;                                     // Clear Close Flag
+        mywindow.onbeforeunload = function(){    
+            var c = confirm('¿Desea Guardar y enviar esta Rendición?')
+            if (c== true){
+                var renNumero = $( "#renNumero" ).val();
+                alert(renNumero);
+                        
+                        $.ajax({
+                            type: "GET",
+                            url: "<?php echo base_url(); ?>" + "api/devolucionHD/dameIdRendicion/"+renNumero,
+                            dataType: 'json',
+
+                            success: function(data){
+                                alert(data.renId);
+                                        $.ajax({
+                                            type: "GET",
+                                            url: "<?php echo base_url(); ?>" + "api/devolucionHD/guardar/"+data.renId,
+                                            dataType: 'json',
+
+                                            success: function(data){
+
+                                                window.location.href='<?php base_url(); ?>listarRendicion';
+        
+                                                alert('enviada...');
+                                                
+
+                                            }
+                                        }) 
+                                
+                            }
+                        });
+                        
+                        
+                        
+                        
+                        
+            }
+            else {
+                $.ajax({
+                        type: "GET",
+                        url: "<?php echo base_url(); ?>" + "api/devolucion/eliminarCarro/",
+                        dataType: 'json',
+
+                        success: function(data){
+
+                            window.location.href='<?php base_url(); ?>listarDevolucion';
+
+                            //alert('enviada...');
+
+
+                        }
+                    }) 
+            }
+            
+            
+        } 
         mywindow.print();
+        
         mywindow.close();
+        
         //goBack();
 
         return true;
@@ -52,10 +111,10 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
             <div class="col-xs-12"></div>
                 
 
-	<!-- 		
+			
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container" style="border-color: #000000;"  >
             
-                           
+                            
             
                 <div class='widget-title'>
                     <br>
@@ -63,7 +122,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                     <label>Datos de Ficha</label>
                     </div>
                     <?php $attributes = array('id' => 'form');
-                        echo form_open('clinica_admision/devoluciones/FiltroListarRendicion',$attributes);
+                        echo form_open('hd_admision/devoluciones/FiltroListarDevolucion',$attributes);
                     ?>
                     <br>
                     <div class="col-lg-2">
@@ -78,15 +137,15 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                     <div class='col-lg-4'>
                         <div class="input-group input-group-sm date datepicker" required data-date="<?php //echo (new DateTime())->format('Y-m-d H:i:s') ?>" data-date-format="yyyy-mm-dd">
                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                            <input type="text" class="form-control" placeholder="Desde, día-mes-año" style=" width: 158px !important" name="fechaDesde">
-                        </div>
+                            <input type="text" class="form-control" placeholder="Desde, día-mes-año" style=" width: 158px !important" name="fechaDesde" value="<?php IF(!empty($fechaDesdeP))echo $fechaDesdeP; ?>">
+                            </div>
                         
                     </div>
                     <div class='col-lg-8'></div>
                     <div class='col-lg-4'>
                         <div class="input-group input-group-sm date datepicker" required data-date="<?php //echo (new DateTime())->format('Y-m-d H:i:s') ?>" data-date-format="yyyy-mm-dd">
                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                            <input type="text" class="form-control" placeholder="Hasta,  día-mes-año" style=" width: 158px !important" name="fechaHasta">
+                            <input type="text" class="form-control" placeholder="Hasta,  día-mes-año" style=" width: 158px !important" name="fechaHasta" value="<?php IF(!empty($fechaHastaP))echo $fechaHastaP; ?>">
                         </div>
                     </div>
                     
@@ -98,15 +157,13 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
         <div class="col-lg-12" style=" font-size: 10px">
         Complete los campos segun el criterio requerido
         </div>
-        
-       
-            <!-- FIN DIV FICHA COMPLETA
+            <!-- FIN DIV FICHA COMPLETA-->
+            
                 <div class="col-lg-12" ></div>
                 <?php echo form_close();?>
                 
     </div> 
-            
-             -->
+            <?php IF(!empty($datos)): ?>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container" style="border-color: #000000;"  >
     
                 
@@ -115,51 +172,93 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                 <br>
                 <div class='col-lg-10'></div>
                 
-                <div class='col-lg-3' style=" text-align: center; background-color: #a15ebe; color: #ffffff;letter-spacing: 2px;box-shadow: 10px 10px 20px -10px rgba(0,0,0,0.75); border-radius: 4px; " >
-                        <h6>Opciones para el TOTAL de Rendiciones</h6>
+                <?php IF($porvencer !== 'OK'){ ?>
+                <div class='col-lg-2' style=" text-align: center; background-color: #a15ebe; color: #ffffff;letter-spacing: 2px;box-shadow: 10px 10px 20px -10px rgba(0,0,0,0.75); border-radius: 4px; " >
+                        <h6>Opciones de Tabla "Rendir"</h6>
                         <span class='icon'>
+                            <form id="form1" name="form1" method="post" action="<?php echo base_url("hd_admision/devoluciones/CarroListarDevolucionHD/" )?>">
+                                    <input type="hidden" name="fechaDesdeP" value="<?php IF(!empty($fechaDesdeP))echo $fechaDesdeP; ?>">
+                                    <input type="hidden" name="fechaHastaP" value="<?php IF(!empty($fechaHastaP))echo $fechaHastaP; ?>">
+                                    <input type="image" style=" width: 20px" name="imageField" src="<?php echo base_url();?>../assets/img/icons/impresora.png" />
+                                    <i class="fa fa-table" id="btnExport" style="cursor: pointer; color:#1d7044;font-size:18px" title="Exportar Tabla a Excel"></i>  
+                       </form>
+                            <!--
                             <i class='fa fa-print' onclick="PrintElem('#imprimir')" style="cursor: pointer; color:#1d1c19; font-size:18px" title="Imprimir Tabla"></i>
+                            -->
                         </span>
                         <span class='icon'>
-                            <i class="fa fa-table" id="btnExport" style="cursor: pointer; color:#1d7044;font-size:18px" title="Exportar Tabla a Excel"></i>  
-                        </span>
+                             </span>
+                          
+                                  
+                        
                 </div>
-                <div align="center">
-                <table class='table table-bordered table-hover table-striped data-table' style="max-width: 800px">
+                <?php } ?>
+                <input type="hidden" id="carro" value="<?php IF(!empty($carroPrint)) echo $carroPrint;?>">
+                <!--
+                <table class='table table-bordered table-hover table-striped data-table'>
+                -->
+                <table class='table table-bordered table-hover table-striped'>
                         <thead>
                             <tr>
-                                <th>N° de Rendición</th>
-                                <th>Fecha de Rendicion</th>
+                                <th>N° de Deposito</th>
+                                <th>N° de Ficha</th>
+                                <th>Fecha de Deposito</th>
+                                <th>Run Paciente</th>
+                                <th>Nombre Paciente</th>
                                 <!--
                                 <th>Titular Devolución</th>
                                 -->
+                                <th>N° de Cuenta</th>
+                                <th>Tipo de Deposito</th>
+                                <th>Concepto</th>
                                 <th>Monto</th>
-                                <th>Opción</th>
-                                
+                                <th>Opciones</th>
+                                <th>Seleccionar</th>
                             </tr>
                         </thead>
                         <tbody>
-                                <?php foreach ($data as $it) : ?>
-                            <tr>
-                                <td align="center"><?php echo $it->renId; ?></td>
-                                    <?php
-                                        $date = new DateTime($it->renFecha);
-                                        $fechaRegistro = $date->format('d-m-Y');
-                                    ?>
-                                <td align="center" style=" min-width: 90px"><?php echo $fechaRegistro; ?></td>
-                                <td align="center"><?php echo $it->monto; ?></td>
-                                <td align="center">
+                            
+                                <?php foreach ($datos as $item) : ?>
+                            <?php IF($item->depEstado != '5'): ?>
+                                <tr>
+                                        <?php IF(!empty($item->depFicha))$ficha = $item->depFicha; ELSEIF (!empty($item->ctaFicha)) $ficha = $item->ctaFicha; ELSE $ficha = '-'?>
+                                        <?php IF($item->depTipo === '1')$tipo='Efectivo'; ELSEIF($item->depTipo === '2')$tipo='Cheque'; ELSEIF($item->depTipo === '3')$tipo='Transferencia';ELSEIF($item->depTipo === '4')$tipo='WebPay';ELSEIF($item->depTipo === '5')$tipo='T Crédito';ELSEIF($item->depTipo === '6')$tipo='T Débito'; ?>
+                                    <td><?php echo $item->depId; ?></td>
+                                    <td><?php echo $ficha; ?></td>
+                                        <?php
+                                            $date = new DateTime($item->depFechaRegistro);
+                                            $fechaRegistro = $date->format('d-m-Y');
+                                        ?>
+                                    <td style=" min-width: 90px"><?php echo $fechaRegistro; ?></td>
+                                    <td style=" min-width: 110px"><?php if(!empty($item->ctaRutPaciente)) echo formatearRut($item->ctaRutPaciente);?></td>
+                                    <td style=" min-width: 90px"><?php if(!empty($item->ctaNomPaciente)) echo strtoupper ($item->ctaNomPaciente); ?></td>
                                     <!--
-                                    <a class="tip-bottom" title="Imprimir rendición" href="<?php echo base_url("clinica_admision/impresiones/imprimirRendicion/" .$it->renId )?>"><i class="fa fa-print" aria-hidden="true"></i></a>
-                                    &nbsp;&nbsp;
+                                    <td><?php if(!empty($item->ctaRut)) echo formatearRut($item->ctaRut).' - '.$item->ctaNombre.' '.$item->ctaApellido; ?></td>
                                     -->
-                                    <a class="tip-bottom" title="Cargar rendición" style="color:green" href="<?php echo base_url("clinica_admision/impresiones/exportarRendicion/" . $it->renId )?>"><i class="fa fa-table" style="cursor: pointer; color:#1d7044;font-size:16px" title="Exportar Prefactura"></i>  </a>
-                                </td>
-                            </tr>
+                                    <td><?php echo $item->ctaNumero; ?></td>
+                                    <td><?php echo $tipo; ?></td>
+                                    <td><?php echo $item->depConNombre; ?></td>
+                                    <td><?php echo $item->depSuma; ?></td>
+                                    <td align="center">
+                                        
+                                        <?php IF(!empty($item->depId)): ;?>
+                                        <a class="tip-bottom" title="Imprimir ficha de admisión" href="<?php echo base_url("hd_admision/impresiones/cargarImprimir/" . $item->ctaRegistro.'_'.$item->depId )?>"><i class="fa fa-print" aria-hidden="true"></i></a>
+                                        <?php ENDIF; ?>
+                                        <a class="tip-bottom" title="Agregar Deposito" href="<?php echo base_url("hd_admision/devoluciones/agregarDeposito/" . $item->ctaRegistro )?>"><i class="fa fa-money" aria-hidden="true"></i></a>
+                                    </td>
+                                    <td align="center">
+                                        <?php IF(!empty($item->lisDepDeposito)): ?>
+                                        <i class="fa fa-check-square-o" id="<?php echo $item->depId;?>" data-IdDeposito='<?php echo $item->depId;?>' style=" cursor: pointer; "></i><br />
+                                        <?php ELSE: ?>
+                                        <i class="fa fa-square-o" id="<?php echo $item->depId;?>" data-IdDeposito='<?php echo $item->depId;?>' style=" cursor: pointer; "></i><br />
+                                        <?php ENDIF; ?>
+                                    </td>
+                                </tr>
+                            <?php ENDIF; ?>
                                 <?php endforeach; ?>
                         </tbody>
                     </table>
-                </div>
+                
                 
                 <div class="col-lg-2">
                     <!--
@@ -171,12 +270,14 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                 
                 
             </div><!-- div class="col-xs-12" -->
+                <?php ENDIF; ?>
+            
         </div><!-- row -->
    </div>
 </div><!-- content -->
 </div>
 
-<div id="imprimir" style="display: none">
+<div id="imprimir" style=" display:none">
     <div align="center"><b>RENDICION DE MOVIMIENTO DE CAJA</b></div>
     <table style="border:none">
         <tr>
@@ -185,13 +286,13 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
             <td style="border:none; width: 100px"><b>RUT</b></td>
             <td style="border:none; width: 300px">13.294.913-1</td>
             <td style="border:none; width: 100px"><b>REND. N</b></td>
-            <td style="border:none; width: 200px"></td>
+            <td style="border:none; width: 200px"><?php echo $rendicion; ?></td>
         </tr>
         <tr>
             <td style="border:none"><b>SUPERVISADO POR</b></td>
-            <td style="border:none">Daniela Concha</td>
+            <td style="border:none">Claudio Chamorro</td>
             <td style="border:none"><b>RUT</b></td>
-            <td style="border:none">10.800.619-6</td>
+            <td style="border:none">12.035.058-7</td>
             <td style="border:none"></td>
             <td style="border:none"></td>
         </tr>
@@ -243,39 +344,86 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                                 <th class="cabecera">BANCO</th>
                                 <th class="cabecera">N SERIE</th>
                             </tr>
-
-                                <?php $sumEfectivo = $sumTransferencia = $sumDebito = $sumCredito = $sumCheque = $sumTotal = '&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;-'; ?>
-                                <?php foreach ($datos as $item) : ?>
-                            <tr>
-                                    <?php IF(!empty($item->depFicha))$ficha = $item->depFicha; ELSEIF (!empty($item->ctaFicha)) $ficha = $item->ctaFicha; ELSE $ficha = '-'?>
-                                    <?php IF($item->depTipo === '1')$tipo='Efectivo'; ELSEIF($item->depTipo === '2')$tipo='Cheque'; ELSEIF($item->depTipo === '3')$tipo='Transferencia'; ?>
-                                <td style="width: 20px"><?php echo $item->depId; ?></td>
-                                <td style=" font-size:80%"><?php if(!empty($item->ctaNomPaciente)) echo $item->ctaNomPaciente; ?></td>
-                                <td style="min-width: 80px" align="center"><?php if(!empty($item->ctaRutPaciente)) echo formatearRut($item->ctaRutPaciente);?></td>
-                                    <?php
-                                        $date = new DateTime($item->depFechaRegistro);
-                                        $fechaRegistro = $date->format('d-m-Y');
-                                    ?>
-                                <td style="min-width: 80px" align="center"><?php echo $fechaRegistro; ?></td>
-                                <td><?php echo $item->depConNombre; ?></td>
-                                    <?php 
-                                    $efectivo = $chequeM = $chequeB = $chequeS = $transferencia = $debito = '';
-                                        IF($item->depTipo === '1') {$efectivo = $item->depSuma; $sumEfectivo += $item->depSuma;$sumTotal += $item->depSuma;}
-                                        IF($item->depTipo === '2') {$chequeM = $item->depSuma; $chequeB = $item->depBanNombre; $chequeS = $item->depSerie; $sumCheque += $item->depSuma;$sumTotal += $item->depSuma;}
-                                        IF($item->depTipo === '3') {$transferencia = $item->depSuma; $sumTransferencia += $item->depSuma;$sumTotal += $item->depSuma;}
-                                        IF($item->depTipo === '4') {$debito = $item->depSuma; $sumDebito += $item->depSuma;$sumTotal += $item->depSuma;}
-                                    ?>
-                                <td><?php IF(!empty($item->depBoleta)) echo  $item->depBoleta; ?></td>
-                                <td><?php echo $efectivo; ?></td>
-                                <td><?php echo $transferencia ?></td>
-                                <td><?php echo $debito ?></td>
-                                <td></td>
-                                <td><?php echo $chequeM; ?></td>
-                                <td><?php echo $chequeB; ?></td>
-                                <td><?php echo $chequeS; ?></td>
+                            <?php IF(!empty($datos) && empty($carro)): ?>
                                 
-                            </tr>
+                                <?php $sumEfectivo = $sumTransferencia = $sumDebito = $sumCredito = $sumCheque = $sumTotal = ''; ?>
+                                <?php foreach ($datos as $item) : ?>
+                                <?php IF($item->depEstado != '5'){ ?>
+                                    <tr>
+                                            <input type="hidden" value="<?php echo $rendicion?>" id="renNumero" name="renNumero">
+
+                                            <?php IF(!empty($item->depFicha))$ficha = $item->depFicha; ELSEIF (!empty($item->ctaFicha)) $ficha = $item->ctaFicha; ELSE $ficha = '-'?>
+                                            <?php IF($item->depTipo === '1')$tipo='Efectivo'; ELSEIF($item->depTipo === '2')$tipo='Cheque'; ELSEIF($item->depTipo === '3')$tipo='Transferencia';ELSEIF($item->depTipo === '4')$tipo='WebPay';ELSEIF($item->depTipo === '5')$tipo='T Crédito';ELSEIF($item->depTipo === '6')$tipo='T Débito'; ?>
+                                        <td style="width: 20px"><?php echo $item->depId; ?></td>
+                                        <td style=" font-size:80%"><?php if(!empty($item->ctaNomPaciente)) echo $item->ctaNomPaciente; ?></td>
+                                        <td style="min-width: 80px" align="center"><?php if(!empty($item->ctaRutPaciente)) echo formatearRut($item->ctaRutPaciente);?></td>
+                                            <?php
+                                                $date = new DateTime($item->depFechaRegistro);
+                                                $fechaRegistro = $date->format('d-m-Y');
+                                            ?>
+                                        <td style="min-width: 80px" align="center"><?php echo $fechaRegistro; ?></td>
+                                        <td><?php echo $item->depConNombre; ?></td>
+                                            <?php 
+                                            $efectivo = $chequeM = $chequeB = $chequeS = $transferencia = $debito = $TCredito = $TDebito = '';
+                                                IF($item->depTipo === '1') {$efectivo = $item->depSuma; $sumEfectivo += $item->depSuma;$sumTotal += $item->depSuma;}
+                                                IF($item->depTipo === '2') {$chequeM  = $item->depSuma; $chequeB = $item->depBanNombre; $chequeS = $item->depSerie; $sumCheque += $item->depSuma;$sumTotal += $item->depSuma;}
+                                                IF($item->depTipo === '3' || $item->depTipo === '4') {$transferencia = $item->depSuma; $sumTransferencia += $item->depSuma;$sumTotal += $item->depSuma;}
+                                                //IF($item->depTipo === '4') {$debito   = $item->depSuma; $sumDebito += $item->depSuma;$sumTotal += $item->depSuma;}
+                                                IF($item->depTipo === '5') {$TCredito = $item->depSuma; $sumCredito += $item->depSuma;$sumTotal += $item->depSuma;}
+                                                IF($item->depTipo === '6') {$TDebito  = $item->depSuma; $sumDebito += $item->depSuma;$sumTotal += $item->depSuma;}
+                                            ?>
+                                        <td></td>
+                                        <td><?php echo $efectivo; ?></td>
+                                        <td><?php echo $transferencia ?></td>
+                                        <td><?php echo $TDebito ?></td>
+                                        <td><?php echo $TCredito ?></td>
+                                        <td><?php echo $chequeM; ?></td>
+                                        <td><?php echo $chequeB; ?></td>
+                                        <td><?php echo $chequeS; ?></td>
+                                    </tr>
+                                <?php } ;?>
                                 <?php endforeach; ?>
+                            <?php ELSEIF(!empty($carro)): ?>
+                            
+                                <?php $sumEfectivo = $sumTransferencia = $sumDebito = $sumCredito = $sumCheque = $sumTotal = ''; ?>
+                                <?php foreach ($carro as $item) : ?>
+                                <?php IF($item->depEstado != '5'){ ?>
+                                    <tr>
+
+                                            <input type="hidden" value="<?php echo $rendicion?>" id="renNumero" name="renNumero">
+
+                                            <?php IF(!empty($item->depFicha))$ficha = $item->depFicha; ELSEIF (!empty($item->ctaFicha)) $ficha = $item->ctaFicha; ELSE $ficha = '-'?>
+                                            <?php IF($item->depTipo === '1')$tipo='Efectivo'; ELSEIF($item->depTipo === '2')$tipo='Cheque'; ELSEIF($item->depTipo === '3')$tipo='Transferencia'; ?>
+                                        <td style="width: 20px"><?php echo $item->depId; ?></td>
+                                        <td style=" font-size:80%"><?php if(!empty($item->ctaNomPaciente)) echo $item->ctaNomPaciente; ?></td>
+                                        <td style="min-width: 80px" align="center"><?php if(!empty($item->ctaRutPaciente)) echo formatearRut($item->ctaRutPaciente);?></td>
+                                            <?php
+                                                $date = new DateTime($item->depFechaRegistro);
+                                                $fechaRegistro = $date->format('d-m-Y');
+                                            ?>
+                                        <td style="min-width: 80px" align="center"><?php echo $fechaRegistro; ?></td>
+                                        <td><?php echo $item->depConNombre; ?></td>
+                                            <?php 
+                                                $efectivo = $chequeM = $chequeB = $chequeS = $transferencia = $debito = $TCredito = $TDebito = '';
+                                                IF($item->depTipo === '1') {$efectivo = $item->depSuma; $sumEfectivo += $item->depSuma;$sumTotal += $item->depSuma;}
+                                                IF($item->depTipo === '2') {$chequeM  = $item->depSuma; $chequeB = $item->depBanNombre; $chequeS = $item->depSerie; $sumCheque += $item->depSuma;$sumTotal += $item->depSuma;}
+                                                IF($item->depTipo === '3' || $item->depTipo === '4') {$transferencia = $item->depSuma; $sumTransferencia += $item->depSuma;$sumTotal += $item->depSuma;}
+                                                //IF($item->depTipo === '4') {$debito   = $item->depSuma; $sumDebito += $item->depSuma;$sumTotal += $item->depSuma;}
+                                                IF($item->depTipo === '5') {$TCredito = $item->depSuma; $sumCredito += $item->depSuma;$sumTotal += $item->depSuma;}
+                                                IF($item->depTipo === '6') {$TDebito  = $item->depSuma; $sumDebito += $item->depSuma;$sumTotal += $item->depSuma;}
+                                            ?>
+                                        <td></td>
+                                        <td><?php echo $efectivo; ?></td>
+                                        <td><?php echo $transferencia ?></td>
+                                        <td><?php echo $TDebito ?></td>
+                                        <td><?php echo $TCredito ?></td>
+                                        <td><?php echo $chequeM; ?></td>
+                                        <td><?php echo $chequeB; ?></td>
+                                        <td><?php echo $chequeS; ?></td>
+                                    </tr>
+                                <?php } ?>
+                                <?php endforeach; ?>
+                            <?php ENDIF; ?>
                         
                     </table>
     
@@ -323,7 +471,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
             <td style="border:none">CHEQUE</td>
             <td style="border:none"><?php echo $sumCheque; ?></td>
             <td style="border:none" align="center"><b>VALESKA JEREZ</b></td>
-            <td style="border:none" align="center"><b>DANIELA CONCHA</b></td>
+            <td style="border:none" align="center"><b>CLAUDIO CHAMORRO</b></td>
         </tr>
         <tr>
             <td style="border:none">TOTAL CAJA</td>
@@ -378,6 +526,48 @@ return number_format( substr ( $rut, 0 , -1 ) , 0, "", ".") . '-' . substr ( $ru
 });  
 </script>
 <script>
+    window.onload = function() {
+        var carro = $( "#carro" ).val();
+        if(carro === '1'){PrintElem('#imprimir')}
+    };
+    
+    $(".fa-check-square-o").click(function(){
+
+        //$("[data-toggle='popover']").popover('hide');
+        //var dataUsuario = $('#uspId').val();
+        var IdDeposito  = $(this).attr("data-IdDeposito");
+        //var dataString  = IdProducto+'_'+$('#cantidad'+IdProducto).val()+'_'+$('#uspId').val()+'_'+$('#carId').val();
+        //var dataString  = IdProducto;
+       
+        $.ajax({
+            type: "POST",
+            url: "<?php echo base_url(); ?>" + "api/devolucion/carroDevolucionesMinus/"+IdDeposito,
+            //data: IdDeposito,
+            success: function(data){
+                $( "#"+IdDeposito ).removeClass().addClass( "fa fa-square-o" );
+                
+            }
+        });
+    });
+    $(".fa-square-o").click(function(){
+
+        //$("[data-toggle='popover']").popover('hide');
+        //var dataUsuario = $('#uspId').val();
+        var IdDeposito  = $(this).attr("data-IdDeposito");
+        //var dataString  = IdProducto+'_'+$('#cantidad'+IdProducto).val()+'_'+$('#uspId').val()+'_'+$('#carId').val();
+        //var dataString  = IdProducto;
+       
+        $.ajax({
+            type: "POST",
+            url: "<?php echo base_url(); ?>" + "api/devolucion/carroDevoluciones/"+IdDeposito,
+            //data: IdDeposito,
+            success: function(data){
+                
+                $( "#"+IdDeposito ).removeClass().addClass( "fa fa-check-square-o" );
+            }
+        });
+    });
+    
     
     $("#rut").focusout(function(){
        
@@ -550,6 +740,56 @@ return number_format( substr ( $rut, 0 , -1 ) , 0, "", ".") . '-' . substr ( $ru
 	});
 
 </script>
+
+<div id="exportar" style=" display: none">
+<table class='table table-bordered table-hover table-striped'>
+        <thead>
+            <tr>
+                <th>N de Deposito</th>
+                <th>N de Ficha</th>
+                <th>Fecha de Deposito</th>
+                <th>Run Paciente</th>
+                <th>Nombre Paciente</th>
+                <!--
+                <th>Titular Devolución</th>
+                -->
+                <th>N de Cuenta</th>
+                <th>Tipo de Deposito</th>
+                <th>Concepto</th>
+                <th>Monto</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+
+                <?php foreach ($datos as $item) : ?>
+                <?php IF ($item->depEstado != '5'){; ?>
+            <tr>
+                    <?php IF(!empty($item->depFicha))$ficha = $item->depFicha; ELSEIF (!empty($item->ctaFicha)) $ficha = $item->ctaFicha; ELSE $ficha = '-'?>
+                    <?php IF($item->depTipo === '1')$tipo='Efectivo'; ELSEIF($item->depTipo === '2')$tipo='Cheque'; ELSEIF($item->depTipo === '3')$tipo='Transferencia';ELSEIF($item->depTipo === '4')$tipo='WebPay';ELSEIF($item->depTipo === '5')$tipo='T Credito';ELSEIF($item->depTipo === '6')$tipo='T Debito';ELSE $tipo = $item->depTipo;?>
+                <td><?php echo $item->depId; ?></td>
+                <td><?php echo $ficha; ?></td>
+                    <?php
+                        $date = new DateTime($item->depFechaRegistro);
+                        $fechaRegistro = $date->format('d-m-Y');
+                    ?>
+                <td style=" min-width: 90px"><?php echo $fechaRegistro; ?></td>
+                <td style=" min-width: 110px"><?php if(!empty($item->ctaRutPaciente)) echo formatearRut($item->ctaRutPaciente);?></td>
+                <td style=" min-width: 90px"><?php if(!empty($item->ctaNomPaciente)) echo strtoupper ($item->ctaNomPaciente); ?></td>
+                <!--
+                <td><?php if(!empty($item->ctaRut)) echo formatearRut($item->ctaRut).' - '.$item->ctaNombre.' '.$item->ctaApellido; ?></td>
+                -->
+                <td><?php echo $item->ctaNumero; ?></td>
+                <td><?php echo $tipo; ?></td>
+                <td><?php echo $item->depConNombre; ?></td>
+                <td><?php echo $item->depSuma; ?></td>
+                
+            </tr>
+                <?php } ?>
+                <?php endforeach; ?>
+        </tbody>
+    </table>
+</div>
 <script>
     $("#btnExport").click(function(e) {
 
@@ -558,11 +798,11 @@ return number_format( substr ( $rut, 0 , -1 ) , 0, "", ".") . '-' . substr ( $ru
         // obtenemos la informaciÃ³n desde el div que lo contiene en el html
         // Obtenemos la informaciÃ³n de la tabla
         var data_type = 'data:application/vnd.ms-excel';
-        var tabla_div = document.getElementById('imprimir');
+        var tabla_div = document.getElementById('exportar');
         var tabla_html = tabla_div.outerHTML.replace(/ /g, '%20');
         tmpElemento.href = data_type + ', ' + tabla_html;
         //Asignamos el nombre a nuestro EXCEL
-        tmpElemento.download = 'Registros de Acceso.xls';
+        tmpElemento.download = 'Flujo de Caja.xls';
         // Simulamos el click al elemento creado para descargarlo
         tmpElemento.click();
 

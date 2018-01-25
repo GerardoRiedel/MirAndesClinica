@@ -1,4 +1,24 @@
 
+
+<style>
+    
+    .btnCetep{
+        width: 20%;
+        min-width: 80px;
+        background-color: #da812e;
+        border-color: #da812e
+    }
+    .btnCetep:hover{
+        background-color: #AF601A;
+        border-color: #da812e
+    }
+    .btnCetep:active{
+        background-color: #6E2C00 !important;
+        border-color: #da812e
+    }
+
+    
+</style>
 <script type="text/javascript">
 
     function PrintElem(elem)
@@ -52,10 +72,10 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
             <div class="col-xs-12"></div>
                 
 
-	<!-- 		
+			
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container" style="border-color: #000000;"  >
             
-                           
+                            
             
                 <div class='widget-title'>
                     <br>
@@ -63,7 +83,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                     <label>Datos de Ficha</label>
                     </div>
                     <?php $attributes = array('id' => 'form');
-                        echo form_open('clinica_admision/devoluciones/FiltroListarRendicion',$attributes);
+                        echo form_open('hd_admision/devoluciones/FiltroListarRendicion',$attributes);
                     ?>
                     <br>
                     <div class="col-lg-2">
@@ -98,15 +118,11 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
         <div class="col-lg-12" style=" font-size: 10px">
         Complete los campos segun el criterio requerido
         </div>
-        
-       
-            <!-- FIN DIV FICHA COMPLETA
+            <!-- FIN DIV FICHA COMPLETA-->
                 <div class="col-lg-12" ></div>
                 <?php echo form_close();?>
                 
     </div> 
-            
-             -->
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container" style="border-color: #000000;"  >
     
                 
@@ -149,11 +165,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                                 <td align="center" style=" min-width: 90px"><?php echo $fechaRegistro; ?></td>
                                 <td align="center"><?php echo $it->monto; ?></td>
                                 <td align="center">
-                                    <!--
-                                    <a class="tip-bottom" title="Imprimir rendición" href="<?php echo base_url("clinica_admision/impresiones/imprimirRendicion/" .$it->renId )?>"><i class="fa fa-print" aria-hidden="true"></i></a>
-                                    &nbsp;&nbsp;
-                                    -->
-                                    <a class="tip-bottom" title="Cargar rendición" style="color:green" href="<?php echo base_url("clinica_admision/impresiones/exportarRendicion/" . $it->renId )?>"><i class="fa fa-table" style="cursor: pointer; color:#1d7044;font-size:16px" title="Exportar Prefactura"></i>  </a>
+                                    <a class="tip-bottom" title="Imprimir rendición" href="<?php echo base_url("hd_admision/impresiones/imprimirRendicion/" .$it->renId )?>"><i class="fa fa-print" aria-hidden="true"></i></a>
                                 </td>
                             </tr>
                                 <?php endforeach; ?>
@@ -189,9 +201,9 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
         </tr>
         <tr>
             <td style="border:none"><b>SUPERVISADO POR</b></td>
-            <td style="border:none">Daniela Concha</td>
+            <td style="border:none">Claudio Chamorro</td>
             <td style="border:none"><b>RUT</b></td>
-            <td style="border:none">10.800.619-6</td>
+            <td style="border:none">12.035.058-7</td>
             <td style="border:none"></td>
             <td style="border:none"></td>
         </tr>
@@ -265,7 +277,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                                         IF($item->depTipo === '3') {$transferencia = $item->depSuma; $sumTransferencia += $item->depSuma;$sumTotal += $item->depSuma;}
                                         IF($item->depTipo === '4') {$debito = $item->depSuma; $sumDebito += $item->depSuma;$sumTotal += $item->depSuma;}
                                     ?>
-                                <td><?php IF(!empty($item->depBoleta)) echo  $item->depBoleta; ?></td>
+                                <td></td>
                                 <td><?php echo $efectivo; ?></td>
                                 <td><?php echo $transferencia ?></td>
                                 <td><?php echo $debito ?></td>
@@ -323,7 +335,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
             <td style="border:none">CHEQUE</td>
             <td style="border:none"><?php echo $sumCheque; ?></td>
             <td style="border:none" align="center"><b>VALESKA JEREZ</b></td>
-            <td style="border:none" align="center"><b>DANIELA CONCHA</b></td>
+            <td style="border:none" align="center"><b>CLAUDIO CHAMORRO</b></td>
         </tr>
         <tr>
             <td style="border:none">TOTAL CAJA</td>

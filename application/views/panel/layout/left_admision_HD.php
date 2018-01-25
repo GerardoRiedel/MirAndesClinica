@@ -54,14 +54,17 @@ IF(empty($submenu)){$submenu='';}?>
         </ul> 
 </li>
 <!--DEPOSITOS-->
+ <?php IF($this->session->userdata('perfil') == '11' || $this->session->userdata('perfil') == '12'){?>
 <li class="submenu <?php if($menu === 'depositos')echo "active open" ?>">
     <a href=""><i class="fa fa-usd" aria-hidden="true" style=" width: 20px;text-align: center"></i> <span> Depositos</span> <i class="arrow fa fa-chevron-right"></i></a>
         <ul>
             <li <?php if($submenu === 'ndeposito') echo "class='active'" ?>><a href="<?php echo base_url("hd_admision/devoluciones/listarIngreso"); ?>">Nuevo Deposito</a></li>
+            
             <li <?php if($submenu === 'ldeposito') echo "class='active'" ?>><a href="<?php echo base_url("hd_admision/devoluciones/listarDevolucion"); ?>">Listar Depositos Sin Rendir</a></li>            
             <li <?php if($submenu === 'rdeposito') echo "class='active'" ?>><a href="<?php echo base_url("hd_admision/devoluciones/listarRendicion"); ?>">Listado de Rendiciones</a></li>            
         </ul> 
 </li>
+ <?php } ?>
 <!--
 <li class="<?php if($this->uri->segment(2) == 'ingreso' )echo "active open" ?>">
     <a href="<?php echo base_url("clinica_admision/ingresos/licencias"); ?>"><i class="fa fa-file-text-o" aria-hidden="true" style=" width: 20px;text-align: center"></i>&nbsp;Licencias<i class="arrow fa fa-chevron-right"></i></a>

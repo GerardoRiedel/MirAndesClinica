@@ -109,7 +109,7 @@ class Impresiones extends CI_Controller {
             $opciones[0] = $opciones[1] = $opciones[2] = $opciones[3] = $opciones[5] = $opciones[6] = $opciones[7] = $opciones[8] = $opciones[10] =$opciones[13] = 'off';
         }
         
-        $opciones[9] = $opciones[12] = 'off'; //IMPRIMIR FILA 
+        $opciones[9] = $opciones[12] = $opciones[14] = 'off'; //IMPRIMIR FILA 
         $data['enfermeria'] = $this->enfermeria_model->dameUnoHD($id);
         $data['registro']   = $this->hd_model->dameSignosFilaCero($id);
         $data['opciones']   = $opciones;
@@ -217,5 +217,28 @@ class Impresiones extends CI_Controller {
         
         
     }
+    public function imprimirRendicion($renId)
+    {
+        
+        $data['fechaDesde'] = date('Y-m-d');
+        $data['fechaHasta'] = date('Y-m-d');
+        $data['fechaRendicion'] = date('Y-m-d');
+        
+        $data['title']      = "Rendición";
+        $data['datos']      = $this->bancos_model->dameDatosRenIdHD($renId);
+        Layout_Helper::cargaVista($this,'imprimirRendicion',$data,'hd');   
+    }
+    public function exportarRendicion($renId)
+    {
+        
+        $data['fechaDesde'] = date('Y-m-d');
+        $data['fechaHasta'] = date('Y-m-d');
+        $data['fechaRendicion'] = date('Y-m-d');
+        
+        $data['title']      = "Rendición";
+        $data['datos']      = $this->bancos_model->dameDatosRenIdHD($renId);
+        Layout_Helper::cargaVista($this,'exportarRendicion',$data,'hd');   
+    }
+    
     
 }

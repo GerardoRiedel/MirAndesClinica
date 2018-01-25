@@ -1,23 +1,4 @@
 
-
-<style>
-    
-    .btnCetep{
-        background-color: #da812e;
-        border-color: #da812e
-    }
-    .btnCetep:hover{
-        background-color: #AF601A;
-        border-color: #da812e
-    }
-    .btnCetep:active{
-        background-color: #6E2C00 !important;
-        border-color: #da812e
-    }
-    
-
-    
-</style>
 <div id="content" style="-webkit-box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);
 -moz-box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);
 box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #db8918">
@@ -69,7 +50,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                 
                 <div  class="col-lg-12" style="padding-top: 30px;">
                 <br>
-                <div class='col-lg-12'></div>
+                <div class='col-lg-12'></div><?php //die(var_dump($datos));?>
                 <table class='table table-bordered table-hover table-striped data-table'>
                         <thead>
                             <tr>
@@ -78,21 +59,23 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                                 <th>N° Ficha</th>
                                 <th>Nombre</th>
                                 <th>Apellidos</th>
-                                <th>Opciones</th>
+                                <th>Nuevo Deposito</th>
                             </tr>
                         </thead>
                         <tbody>
                                 <?php foreach ($datos as $item) : ?>
+                            <?php IF($item->isapre !== '4' && $item->diagnostico !== '75 TAB'){ ?>
                             <tr>
-                                <td><?php echo $item->dateIn; ?></td>
+                                <td><?php echo $item->dateIn; echo $item->isapre; echo $item->diagnostico?></td>
                                 <td><?php if(!empty($item->rut)) echo formatearRut($item->rut); ?></td>
                                 <td><?php echo $item->ficha; ?></td>
-                                <td><?php echo $item->nombres; ?></td>
-                                <td><?php echo $item->apellidoPaterno.' '.$item->apellidoMaterno; ?></td>
+                                <td><?php echo strtoupper($item->nombres); ?></td>
+                                <td><?php echo strtoupper($item->apellidoPaterno).' '.strtoupper($item->apellidoMaterno); ?></td>
                                 <td align="center">
                                     <a class="tip-bottom" title="Agregar Deposito" href="<?php echo base_url("hd_admision/devoluciones/agregarDeposito/" . $item->id )?>"><i class="fa fa-money" aria-hidden="true"></i></a>
                                 </td>
                             </tr>
+                            <?php } ?>
                                 <?php endforeach; ?>
                         </tbody>
                     </table>

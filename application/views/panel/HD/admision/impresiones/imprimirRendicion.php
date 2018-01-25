@@ -25,9 +25,13 @@
         mywindow.document.write('</head><body >');
         mywindow.document.write(data);
         mywindow.document.write('</body></html>');
+        
+        
         mywindow.print();
+        
         mywindow.close();
-        //goBack();
+        
+        goBack();
 
         return true;
     }
@@ -37,161 +41,27 @@
     }
     
 </script>
-<div id="content" style="-webkit-box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);
--moz-box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);
-box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #db8918">
-    <div id="content-header" style="background-color: #e9c899; max-height: 10px !important" >
-        <h1 style="background-color: #a15ebe !important;border:none;color:#ffffff; margin-right: 30px;-webkit-box-shadow: 10px 10px 23px -6px rgba(0,0,0,0.75);-moz-box-shadow: 10px 10px 23px -6px rgba(0,0,0,0.75);box-shadow: 10px 10px 23px -6px rgba(0,0,0,0.75);" class="alert alert-info"><?php echo $title;?></h1>
-    </div>
-    
-    
-    
+<body onload="PrintElem('#imprimir')">
 
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-xs-12"></div>
-                
-
-	<!-- 		
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container" style="border-color: #000000;"  >
-            
-                           
-            
-                <div class='widget-title'>
-                    <br>
-                    <div class="col-lg-12" style="margin-top: -10px;">
-                    <label>Datos de Ficha</label>
-                    </div>
-                    <?php $attributes = array('id' => 'form');
-                        echo form_open('clinica_admision/devoluciones/FiltroListarRendicion',$attributes);
-                    ?>
-                    <br>
-                    <div class="col-lg-2">
-                        <label>Buscar Paciente</label>
-                    </div>
-                    <div class='col-lg-4'>
-                        <input name="filtro" type="text" placeholder="Digite N° de ficha o run" minlength="1">
-                    </div>
-                    <div class="col-lg-2">
-                        <label>Filtro Avanzado</label>
-                    </div>
-                    <div class='col-lg-4'>
-                        <div class="input-group input-group-sm date datepicker" required data-date="<?php //echo (new DateTime())->format('Y-m-d H:i:s') ?>" data-date-format="yyyy-mm-dd">
-                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                            <input type="text" class="form-control" placeholder="Desde, día-mes-año" style=" width: 158px !important" name="fechaDesde">
-                        </div>
-                        
-                    </div>
-                    <div class='col-lg-8'></div>
-                    <div class='col-lg-4'>
-                        <div class="input-group input-group-sm date datepicker" required data-date="<?php //echo (new DateTime())->format('Y-m-d H:i:s') ?>" data-date-format="yyyy-mm-dd">
-                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                            <input type="text" class="form-control" placeholder="Hasta,  día-mes-año" style=" width: 158px !important" name="fechaHasta">
-                        </div>
-                    </div>
-                    
-                </div>
-                
-                <div class="col-lg-12" style=" text-align: center">
-                        <?php echo form_submit('','Buscar','class="btn btn-primary btn-sm btnCetep"');?>
-                    </div>
-        <div class="col-lg-12" style=" font-size: 10px">
-        Complete los campos segun el criterio requerido
-        </div>
-        
-       
-            <!-- FIN DIV FICHA COMPLETA
-                <div class="col-lg-12" ></div>
-                <?php echo form_close();?>
-                
-    </div> 
-            
-             -->
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container" style="border-color: #000000;"  >
-    
-                
-                <div  class="col-lg-12" style="padding-top: 30px;">
-                    
-                <br>
-                <div class='col-lg-10'></div>
-                
-                <div class='col-lg-3' style=" text-align: center; background-color: #a15ebe; color: #ffffff;letter-spacing: 2px;box-shadow: 10px 10px 20px -10px rgba(0,0,0,0.75); border-radius: 4px; " >
-                        <h6>Opciones para el TOTAL de Rendiciones</h6>
-                        <span class='icon'>
-                            <i class='fa fa-print' onclick="PrintElem('#imprimir')" style="cursor: pointer; color:#1d1c19; font-size:18px" title="Imprimir Tabla"></i>
-                        </span>
-                        <span class='icon'>
-                            <i class="fa fa-table" id="btnExport" style="cursor: pointer; color:#1d7044;font-size:18px" title="Exportar Tabla a Excel"></i>  
-                        </span>
-                </div>
-                <div align="center">
-                <table class='table table-bordered table-hover table-striped data-table' style="max-width: 800px">
-                        <thead>
-                            <tr>
-                                <th>N° de Rendición</th>
-                                <th>Fecha de Rendicion</th>
-                                <!--
-                                <th>Titular Devolución</th>
-                                -->
-                                <th>Monto</th>
-                                <th>Opción</th>
-                                
-                            </tr>
-                        </thead>
-                        <tbody>
-                                <?php foreach ($data as $it) : ?>
-                            <tr>
-                                <td align="center"><?php echo $it->renId; ?></td>
-                                    <?php
-                                        $date = new DateTime($it->renFecha);
-                                        $fechaRegistro = $date->format('d-m-Y');
-                                    ?>
-                                <td align="center" style=" min-width: 90px"><?php echo $fechaRegistro; ?></td>
-                                <td align="center"><?php echo $it->monto; ?></td>
-                                <td align="center">
-                                    <!--
-                                    <a class="tip-bottom" title="Imprimir rendición" href="<?php echo base_url("clinica_admision/impresiones/imprimirRendicion/" .$it->renId )?>"><i class="fa fa-print" aria-hidden="true"></i></a>
-                                    &nbsp;&nbsp;
-                                    -->
-                                    <a class="tip-bottom" title="Cargar rendición" style="color:green" href="<?php echo base_url("clinica_admision/impresiones/exportarRendicion/" . $it->renId )?>"><i class="fa fa-table" style="cursor: pointer; color:#1d7044;font-size:16px" title="Exportar Prefactura"></i>  </a>
-                                </td>
-                            </tr>
-                                <?php endforeach; ?>
-                        </tbody>
-                    </table>
-                </div>
-                
-                <div class="col-lg-2">
-                    <!--
-                    <button onclick="goBack()" class="btn btn-default btn-sm">Cancelar</button><script>function goBack(){window.history.go(-1);}</script>
-                -->
-                </div>
-        </div><!-- div class='widget-content'-->    
-                    
-                
-                
-            </div><!-- div class="col-xs-12" -->
-        </div><!-- row -->
-   </div>
-</div><!-- content -->
-</div>
 
 <div id="imprimir" style="display: none">
     <div align="center"><b>RENDICION DE MOVIMIENTO DE CAJA</b></div>
     <table style="border:none">
         <tr>
             <td style="border:none; width: 200px"><b>CAJERA</b></td>
-            <td style="border:none; width: 300px">Valeska Jerez</td>
+            <td style="border:none; width: 300px">Kelly</td>
             <td style="border:none; width: 100px"><b>RUT</b></td>
-            <td style="border:none; width: 300px">13.294.913-1</td>
+            <td style="border:none; width: 300px">  .  .  -1</td>
             <td style="border:none; width: 100px"><b>REND. N</b></td>
-            <td style="border:none; width: 200px"></td>
+            <?php IF(!empty($datos)){foreach ($datos as $i)$rendicion = $i->depRendicion;IF(empty($rendicion))$rendicion='';}?>
+            
+            <td style="border:none; width: 200px"><?php echo $rendicion; ?></td>
         </tr>
         <tr>
             <td style="border:none"><b>SUPERVISADO POR</b></td>
-            <td style="border:none">Daniela Concha</td>
+            <td style="border:none">Nancy Aguilera</td>
             <td style="border:none"><b>RUT</b></td>
-            <td style="border:none">10.800.619-6</td>
+            <td style="border:none">  .    .    -6</td>
             <td style="border:none"></td>
             <td style="border:none"></td>
         </tr>
@@ -259,17 +129,18 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                                 <td style="min-width: 80px" align="center"><?php echo $fechaRegistro; ?></td>
                                 <td><?php echo $item->depConNombre; ?></td>
                                     <?php 
-                                    $efectivo = $chequeM = $chequeB = $chequeS = $transferencia = $debito = '';
+                                    $efectivo = $chequeM = $chequeB = $chequeS = $transferencia = $debito = $credito = '';
                                         IF($item->depTipo === '1') {$efectivo = $item->depSuma; $sumEfectivo += $item->depSuma;$sumTotal += $item->depSuma;}
                                         IF($item->depTipo === '2') {$chequeM = $item->depSuma; $chequeB = $item->depBanNombre; $chequeS = $item->depSerie; $sumCheque += $item->depSuma;$sumTotal += $item->depSuma;}
                                         IF($item->depTipo === '3') {$transferencia = $item->depSuma; $sumTransferencia += $item->depSuma;$sumTotal += $item->depSuma;}
                                         IF($item->depTipo === '4') {$debito = $item->depSuma; $sumDebito += $item->depSuma;$sumTotal += $item->depSuma;}
+                                        IF($item->depTipo === '5') {$credito = $item->depSuma; $sumCredito += $item->depSuma;$sumTotal += $item->depSuma;}
                                     ?>
-                                <td><?php IF(!empty($item->depBoleta)) echo  $item->depBoleta; ?></td>
+                                <td><?php IF(!empty($item->depBoleta)) echo $item->depBoleta; ?> </td>
                                 <td><?php echo $efectivo; ?></td>
                                 <td><?php echo $transferencia ?></td>
                                 <td><?php echo $debito ?></td>
-                                <td></td>
+                                <td><?php echo $credito ?></td>
                                 <td><?php echo $chequeM; ?></td>
                                 <td><?php echo $chequeB; ?></td>
                                 <td><?php echo $chequeS; ?></td>
@@ -280,7 +151,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                     </table>
     
     
-    <br><br><br>
+    <br><br><br><br><br>
     
     <table style="border:none">
         <tr>
@@ -322,8 +193,8 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
         <tr>
             <td style="border:none">CHEQUE</td>
             <td style="border:none"><?php echo $sumCheque; ?></td>
-            <td style="border:none" align="center"><b>VALESKA JEREZ</b></td>
-            <td style="border:none" align="center"><b>DANIELA CONCHA</b></td>
+            <td style="border:none" align="center"><b>KELLY</b></td>
+            <td style="border:none" align="center"><b>NANCY AGUILERA</b></td>
         </tr>
         <tr>
             <td style="border:none">TOTAL CAJA</td>
@@ -333,6 +204,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
         </tr>
     </table>
 </div>
+</body>
 <?php
 function formatearRut( $rut ) {
      while($rut[0] == "0") {

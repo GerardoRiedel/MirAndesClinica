@@ -1,24 +1,6 @@
 
 
-<style>
-    
-    .btnCetep{
-        width: 20%;
-        min-width: 80px;
-        background-color: #da812e;
-        border-color: #da812e
-    }
-    .btnCetep:hover{
-        background-color: #AF601A;
-        border-color: #da812e
-    }
-    .btnCetep:active{
-        background-color: #6E2C00 !important;
-        border-color: #da812e
-    }
-
-    
-</style>
+   
 <script type="text/javascript">
 
     function PrintElem(elem)
@@ -48,21 +30,21 @@
         
         mywindow.PPClose = false;                                     // Clear Close Flag
         mywindow.onbeforeunload = function(){    
-            var c = confirm('¿Desea Guardar y enviar esta Rendición?')
+            var c = confirm('¿Desea Guardar esta Rendición?')
             if (c== true){
                 var renNumero = $( "#renNumero" ).val();
                 
                         
                         $.ajax({
                             type: "GET",
-                            url: "<?php echo base_url(); ?>" + "api/devolucion/dameIdRendicion/"+renNumero,
+                            url: "<?php echo base_url(); ?>" + "api/devolucionHD/dameIdRendicion/"+renNumero,
                             dataType: 'json',
 
                             success: function(data){
                                 //alert(data.renId);
                                         $.ajax({
                                             type: "GET",
-                                            url: "<?php echo base_url(); ?>" + "api/devolucion/guardar/"+data.renId,
+                                            url: "<?php echo base_url(); ?>" + "api/devolucionHD/guardar/"+data.renId,
                                             dataType: 'json',
 
                                             success: function(data){
@@ -86,7 +68,7 @@
             else {
                 $.ajax({
                         type: "GET",
-                        url: "<?php echo base_url(); ?>" + "api/devolucion/eliminarCarro/",
+                        url: "<?php echo base_url(); ?>" + "api/devolucionHD/eliminarCarro/",
                         dataType: 'json',
 
                         success: function(data){
@@ -126,7 +108,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
     
     
 
-    <div class="container-fluid">
+    <div class="container-fluid" >
         <div class="row">
             <div class="col-xs-12"></div>
                 
@@ -187,7 +169,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container" style="border-color: #000000;"  >
     
                 
-                <div  class="col-lg-12" style="padding-top: 30px;">
+                <div  class="col-lg-12" style="padding-top: 10px;">
                     
                 <br>
                 <div class='col-lg-10'></div>
@@ -196,12 +178,17 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                 <div class='col-lg-2' style=" text-align: center; background-color: #a15ebe; color: #ffffff;letter-spacing: 2px;box-shadow: 10px 10px 20px -10px rgba(0,0,0,0.75); border-radius: 4px; " >
                         <h6>Opciones de Tabla "Rendir"</h6>
                         <span class='icon'>
+                                   
                             <form id="form1" name="form1" method="post" action="<?php echo base_url("hd_admision/devoluciones/CarroListarDevolucion/" )?>">
                                     <input type="hidden" name="fechaDesdeP" value="<?php IF(!empty($fechaDesdeP))echo $fechaDesdeP; ?>">
                                     <input type="hidden" name="fechaHastaP" value="<?php IF(!empty($fechaHastaP))echo $fechaHastaP; ?>">
-                                    <input type="image" style=" width: 20px" name="imageField" src="<?php echo base_url();?>../assets/img/icons/impresora.png" />
-                                    <i class="fa fa-table" id="btnExport" style="cursor: pointer; color:#1d7044;font-size:18px" title="Exportar Tabla a Excel"></i>  
-                       </form>
+                                    <input type="image" style=" width: 20px" name="imageField" src="<?php echo base_url();?>../assets/img/icons/guardar.png" />
+                                    <!--
+                                    &nbsp;
+                                    
+                                    <i class="fa fa-table" id="btnExport" style="cursor: pointer; color:#1d7044;font-size:24px" title="Exportar Tabla a Excel"></i>  
+                                    -->
+                        </form>
                             <!--
                             <i class='fa fa-print' onclick="PrintElem('#imprimir')" style="cursor: pointer; color:#1d1c19; font-size:18px" title="Imprimir Tabla"></i>
                             -->
@@ -230,6 +217,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                                 -->
                                 <th>N° de Cuenta</th>
                                 <th>Tipo de Deposito</th>
+                                <th>Boleta</th>
                                 <th>Concepto</th>
                                 <th>Monto</th>
                                 <th>Opciones</th>
@@ -257,6 +245,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                                     -->
                                     <td><?php echo $item->ctaNumero; ?></td>
                                     <td><?php echo $tipo; ?></td>
+                                    <td><?php IF(!empty($item->depBoleta)) echo $item->depBoleta; ?> </td>
                                     <td><?php echo $item->depConNombre; ?></td>
                                     <td><?php echo $item->depSuma; ?></td>
                                     <td align="center">
@@ -295,7 +284,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
         </div><!-- row -->
    </div>
 </div><!-- content -->
-</div>
+
 
 <div id="imprimir" style=" display:none">
     <div align="center"><b>RENDICION DE MOVIMIENTO DE CAJA</b></div>
@@ -310,9 +299,9 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
         </tr>
         <tr>
             <td style="border:none"><b>SUPERVISADO POR</b></td>
-            <td style="border:none">Claudio Chamorro</td>
+            <td style="border:none">Daniela Concha</td>
             <td style="border:none"><b>RUT</b></td>
-            <td style="border:none">12.035.058-7</td>
+            <td style="border:none">10.800.619-6</td>
             <td style="border:none"></td>
             <td style="border:none"></td>
         </tr>
@@ -392,7 +381,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                                                 IF($item->depTipo === '5') {$TCredito = $item->depSuma; $sumCredito += $item->depSuma;$sumTotal += $item->depSuma;}
                                                 IF($item->depTipo === '6') {$TDebito  = $item->depSuma; $sumDebito += $item->depSuma;$sumTotal += $item->depSuma;}
                                             ?>
-                                        <td></td>
+                                        <td><?php IF(!empty($item->depBoleta)) echo $item->depBoleta; ?></td>
                                         <td><?php echo $efectivo; ?></td>
                                         <td><?php echo $transferencia ?></td>
                                         <td><?php echo $TDebito ?></td>
@@ -491,7 +480,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
             <td style="border:none">CHEQUE</td>
             <td style="border:none"><?php echo $sumCheque; ?></td>
             <td style="border:none" align="center"><b>VALESKA JEREZ</b></td>
-            <td style="border:none" align="center"><b>CLAUDIO CHAMORRO</b></td>
+            <td style="border:none" align="center"><b>DANIELA CONCHA</b></td>
         </tr>
         <tr>
             <td style="border:none">TOTAL CAJA</td>
@@ -501,6 +490,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
         </tr>
     </table>
 </div>
+
 <?php
 function formatearRut( $rut ) {
      while($rut[0] == "0") {
@@ -519,7 +509,7 @@ function formatearRut( $rut ) {
 return number_format( substr ( $rut, 0 , -1 ) , 0, "", ".") . '-' . substr ( $rut, strlen($rut) -1 , 1 );
 }
 ?>
-    
+    <!--
 <script src="<?php echo base_url(); ?>../assets/js/jquery.dataTables.js"></script>
 <script src="<?php echo base_url(); ?>../assets/js/jquery.nicescroll.min.js"></script>
 <script src="<?php echo base_url(); ?>../assets/js/hs.tables.js"></script>
@@ -533,6 +523,7 @@ return number_format( substr ( $rut, 0 , -1 ) , 0, "", ".") . '-' . substr ( $ru
     $("#rutApoEco").attr("disabled", false).css("border-color","red");
     
 </script>
+    
 <script>
     $("#form").submit(function () {  
     if($("#banco").val()==0) {  
@@ -545,11 +536,15 @@ return number_format( substr ( $rut, 0 , -1 ) , 0, "", ".") . '-' . substr ( $ru
     } 
 });  
 </script>
+    -->
 <script>
     window.onload = function() {
         var carro = $( "#carro" ).val();
         if(carro === '1'){PrintElem('#imprimir')}
     };
+    </script>
+    
+        <script>
     
     $(".fa-check-square-o").click(function(){
 
@@ -561,7 +556,7 @@ return number_format( substr ( $rut, 0 , -1 ) , 0, "", ".") . '-' . substr ( $ru
        
         $.ajax({
             type: "POST",
-            url: "<?php echo base_url(); ?>" + "api/devolucion/carroDevolucionesMinus/"+IdDeposito,
+            url: "<?php echo base_url(); ?>" + "api/devolucionHD/carroDevolucionesMinus/"+IdDeposito,
             //data: IdDeposito,
             success: function(data){
                 $( "#"+IdDeposito ).removeClass().addClass( "fa fa-square-o" );
@@ -579,7 +574,7 @@ return number_format( substr ( $rut, 0 , -1 ) , 0, "", ".") . '-' . substr ( $ru
        
         $.ajax({
             type: "POST",
-            url: "<?php echo base_url(); ?>" + "api/devolucion/carroDevoluciones/"+IdDeposito,
+            url: "<?php echo base_url(); ?>" + "api/devolucionHD/carroDevoluciones/"+IdDeposito,
             //data: IdDeposito,
             success: function(data){
                 
@@ -587,248 +582,7 @@ return number_format( substr ( $rut, 0 , -1 ) , 0, "", ".") . '-' . substr ( $ru
             }
         });
     });
-    
-    
-    $("#rut").focusout(function(){
-       
-        ////LIMPIAR INPUTS
-        document.getElementById("nombres").value = "";document.getElementById("apePat").value = "";document.getElementById("apeMat").value = "";document.getElementById("fecha").value = ""; document.getElementById("telFijo").value = ""; document.getElementById("telCelu").value = ""; document.getElementById("direccion").value  = ""; document.getElementById("email").value = ""; document.getElementById("ocupacion").value  = ""; document.getElementById("rutTitular").value = ""; document.getElementById("rutApo").value = "";
-        $("#rut").attr("disabled", false).css("border-color",'#ccc');
-        $("#divFicha").show();  
-        var rut = $( "#rut" ).val();
-        var rut = rut.replace(".", "");var rut = rut.replace("-", "");var rut = rut.replace(",", ""); var rut = rut.replace(".", "");
-        var letra = rut.substring(0, 1);
-        
-        if (letra === '1' || letra === '2'){var rut = rut.substring(0, 8);}
-        else {var rut = rut.substring(0, 7);}
+     
 
-        $.ajax({
-            type: "GET",
-            url: "<?php echo base_url(); ?>" + "api/ingresos/index/"+rut,
-            dataType: 'json',
-            
-            success: function(data){
-                
-                document.getElementById("nombres").value    = data.nombres;
-                document.getElementById("apePat").value     = data.apellidoPaterno;
-                document.getElementById("apeMat").value     = data.apellidoMaterno;
-                document.getElementById("fecha").value      = data.fechaNacimiento;
-                document.getElementById("telFijo").value    = data.telefono;
-                document.getElementById("telCelu").value    = data.celular;
-                document.getElementById("direccion").value  = data.direccion;
-                document.getElementById("email").value      = data.email;
-                document.getElementById("ocupacion").value  = data.ocupacion;
-                document.getElementById("rutTitular").value = rut;
-                document.getElementById("rutApo").value     = rut;
-                
-                //$("input:radio").removeAttr("checked");
-                if (data.sexo == 'FEMENINO'){
-                    
-                    //$("#sex").append('Masculino <input type="radio" name="sexo" value="1">Femenino<input type="radio" name="sexo" value="0" id="femenino" checked>');
-                }
-                //document.getElementById("sexo").value = data.sexo;
-                
-                //$('select').empty(append('comuna'));
-                $("<option class='one' selected='selected' value='"+data.comId+"'>"+data.comNombre+"</option>").appendTo("#comuna");
-            
-                //$('select').empty().append('isapre');
-                $("<option selected value='"+data.isaId+"'>"+data.isaNombre+"</option>").appendTo("#isapre");
-            }
-        })
-        
-        
-        $("#rutApo").focusout(function(){
-        ////LIMPIAR INPUTS
-        document.getElementById("nombresApo").value = ""; document.getElementById("apePatApo").value = ""; document.getElementById("telFijoApo").value = ""; document.getElementById("telCeluApo").value = ""; document.getElementById("direccionApo").value = ""; document.getElementById("emailApo").value = ""; document.getElementById("rutApoEco").value = "";
-        $("#rutApoEco").attr("disabled", false).css("border-color","#ccc");
-        $("#divFichaApoderado").show();  
-        var rut = $( "#rutApo" ).val();
-        var rut = rut.replace(".", "");var rut = rut.replace("-", "");var rut = rut.replace(",", ""); var rut = rut.replace(".", "");
-        var rut = rut.substring(0, 8);
-       
-        $.ajax({
-            type: "GET",
-            url: "<?php echo base_url(); ?>" + "api/ingresos/index/"+rut,
-            dataType: 'json',
-            
-            success: function(data){
-                
-                document.getElementById("nombresApo").value     = data.nombres;
-                document.getElementById("apePatApo").value      = data.apellidoPaterno;
-                document.getElementById("telFijoApo").value     = data.telefono;
-                document.getElementById("telCeluApo").value     = data.celular;
-                document.getElementById("direccionApo").value   = data.direccion;
-                document.getElementById("emailApo").value       = data.email;
-                document.getElementById("rutApoEco").value      = data.rut;
-                
-                
-               }
-        })
-        })
-        
-        $("#rutApoEco").focusout(function(){
-        ////LIMPIAR INPUTS
-        document.getElementById("nombresApoEco").value = ""; document.getElementById("apePatApoEco").value = ""; document.getElementById("telFijoApoEco").value = ""; document.getElementById("telCeluApoEco").value = ""; document.getElementById("direccionApoEco").value = ""; document.getElementById("emailApoEco").value = "";
-        $("#rutEco").attr("disabled", false).css("border-color","#ccc");
-        $("#divFichaEconomico").show();  
-        var rut = $( "#rutApoEco" ).val();
-        var rut = rut.replace(".", "");var rut = rut.replace("-", "");var rut = rut.replace(",", ""); var rut = rut.replace(".", "");
-        var rut = rut.substring(0, 8);
-       
-        $.ajax({
-            type: "GET",
-            url: "<?php echo base_url(); ?>" + "api/ingresos/index/"+rut,
-            dataType: 'json',
-            
-            success: function(data){
-                
-                document.getElementById("nombresApoEco").value     = data.nombres;
-                document.getElementById("apePatApoEco").value      = data.apellidoPaterno;
-                document.getElementById("telFijoApoEco").value     = data.telefono;
-                document.getElementById("telCeluApoEco").value     = data.celular;
-                document.getElementById("direccionApoEco").value   = data.direccion;
-                document.getElementById("emailApoEco").value       = data.email;
-                
-               }
-        })
-        })
-        
-        $("#rutDev").focusout(function(){
-        ////LIMPIAR INPUTS
-        document.getElementById("emailDev").value = ""; document.getElementById("nombresDev").value = ""; document.getElementById("apePatDev").value = "";
-        $("#rutEco").attr("disabled", true).css("background-color","transparent");
-        var rut = $( "#rutDev" ).val();
-        var rut = rut.replace(".", "");var rut = rut.replace("-", "");var rut = rut.replace(",", ""); var rut = rut.replace(".", "");
-        var rut = rut.substring(0, 8);
-       
-        $.ajax({
-            type: "GET",
-            url: "<?php echo base_url(); ?>" + "api/ingresos/index/"+rut,
-            dataType: 'json',
-            
-            success: function(data){
-                
-                //AUTOCOMPLETA CAMPOS DEVOLUCIONES
-                document.getElementById("emailDev").value           = data.email;
-                document.getElementById("nombresDev").value         = data.nombres;
-                document.getElementById("apePatDev").value          = data.apellidoPaterno;
-                
-               }
-        })
-        })
-        
-    
-});
-</script>    
-<script>
-    $("#divApo").click(function(){
-        
-        $("#divFichaApoderado").show();  
-    })
-    $("#divEco").click(function(){
-        $("#divFichaEconomico").show();  
-    })
-</script>
-<script>
-        $("#rut").keyup(function (event){
-		var tecla = (document.all) ? event.keyCode : event.which;
-                //alert(tecla);
-		if(tecla == 8 || tecla == 46){
-                    document.getElementById("rut").value = "";
-		}
-	});
-        $("#rutApo").keyup(function (event){
-		var tecla = (document.all) ? event.keyCode : event.which;
-                //alert(tecla);
-		if(tecla == 8 || tecla == 46){
-                    document.getElementById("rutApo").value = "";
-		}
-	});
-        $("#rutApoEco").keyup(function (event){
-		var tecla = (document.all) ? event.keyCode : event.which;
-                //alert(tecla);
-		if(tecla == 8 || tecla == 46){
-                    document.getElementById("rutApoEco").value = "";
-		}
-	});
-        $("#rutTitular").keyup(function (event){
-		var tecla = (document.all) ? event.keyCode : event.which;
-                //alert(tecla);
-		if(tecla == 8 || tecla == 46){
-                    document.getElementById("rutTitular").value = "";
-		}
-	});
-
-</script>
-
-<div id="exportar" style=" display: none">
-<table class='table table-bordered table-hover table-striped'>
-        <thead>
-            <tr>
-                <th>N de Deposito</th>
-                <th>N de Ficha</th>
-                <th>Fecha de Deposito</th>
-                <th>Run Paciente</th>
-                <th>Nombre Paciente</th>
-                <!--
-                <th>Titular Devolución</th>
-                -->
-                <th>N de Cuenta</th>
-                <th>Tipo de Deposito</th>
-                <th>Concepto</th>
-                <th>Monto</th>
-                
-            </tr>
-        </thead>
-        <tbody>
-
-                <?php foreach ($datos as $item) : ?>
-                <?php IF ($item->depEstado != '5'){; ?>
-            <tr>
-                    <?php IF(!empty($item->depFicha))$ficha = $item->depFicha; ELSEIF (!empty($item->ctaFicha)) $ficha = $item->ctaFicha; ELSE $ficha = '-'?>
-                    <?php IF($item->depTipo === '1')$tipo='Efectivo'; ELSEIF($item->depTipo === '2')$tipo='Cheque'; ELSEIF($item->depTipo === '3')$tipo='Transferencia';ELSEIF($item->depTipo === '4')$tipo='WebPay';ELSEIF($item->depTipo === '5')$tipo='T Credito';ELSEIF($item->depTipo === '6')$tipo='T Debito';ELSE $tipo = $item->depTipo;?>
-                <td><?php echo $item->depId; ?></td>
-                <td><?php echo $ficha; ?></td>
-                    <?php
-                        $date = new DateTime($item->depFechaRegistro);
-                        $fechaRegistro = $date->format('d-m-Y');
-                    ?>
-                <td style=" min-width: 90px"><?php echo $fechaRegistro; ?></td>
-                <td style=" min-width: 110px"><?php if(!empty($item->ctaRutPaciente)) echo formatearRut($item->ctaRutPaciente);?></td>
-                <td style=" min-width: 90px"><?php if(!empty($item->ctaNomPaciente)) echo strtoupper ($item->ctaNomPaciente); ?></td>
-                <!--
-                <td><?php if(!empty($item->ctaRut)) echo formatearRut($item->ctaRut).' - '.$item->ctaNombre.' '.$item->ctaApellido; ?></td>
-                -->
-                <td><?php echo $item->ctaNumero; ?></td>
-                <td><?php echo $tipo; ?></td>
-                <td><?php echo $item->depConNombre; ?></td>
-                <td><?php echo $item->depSuma; ?></td>
-                
-            </tr>
-                <?php } ?>
-                <?php endforeach; ?>
-        </tbody>
-    </table>
-</div>
-<script>
-    $("#btnExport").click(function(e) {
-
-        //Creamos un Elemento Temporal en forma de enlace
-        var tmpElemento = document.createElement('a');
-        // obtenemos la informaciÃ³n desde el div que lo contiene en el html
-        // Obtenemos la informaciÃ³n de la tabla
-        var data_type = 'data:application/vnd.ms-excel';
-        var tabla_div = document.getElementById('exportar');
-        var tabla_html = tabla_div.outerHTML.replace(/ /g, '%20');
-        tmpElemento.href = data_type + ', ' + tabla_html;
-        //Asignamos el nombre a nuestro EXCEL
-        tmpElemento.download = 'Flujo de Caja.xls';
-        // Simulamos el click al elemento creado para descargarlo
-        tmpElemento.click();
-
-        //var htmltable= document.getElementById('imprimir');
-        //var html = htmltable.outerHTML;
-        //window.open('data:application/vnd.ms-excel,' + encodeURIComponent(html));
-    });
-
-</script>
+</script>     
+ 

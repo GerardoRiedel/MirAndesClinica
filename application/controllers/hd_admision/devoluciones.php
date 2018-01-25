@@ -75,19 +75,28 @@ class Devoluciones extends CI_Controller {
         redirect(base_url().'clinica_admision/ingresos/listarIngreso/');
         
     }
-    public function listarDevolucion()
+    public function listarDevolucion(){
+        
+        $data['breadcumb']  = "Registros";
+        $data['menu']       = "depositos";
+        $data['submenu']    = "ldeposito";
+        $data['title']      = "Cargando...";
+        Layout_Helper::cargaVista($this,'cargando',$data,'hd');   
+    }
+    public function listarDevolucion2()
     {
-        $this->load->model('listaDeposito_model');
         $this->listaDeposito_model->lisDepUsuario  = $this->session->userdata('id_usuario');
         $this->listaDeposito_model->eliminarUser();
-        
+      //  die;
         $limpiar = '';
-        $limpiar = $this->bancos_model->dameCtasLimpiar();
+        $limpiar = $this->bancos_model->dameCtasLimpiarHD();
+        
+     //   die(var_dump($limpiar));
         IF(!empty($limpiar)){
             foreach ($limpiar as $lim){
                 $this->bancos_model->depRendicion   = 0;
-                $this->bancos_model->depId          = $lim->depId;
-                $this->bancos_model->guardarDeposito();
+                $this->bancos_model->depId                  = $lim->depId;
+                $this->bancos_model->guardarDepositoHD();
             }
             unset($this->bancos_model->depId,$this->bancos_model->depRendicion); 
         }
@@ -95,25 +104,28 @@ class Devoluciones extends CI_Controller {
         $data['fechaDesde'] = '09-11-2016';
         $data['fechaHasta'] = date('Y-m-d');
         $data['fechaRendicion'] = date('Y-m-d');
-        $datos              = $this->bancos_model->dameCtas();
-        $rendicion          = $this->bancos_model->dameUltimaRendicion();
+        $datos               = $this->bancos_model->dameCtasHD();
+        $rendicion        = $this->bancos_model->dameUltimaRendicionHD();
         IF(!empty($datos)){
             foreach ($datos as $dat){
                 $this->bancos_model->depRendicion   = $rendicion;
                 $this->bancos_model->depId          = $dat->depId;
-                $this->bancos_model->guardarDeposito();
+                $this->bancos_model->guardarDepositoHD();
             }
             unset($this->bancos_model->depId,$this->bancos_model->depRendicion);
         }
+        
         $data['porvencer'] = 'NO';
         $data['datos']      = $datos;
         $data['rendicion']  = $rendicion;
-        $data['breadcumb']  = "Registros";
+        //$data['breadcumb']  = "Registros";
         $data['menu']       = "depositos";
         $data['submenu']    = "ldeposito";
-        $data['title']      = "Listado de Depositos Registrados sin rendir";
-        Layout_Helper::cargaVista($this,'listar_devoluciones',$data,'ingresos');   
+        $data['title']      = "Listado de Depositos Registrados sin Rendir";
+        
+        Layout_Helper::cargaVista($this,'listar_devoluciones',$data,'hd');   
     }
+    
     public function FiltroListarDevolucion()
     {
         $limpiar = '';
@@ -167,12 +179,12 @@ class Devoluciones extends CI_Controller {
         
         
         $limpiar = '';
-        $limpiar = $this->bancos_model->dameCtasLimpiar();
+        $limpiar = $this->bancos_model->dameCtasLimpiarHD();
         IF(!empty($limpiar)){
             foreach ($limpiar as $lim){
                 $this->bancos_model->depRendicion   = 0;
                 $this->bancos_model->depId          = $lim->depId;
-                $this->bancos_model->guardarDeposito();
+                $this->bancos_model->guardarDepositoHD();
             }
             unset($this->bancos_model->depId,$this->bancos_model->depRendicion);  
         }
@@ -187,13 +199,73 @@ class Devoluciones extends CI_Controller {
         ELSE $data['fechaHasta'] = date('Y-m-d');
         $data['fechaRendicion'] = date('Y-m-d');
         
-        $datos              = $this->bancos_model->dameCtas($filtro,$fechaDesde,$fechaHasta);
-        $rendicion          = $this->bancos_model->dameUltimaRendicion();
+        $datos              = $this->bancos_model->dameCtasHD($filtro,$fechaDesde,$fechaHasta);
+        $rendicion          = $this->bancos_model->dameUltimaRendicionHD();
         IF(!empty($carro)){
             foreach ($carro as $car){
                 $this->bancos_model->depRendicion   = $rendicion;
                 $this->bancos_model->depId          = $car->depId;
-                $this->bancos_model->guardarDeposito();
+                $this->bancos_model->guardarDepositoHD();
+            }
+            unset($this->bancos_model->depId,$this->bancos_model->depRendicion);  
+        }
+        ELSEIF(!empty($datos)){
+            foreach ($datos as $dat){
+                $this->bancos_model->depRendicion   = $rendicion;
+                $this->bancos_model->depId          = $dat->depId;
+                $this->bancos_model->guardarDepositoHD();
+            }
+            unset($this->bancos_model->depId,$this->bancos_model->depRendicion);  
+        }
+        $data['porvencer'] = 'NO';
+        $data['fechaDesdeP'] = $this->input->post('fechaDesdeP');
+        $data['fechaHastaP'] = $this->input->post('fechaHastaP');
+        $data['carroPrint'] = '1';
+        $data['carro']      = $carro;
+        $data['datos']      = $datos;
+        $data['rendicion']  = $rendicion;
+        $data['breadcumb']  = "Registros";
+        $data['title']      = "Listado de Depositos Registrados sin rendir";
+        
+        $data['menu']       = "depositos";
+        $data['submenu']    = "ldeposito";
+        Layout_Helper::cargaVista($this,'listar_devoluciones',$data,'hd');   
+        //Layout_Helper::cargaVista($this,'../ingresos/listar_devoluciones',$data,'ingresos');   
+    }
+    public function CarroListarDevolucionHD()
+    {
+        $usuario = $this->session->userdata('id_usuario');
+        $carro = $this->listaDeposito_model->dameUnoUsuario($usuario);
+        
+        
+        $limpiar = '';
+        $limpiar = $this->bancos_model->dameCtasLimpiarHD();
+        IF(!empty($limpiar)){
+            foreach ($limpiar as $lim){
+                $this->bancos_model->depRendicion   = 0;
+                $this->bancos_model->depId          = $lim->depId;
+                $this->bancos_model->guardarDepositoHD();
+            }
+            unset($this->bancos_model->depId,$this->bancos_model->depRendicion);  
+        }
+        $filtro     = $this->input->post('filtro');
+        $filtro     = str_replace(array(".","-"), "", $filtro);
+        $letra      = substr($filtro,0,1);if ($letra === "1" || $letra === "2"){$filtro = substr($filtro, 0, 8);}else {$filtro = substr($filtro, 0, 7);}
+        $fechaDesde = $this->input->post('fechaDesdeP');
+        $fechaHasta = $this->input->post('fechaHastaP');
+        
+        $data['fechaDesde'] = $this->input->post('fechaDesde');
+        IF(!empty($fechaHasta)) $data['fechaHasta'] = $fechaHasta;
+        ELSE $data['fechaHasta'] = date('Y-m-d');
+        $data['fechaRendicion'] = date('Y-m-d');
+        
+        $datos              = $this->bancos_model->dameCtasHD($filtro,$fechaDesde,$fechaHasta);
+        $rendicion          = $this->bancos_model->dameUltimaRendicionHD();
+        IF(!empty($carro)){
+            foreach ($carro as $car){
+                $this->bancos_model->depRendicion   = $rendicion;
+                $this->bancos_model->depId          = $car->depId;
+                $this->bancos_model->guardarDepositoHD();
             }
             unset($this->bancos_model->depId,$this->bancos_model->depRendicion);  
         }
@@ -217,24 +289,26 @@ class Devoluciones extends CI_Controller {
         
         $data['menu']       = "depositos";
         $data['submenu']    = "ldeposito";
-        Layout_Helper::cargaVista($this,'listar_devoluciones',$data,'ingresos');   
+        Layout_Helper::cargaVista($this,'listar_devoluciones',$data,'hd');   
         //Layout_Helper::cargaVista($this,'../ingresos/listar_devoluciones',$data,'ingresos');   
     }
+    
+    
     public function listarRendicion()
     {
         $data['fechaDesde'] = '09-11-2016';
         $data['fechaHasta'] = date('d-m-Y');
         $data['fechaRendicion'] = date('d-m-Y');
         
-        $data['data']       = $this->bancos_model->dameRendiciones($filtro='',$fechaDesde='',$fechaHasta='');
-        $data['datos']      = $this->bancos_model->dameRendicionesImprimir();
+        $data['data']       = $this->bancos_model->dameRendicionesHD($filtro='',$fechaDesde='',$fechaHasta='');
+        $data['datos']      = $this->bancos_model->dameRendicionesImprimirHD();
         $data['porvencer'] = 'NO';
         $data['breadcumb']  = "Registros";
         $data['title']      = "Listado de Rendiciones";
         
         $data['menu']       = "depositos";
         $data['submenu']    = "rdeposito";
-        Layout_Helper::cargaVista($this,'listar_rendiciones',$data,'ingresos');   
+        Layout_Helper::cargaVista($this,'listar_rendiciones',$data,'hd');   
     }
     public function FiltroListarRendicion()
     {
@@ -272,7 +346,7 @@ class Devoluciones extends CI_Controller {
     ////GUARDAR PACIENTE    
         $paciente   = $this->pacientes_model->dameUno($rut);
         $idFicha    = $this->input->post('registro');
-        $ficha      = $this->ingreso_model->dameFicha($paciente->id);
+        $ficha      = $this->ingreso_model->dameFichaHD($paciente->id);
     
     ////GUARDAR DATOS DE DEVOLUCION
         
@@ -378,21 +452,21 @@ class Devoluciones extends CI_Controller {
         
         $data['registro']   = $id;
         $registro           = $this->hd_model->dameUno($id);
-        $paciente           = $this->pacientes_model->dameUnoId($registro->paciente);die($id);
+        $paciente           = $this->pacientes_model->dameUnoId($registro->paciente);
         $apoderado          = $this->apoderados_model->dameUnoPorFichaEco($id,111);
-        die(var_dump($apoderado));
+       //die(var_dump($apoderado));
         IF(empty($apoderado)){
             echo "<script>
-                var c = window.confirm('Paciente sin datos. Desea completar el registro para continuar?'); 
+                var c = window.confirm('Paciente sin datos de apoderado. Desea completar el registro para continuar?'); 
                 if (c === true){
-                    window.location.href='".base_url()."clinica_admision/ingresos/modificarRegistro/".$id."';
+                    window.location.href='".base_url()."hd_admision/ingresos/modificarRegistro/".$id."';
                         }
                 else {
-                    window.location.href='".base_url()."clinica_admision/devoluciones/listarIngreso';
+                    window.location.href='".base_url()."hd_admision/devoluciones/listarIngreso';
                 }
                 </script>";
         }
-        $data['apoderado']  = $apoderado;
+        $data['apoderado']  = $apoderado;//die(var_dump($apoderado));
         $data['pacApePat']  = $paciente->apellidoPaterno;
         $data['pacApeMat']  = $paciente->apellidoMaterno;
         $data['pacRut']     = $paciente->rut;
@@ -410,7 +484,7 @@ class Devoluciones extends CI_Controller {
         
         $data['menu']       = "depositos";
         $data['submenu']    = "ndeposito";
-        Layout_Helper::cargaVista($this,'devolucion_ingreso',$data,'ingresos');   
+        Layout_Helper::cargaVista($this,'devolucion_ingreso',$data,'hd');   
     }
     public function guardarDeposito()
     {
@@ -423,7 +497,42 @@ class Devoluciones extends CI_Controller {
         $paciente   = $this->pacientes_model->dameUno($rut);
         $idFicha    = $this->input->post('registro');
         $ficha      = $this->ingreso_model->dameFicha($paciente->id);
+        $nCuenta = $this->bancos_model->dameCuentaHD($paciente->id);
+        
+        //////VERIFICA QUE TENGA UNA CUENTA CREADA
+        IF(empty($nCuenta)){
+            $bancos = $this->bancos_model->dameUnoHD($idFicha);
+            //$ctaId  = $this->input->post('cuentaId');
+            //IF(!empty($ctaId))$this->bancos_model
+            IF(!empty($bancos))
+            $this->bancos_model->ctaId           = $this->bancos_model->dameUnoHD($idFicha)->ctaId;
+            $this->bancos_model->ctaPaciente     = $paciente->id;
+            $b = $this->input->post('banco');
+            IF(!empty($b))
+            $this->bancos_model->ctaBanco        = $this->input->post('banco');
+            $t = $this->input->post('tipoCta');
+            IF(!empty($t))
+            $this->bancos_model->ctaTipo         = $this->input->post('tipoCta');
+            $c = $this->input->post('NCta');
+            IF(!empty($c))
+            $this->bancos_model->ctaNumero       = $this->input->post('NCta');
+            IF(empty($rutDev)) $rutDev = $rut;
+            $this->bancos_model->ctaRut          = $rutEco;
+            $this->bancos_model->ctaRutPaciente  = $rut;
+            $this->bancos_model->ctaNomPaciente  = $paciente->apellidoPaterno.' '.$paciente->nombres;
+            $this->bancos_model->ctaEmail        = $this->input->post('emailDev');
+            $this->bancos_model->ctaNombre    = $this->input->post('nombresDev');
+            $this->bancos_model->ctaApellido     = $this->input->post('apePatDev');
+            $this->bancos_model->ctaApellidoM    = $this->input->post('apeMatDev');
+            $this->bancos_model->ctaGes             = $this->input->post('ctaGes');
+            $this->bancos_model->ctaRegistro     = $idFicha;
+            $this->bancos_model->ctaFicha        = $ficha;
+            $this->bancos_model->guardarCtaHD();
+            unset($this->bancos_model->ctaGes,$this->bancos_model->ctaNomPaciente,$this->bancos_model->ctaFicha,$this->bancos_model->ctaRutPaciente,$this->bancos_model->ctaBanco,$this->bancos_model->ctaFicha,$this->bancos_model->ctaRegistro,$this->bancos_model->ctaApellidoM,$this->bancos_model->ctaApellido,$this->bancos_model->ctaNombre,$this->bancos_model->ctaEmail,$this->bancos_model->ctaRut,$this->bancos_model->ctaPaciente,$this->bancos_model->ctaId,$this->bancos_model->ctaTipo,$this->bancos_model->ctaNumero);
     
+            
+            
+        } //die(var_dump($nCuenta));
     ////GUARDAR DATOS DE DEPOSITO  
             $x = $this->input->post('bancoCheque');
             if(!empty($x))$this->bancos_model->depBanco        = $this->input->post('bancoCheque');
@@ -439,11 +548,11 @@ class Devoluciones extends CI_Controller {
             $this->bancos_model->depFicha        = $ficha;
             $this->bancos_model->depFechaRegistro= date('Y-m-d H:i:s');
             $this->bancos_model->depUsuario      = $this->session->userdata('id_usuario');
-            $apoderadoEco = $this->apoderados_model->damePorDatos($rutEco,$idFicha,2);
+            $apoderadoEco = $this->apoderados_model->damePorDatos($rutEco,$idFicha,111);
             $this->bancos_model->depApoderadoEconomico = $apoderadoEco->id;
-            $this->bancos_model->guardarDeposito();
+            $this->bancos_model->guardarDepositoHD();
             
-        redirect(base_url().'clinica_admision/devoluciones/listarDevolucion');
+        redirect(base_url().'hd_admision/devoluciones/listarIngreso');
     }
     public function cargarDepositosPorVencer($filtro='')
     {
