@@ -11,23 +11,23 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
 
     <div class="container-fluid">
         <div class="row">
-            <div class="col-xs-12"></div>
-                
+            
 
 			
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container" style="border-color: #000000;"  >
+    <div class="col-lg-12 bhoechie-tab-container"  >
             
                             
-            
-                <div class='widget-title'>
-<br>
-                    <div class="col-lg-12" style="margin-top: -10px;">
+        <div  class="col-lg-12">
+                
+                    <div class="col-lg-12">
+                        <br>
                     <label>Filtrar Datos de Ficha</label>
-                    </div>
                     <?php $attributes = array('id' => 'form');
                         echo form_open('clinica_admision/ingresos/filtrolistarIngreso',$attributes);
                     ?>
                     <br>
+                    </div>
+                    
                     <div class="col-lg-2">
                         <label>Paciente</label>
                     </div>
@@ -76,15 +76,11 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                     <div class="col-lg-12" style=" font-size: 10px" align="left">
                     Complete los campos segun el criterio de busqueda requerido
                     </div>
-
-
-                    </div>
-                    <div class=" col-lg-12"></div><br><br><br><br><br><br>
-                <div class="col-lg-10" style=" text-align: center">
-                    
+                    <div class="col-lg-12" ></div>
+                    <div class="col-lg-12" align="center" >
                     <?php echo form_submit('','Filtro Avanzado','class="btn btn-primary btn-sm btnCetep"');?>
                         <br>
-                    
+                     </div>
                     <div class='col-lg-4' style=" text-align: center; background-color: #a15ebe; color: #ffffff;letter-spacing: 2px;box-shadow: 10px 10px 20px -10px rgba(0,0,0,0.75); border-radius: 4px; " >
                         <h6>Opciones de Tabla</h6>
                         <span class='icon'>
@@ -93,20 +89,18 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                             -->
                             <i class="fa fa-table" id="btnExport" style="cursor: pointer; color:#1d7044;font-size:18px" title="Exportar Tabla a Excel"></i>  
                         </span>
-                    </div><br><br><br><br>
-                </div>
-        <!-- FIN DIV FICHA COMPLETA--><br>
-                <div class="col-lg-12" ></div>
-                <!--
-                <div class='col-lg-9'><p style='color:red;'><b>Recuerde que en esta vista se encuentra filtrado, solo pacientes que no cuenten con fecha de salida registrada.</b></p>
-                    <p style="margin-top:-11px;font-size: 10px">Para ver el detalle de pacientes con alta, favor revisar <b><a href='<?php echo base_url("clinica_admision/fichas/listar_paciente"); ?>'>Ficha de Pacientes</a></b></p>
-                </div>
-                    -->
-                
-                <?php echo form_close();?>
+                        
+                            <?php echo form_close();?>
+                    </div>
+                    <div class="col-lg-12">
+                        <br>
+                    </div>
+               
+                    
+        </div>
                 
     </div> 
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container" style="border-color: #000000;"  >
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container" >
     <?php $ultimo = $ultimo->id; ?>
                 
                 <div  class="col-lg-12" style="overflow: auto;">
@@ -114,7 +108,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                 <table class='table table-bordered table-hover table-striped data-table'>
                         <thead>
                             <tr>
-                                <th style="max-width: 0px"></th>
+                                
                                 <th>Fecha Registro</th>
                                     <?php IF(!empty($filtro)){ ?>
                                 <th>Fecha de Ingreso</th>
@@ -135,14 +129,16 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                                 <!--
                                 <th>Prefactura</th>
                                 -->
+                                <th>Imprimir</th>
+                                <th>Alta</th>
                                 <th>Opciones</th>
                             </tr>
                         </thead>
                         <tbody>
                                 <?php foreach ($datos as $item) : ?>
                             <tr>
-                                <td style=" border-right: transparent;"></td>
-                                <td style=" border-left: transparent;"><?php $date = new DateTime($item->dateIn);echo $date->format('d-m-Y H:i');//echo $item->id; ?></td>
+                                
+                                <td style=" border-left: transparent;"><?php $date = new DateTime($item->dateIn);echo $date->format('d-m-Y');//echo $item->id; ?></td>
                                 <?php IF(!empty($filtro)){ ?>
                                 <td style=" border-left: transparent;"><?php IF(!empty($item->fechaIngreso)){$dateI = new DateTime($item->fechaIngreso);echo $dateI->format('d-m-Y');}//echo $item->id; ?></td>
                                    <?php } ?>
@@ -168,19 +164,26 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                                 -->
                                 <td align="center">
                                     <?php IF(!empty($item->ctaId)){ ?>
-                                    <a class="tip-bottom" title="Imprimir ficha de admisión" href="<?php echo base_url("clinica_admision/impresiones/cargarImprimir/" . $item->id )?>"><i class="fa fa-print" aria-hidden="true"></i></a>&nbsp;&nbsp;
+                                    <a class="tip-bottom" title="Imprimir ficha de admisión" href="<?php echo base_url("clinica_admision/impresiones/cargarImprimir/" . $item->id )?>"><i class="fa fa-print" aria-hidden="true"></i></a>
                                     <?php } ;?>
-                                    <a class="tip-bottom" onclick="return confirm('¿Confirma que desea eliminar este registro?\r..::Recuerde que el correlativo de fichas puede depender de este registro::..')" style="color:red" title="Desechar Registro Incompleto" href="<?php echo base_url("clinica_admision/ingresos/eliminar/" . $item->id )?>"><i class="fa fa-trash" aria-hidden="true"></i></a>&nbsp;&nbsp;
-                                    
-                                    <a class="tip-bottom" title="Modificar registro" href="<?php echo base_url("clinica_admision/ingresos/modificarRegistro/" . $item->id )?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <?php IF($ultimo === $item->id && !empty($item->ctaId)): ?>
                                         <!--
                                             <a class="tip-bottom" onclick="return confirm('¿Confirma que desea eliminar este registro?')" style="color:red" title="Desechar Último Registro" href="<?php echo base_url("clinica_admision/ingresos/eliminar/" . $item->id )?>"><i class="fa fa-trash" aria-hidden="true"></i></a>&nbsp;&nbsp;
                                         -->
                                     <?php ENDIF; ?>
-                                    <a class="tip-bottom" style="color:green" title="Salida paciente" href="<?php echo base_url("clinica_admision/salidas/cargarSalida/" . $item->id )?>"><i class="fa fa-sign-in" aria-hidden="true"></i></a>&nbsp;&nbsp;
                                     
                                 </td>
+                                <td align="center">
+                                    <a class="tip-bottom" style="color:green" title="Salida paciente" href="<?php echo base_url("clinica_admision/salidas/cargarSalida/" . $item->id )?>"><i class="fa fa-sign-in" aria-hidden="true"></i></a>
+                                    
+                                </td>
+                                <td align="center">
+                                    <a class="tip-bottom" onclick="return confirm('¿Confirma que desea eliminar este registro?\r..::Recuerde que el correlativo de fichas puede depender de este registro::..')" style="color:red" title="Desechar Registro Incompleto" href="<?php echo base_url("clinica_admision/ingresos/eliminar/" . $item->id )?>"><i class="fa fa-trash" aria-hidden="true"></i></a>&nbsp;&nbsp;
+                                    
+                                    <a class="tip-bottom" title="Modificar registro" href="<?php echo base_url("clinica_admision/ingresos/modificarRegistro/" . $item->id )?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                    
+                                </td>
+                                
                             </tr>
                                 <?php endforeach; ?>
                         </tbody>

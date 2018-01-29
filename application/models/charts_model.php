@@ -24,7 +24,7 @@ class Charts_model extends CI_Model
       return $r2016;
     }
     
-    public function pacientes2017()
+    public function pacientes()
     {
      
       $r2017 =  $this->db->select('count(id)cant,fechaSalidaReal,Year(fechaSalidaReal) as ano,MONTH(fechaSalidaReal) as mes')
@@ -32,8 +32,8 @@ class Charts_model extends CI_Model
                 //->where('fechaIngreso >=','2017-02-01')
                 ->where('ficha >',1)
                ->where('fechaSalidaReal != "0000-00-00"')
-                ->where('fechaSalidaReal >= "2017-01-01"')
-                ->where('fechaSalidaReal < "2018-01-01"')
+                ->where('fechaSalidaReal >= "2018-01-01"')
+                ->where('fechaSalidaReal < "2019-01-01"')
                 ->group_by('ano,mes')
                 ->get()
                 ->result();

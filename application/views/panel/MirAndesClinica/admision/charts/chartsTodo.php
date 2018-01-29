@@ -69,7 +69,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
 <script>
     $.ajax({
             type: "GET",
-            url: "<?php echo base_url(); ?>" + "api/charts/pacientes2017/",
+            url: "<?php echo base_url(); ?>" + "api/charts/pacientes/",
             dataType: 'json',
             
             success: function(datos){
@@ -78,23 +78,29 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                 var dias = new Array;
                 var cant2016 = new Array;
                 var cant2017 = new Array;
-                var cant2017T = '';
+                var cant2018 = new Array;
+                var cant2018T = '';
                 
-                    for(keyVar in datos) {
+              //  for()
+                    for( keyVar in datos) {
+                    //   
                         var can = '';
                         can = parseInt(datos[keyVar].cant);
-                        //alert(can);
-                        cant2017T = cant2017T * 1 + can;
-                        cant2017 = cant2017.concat(can);
+                       // alert(can);
+                        cant2018T = cant2018T * 1 + can;
+                        cant2018 = cant2018.concat(can);
                         var dia = '';
                         dia = datos[keyVar].mes;
                         if(dia==='11')dia='Noviembre';if(dia==='12')dia='Diciembre';else if(dia==='1')dia='Enero';else if(dia==='2')dia='Febrero';else if(dia==='3')dia='Marzo';else if(dia==='4')dia='Abril';else if(dia==='5')dia='Mayo';else if(dia==='6')dia='Junio';else if(dia==='7')dia='Julio';else if(dia==='8')dia='Agosto';else if(dia==='9')dia='Septiembre';else if(dia==='10')dia='Octubre';
                         dias = dias.concat(dia);
                         
                         
-                            if(dia==='Noviembre'){cant2016 = cant2016.concat(20);}else if(dia==='Diciembre'){cant2016 = cant2016.concat(45);}else {cant2016 = cant2016.concat(0);};
-                      
+                           
+                    
                     }
+                     cant2016 = cant2016.concat(0).concat(0).concat(0).concat(0).concat(0).concat(0).concat(0).concat(0).concat(0).concat(0).concat(20).concat(45);//;}else if(dia==='Diciembre'){cant2016 = cant2016.concat(45);}else {cant2016 = cant2016.concat(0);};
+                     cant2017 = cant2017.concat(44).concat(34).concat(48).concat(43).concat(47).concat(37).concat(46).concat(48).concat(43).concat(38).concat(48).concat(32);
+                      
                     Highcharts.setOptions({
                         colors: ['#058DC7', '#50B432', '#ED561B', '#DDDF00', '#24CBE5', '#64E572', '#FF9655', '#FFF263', '#6AF9C4']
                     });
@@ -138,13 +144,17 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                         //    borderWidth: 0
                         //},
                         series: [
-                  //         {
-                   //         name: 'Universo: 65 pacientes 2016',
-                    //        data: cant2016
-                     //   },
-                            {
-                            name: 'Universo: '+cant2017T+' pacientes 2017',
+                          {
+                            name: 'Universo: 65 pacientes 2016',
+                            data: cant2016
+                        },
+                         {
+                            name: 'Universo: 508 pacientes 2017',
                             data: cant2017
+                        },
+                            {
+                            name: 'Universo: '+cant2018T+' pacientes 2018',
+                            data: cant2018
                         }]
                     });
 

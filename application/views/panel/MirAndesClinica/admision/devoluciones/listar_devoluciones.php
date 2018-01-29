@@ -114,14 +114,14 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                 
 
 			
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container" style="border-color: #000000;"  >
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container">
             
                             
             
-                <div class='widget-title'>
-                    <br>
-                    <div class="col-lg-12" style="margin-top: -10px;">
-                    <label>Datos de Ficha</label>
+        <div class="col-lg-12">
+                    
+                    <div class="col-lg-12">
+                    <label>Datos de Ficha</label><hr>
                     </div>
                     <?php $attributes = array('id' => 'form');
                         echo form_open('clinica_admision/devoluciones/FiltroListarDevolucion',$attributes);
@@ -150,12 +150,12 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                             <input type="text" class="form-control" placeholder="Hasta,  día-mes-año" style=" width: 158px !important" name="fechaHasta" value="<?php IF(!empty($fechaHastaP))echo $fechaHastaP; ?>">
                         </div>
                     </div>
-                    
-                </div>
-                
-                <div class="col-lg-12" style=" text-align: center">
+                    <div class="col-lg-12" style=" text-align: center">
                         <?php echo form_submit('','Buscar','class="btn btn-primary btn-sm btnCetep"');?>
                     </div>
+                </div>
+                
+                
         <div class="col-lg-12" style=" font-size: 10px">
         Complete los campos segun el criterio requerido
         </div>
@@ -166,7 +166,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                 
     </div> 
             <?php IF(!empty($datos)): ?>
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container" style="border-color: #000000;"  >
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container"  >
     
                 
                 <div  class="col-lg-12" style="padding-top: 10px;">
@@ -204,6 +204,8 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                 <!--
                 <table class='table table-bordered table-hover table-striped data-table'>
                 -->
+                <div class="col-lg-12" style=" overflow: auto">
+                    <br>
                 <table class='table table-bordered table-hover table-striped'>
                         <thead>
                             <tr>
@@ -267,13 +269,11 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                                 <?php endforeach; ?>
                         </tbody>
                     </table>
-                
-                
-                <div class="col-lg-2">
-                    <!--
-                    <button onclick="goBack()" class="btn btn-default btn-sm">Cancelar</button><script>function goBack(){window.history.go(-1);}</script>
-                -->
+                    <br>
                 </div>
+                
+                
+                
         </div><!-- div class='widget-content'-->    
                     
                 

@@ -18,8 +18,8 @@ class Charts extends CI_Controller
         $res = $this->charts_model->pacientes2016();
         echo json_encode($res);
     }
-    public function pacientes2017(){
-        $res = $this->charts_model->pacientes2017();
+    public function pacientes(){
+        $res = $this->charts_model->pacientes();
         echo json_encode($res);
     }
     public function pieSexo(){

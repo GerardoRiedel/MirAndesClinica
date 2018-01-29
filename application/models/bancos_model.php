@@ -312,8 +312,12 @@ class Bancos_model extends CI_Model
                         ->result();
         }
     }
-    public function dameRendicionesImprimir()
+    public function dameRendicionesImprimir($filtro='',$inicio='',$termino='')
     {
+        //$inicio = '2017-06-01 00:00:00';$termino= '2017-12-31 00:00:00';
+        //$inicio = '2016-01-01 00:00:00';$termino= '2016-12-31 00:00:00';
+        //$inicio = '2017-01-01 00:00:00';$termino= '2017-12-31 00:00:00';
+      //   $inicio = '2018-01-01 00:00:00';$termino= '2018-12-31 00:00:00';
         if(empty($filtro) && empty($inicio) && empty($termino)){
         return $this->db->select('depRendicion,ctaId,ctaNombre,ctaApellido,ctaApellidoM,ctaFicha,ctaRegistro,b.banNombre,ctaNumero,ctaRut,ctaRutPaciente,ctaNomPaciente,ctaEmail,depId,depFicha,depTipo,depFechaRegistro,tipNombre,depConNombre,depSuma,depSerie,d.banNombre depBanNombre')
                         ->from('cuentas_pacientes')

@@ -79,7 +79,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                                 <?php foreach ($datos as $item) : ?>
                             <tr>
                                 <td style="display:none"><?php $item->dateIn; ?></td>
-                                <td align="center"><?php $date = new DateTime($item->dateIn);echo $date->format('d-m-Y H:i'); ?></td>
+                                <td align="center"><?php $date = new DateTime($item->dateIn);echo $date->format('d-m-Y'); ?></td>
                                 <td><?php if(!empty($item->rut)) echo formatearRut($item->rut); ?></td>
                                 <td style="display:none"><?php if(!empty($item->rut)) echo $item->rut; ?></td>
                                 <td align="center"><?php IF($item->tipoIngreso==='2')echo $item->ficha;     ELSEIF($item->tipoIngreso==='3')echo $item->fichaRH; ?></td>
@@ -102,7 +102,6 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                                 <td align="center">
                                     <a class="tip-bottom" title="Registro de Intervención" href="<?php echo base_url("hd_admision/ingresos/cargarEvaluacion/" . $item->id )?>"><i class="fa fa-user-md" aria-hidden="true"></i></a>
                                 </td>
-                                
                                 <td align="center">
                                     <a class="tip-bottom" title="Registro de Ingreso T.O" href="<?php echo base_url("hd_admision/ingresos/cargarIngresoTO/" . $item->id )?>"><i class="fa fa-calendar-check-o" aria-hidden="true"></i></a>&nbsp;&nbsp;
                                 </td>

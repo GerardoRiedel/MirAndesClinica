@@ -22,11 +22,11 @@ IF(empty($submenu)){$submenu='';}?>
 -->
 <!-- INGRESO MEDICO-->
 <?php IF($this->session->userdata('perfil') == '5'){?>
-<!--
+
 <li class="submenu <?php if($menu === 'ingreso')echo "active open" ?>">
     <a href="#"><i class="fa fa-hospital-o" aria-hidden="true"></i> <span>&nbsp;Control</span> <i class="arrow fa fa-chevron-right"></i></a>
         <ul>
-                <li <?php if($submenu === 'lingreso')  echo "class='active'" ?>><a href="<?php echo base_url("clinica_enfermeria/medicos/listarIngreso"); ?>">Listar Pacientes Activos</a></li>            
+                <li <?php if($submenu === 'lingreso')  echo "class='active'" ?>><a href="<?php echo base_url("clinica_enfermeria/ingresos/listarIngreso"); ?>">Listar Pacientes Activos</a></li>            
         </ul> 
 </li>
 <!-- INGRESO NO MEDICO -->

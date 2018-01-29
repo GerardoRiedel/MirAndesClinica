@@ -236,12 +236,18 @@ class Devoluciones extends CI_Controller {
                 </script>  ";
         
         
-        
+        $fechaDesde = $this->input->post('fechaDesde');
+        $fechaHasta = $this->input->post('fechaHasta');
+        IF(empty($fechaDesde) && empty($fechaHasta)){$fechaDesde = $fechaHasta = ''; }
         $data['fechaDesde'] = '09-11-2016';
         $data['fechaHasta'] = date('d-m-Y');
         $data['fechaRendicion'] = date('d-m-Y');
         
         $data['data']       = $this->bancos_model->dameRendiciones($filtro='',$fechaDesde='',$fechaHasta='');
+        
+        $data['datos2018']       = $this->bancos_model->dameRendicionesImprimir($filtro='',$fechaDesde='2018-01-01',$fechaHasta='2018-12-31');
+        $data['datos2017']       = $this->bancos_model->dameRendicionesImprimir($filtro='',$fechaDesde='2017-01-01',$fechaHasta='2017-12-31');
+        $data['datos2016']       = $this->bancos_model->dameRendicionesImprimir($filtro='',$fechaDesde='2016-01-01',$fechaHasta='2016-12-31');
         $data['datos']      = $this->bancos_model->dameRendicionesImprimir();
         $data['porvencer'] = 'NO';
         $data['breadcumb']  = "Registros";

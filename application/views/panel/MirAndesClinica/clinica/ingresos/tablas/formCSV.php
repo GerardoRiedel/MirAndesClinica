@@ -3,6 +3,7 @@
     <label class="titulo">Control Signos Vitales</label>
 </div>    
 <br>
+<div class="col-lg-12" style=" overflow: auto">
 <table>
     <tr>
         <td colspan="7" class="cabeza" align="center">Signos Vitales</td>
@@ -219,6 +220,7 @@
                             
                             </tr>
                         </table>
+</div>
 <?php $cantCSV = strlen($evo->evoCSV9)+strlen($evo->evoCSV8)+strlen($evo->evoCSV7)+strlen($evo->evoCSV6)+strlen($evo->evoCSV5)+strlen($evo->evoCSV4)+strlen($evo->evoCSV3);?>
 <input value="<?php echo $cantCSV;?>" id="cantCSV" type="hidden">
 <hr>
