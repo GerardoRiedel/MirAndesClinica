@@ -155,7 +155,8 @@ class Modificar extends CI_Controller {
         $rut        = str_replace(array(".","-"), "", $this->input->post('uspRut'));
         $letra      = substr($rut,0,1);if ($letra === "1" || $letra === "2"){$rut = substr($rut, 0, 8);}else {$rut = substr($rut, 0, 7);}
         $usuario    = $this->input->post('uspUsuario'); 
-        $clave      = md5($this->input->post('clave'));
+        $clave = $this->input->post('clave');
+        IF(!empty($clave)){$clave = md5($clave);}
         $uspId      = $this->input->post('uspId');
         $email      = $this->input->post('uspEmail');
     ////GUARDAR Usuario    
@@ -164,7 +165,8 @@ class Modificar extends CI_Controller {
         IF(!empty($uspId))$this->usuarios_panel_log_model->uspId        = $uspId;
         $existe = $this->usuarios_panel_log_model->dameUnoExiste($rut,$usuario,$email);
         IF(empty($existe)){
-            $this->usuarios_panel_log_model->uspPerfil      = $this->input->post('uspPerfil');
+            IF($this->session->userdata('perfil')==='1' || $this->session->userdata('perfil')==='4'){
+            $this->usuarios_panel_log_model->uspPerfil      = $this->input->post('uspPerfil');}
             $this->usuarios_panel_log_model->uspNombre      = $this->input->post('uspNombre');
             $this->usuarios_panel_log_model->uspApellidoP   = $this->input->post('uspApellidoP');
             $this->usuarios_panel_log_model->uspApellidoM   = $this->input->post('uspApellidoM');
@@ -174,7 +176,8 @@ class Modificar extends CI_Controller {
         }
         ELSE{
             unset($this->usuarios_panel_log_model->uspUsuario,$this->usuarios_panel_log_model->uspPassword);
-            $this->usuarios_panel_log_model->uspPerfil      = $this->input->post('uspPerfil');
+            IF($this->session->userdata('perfil')==='1' || $this->session->userdata('perfil')==='4'){
+            $this->usuarios_panel_log_model->uspPerfil      = $this->input->post('uspPerfil');}
             $this->usuarios_panel_log_model->uspNombre      = $this->input->post('uspNombre');
             $this->usuarios_panel_log_model->uspApellidoP   = $this->input->post('uspApellidoP');
             $this->usuarios_panel_log_model->uspApellidoM   = $this->input->post('uspApellidoM');
