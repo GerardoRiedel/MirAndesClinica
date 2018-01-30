@@ -15,14 +15,14 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                 
 
 			
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container" style="border-color: #000000;"  >
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container navCeluSession">
             
                             
             
-                <div class='widget-title'>
+                <div class='col-lg-12'>
                     <br>
-                    <div class="col-lg-12" style="margin-top: -10px;">
-                    <label>Datos de Ficha</label>
+                    <div class="col-lg-12" >
+                        <label>Datos de Ficha</label><hr>
                     </div>
                     <?php $attributes = array('id' => 'form');
                         echo form_open('hd_admision/devoluciones/filtrolistarIngreso',$attributes);
@@ -34,21 +34,21 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                     <div class='col-lg-3'>
                         <input name="filtro" type="text" placeholder="Digite rut de paciente o N° de ficha" minlength="4">
                     </div>
-                    
-                </div>
-                
                     <div class="col-lg-1">
                         <?php echo form_submit('','Buscar','class="btn btn-primary btn-sm btnCetep"');?>
                     </div>
+                </div>
+                
+                    
             <!-- FIN DIV FICHA COMPLETA-->
                 <div class="col-lg-12" ></div>
                 <?php echo form_close();?>
                 
     </div> 
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container" style="border-color: #000000;"  >
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container" >
     
                 
-                <div  class="col-lg-12" style="padding-top: 30px;">
+                <div  class="col-lg-12" style="overflow: auto" >
                 <br>
                 <div class='col-lg-12'></div><?php //die(var_dump($datos));?>
                 <table class='table table-bordered table-hover table-striped data-table'>
@@ -66,7 +66,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                                 <?php foreach ($datos as $item) : ?>
                             <?php IF($item->isapre !== '4' && $item->diagnostico !== '75 TAB'){ ?>
                             <tr>
-                                <td><?php echo $item->dateIn; echo $item->isapre; echo $item->diagnostico?></td>
+                                <td><?php echo $item->dateIn; ?></td>
                                 <td><?php if(!empty($item->rut)) echo formatearRut($item->rut); ?></td>
                                 <td><?php echo $item->ficha; ?></td>
                                 <td><?php echo strtoupper($item->nombres); ?></td>

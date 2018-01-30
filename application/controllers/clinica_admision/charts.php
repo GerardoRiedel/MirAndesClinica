@@ -22,7 +22,7 @@ class Charts extends CI_Controller {
         }
             $this->session->set_userdata($data);
         $data['breadcumb']  = "paciente";
-        $data['title']      = "Inicio";
+        $data['title']      = "Gráficos";
         $data['menu']       = 'charts';
         $data['submenu']    = 'pchart';
         Layout_Helper::cargaVista($this,'charts',$data,'ingresos');  
@@ -30,7 +30,7 @@ class Charts extends CI_Controller {
         function chartsTodo()
 	{
         $data['breadcumb']  = "paciente";
-        $data['title']      = "Inicio";
+        $data['title']      = "Gráficos";
          $data['menu']       = 'charts';
         $data['submenu']    = 'tchart';
         Layout_Helper::cargaVista($this,'chartsTodo',$data,'ingresos');  

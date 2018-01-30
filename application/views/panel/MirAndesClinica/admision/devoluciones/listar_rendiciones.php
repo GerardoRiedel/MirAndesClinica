@@ -107,7 +107,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
     </div> 
             
              -->
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container" style="border-color: #000000;"  >
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container ">
     
                 
                 <div  class="col-lg-12" style="padding-top: 30px;">
@@ -142,11 +142,11 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                             <i class='fa fa-print' onclick="PrintElem('#imprimir')" style="cursor: pointer; color:#1d1c19; font-size:18px" title="Imprimir Tabla"><span style="font-size: 13px"> Imprimir</span></i>
                         
                         </span><br>
-                        <span class='icon'>
+                        
                             <i class="fa fa-table" id="btnExport2018" style="cursor: pointer; color:#1d7044;font-size:18px" title="Exportar Tabla 2018 a Excel"><span style="font-size: 13px"> export 2018</span></i><br>
                             <i class="fa fa-table" id="btnExport2017" style="cursor: pointer; color:#1d7044;font-size:18px" title="Exportar Tabla 2017 a Excel"><span style="font-size: 13px"> export 2017</span></i><br>
-                            <i class="fa fa-table" id="btnExport2016" style="cursor: pointer; color:#1d7044;font-size:18px" title="Exportar Tabla 2016 a Excel"><span style="font-size: 13px"> export 2016</span></i>  
-                        </span>
+                            <i class="fa fa-table" id="btnExport2016" style="cursor: pointer; color:#1d7044;font-size:18px" title="Exportar Tabla 2016 a Excel"><span style="font-size: 13px"> export 2016</span></i><br> 
+                            <br>
                 </div>
                 <div align="center" class='col-lg-8' >
                 <table class='table table-bordered table-hover table-striped data-table' style="max-width: 800px">

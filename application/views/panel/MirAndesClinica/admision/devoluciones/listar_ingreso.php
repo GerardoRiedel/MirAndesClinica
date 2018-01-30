@@ -1,23 +1,4 @@
 
-
-<style>
-    
-    .btnCetep{
-        background-color: #da812e;
-        border-color: #da812e
-    }
-    .btnCetep:hover{
-        background-color: #AF601A;
-        border-color: #da812e
-    }
-    .btnCetep:active{
-        background-color: #6E2C00 !important;
-        border-color: #da812e
-    }
-    
-
-    
-</style>
 <div id="content" style="-webkit-box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);
 -moz-box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);
 box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #db8918">
@@ -34,14 +15,14 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                 
 
 			
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container" style="border-color: #000000;"  >
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container" >
             
                             
             
-                <div class='widget-title'>
+                <div class='col-lg-12'>
                     <br>
                     <div class="col-lg-12" style="margin-top: -10px;">
-                    <label>Datos de Ficha</label>
+                        <label>Datos de Ficha</label><hr>
                     </div>
                     <?php $attributes = array('id' => 'form');
                         echo form_open('clinica_admision/devoluciones/filtrolistarIngreso',$attributes);
@@ -53,21 +34,19 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                     <div class='col-lg-3'>
                         <input name="filtro" type="text" placeholder="Digite rut de paciente o N° de ficha" minlength="4">
                     </div>
-                    
-                </div>
-                
                     <div class="col-lg-1">
                         <?php echo form_submit('','Buscar','class="btn btn-primary btn-sm btnCetep"');?>
                     </div>
-            <!-- FIN DIV FICHA COMPLETA-->
-                <div class="col-lg-12" ></div>
                 <?php echo form_close();?>
+                </div>
+                
+                    
                 
     </div> 
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container" style="border-color: #000000;"  >
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container">
     
                 
-                <div  class="col-lg-12" style="padding-top: 30px;">
+                <div  class="col-lg-12" style="padding-top: 30px; overflow: auto">
                 <br>
                 <div class='col-lg-12'></div>
                 <table class='table table-bordered table-hover table-striped data-table'>

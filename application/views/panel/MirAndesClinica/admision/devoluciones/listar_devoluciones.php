@@ -114,13 +114,14 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                 
 
 			
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container navCeluSession">
             
                             
             
         <div class="col-lg-12">
                     
                     <div class="col-lg-12">
+                        <br>
                     <label>Datos de Ficha</label><hr>
                     </div>
                     <?php $attributes = array('id' => 'form');

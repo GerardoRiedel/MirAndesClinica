@@ -1,5 +1,3 @@
-
-
 <style>
     .in{
         min-width: 250px; 
@@ -7,10 +5,6 @@
     .inDev{
         max-width: 150px !important; 
     }
-    
-    
-
-    
 </style>
 <div id="content" style="-webkit-box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);
 -moz-box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);
@@ -28,14 +22,14 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                 
 
 			
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container navCeluSession" style="border-color: #000000;"  >
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container navCeluSession" >
             
                             
             
-                <div class='widget-title'>
+                <div class='col-lg-12'>
                     <br>
-                    <div class="col-lg-12" style="margin-top: -10px;">
-                    <label>Datos de Ficha</label>
+                    <div class="col-lg-12" >
+                        <label>Datos de Ficha</label><hr>
                     </div>
                     <?php $attributes = array('id' => 'form');
                         echo form_open('clinica_enfermeria/ingresos/filtrolistarIngreso',$attributes);
@@ -47,18 +41,18 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                     <div class='col-lg-3'>
                         <input name="filtro" class="in" type="text" placeholder="Digite rut de paciente o N° de ficha" minlength="4" required>
                     </div>
-                    
-                </div>
-                
                     <div class="col-lg-1">
                         <?php echo form_submit('','Buscar','class="btn btn-primary btn-sm btnCetep"');?>
                     </div>
-            <!-- FIN DIV FICHA COMPLETA-->
-                <div class="col-lg-12" ></div>
-                <?php echo form_close();?>
+                    <?php echo form_close();?>
+                </div>
+                
+                    
+            
+                
                 
     </div> 
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container" style="border-color: #000000;"  >
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container" >
     
                 
                 <div  class="col-lg-12">

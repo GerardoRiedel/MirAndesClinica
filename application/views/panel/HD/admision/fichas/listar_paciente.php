@@ -17,12 +17,12 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
         <div class="row">
             <div class="col-xs-12"></div>
                 
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container" style="border-color: #000000;"  >
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container navCeluSession" >
             
-                <div class='widget-title'>
+                <div class='col-lg-12'>
                     <br>
-                    <div class="col-lg-12" style="margin-top: -10px;">
-                    <label>Datos de Paciente</label>
+                    <div class="col-lg-12">
+                        <label>Datos de Paciente</label><hr>
                     </div>
                     <?php $attributes = array('id' => 'form');
                         echo form_open('hd_admision/fichas/filtrar_paciente',$attributes);
@@ -34,31 +34,28 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                     <div class='col-lg-3'>
                         <input name="filtro" type="text" placeholder="Digite rut de paciente o N° de ficha" minlength="3" value="<?php IF(!empty($filtro))echo $filtro;?>">
                     </div>
-                    
-                </div>
-                
-                    <div class="col-lg-1">
+                    <div class="col-lg-2">
                         <?php echo form_submit('','Buscar','class="btn btn-primary btn-sm btnCetep"');?>
                     </div>
-        
-        
-                    <div class=" col-lg-12"></div>
-                    <div class="col-lg-1">
+                    <div class="col-lg-2">
                         <label>Opciones</label>
-                    </div>
-                    <div class='col-lg-2'>
+                    
                             
                             <i class='fa fa-print' onclick="PrintElem('#imprimir')" style="cursor: pointer; color:#1d1c19; font-size:18px" title="Imprimir Tabla"></i>
                             &nbsp;&nbsp;
                             <i class="fa fa-table" id="btnExport" style="cursor: pointer; color:#1d7044;font-size:18px" title="Exportar Tabla a Excel"></i>  
                         
                     </div> 
-            <!-- FIN DIV FICHA COMPLETA-->
-                <div class="col-lg-12" ></div>
-                <?php echo form_close();?>
+                     <?php echo form_close();?>
+                </div>
+                
+                    
+        
+        
+               
                 
     </div> 
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container" style="border-color: #000000;"  >
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container" >
     
                 
                 <div  class="col-lg-12">

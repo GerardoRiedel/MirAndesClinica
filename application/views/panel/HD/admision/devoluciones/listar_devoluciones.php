@@ -114,7 +114,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                 
 
 			
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container" style="border-color: #000000;"  >
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container navCeluSession" >
             
                             
             
@@ -166,7 +166,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                 
     </div> 
             <?php IF(!empty($datos)): ?>
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container" style="border-color: #000000;"  >
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container" >
     
                 
                 <div  class="col-lg-12" style="padding-top: 10px;">
@@ -183,27 +183,18 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                                     <input type="hidden" name="fechaDesdeP" value="<?php IF(!empty($fechaDesdeP))echo $fechaDesdeP; ?>">
                                     <input type="hidden" name="fechaHastaP" value="<?php IF(!empty($fechaHastaP))echo $fechaHastaP; ?>">
                                     <input type="image" style=" width: 20px" name="imageField" src="<?php echo base_url();?>../assets/img/icons/guardar.png" />
-                                    <!--
-                                    &nbsp;
                                     
-                                    <i class="fa fa-table" id="btnExport" style="cursor: pointer; color:#1d7044;font-size:24px" title="Exportar Tabla a Excel"></i>  
-                                    -->
                         </form>
-                            <!--
-                            <i class='fa fa-print' onclick="PrintElem('#imprimir')" style="cursor: pointer; color:#1d1c19; font-size:18px" title="Imprimir Tabla"></i>
-                            -->
+                            
                         </span>
-                        <span class='icon'>
-                             </span>
+                        
                           
                                   
                         
                 </div>
                 <?php } ?>
                 <input type="hidden" id="carro" value="<?php IF(!empty($carroPrint)) echo $carroPrint;?>">
-                <!--
-                <table class='table table-bordered table-hover table-striped data-table'>
-                -->
+                <div class="col-lg-12" style=" overflow: auto"><br>
                 <table class='table table-bordered table-hover table-striped'>
                         <thead>
                             <tr>
@@ -267,12 +258,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                                 <?php endforeach; ?>
                         </tbody>
                     </table>
-                
-                
-                <div class="col-lg-2">
-                    <!--
-                    <button onclick="goBack()" class="btn btn-default btn-sm">Cancelar</button><script>function goBack(){window.history.go(-1);}</script>
-                -->
+                    <br>
                 </div>
         </div><!-- div class='widget-content'-->    
                     

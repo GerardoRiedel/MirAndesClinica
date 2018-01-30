@@ -15,7 +15,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                 
 
 			
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container" style="border-color: #000000;"  >
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container navCeluSession" >
             
                             
             
@@ -45,11 +45,11 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                 <?php echo form_close();?>
                 
     </div> 
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container" style="border-color: #000000;"  >
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container" >
     
                 <br>
                 <div  class="col-lg-12" style="overflow: auto;">
-                    <div class='col-lg-12'><p style='color:red;'><b>Recuerde que en esta vista se encuentra filtrado, solo pacientes que no cuenten con fecha de salida registrada.</b></p>
+                    <div class='col-lg-12 navCeluSession'><p style='color:red;'><b>Recuerde que en esta vista se encuentra filtrado, solo pacientes que no cuenten con fecha de salida registrada.</b></p>
                         <p style="margin-top:-11px;font-size: 10px">Para ver el detalle de pacientes con alta, favor revisar <b><a href='<?php echo base_url("hd_admision/fichas/listar_paciente"); ?>'>Ficha de Pacientes</a></b></p>
                     </div>
                 <table class='table table-bordered table-hover table-striped data-table'>
