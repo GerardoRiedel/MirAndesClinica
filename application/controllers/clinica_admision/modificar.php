@@ -163,7 +163,8 @@ class Modificar extends CI_Controller {
         //$existe = $this->usuarios_panel_log_model->dameUnoExiste();
         IF(!empty($uspId)){
             $this->usuarios_panel_log_model->uspId          = $uspId;
-            $this->usuarios_panel_log_model->uspPerfil      = $this->input->post('uspPerfil');
+            IF($this->session->userdata('perfil')==='1' || $this->session->userdata('perfil')==='4'){
+            $this->usuarios_panel_log_model->uspPerfil      = $this->input->post('uspPerfil');}
             $this->usuarios_panel_log_model->uspNombre      = $nombre;
             $this->usuarios_panel_log_model->uspApellidoP   = $apePat;
             $this->usuarios_panel_log_model->uspApellidoM   = $this->input->post('uspApellidoM');
@@ -178,7 +179,8 @@ class Modificar extends CI_Controller {
         }
         ELSE{
              $this->usuarios_panel_log_model->uspNombre      = $nombre;
-             $this->usuarios_panel_log_model->uspPerfil      = $this->input->post('uspPerfil');
+             IF($this->session->userdata('perfil')==='1' || $this->session->userdata('perfil')==='4'){
+             $this->usuarios_panel_log_model->uspPerfil      = $this->input->post('uspPerfil');}
             $this->usuarios_panel_log_model->uspApellidoP   = $apePat;
             $this->usuarios_panel_log_model->uspApellidoM   = $this->input->post('uspApellidoM');
             $this->usuarios_panel_log_model->uspEmail       = $email;
