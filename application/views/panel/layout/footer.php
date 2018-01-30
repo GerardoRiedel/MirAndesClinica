@@ -6,8 +6,8 @@
     }
 }
 </style>
-<div class="row" id="foo" style=" background-color: #f4f4f2">
-            <div id="footer" class="col-xs-12 activo" style="color: black" >
+<div class="row" id="foo" >
+            <div id="footer" class="col-xs-12 activo" style="color: black; background-color: #e9c899" >
             2016 &copy; Cetep. Todos los derechos reservados.
             </div>
 </div>

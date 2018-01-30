@@ -39,7 +39,7 @@
 </script>
 <div id="content" style="-webkit-box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);
 -moz-box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);
-box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #db8918">
+box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
     <div id="content-header" style="background-color: #e9c899; max-height: 10px !important" >
         <h1 style="background-color: #a15ebe !important;border:none;color:#ffffff; margin-right: 30px;-webkit-box-shadow: 10px 10px 23px -6px rgba(0,0,0,0.75);-moz-box-shadow: 10px 10px 23px -6px rgba(0,0,0,0.75);box-shadow: 10px 10px 23px -6px rgba(0,0,0,0.75);" class="alert alert-info"><?php echo $title;?></h1>
     </div>
@@ -110,7 +110,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container ">
     
                 
-                <div  class="col-lg-12" style="padding-top: 30px;">
+                <div  class="col-lg-12" style="padding-top: 10px;">
                     
                 <br>
                 <div class='col-lg-12'>
@@ -139,16 +139,16 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25; background-color: #d
                     </div>
                     -->
                         <span class='icon'>
-                            <i class='fa fa-print' onclick="PrintElem('#imprimir')" style="cursor: pointer; color:#1d1c19; font-size:18px" title="Imprimir Tabla"><span style="font-size: 13px"> Imprimir</span></i>
+                            <i class='fa fa-print' onclick="PrintElem('#imprimir')" style="cursor: pointer; color:#e9c899; font-size:18px" title="Imprimir Tabla"><span style="font-size: 13px">&nbsp;&nbsp;&nbsp;&nbsp;Imprimir</span></i><br>
                         
                         </span><br>
                         
-                            <i class="fa fa-table" id="btnExport2018" style="cursor: pointer; color:#1d7044;font-size:18px" title="Exportar Tabla 2018 a Excel"><span style="font-size: 13px"> export 2018</span></i><br>
-                            <i class="fa fa-table" id="btnExport2017" style="cursor: pointer; color:#1d7044;font-size:18px" title="Exportar Tabla 2017 a Excel"><span style="font-size: 13px"> export 2017</span></i><br>
-                            <i class="fa fa-table" id="btnExport2016" style="cursor: pointer; color:#1d7044;font-size:18px" title="Exportar Tabla 2016 a Excel"><span style="font-size: 13px"> export 2016</span></i><br> 
+                            <i class="fa fa-table" id="btnExport2018" style="cursor: pointer; color:#bed530;font-size:18px" title="Exportar Tabla 2018 a Excel"><span style="font-size: 13px"> export 2018</span></i><br>
+                            <i class="fa fa-table" id="btnExport2017" style="cursor: pointer; color:#bed530;font-size:18px" title="Exportar Tabla 2017 a Excel"><span style="font-size: 13px"> export 2017</span></i><br>
+                            <i class="fa fa-table" id="btnExport2016" style="cursor: pointer; color:#bed530;font-size:18px" title="Exportar Tabla 2016 a Excel"><span style="font-size: 13px"> export 2016</span></i><br> 
                             <br>
                 </div>
-                <div align="center" class='col-lg-8' >
+                <div align="center" class='col-lg-8' style="overflow: auto">
                 <table class='table table-bordered table-hover table-striped data-table' style="max-width: 800px">
                         <thead>
                             <tr>

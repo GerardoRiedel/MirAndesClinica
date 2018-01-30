@@ -57,12 +57,7 @@ class Login extends CI_Controller
                            
                             
                             
-         ////// BORRAR                   
-                        }else if($this->session->userdata('perfil') == '9'){
-                            IF($nav != 'Chrome'){
-                            echo "<script>".$alert."window.location.href='".base_url()."qa/chats';</script>";}
-                            ELSE {redirect(base_url().'qa/charts');}
-                           
+                     
                             
                     //HD        
                         }else if($this->session->userdata('perfil') == '11'){
@@ -85,6 +80,10 @@ class Login extends CI_Controller
                             echo "<script>".$alert."window.location.href='".base_url()."hd_admision/ingresos/inicio';</script>";}
                             ELSE {redirect(base_url().'hd_admision/ingresos/inicio');}
 			}
+                        else {
+                            $this->session->sess_destroy();
+                            redirect(base_url());
+                        }
                         
                     }else{
                             $data['token'] = $this->token();

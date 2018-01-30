@@ -1,7 +1,7 @@
 <?php $color = '#e9c899';
 IF(empty($menu)){
     $menu ='';
-    $color = '#f4f4f2';
+    //$color = '#f4f4f2';
 }
 IF(empty($submenu)){$submenu='';}?>
 
