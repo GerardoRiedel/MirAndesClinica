@@ -138,7 +138,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                                 <?php foreach ($datos as $item) : ?>
                             <tr>
                                 
-                                <td style=" border-left: transparent;"><?php $date = new DateTime($item->dateIn);echo $date->format('d-m-Y');//echo $item->id; ?></td>
+                                <td style=" border-left: transparent;"><?php $date = new DateTime($item->dateIn);echo $date->format('Y-m-d');//echo $item->id; ?></td>
                                 <?php IF(!empty($filtro)){ ?>
                                 <td style=" border-left: transparent;"><?php IF(!empty($item->fechaIngreso)){$dateI = new DateTime($item->fechaIngreso);echo $dateI->format('d-m-Y');}//echo $item->id; ?></td>
                                    <?php } ?>
