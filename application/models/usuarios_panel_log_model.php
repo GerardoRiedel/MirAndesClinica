@@ -94,6 +94,7 @@ class Usuarios_Panel_Log_model extends CI_Model{
         if(isset($this->uplId)){
         $this->db->update('usuarios_panel_log', $this, array('uplId' => $this->uplId));}
         else{
-        $this->db->insert('usuarios_panel_log', $this);}
+                $this->db->insert('usuarios_panel_log', $this);
+        }
     }
 }

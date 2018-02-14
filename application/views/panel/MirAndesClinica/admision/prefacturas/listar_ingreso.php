@@ -74,7 +74,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                                 <td><?php echo strtoupper($item->apellidoMaterno); ?></td>
                                 
                                 <td align="center">
-                                    <a class="tip-bottom" title="Cargar Prefacturas" style="color:green" href="<?php echo base_url("hd_admision/prefacturas/cargarPrefactura/" . $item->id )?>"><i class="fa fa-sign-in" aria-hidden="true"></i></a>
+                                    <a class="tip-bottom" title="Cargar Prefacturas" style="color:green" href="<?php echo base_url("hd_admision/prefacturas/cargarPrefactura/" . $item->id )?>"><i class="fas fa-sign-out-alt" aria-hidden="true"></i></a>
                                 </td>
                             </tr>
                                 <?php endforeach; ?>

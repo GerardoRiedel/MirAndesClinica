@@ -94,7 +94,22 @@
                                     echo '</b><br><br><blockquote>';
                                     $alto += strlen($his->evaObservacion);
                                     
-                                    echo ' '.$his->evaObservacion;
+                                    //echo ' '.$his->evaObservacion;
+                                    
+                                    IF(!empty($his->evaObservacion)){echo ' '.$his->evaObservacion;}
+                                    ELSEIF(!empty($his->evaObservacion) || !empty($his->ingAntGenerales) || !empty($his->ingInfFamiliar) || !empty($his->ingConsideraciones) ) {
+                                        echo '<div style="overflow: auto"> ';
+                                        echo ' <u>Antecedentes Generales:</u><br>'.$his->ingAntGenerales.'<br>';
+                                        echo ' <u>Antecedentes de Salud:</u><br>'.$his->ingAntGenerales.'<br>';
+                                        echo ' <u>Información Familiar:</u><br>'.$his->ingInfFamiliar.'<br>';
+                                        echo ' <u>Consideraciones:</u><br>'.$his->ingConsideraciones.'<br>';
+                                        echo '</div>';
+                                    }
+                                    
+                                    
+                                    
+                                    
+                                    
                                     echo '</blockquote><br>';
                                     IF($alto > 4000){ $alto = 0;//NUEVA LINEA?>
                                             </td></tr></tbody></table>

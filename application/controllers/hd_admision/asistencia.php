@@ -2,7 +2,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 
-class Fichas extends CI_Controller {
+class Asistencia extends CI_Controller {
     
     public function __construct()
     {
@@ -26,6 +26,7 @@ class Fichas extends CI_Controller {
         $this->load->model("evoluciones_model");
         $this->load->model("parametros_model");
         $this->load->model("hd_historico_model");
+        $this->load->model("hd_asistencia_model");
         $this->load->model("hd_model");
         //$tiempo = $this->parametros_model->dameValor('TIEMPO_SESSION');
 	//Session_Helper::session($tiempo);	
@@ -40,14 +41,28 @@ class Fichas extends CI_Controller {
         return $years;
     }
     
-    public function listar_paciente()
+    public function listarHD()
     {
-        $data['datos']      = $this->pacientes_model->dameTodoHD();
+        $data['pacientes']      = $this->hd_asistencia_model->damePacientes();
+        $data['asistencia']      = $this->hd_asistencia_model->dameAsistenciaHD();
+        //die(var_dump($data['datos']));
         $data['breadcumb']  = "paciente";
-        $data['title']      = "Lista de Pacientes";
-        $data['menu']       = 'fichas';
-        Layout_Helper::cargaVista($this,'listar_paciente',$data,'hd');   
+        $data['title']      = "Asistencia de pacientes de Hospital de Día";
+        $data['menu']       = 'asistencia';
+        $data['submenu']       = 'hd';
+        Layout_Helper::cargaVista($this,'listar_ingreso',$data,'hd');   
     }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
     public function filtrar_paciente()
     {
         $data['filtro']     = $this->input->post('filtro');

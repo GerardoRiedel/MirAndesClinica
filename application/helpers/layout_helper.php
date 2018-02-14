@@ -36,10 +36,13 @@ class Layout_Helper
    static function cargaVista(&$obj,$view,$data,$restriccion = null)
     {
 		
-		//$uspId = $obj->session->userdata('id_usuario');
-		//$totalMensajes = count($this->usuarios_model->dameTotalNoLeidos($uspId));
-       
-        if($obj->session->userdata('perfil') == '1'){
+  if($obj->session->userdata('is_logged_in') !== true ){
+            $obj->session->sess_destroy();
+            header('location: http://www.cetep.cl/mirandes');
+        }  
+        
+		
+        elseif($obj->session->userdata('perfil') == '1'){
         	// accesos de admin = cesfam,enfermedades,envios,plataforma,prestacion,accesos,reportes,sectores,sms,billing,principal,canales
         	 
 			$no_vistas_perfil1 = array("ingresos");

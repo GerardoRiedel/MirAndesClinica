@@ -34,7 +34,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                                 <td><?php IF(!empty($item->exaValor))echo '$ '.$item->exaValor; ?></td>
                                 <td align="center"><?php IF($item->exaEstado === '1')echo 'Activo';ELSE 'Desactivo' ?></td>
                                 <td align="center">
-                                    <a class="tip-bottom" title="Modificar Examen" href="<?php echo base_url("clinica_admision/herramientas/cargar_examenes/".$item->exaId )?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                    <a class="tip-bottom" title="Modificar Examen" href="<?php echo base_url("clinica_admision/herramientas/cargar_examenes/".$item->exaId )?>"><i class="fas fa-edit" aria-hidden="true"></i></a>
                                 </td>
                             </tr>
                                 <?php endforeach; ?>

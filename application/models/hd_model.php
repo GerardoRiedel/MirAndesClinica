@@ -132,6 +132,18 @@ class Hd_model extends CI_Model
                     ->row();
         
     }
+    public function dameIngresoHoy($id,$paciente)
+    {
+       $hoy = date('Y-m-d').' 00:00:00';
+        return  $this->db->select('ingId')
+                    ->from('ficha_hd_ingresosto')
+                    ->where('ingRegistro',$id)
+                    ->where('ingPaciente',$paciente)
+                    ->where('ingFechaRegistro >=',"$hoy")
+                    ->order_by('ingId','desc')
+                    ->get()
+                    ->row();
+    }
     public function dameHdFicha($paciente)
     {
         $ficha = $this->db->select('id, ficha')

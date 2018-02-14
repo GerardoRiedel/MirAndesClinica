@@ -50,10 +50,10 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                 
 
 			
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container" style="border-color: #000000;"  >
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container"  >
             <?php $attributes = array('id' => 'form');
             //die(var_dump($datos));
-                echo form_open('hd_admision/ingresos/guardarEvaluaciones',$attributes);
+                //echo form_open('hd_admision/ingresos/guardarEvaluaciones',$attributes);
             ?>
                             
             <div class='widget-content'>
@@ -109,6 +109,8 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                     </div>
                
                     <div class="col-lg-12">
+                        <button style="width:10%" onclick="window.history.go(-1);" class="btn btn-default btn-sm btnVolver">Volver</button>
+                    
                         <a class="tip-bottom" title="Imprimir Historico" href="<?php echo base_url("hd_admision/impresiones/imprimirHistorico/".$datos->paciente )?>"><i class="fa fa-print" aria-hidden="true"></i></a>&nbsp;&nbsp;
                         
                     </div>
@@ -116,30 +118,42 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                 <div class="col-lg-12" style=" overflow-x: auto">
                     <table class='table table-bordered table-hover table-striped data-table'>
                 <thead>
-                    <!--
-                    <th>N°</th>
-                    -->
+                    
+                    <th style="display:none"></th>
                     <th>FECHA</th>
                     <th>ESPECIALIDAD</th>
                     <th>USUARIO</th>
+                    <th>PROCESO</th>
                     <th>OBSERVACION</th>
                     <th>OPCIONES</th>
                 </thead>
                 <tbody>
             <?php FOREACH ($evaluaciones as $eva){;?>
                 <tr>
-                    <!--
-                    <td><?php echo $eva->evaId;?></td>
-                    -->
-                    <td style="width:88px" align="center"><?php $date = new DateTime($eva->evaFechaRegistro);echo $date->format('d-m-Y');?></td>
+                    
+                    <td style="display:none"><?php echo $eva->evaFechaRegistro;?></td>
+                    
+                    <td style="width:88px;  " align="center"><?php $date = new DateTime($eva->evaFechaRegistro);echo $date->format('d-m-Y');?></td>
                     <td style="width:85px" ><?php IF($eva->perId >= '14' && $eva->perId <= '17' ) echo $eva->perNombreCorto; ELSEIF($eva->evaUsuario==='10003')echo 'Terapeuta';ELSE echo $eva->perNombre;?></td>
                     <td style="width:85px" ><?php echo strtoupper($eva->uspNombre).' '.strtoupper($eva->uspApellidoP);?></td>
-                    <td ><?php echo $eva->evaObservacion;?></td>
+                    <td ><?php echo $eva->evaProceso;?></td>
+                    <td align=" justify" style=" max-height: 50px"><?php 
+                        IF(!empty($eva->evaObservacion))echo $eva->evaObservacion;
+                        ELSEIF(!empty($eva->evaObservacion)||!empty($eva->ingAntGenerales)||!empty($eva->ingInfFamiliar)||!empty($eva->ingConsideraciones) ) {
+                            echo '<div style="overflow: auto"> ';
+                            echo '<u>Antecedentes Generales:</u><br>'.$eva->ingAntGenerales.'<br>';
+                            echo '<u>Antecedentes de Salud:</u><br>'.$eva->ingAntGenerales.'<br>';
+                            echo '<u>Información Familiar:</u><br>'.$eva->ingInfFamiliar.'<br>';
+                            echo '<u>Consideraciones:</u><br>'.$eva->ingConsideraciones.'<br>';
+                            echo '</div>';
+                        }
+                    ?>
+                    </td>
                     <td style="width:85px"align="center">
                         <!--
                         <a class="tip-bottom" title="Imprimir Evaluación" href="<?php echo base_url("hd_admision/impresiones/imprimirEvaluacion/".$eva->evaId )?>"><i class="fa fa-print" aria-hidden="true"></i></a>&nbsp;&nbsp;
                         
-                        <a class="tip-bottom" title="Modificar Evaluación" href="<?php echo base_url("hd_admision/ingresos/modificarEvaluacion/" . $eva->evaId )?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a class="tip-bottom" title="Modificar Evaluación" href="<?php echo base_url("hd_admision/ingresos/modificarEvaluacion/" . $eva->evaId )?>"><i class="fas fa-edit" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
                         <a class="tip-bottom" onclick="return confirm('¿Confirma que desea eliminar este registro?')" style="color:red" title="Eliminar Evaluación" href="<?php echo base_url("hd_admision/ingresos/eliminarEvaluaciones/" . $eva->evaId )?>"><i class="fa fa-trash" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         -->
                     </td>
@@ -197,20 +211,3 @@ function calculaedad($fecha){
 ?>
 
 
-<script> 
-function cuenta(){ 
-        var descripcion = $("#descripcion").val().length ;
-        total = 5000-descripcion;
-      	document.getElementById("contar").value = 'Caracteres disponibles: '+total; 
-} 
-</script>
-<script>
-    $("#form").submit(function () {  
-    $(".iconCom").hide();
-    //if($('input:radio[name=motivoSolicitud]:checked').val()===undefined) {  
-    //    $("#iconMotivo").show();
-    //    return false;
-    //}
-});  
-</script>
-  

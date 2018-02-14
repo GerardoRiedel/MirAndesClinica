@@ -86,6 +86,7 @@ class Login extends CI_Controller
                         }
                         
                     }else{
+                            //$this->session->sess_destroy();
                             $data['token'] = $this->token();
                             $data['titulo'] = 'Login con roles de usuario en codeigniter';
                             $this->load->view('login_view',$data);			
@@ -126,6 +127,7 @@ class Login extends CI_Controller
                                                                                 $mensaje = $this->parametros_model->dameValor('MENSAJE');
 
                                                                                     $data = array(
+                                                                                        'acceso_ok'                 =>  'NO',//PARA CERRAR OTRAS SESIONES DE CODEIGNITER
                                                                                         'is_logged_in'             =>  TRUE,
                                                                                         'contarLicencias'        =>  $contar,
                                                                                         'contarCtas'                 =>  $contarCtas,
@@ -176,15 +178,21 @@ class Login extends CI_Controller
 	{
                 $session = $this->session->userdata('id_usuario');
 		if(!empty($session)){
-                    $this->usuarios_panel_log_model->uplFecha = date('Y-m-d H:i:s');
-                    $this->usuarios_panel_log_model->uplUsuario = $this->session->userdata('id_usuario');
-                    $this->usuarios_panel_log_model->uplDescripcion = 'Logout en panel de control';
-                    $this->usuarios_panel_log_model->guardarLog();
+                                      
+                                            $this->usuarios_panel_log_model->uplFecha = date('Y-m-d H:i:s');
+                                            $this->usuarios_panel_log_model->uplUsuario = $this->session->userdata('id_usuario');
+                                            $this->usuarios_panel_log_model->uplDescripcion = 'Logout en panel de control';
+                                            $this->usuarios_panel_log_model->guardarLog();
 		}
 		
 		$this->session->sess_destroy();
 		redirect(base_url());
 	}
+    public function salir()
+    {
+            $this->session->sess_destroy();
+            redirect(base_url());
+    }
     
     
     public function forget()

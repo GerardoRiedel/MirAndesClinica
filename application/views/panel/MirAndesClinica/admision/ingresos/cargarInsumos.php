@@ -18,7 +18,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                 
 
 			
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container" style="border-color: #000000;"  >
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container" >
            
                             
             <div class='widget-content'>
@@ -226,7 +226,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                                     <td align="center"><?php IF($item->inaValor !=='0'&&!empty($item->inaValor))echo '$ '.$item->inaValor*$item->inaCantidad; ?></td>
                                     <?php $total += ($item->inaValor*$item->inaCantidad);?>
                                     <td align="center">
-                                        <a class="tip-bottom" title="Modificar registro" href="<?php echo base_url("clinica_admision/ingresos/modificarInsumoAsignado/" . $item->inaId )?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <a class="tip-bottom" title="Modificar registro" href="<?php echo base_url("clinica_admision/ingresos/modificarInsumoAsignado/" . $item->inaId )?>"><i class="fas fa-edit" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     
                                         <a class="tip-bottom" title="Eliminar Registro" style="color:red"  href="<?php echo base_url("clinica_admision/ingresos/eliminarInsumo/".$item->inaRegistro.'_'.$item->inaId )?>">
                                             <i class="fa fa-trash" aria-hidden="true"></i>

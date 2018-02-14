@@ -24,7 +24,7 @@ IF(empty($submenu)){$submenu='';}?>
 <?php IF($this->session->userdata('perfil') == '5'){?>
 
 <li class="submenu <?php if($menu === 'ingreso')echo "active open" ?>">
-    <a href="#"><i class="fa fa-hospital-o" aria-hidden="true"></i> <span>&nbsp;Control</span> <i class="arrow fa fa-chevron-right"></i></a>
+    <a href="#"><i class="far fa-list-alt" aria-hidden="true"></i> <span>&nbsp;Control</span> <i class="arrow fa fa-chevron-right"></i></a>
         <ul>
                 <li <?php if($submenu === 'lingreso')  echo "class='active'" ?>><a href="<?php echo base_url("clinica_enfermeria/ingresos/listarIngreso"); ?>">Listar Pacientes Activos</a></li>            
         </ul> 
@@ -32,7 +32,7 @@ IF(empty($submenu)){$submenu='';}?>
 <!-- INGRESO NO MEDICO -->
 <?php } ELSE { ?>
 <li class="submenu <?php if($menu === 'ingreso')echo "active open" ?>">
-    <a href="#"><i class="fa fa-hospital-o" aria-hidden="true"></i> <span>&nbsp;Ingresos</span> <i class="arrow fa fa-chevron-right"></i></a>
+    <a href="#"><i class="far fa-list-alt" aria-hidden="true"></i> <span>&nbsp;Ingresos</span> <i class="arrow fa fa-chevron-right"></i></a>
         <ul>
                 <li <?php if($submenu === 'lingreso')  echo "class='active'" ?>><a href="<?php echo base_url("clinica_enfermeria/ingresos/listarIngreso"); ?>">Listar Pacientes Activos</a></li>            
         </ul> 
@@ -40,7 +40,7 @@ IF(empty($submenu)){$submenu='';}?>
 <?php } ?>
 <!--FICHA-->
 <li class="submenu <?php if($menu === 'fichas')echo "active open" ?>">
-        <a href="#"><i class="fa fa-newspaper-o" aria-hidden="true"></i> <span>Fichas</span> <i class="arrow fa fa-chevron-right"></i></a>
+        <a href="#"><i class="far fa-newspaper" aria-hidden="true"></i> <span>Fichas</span> <i class="arrow fa fa-chevron-right"></i></a>
         <ul>
             <li <?php if($menu === 'fichas')  echo "class='active'" ?>><a href="<?php echo base_url("clinica_enfermeria/fichas/listar_paciente"); ?>">Fichas Históricas</a></li>            
         </ul> 

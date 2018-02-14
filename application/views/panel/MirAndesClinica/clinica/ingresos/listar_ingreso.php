@@ -105,7 +105,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                                     <?php } ?>
                                 <?php IF($this->session->userdata('perfil') === '4'):;?>
                                         <td align="center">
-                                            <a class="tip-bottom" title="Lista de Insumos" href="<?php echo base_url("clinica_enfermeria/medicamentos/cargarInsumos/" . $item->id."_NO" )?>"><i class="fa fa-connectdevelop" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                            <a class="tip-bottom" title="Lista de Insumos" href="<?php echo base_url("clinica_enfermeria/medicamentos/cargarInsumos/" . $item->id."_NO" )?>"><i class="fab fa-medrt" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
                                             <!--
                                             <a class="tip-bottom" title="Medicamento" href="<?php echo base_url("clinica_enfermeria/medicamentos/cargarMedicamentoAsignar/" . $item->id )?>"><i class="fa fa-medkit" aria-hidden="true"></i></a>&nbsp;&nbsp;

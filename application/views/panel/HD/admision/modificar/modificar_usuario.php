@@ -126,7 +126,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                         </select>
                         <?php }ELSE {?>
                         <input type="hidden" name="uspPerfil" readonly value="<?php echo $this->session->userdata('perfil');?>">
-                        <input type="text" readonly value="<?php IF( $this->session->userdata('perfil')==='11') echo 'Administrador';ELSEIF($this->session->userdata('perfil')==='12') echo 'Admisión';ELSEIF($this->session->userdata('perfil')==='13' || $this->session->userdata('perfil')==='14') echo 'Enfermeria';?>">
+                        <input type="text" readonly value="<?php IF( $this->session->userdata('perfil')==='11') echo 'Administrador';ELSEIF($this->session->userdata('perfil')==='12') echo 'Admisión';ELSEIF($this->session->userdata('perfil')==='13' || $this->session->userdata('perfil')==='14') echo 'Enfermeria';ELSEIF($this->session->userdata('perfil')==='15' ) echo 'Monitor'; ELSEIF($this->session->userdata('perfil')==='16' ) echo 'Psicologa'; ELSEIF($this->session->userdata('perfil')==='17' ) echo 'Terapeuta';?>">
                         <?php }?>
                     </div>
                     <div class="col-lg-12"></div>

@@ -84,7 +84,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                                         IF($primera===0){ ?>
                                     &nbsp;
                                      <a href="<?php echo base_url("clinica_enfermeria/fichas/cargarEvolucion/" . $con->id )?>" style="margin-left:10px" >
-                                        <i class="fa fa-pencil-square-o" aria-hidden="true" style="cursor:pointer;vertical-align: central; color:green" title="modificar Datos"></i>
+                                        <i class="fas fa-edit" aria-hidden="true" style="cursor:pointer;vertical-align: central; color:green" title="modificar Datos"></i>
                                     </a>
                                     <?php $primera = 1; } ?>
                                 </div>

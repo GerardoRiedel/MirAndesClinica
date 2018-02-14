@@ -1,23 +1,4 @@
 
-
-<style>
-    
-    .btnCetep{
-        background-color: #da812e;
-        border-color: #da812e
-    }
-    .btnCetep:hover{
-        background-color: #AF601A;
-        border-color: #da812e
-    }
-    .btnCetep:active{
-        background-color: #6E2C00 !important;
-        border-color: #da812e
-    }
-    
-
-    
-</style>
 <div id="content" style="-webkit-box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);
 -moz-box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);
 box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
@@ -64,7 +45,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                 
     </div> 
             -->
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container" style="border-color: #000000;"  >
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container" >
     
                 
                 <div  class="col-lg-12" style="padding-top: 30px;">

@@ -212,7 +212,9 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                                 <th>Concepto</th>
                                 <th>Monto</th>
                                 <th>Opciones</th>
+                                <!--
                                 <th>Seleccionar</th>
+                                -->
                             </tr>
                         </thead>
                         <tbody>
@@ -244,8 +246,9 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                                         <?php IF(!empty($item->depId)): ;?>
                                         <a class="tip-bottom" title="Imprimir ficha de admisión" href="<?php echo base_url("hd_admision/impresiones/cargarImprimir/" . $item->ctaRegistro.'_'.$item->depId )?>"><i class="fa fa-print" aria-hidden="true"></i></a>
                                         <?php ENDIF; ?>
-                                        <a class="tip-bottom" title="Agregar Deposito" href="<?php echo base_url("hd_admision/devoluciones/agregarDeposito/" . $item->ctaRegistro )?>"><i class="fa fa-money" aria-hidden="true"></i></a>
+                                        <a class="tip-bottom" title="Agregar Deposito" href="<?php echo base_url("hd_admision/devoluciones/agregarDeposito/" . $item->ctaRegistro )?>"><i class="money-bill-alt" aria-hidden="true"></i></a>
                                     </td>
+                                    <!--
                                     <td align="center">
                                         <?php IF(!empty($item->lisDepDeposito)): ?>
                                         <i class="fa fa-check-square-o" id="<?php echo $item->depId;?>" data-IdDeposito='<?php echo $item->depId;?>' style=" cursor: pointer; "></i><br />
@@ -253,6 +256,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                                         <i class="fa fa-square-o" id="<?php echo $item->depId;?>" data-IdDeposito='<?php echo $item->depId;?>' style=" cursor: pointer; "></i><br />
                                         <?php ENDIF; ?>
                                     </td>
+                                    -->
                                 </tr>
                             <?php ENDIF; ?>
                                 <?php endforeach; ?>

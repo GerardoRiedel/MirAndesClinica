@@ -201,7 +201,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                             
                             //echo $med->medHora ?></td>
                             <td align="center">
-                                <a class="tip-bottom" title="Modificar registro" href="<?php echo base_url("clinica_enfermeria/medicamentos/modificar_medicamento/" .$med->medId )?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                <a class="tip-bottom" title="Modificar registro" href="<?php echo base_url("clinica_enfermeria/medicamentos/modificar_medicamento/" .$med->medId )?>"><i class="fas fa-edit" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                 <a class="tip-bottom" title="Desechar Registro" onclick="return confirm('¿Confirma que desea eliminar este registro?')" style="color:red" href="<?php echo base_url("clinica_enfermeria/medicamentos/suspender_medicamento/" .$datos->id.'_'.$med->medId )?>"><i class="fa fa-trash" aria-hidden="true"></i></a>
                             </td>
                         </tr>

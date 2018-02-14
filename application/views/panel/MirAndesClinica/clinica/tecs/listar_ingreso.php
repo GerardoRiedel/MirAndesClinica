@@ -88,12 +88,12 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                                     <!--
                                     <a class="tip-bottom" title="Imprimir T.E.C" href="<?php echo base_url("clinica_enfermeria/impresiones/imprimirImprimirTEC/" . $item->tecId )?>"><i class="fa fa-print" aria-hidden="true"></i></a>&nbsp;&nbsp;
                                     -->
-                                    <a class="tip-bottom" title="Modificar registro" href="<?php echo base_url("clinica_enfermeria/tecs/cargarModificarTec/" . $item->tecId )?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>&nbsp;&nbsp;
+                                    <a class="tip-bottom" title="Modificar registro" href="<?php echo base_url("clinica_enfermeria/tecs/cargarModificarTec/" . $item->tecId )?>"><i class="fas fa-edit" aria-hidden="true"></i></a>&nbsp;&nbsp;
                                     
                                     
                                     <a class="tip-bottom" onclick="return confirm('¿Confirma que desea eliminar este registro?')" style="color:red" title="Desechar Registro" href="<?php echo base_url("clinica_enfermeria/tecs/eliminar/" . $item->tecId )?>"><i class="fa fa-trash" aria-hidden="true"></i></a>
                                     <!--
-                                    <a class="tip-bottom" style="color:green" title="Nueva Session" href="<?php echo base_url("clinica_enfermeria/tecs/nuevaSession/" . $item->tecId )?>"><i class="fa fa-sign-in" aria-hidden="true"></i></a>
+                                    <a class="tip-bottom" style="color:green" title="Nueva Session" href="<?php echo base_url("clinica_enfermeria/tecs/nuevaSession/" . $item->tecId )?>"><i class="fas fa-sign-out-alt" aria-hidden="true"></i></a>
                                     -->
                                 </td>
                             </tr>

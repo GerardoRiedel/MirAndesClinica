@@ -16,7 +16,7 @@ IF(empty($submenu)){$submenu='';}?>
     <?php IF($this->session->userdata('perfil') !== '6') { ?>
 <!--INGRESO-->
 <li class="submenu <?php if($menu === 'ingreso' )echo "active open" ?>">
-        <a href=""><i class="fa fa-hospital-o" aria-hidden="true" style=" width: 20px;text-align: center"></i> <span>Ingresos</span> <i class="arrow fa fa-chevron-right"></i></a>
+        <a href=""><i class="far fa-list-alt" aria-hidden="true" style=" width: 20px;text-align: center"></i> <span>Ingresos</span> <i class="arrow fa fa-chevron-right"></i></a>
         <ul>
             <li <?php if($submenu === 'ningreso') echo "class='active'" ?>><a href="<?php echo base_url("clinica_admision/ingresos"); ?>">Nuevo Ingreso</a></li>
             <li <?php if($submenu === 'lingreso')  echo "class='active'" ?>><a href="<?php echo base_url("clinica_admision/ingresos/listarIngreso"); ?>">Listar Registros Activos</a></li>            
@@ -24,7 +24,7 @@ IF(empty($submenu)){$submenu='';}?>
 </li>
 <!--FICHA-->
 <li class="submenu <?php if($menu === 'fichas')echo "active open" ?>">
-    <a href=""><i class="fa fa-newspaper-o" aria-hidden="true" style=" width: 20px;text-align: center"></i><span>Fichas</span><i class="arrow fa fa-chevron-right"></i></a>
+    <a href=""><i class="far fa-newspaper" aria-hidden="true" style=" width: 20px;text-align: center"></i><span>Fichas</span><i class="arrow fa fa-chevron-right"></i></a>
         <ul>
             <li <?php if($submenu === 'lingreso')  echo "class='active'" ?>><a href="<?php echo base_url("clinica_admision/fichas/listar_paciente"); ?>">Listar Fichas</a></li>            
         </ul> 
@@ -53,7 +53,7 @@ IF(empty($submenu)){$submenu='';}?>
  
 <!--DEPOSITOS-->
 <li class="submenu <?php if($menu === 'depositos')echo "active open" ?>">
-    <a href=""><i class="fa fa-usd" aria-hidden="true" style=" width: 20px;text-align: center"></i> <span> Depositos</span> <i class="arrow fa fa-chevron-right"></i></a>
+    <a href=""><i class="fas fa-dollar-sign" aria-hidden="true" style=" width: 20px;text-align: center"></i> <span> Depositos</span> <i class="arrow fa fa-chevron-right"></i></a>
         <ul>
             <?php IF($this->session->userdata('perfil') !== '6') { ?>
             <li <?php if($submenu === 'ndeposito') echo "class='active'" ?>><a href="<?php echo base_url("clinica_admision/devoluciones/listarIngreso"); ?>">Nuevo Deposito</a></li>
@@ -79,7 +79,7 @@ IF(empty($submenu)){$submenu='';}?>
 <?php } ?>
 <!--CHARTS-->
 <li class="submenu <?php if($menu === 'charts' )echo "active open" ?>">
-        <a href=""><i class="fa fa-pie-chart" aria-hidden="true" style=" width: 20px;text-align: center"></i> <span>Gráficos</span> <i class="arrow fa fa-chevron-right"></i></a>
+        <a href=""><i class="fas fa-chart-line" aria-hidden="true" style=" width: 20px;text-align: center"></i> <span>Gráficos</span> <i class="arrow fa fa-chevron-right"></i></a>
         <ul>
             <li <?php if($submenu === 'pchart') echo "class='active'" ?>><a href="<?php echo base_url("clinica_admision/charts"); ?>">Distibución por Piso</a></li>
             <li <?php if($submenu === 'tchart') echo "class='active'" ?>><a href="<?php echo base_url("clinica_admision/charts/chartsTodo/"); ?>">Gráficos Estadísticos</a></li>

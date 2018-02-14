@@ -56,7 +56,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                                 </td>
                                 <td style=" color :<?php echo $color ?>" align="center">
                                     <?php IF($item->uspEstado === '1'): ?>
-                                    <a class="tip-bottom" title="Modificar usuario" href="<?php echo base_url("hd_admision/modificar/cargar_usuario/".$item->uspId )?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                    <a class="tip-bottom" title="Modificar usuario" href="<?php echo base_url("hd_admision/modificar/cargar_usuario/".$item->uspId )?>"><i class="fas fa-edit" aria-hidden="true"></i></a>
                                     <?php ENDIF; ?>
                                 </td>
                             </tr>

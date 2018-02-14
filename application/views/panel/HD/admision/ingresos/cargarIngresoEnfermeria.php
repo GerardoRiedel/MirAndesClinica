@@ -653,6 +653,16 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                         <div class="col-lg-10" style="margin-left:10px">
                             <input type="text" name="farmacoCritico" style="width:100%" value="<?php IF(!empty($enfermeria->enfFarmacoCritico)) echo $enfermeria->enfFarmacoCritico; ?> ">
                         </div>
+                        
+                        <div class="col-lg-12" ><br></div>
+                        <div class="col-lg-12">
+                            <label class="titulo">Observaciones</label>
+                        </div>
+                    
+                        <div class="col-lg-10" style="margin-left:10px">
+                            <input type="text" name="observaciones" style="width:100%" value="<?php IF(!empty($enfermeria->enfObservaciones)) echo $enfermeria->enfObservaciones; ?> ">
+                        </div>
+                        
                     <div class="col-lg-12" ><hr></div>
                     <div class="col-lg-6" align="right">
                         <?php echo form_submit('','Guardar','class="btn btn-primary btn-sm btnCetep"');?>

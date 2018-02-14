@@ -76,7 +76,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                                     IF($apoTipo === '1')$apoTipo = 'APODERADO';  ELSEIF($apoTipo === '2')$apoTipo = 'ECONOMICO';  ELSEIF($apoTipo === '3')$apoTipo = 'CONTACTO'; ?>
                                 <td><?php echo $apoTipo; ?></td>
                                 <td align="center">
-                                    <a class="tip-bottom" title="Modificar apoderado" href="<?php echo base_url("clinica_admision/modificar/cargar_apoderado/" . $item->id )?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                    <a class="tip-bottom" title="Modificar apoderado" href="<?php echo base_url("clinica_admision/modificar/cargar_apoderado/" . $item->id )?>"><i class="fas fa-edit" aria-hidden="true"></i></a>
                                 </td>
                             </tr>
                                 <?php endforeach; ?>

@@ -91,7 +91,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                                 <td><?php echo $item->nombres; ?></td>
                                 <td><?php echo $item->apellidoPaterno.' '.$item->apellidoMaterno; ?></td>
                                 <td align="center">
-                                    <a class="tip-bottom" title="Modificar paciente" href="<?php echo base_url("hd_admision/modificar/cargar_paciente/" . $item->id )?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                    <a class="tip-bottom" title="Modificar paciente" href="<?php echo base_url("hd_admision/modificar/cargar_paciente/" . $item->id )?>"><i class="fas fa-edit" aria-hidden="true"></i></a>
                                 </td>
                             </tr>
                                 <?php endforeach; ?>

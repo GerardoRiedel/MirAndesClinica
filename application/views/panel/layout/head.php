@@ -8,8 +8,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="<?php echo base_url(); ?>../assets/css/bootstrap.css" />
     <link rel="stylesheet" href="<?php echo base_url(); ?>../assets/css/font-awesome.min.css" />
-    <link rel="stylesheet" href="<?php echo base_url(); ?>../assets/css/bootstrap.min.css" />
     <link rel="stylesheet" href="<?php echo base_url(); ?>../assets/css/font-awesome.css" />
+    
+    <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <link rel="stylesheet" href="<?php echo base_url(); ?>../assets/css/bootstrap.min.css" />
     <link rel="stylesheet" href="<?php echo base_url(); ?>../assets/css/colorpicker.css" />
     <link rel="stylesheet" href="<?php echo base_url(); ?>../assets/css/datepicker.css" />
     <link rel="stylesheet" href="<?php echo base_url(); ?>../assets/css/icheck/flat/blue.css" />

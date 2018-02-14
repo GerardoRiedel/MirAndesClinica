@@ -57,7 +57,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                                 <td><?php echo $item->regNombre; ?></td>
                                 <td><?php echo $item->regDescripcion; ?></td>
                                 <td align="center">
-                                    <a class="tip-bottom" title="Modificar regimen" href="<?php echo base_url("clinica_enfermeria/herramientas/cargar_regimen/".$item->regId )?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                    <a class="tip-bottom" title="Modificar regimen" href="<?php echo base_url("clinica_enfermeria/herramientas/cargar_regimen/".$item->regId )?>"><i class="fas fa-edit" aria-hidden="true"></i></a>
                                 </td>
                             </tr>
                                 <?php endforeach; ?>

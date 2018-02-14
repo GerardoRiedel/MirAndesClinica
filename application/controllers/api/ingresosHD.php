@@ -280,6 +280,34 @@ class IngresosHD extends CI_Controller
                  echo json_encode('OK');
     }
     
+    public function cambiarAsistencia($item){
+        $item = explode('_', $item);
+        $registro = $item[0];
+        $dia = $item[1];$dia = date('Y-m-'.$dia);
+        $this->load->model('hd_asistencia_model');
+        $buscarAsistencia = $this->hd_asistencia_model->dameAsistencia($registro,$dia);
+        //die(var_dump($buscarAsistencia));
+        IF(!empty($buscarAsistencia)){
+            IF($buscarAsistencia->asiEstado<'3'){$estado = $buscarAsistencia->asiEstado+1;}ELSE {$estado = 1;}
+            $this->hd_asistencia_model->asiId=$buscarAsistencia->asiId;
+            $this->hd_asistencia_model->asiEstado = $estado;
+            
+        }ELSE{
+        $this->hd_asistencia_model->asiEstado = 1;
+        $this->hd_asistencia_model->asiFecha = $dia;
+        $this->hd_asistencia_model->asiRegistro = $registro;
+        }
+        $this->hd_asistencia_model->asiUsuario = $this->session->userdata('id_usuario');;
+        $this->hd_asistencia_model->asiFechaRegistro = date('Y-m-d H:i:s');
+        $this->hd_asistencia_model->guardarAsistencia();
+        IF(empty($estado))$estado=1;
+        $res['registro']=$registro;
+        $res['estado']=$estado;
+        $res['dia']=$item[1];
+        //die(var_dump($res));
+        if(!empty($res))echo json_encode($res);
+    }
+    
 
 
 	

@@ -84,7 +84,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                                     <a class="tip-bottom" style="color:green" title="Utilizar Session" href="<?php echo base_url("clinica_admision/tecs/nuevaSession/" . $item->tecId )?>"><i class="fa fa-search-plus" aria-hidden="true"></i></a>
                                 </td>
                                 <td align="center">    
-                                    <a class="tip-bottom" title="Modificar registro" href="<?php echo base_url("clinica_admision/tecs/cargarModificarTec/" . $item->tecId )?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>&nbsp;&nbsp;
+                                    <a class="tip-bottom" title="Modificar registro" href="<?php echo base_url("clinica_admision/tecs/cargarModificarTec/" . $item->tecId )?>"><i class="fas fa-edit" aria-hidden="true"></i></a>&nbsp;&nbsp;
                                     
                                     <a class="tip-bottom" onclick="return confirm('¿Confirma que desea eliminar este registro?')" style="color:red" title="Desechar Registro" href="<?php echo base_url("clinica_admision/tecs/eliminar/" . $item->tecId )?>"><i class="fa fa-trash" aria-hidden="true"></i></a>
                                 </td>

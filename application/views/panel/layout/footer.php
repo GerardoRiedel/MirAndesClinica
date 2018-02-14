@@ -8,7 +8,7 @@
 </style>
 <div class="row" id="foo" >
             <div id="footer" class="col-xs-12 activo" style="color: black; background-color: #e9c899" >
-            2016 &copy; Cetep. Todos los derechos reservados.
+            2017 &copy; Cetep. Todos los derechos reservados.
             </div>
 </div>
         <div class="white-backdrop"></div>
@@ -35,8 +35,8 @@
                 dataType: 'json',
                 success: function(data){
                     if(data === 'NO'){
-                        alert('Session Terminada');
-                        //window.location.href = "http://www.cetep.cl/mirandes/index.php/login/logout_ci";
+                        //alert('Session Terminada');
+                        //window.location.href = "http://www.cetep.cl/mirandes/index.php/login/salir";
                     }
                     else if(data === 'POR'){
                         alert('Estimado usuario recuerde que su sesión esta por terminar');

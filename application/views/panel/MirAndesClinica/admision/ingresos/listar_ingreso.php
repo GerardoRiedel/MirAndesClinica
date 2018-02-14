@@ -87,7 +87,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                             <!--
                             <i class='fa fa-print' onclick="PrintElem('#imprimir')" style="cursor: pointer; color:#1d1c19; font-size:18px" title="Imprimir Tabla"></i>
                             -->
-                            <i class="fa fa-table" id="btnExport" style="cursor: pointer; color:#1d7044;font-size:18px" title="Exportar Tabla a Excel"></i>  
+                            <i class="fa fa-table"  style="color:#1d7044;font-size:18px" title="Exportar Tabla a Excel"> </i><span id="btnExport"style="cursor: pointer; color:#1d7044;font-size: 14px;"> <b>Export</b></span>
                         </span>
                         
                             <?php echo form_close();?>
@@ -155,11 +155,11 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                                 <td style=" border-left: transparent;" align="center"><?php echo $item->piso; ?></td>
                                  
                                 <td align="center">
-                                    <a class="tip-bottom" title="Lista de Insumos" href="<?php echo base_url("clinica_admision/ingresos/cargarInsumos/" . $item->id."_NO" )?>"><i class="fa fa-connectdevelop" aria-hidden="true"></i></a>
+                                    <a class="tip-bottom" title="Lista de Insumos" href="<?php echo base_url("clinica_admision/ingresos/cargarInsumos/" . $item->id."_NO" )?>"><i class="fab fa-medrt" aria-hidden="true"></i></a>
                                 </td>
                                 <!--
                                 <td align="center">
-                                    <a class="tip-bottom" title="Generar Prefactura" href="<?php echo base_url("clinica_admision/prefacturas/cargarPrefactura/" . $item->id )?>"><i class="fa fa-usd" aria-hidden="true"></i></a>
+                                    <a class="tip-bottom" title="Generar Prefactura" href="<?php echo base_url("clinica_admision/prefacturas/cargarPrefactura/" . $item->id )?>"><i class="fas fa-dollar-sign" aria-hidden="true"></i></a>
                                 </td>
                                 -->
                                 <td align="center">
@@ -174,13 +174,13 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                                     
                                 </td>
                                 <td align="center">
-                                    <a class="tip-bottom" style="color:green" title="Salida paciente" href="<?php echo base_url("clinica_admision/salidas/cargarSalida/" . $item->id )?>"><i class="fa fa-sign-in" aria-hidden="true"></i></a>
+                                    <a class="tip-bottom" style="color:green" title="Salida paciente" href="<?php echo base_url("clinica_admision/salidas/cargarSalida/" . $item->id )?>"><i class="fas fa-sign-out-alt" aria-hidden="true"></i></a>
                                     
                                 </td>
                                 <td align="center">
                                     <a class="tip-bottom" onclick="return confirm('¿Confirma que desea eliminar este registro?\r..::Recuerde que el correlativo de fichas puede depender de este registro::..')" style="color:red" title="Desechar Registro Incompleto" href="<?php echo base_url("clinica_admision/ingresos/eliminar/" . $item->id )?>"><i class="fa fa-trash" aria-hidden="true"></i></a>&nbsp;&nbsp;
                                     
-                                    <a class="tip-bottom" title="Modificar registro" href="<?php echo base_url("clinica_admision/ingresos/modificarRegistro/" . $item->id )?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+                                    <a class="tip-bottom" title="Modificar registro" href="<?php echo base_url("clinica_admision/ingresos/modificarRegistro/" . $item->id )?>"><i class="fas fa-edit" aria-hidden="true"></i></a>
                                     
                                 </td>
                                 

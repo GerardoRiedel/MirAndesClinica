@@ -138,14 +138,14 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                         </div>
                     </div>
                     -->
-                        <span class='icon'>
-                            <i class='fa fa-print' onclick="PrintElem('#imprimir')" style="cursor: pointer; color:#e9c899; font-size:18px" title="Imprimir Tabla"><span style="font-size: 13px">&nbsp;&nbsp;&nbsp;&nbsp;Imprimir</span></i><br>
+                    <span class='icon'><br>
+                            <i class='fa fa-print' onclick="PrintElem('#imprimir')" style="cursor: pointer; color:#e9c899; font-size:18px" title="Imprimir Tabla"></i><span style="font-size: 13px">&nbsp;&nbsp;&nbsp;&nbsp;Imprimir</span><br>
                         
                         </span><br>
                         
-                            <i class="fa fa-table" id="btnExport2018" style="cursor: pointer; color:#bed530;font-size:18px" title="Exportar Tabla 2018 a Excel"><span style="font-size: 13px"> export 2018</span></i><br>
-                            <i class="fa fa-table" id="btnExport2017" style="cursor: pointer; color:#bed530;font-size:18px" title="Exportar Tabla 2017 a Excel"><span style="font-size: 13px"> export 2017</span></i><br>
-                            <i class="fa fa-table" id="btnExport2016" style="cursor: pointer; color:#bed530;font-size:18px" title="Exportar Tabla 2016 a Excel"><span style="font-size: 13px"> export 2016</span></i><br> 
+                            <i class="fa fa-table" style="color:#bed530;font-size:16px" title="Exportar Tabla 2018 a Excel"></i><span style="font-size: 13px;cursor: pointer; " id="btnExport2018" > Export 2018</span><br>
+                            <i class="fa fa-table" style="color:#bed530;font-size:16px" title="Exportar Tabla 2017 a Excel"></i><span style="font-size: 13px;cursor: pointer; " id="btnExport2017" > Export 2017</span><br>
+                            <i class="fa fa-table" style="color:#bed530;font-size:16px" title="Exportar Tabla 2016 a Excel"></i><span style="font-size: 13px;cursor: pointer; " id="btnExport2016"> Export 2016</span><br> 
                             <br>
                 </div>
                 <div align="center" class='col-lg-8' style="overflow: auto">

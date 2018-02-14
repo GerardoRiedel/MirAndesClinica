@@ -61,18 +61,20 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                                 <th style="display:none">Run</th>
                                 <th>N° Ficha</th>
                                 <th>Tipo Ingreso</th>
+                                
                                 <th>Nombres</th>
-                                <th>Apellido Paterno</th>
-                                <th>Apellido Materno</th>
-                                <th>Solicitudes</th>
+                                <th>Apellidos</th>
+                                <th>Bitácora</th>
+                                <th>Permisos</th>
                                 <th style=" width: 120px"><table><td style="width: 100px">Signos Vitales</td><td>Licencias Médicas</td></table></th>
                                 <?php IF($this->session->userdata('perfil') === '13' || $this->session->userdata('perfil') === '14' || $this->session->userdata('perfil') === '11'){;?>
                                 <th>Ingreso Enfermeria</th>
                                 <?php };?>
                                 <th>Registro de Intervención</th>
-                                
                                 <th>Registro Ingreso HD</th>
-                                <th style="min-width:120px">Opciones</th>
+                                <th>Imprirmir<br>Antecedentes</th>
+                                <th>Alta</th>
+                                <th>Opciones</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -85,10 +87,12 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                                 <td align="center"><?php IF($item->tipoIngreso==='2')echo $item->ficha;     ELSEIF($item->tipoIngreso==='3')echo $item->fichaRH; ?></td>
                                 <td align="center"><?php IF($item->tipoIngreso==='2')echo 'HOSPITAL DE DÍA';ELSEIF($item->tipoIngreso==='3')echo 'REHABILITACIÓN';?></td>
                                 <td><?php echo strtoupper($item->nombres); ?></td>
-                                <td><?php echo strtoupper($item->apellidoPaterno); ?></td>
-                                <td><?php echo strtoupper($item->apellidoMaterno); ?></td>
+                                <td><?php echo strtoupper($item->apellidoPaterno).' '.strtoupper($item->apellidoMaterno); ?></td>
                                 <td align="center">
-                                    <a class="tip-bottom" title="Registro Solicitudes" href="<?php echo base_url("hd_admision/ingresos/cargarSolicitudes/" . $item->id )?>"><i class="fa fa-paper-plane" aria-hidden="true"></i></a>
+                                    <a class="tip-bottom" title="Bitácora" href="<?php echo base_url("hd_admision/fichas/cargarHistorico/" . $item->id )?>"><i class="fas fa-history" aria-hidden="true" style="color: green"></i></a>
+                                </td>
+                                <td align="center">
+                                    <a class="tip-bottom" title="Registro Solicitudes" href="<?php echo base_url("hd_admision/ingresos/cargarSolicitudes/" . $item->id )?>"><i class="fa fa-paper-plane" aria-hidden="true" style="color: orangered"></i></a>
                                 </td>
                                 <td align="center">
                                     <a class="tip-bottom" title="Registro Signos Vitales" href="<?php echo base_url("hd_admision/ingresos/cargarSignos/" . $item->id )?>"><i class="fa fa-medkit" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -103,14 +107,19 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                                     <a class="tip-bottom" title="Registro de Intervención" href="<?php echo base_url("hd_admision/ingresos/cargarEvaluacion/" . $item->id )?>"><i class="fa fa-user-md" aria-hidden="true"></i></a>
                                 </td>
                                 <td align="center">
-                                    <a class="tip-bottom" title="Registro de Ingreso T.O" href="<?php echo base_url("hd_admision/ingresos/cargarIngresoTO/" . $item->id )?>"><i class="fa fa-calendar-check-o" aria-hidden="true"></i></a>&nbsp;&nbsp;
+                                    <a class="tip-bottom" title="Registro de Ingreso T.O" href="<?php echo base_url("hd_admision/ingresos/cargarIngresoTO/" . $item->id )?>"><i class="far fa-calendar-plus" aria-hidden="true"></i></a>
                                 </td>
                                 <td align="center">
-                                    <a class="tip-bottom" title="Imprimir ficha de admisión" href="<?php echo base_url("hd_admision/impresiones/cargarImprimir/" . $item->id )?>"><i class="fa fa-print" aria-hidden="true"></i></a>&nbsp;&nbsp;
-                                    <a class="tip-bottom" title="Modificar registro" href="<?php echo base_url("hd_admision/ingresos/modificarRegistro/" . $item->id )?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>&nbsp;&nbsp;
-                                    <a class="tip-bottom" onclick="return confirm('¿Confirma que desea eliminar este registro?')" style="color:red" title="Eliminar Registro" href="<?php echo base_url("hd_admision/ingresos/eliminar/" . $item->id )?>"><i class="fa fa-trash" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <a class="tip-bottom" title="Salida paciente" style="color:green" href="<?php echo base_url("hd_admision/salidas/cargarSalida/" . $item->id )?>"><i class="fa fa-sign-in" aria-hidden="true"></i></a>
+                                    <a class="tip-bottom" title="Imprimir ficha de admisión" href="<?php echo base_url("hd_admision/impresiones/cargarImprimir/" . $item->id )?>"><i class="fa fa-print" aria-hidden="true" style="color: orangered"></i></a>&nbsp;&nbsp;
                                 </td>
+                                <td align="center">
+                                        <a class="tip-bottom" title="Salida paciente" style="color:green" href="<?php echo base_url("hd_admision/salidas/cargarSalida/" . $item->id )?>"><i class="fas fa-sign-out-alt" aria-hidden="true"></i></a>
+                                </td>
+                                <td align="center">
+                                    <a class="tip-bottom" title="Modificar registro" href="<?php echo base_url("hd_admision/ingresos/modificarRegistro/" . $item->id )?>"><i class="fas fa-edit" aria-hidden="true"></i></a>&nbsp;&nbsp;
+                                    <a class="tip-bottom" onclick="return confirm('¿Confirma que desea eliminar este registro?')" style="color:red" title="Eliminar Registro" href="<?php echo base_url("hd_admision/ingresos/eliminar/" . $item->id )?>"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                </td>
+                                    
                             </tr>
                                 <?php endforeach; ?>
                         </tbody>

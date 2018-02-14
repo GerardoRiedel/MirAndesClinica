@@ -35,7 +35,10 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25">
         <h1 style="background-color: #a15ebe !important;border:none;color:#ffffff; margin-right: 30px;-webkit-box-shadow: 10px 10px 23px -6px rgba(0,0,0,0.75);-moz-box-shadow: 10px 10px 23px -6px rgba(0,0,0,0.75);box-shadow: 10px 10px 23px -6px rgba(0,0,0,0.75);" class="alert alert-info"><?php echo $title;?></h1>
     </div>
     
-    <div class="container-fluid">
+    <div class="container-fluid" id="precargar">
+<script>
+    $("#precargar").hide();
+</script>
         <div class="row">
             <div class="col-xs-12">
     		
@@ -44,7 +47,8 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25">
                 echo form_open('clinica_admision/ingresos/guardarficha',$attributes);
             ?>
                             
-            <div class='widget-content'>
+            <div class='widget-content' >
+                
                 
                 <br>
                     <div class="col-lg-12">
@@ -537,6 +541,10 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25">
     $(".iconCom").hide();
     $(".iconFecha").hide();
     
+    
+    $(document).ready(function(){
+        $("#precargar").show();
+    });
 </script>
 
 

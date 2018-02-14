@@ -21,7 +21,7 @@ IF(empty($submenu)){$submenu='';}?>
 </li>
 -->
 <li class="submenu <?php if($menu === 'ingreso')echo "active open" ?>">
-        <a href=""><i class="fa fa-hospital-o" aria-hidden="true" style=" width: 20px;text-align: center"></i> <span>Ingresos</span> <i class="arrow fa fa-chevron-right"></i></a>
+        <a href=""><i class="far fa-list-alt" aria-hidden="true" style=" width: 20px;text-align: center"></i> <span>Ingresos</span> <i class="arrow fa fa-chevron-right"></i></a>
         <ul>
             <li <?php if($submenu === 'ningreso') echo "class='active'" ?>><a href="<?php echo base_url("clinica_admin/ingresos"); ?>">Nuevo Ingreso</a></li>
             <li <?php if($submenu === 'lingreso')  echo "class='active'" ?>><a href="<?php echo base_url("clinica_admin/ingresos/listarIngreso"); ?>">Listar Ingresos</a></li>            
@@ -29,11 +29,11 @@ IF(empty($submenu)){$submenu='';}?>
 </li>
 <!--FICHA-->
 <li class="<?php if($menu === 'fichas')echo "active open" ?>">
-    <a href="<?php echo base_url("clinica_admin/fichas/listar_paciente"); ?>"><i class="fa fa-newspaper-o" aria-hidden="true" style=" width: 20px;text-align: center"></i>&nbsp;Fichas<i class="arrow fa fa-chevron-right"></i></a>
+    <a href="<?php echo base_url("clinica_admin/fichas/listar_paciente"); ?>"><i class="far fa-newspaper" aria-hidden="true" style=" width: 20px;text-align: center"></i>&nbsp;Fichas<i class="arrow fa fa-chevron-right"></i></a>
 </li>
 <!--DEPOSITOS-->
 <li class="submenu <?php if($menu === 'depositos')echo "active open" ?>">
-    <a href=""><i class="fa fa-usd" aria-hidden="true" style=" width: 20px;text-align: center"></i> <span> Depositos</span> <i class="arrow fa fa-chevron-right"></i></a>
+    <a href=""><i class="fas fa-dollar-sign" aria-hidden="true" style=" width: 20px;text-align: center"></i> <span> Depositos</span> <i class="arrow fa fa-chevron-right"></i></a>
         <ul>
             
             <li <?php if($submenu === 'ndeposito') echo "class='active'" ?>><a href="<?php echo base_url("clinica_admin/devoluciones/listarIngreso"); ?>">Nuevo Deposito</a></li>
@@ -146,7 +146,7 @@ IF(empty($submenu)){$submenu='';}?>
         
 <!-- GESTION DE cesfam 
 		<li class="submenu <?php if($this->uri->segment(2) == 'cesfam' && ($this->uri->segment(3) == 'listar' || $this->uri->segment(3) == 'agregar') ) echo "active open" ?>">
-        <a href="#"><i class="fa fa-hospital-o" aria-hidden="true"></i> <span>Cesfam</span> <i class="arrow fa fa-chevron-right"></i></a>
+        <a href="#"><i class="far fa-list-alt" aria-hidden="true"></i> <span>Cesfam</span> <i class="arrow fa fa-chevron-right"></i></a>
         <ul>
             <li <?php if($this->uri->segment(2) == 'cesfam' && ($this->uri->segment(3) == 'listar' )) echo "class='active'" ?>><a href="<?php echo base_url("admision/cesfam/listar"); ?>">Listar Cesfam</a></li>
             <li <?php if($this->uri->segment(2) == 'cesfam' && ($this->uri->segment(3) == 'agregar' )) echo "class='active'" ?>><a href="<?php echo base_url("admision/cesfam/agregar"); ?>">Agregar cesfam</a></li>            
@@ -223,7 +223,7 @@ IF(empty($submenu)){$submenu='';}?>
             </ul>
         </li>
         <!-- DETALLE BILLING 
-        <li class="<?php if($this->uri->segment(2) == 'billing') echo "active open" ?>"><a href="<?php echo base_url("admision/billing/"); ?>"><i class="fa fa-money"></i> <span>Billing</span></a></li>
+        <li class="<?php if($this->uri->segment(2) == 'billing') echo "active open" ?>"><a href="<?php echo base_url("admision/billing/"); ?>"><i class="money-bill-alt"></i> <span>Billing</span></a></li>
 
 <!-- SMS 
 		<li class="submenu <?php if($this->uri->segment(2) == 'sms' && ($this->uri->segment(3) == 'mensajes' || $this->uri->segment(3) == 'simulador') ) echo "active open" ?>">

@@ -50,7 +50,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                 
 
 			
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container" style="border-color: #000000;"  >
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container"   >
             <?php $attributes = array('id' => 'form');
             //die(var_dump($datos));
                 echo form_open('hd_admision/ingresos/guardarEvaluaciones',$attributes);
@@ -149,7 +149,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                     </div>
                     <div class='col-lg-12'><br></div>
                     <div class="col-lg-12" align="center">
-                        <button style=" width:10% !important" onclick="goBack()" class="btn btn-default btn-sm btnVolver">Volver</button><script>function goBack(){window.history.go(-1);}</script>
+                        <button style=" width:10% !important" onclick="goBack()" class="btn btn-default btn-sm btnVolver">Volver</button><script>function goBack(){window.location.href = "http://www.cetep.cl/mirandes/index.php/hd_admision/ingresos/listarIngreso";}</script>
             <?php IF($this->session->userdata('perfil')!='12'){?>
                         <?php echo form_submit('','Guardar','class="btn btn-primary btn-sm btnCetep"');?>
                         <?php echo form_close();?>
@@ -174,7 +174,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                     <td style="max-width: 500px"><?php echo $eva->evaObservacion;?></td>
                     <td style="max-width: 70px"align="center">
                         <a class="tip-bottom" title="Imprimir Evaluación" href="<?php echo base_url("hd_admision/impresiones/imprimirEvaluacion/".$eva->evaId )?>"><i class="fa fa-print" aria-hidden="true"></i></a>&nbsp;&nbsp;
-                        <a class="tip-bottom" title="Modificar Evaluación" href="<?php echo base_url("hd_admision/ingresos/modificarEvaluacion/" . $eva->evaId )?>"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
+                        <a class="tip-bottom" title="Modificar Evaluación" href="<?php echo base_url("hd_admision/ingresos/modificarEvaluacion/" . $eva->evaId )?>"><i class="fas fa-edit" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
                         <a class="tip-bottom" onclick="return confirm('¿Confirma que desea eliminar este registro?')" style="color:red" title="Eliminar Evaluación" href="<?php echo base_url("hd_admision/ingresos/eliminarEvaluaciones/" . $eva->evaId )?>"><i class="fa fa-trash" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     </td>
                 </tr>

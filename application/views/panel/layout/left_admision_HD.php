@@ -18,7 +18,7 @@ IF(empty($submenu)){$submenu='';}?>
 
 <!--INGRESO-->
 <li class="submenu <?php if($menu === 'ingreso' )echo "active open" ?>">
-        <a href=""><i class="fa fa-hospital-o" aria-hidden="true" style=" width: 20px;text-align: center"></i> <span>Ingresos</span> <i class="arrow fa fa-chevron-right"></i></a>
+        <a href=""><i class="far fa-list-alt" aria-hidden="true" style=" width: 20px;text-align: center"></i> <span>Ingresos</span> <i class="arrow fa fa-chevron-right"></i></a>
         <ul>
             <?php IF($this->session->userdata('perfil') == '11' || $this->session->userdata('perfil') == '12'){?>
             <li <?php if($submenu === 'cingreso') echo "class='active'" ?>><a href="<?php echo base_url("hd_admision/ingresos/cargarContacto"); ?>">Registro de Contacto</a></li>
@@ -30,7 +30,7 @@ IF(empty($submenu)){$submenu='';}?>
 </li>
 <!--FICHA-->
 <li class="submenu <?php if($menu === 'fichas')echo "active open" ?>">
-    <a href=""><i class="fa fa-newspaper-o" aria-hidden="true" style=" width: 20px;text-align: center"></i>&nbsp;Fichas<i class="arrow fa fa-chevron-right"></i></a>
+    <a href=""><i class="far fa-newspaper" aria-hidden="true" style=" width: 20px;text-align: center"></i>&nbsp;Fichas<i class="arrow fa fa-chevron-right"></i></a>
     <ul>
             <li <?php if($submenu === 'ringreso') echo "class='active'" ?>><a href="<?php echo base_url("hd_admision/fichas/listar_paciente"); ?>">Listar Fichas</a></li>
             <!--
@@ -56,7 +56,7 @@ IF(empty($submenu)){$submenu='';}?>
 <!--DEPOSITOS-->
  <?php IF($this->session->userdata('perfil') == '11' || $this->session->userdata('perfil') == '12'){?>
 <li class="submenu <?php if($menu === 'depositos')echo "active open" ?>">
-    <a href=""><i class="fa fa-usd" aria-hidden="true" style=" width: 20px;text-align: center"></i> <span> Depositos</span> <i class="arrow fa fa-chevron-right"></i></a>
+    <a href=""><i class="fas fa-dollar-sign" aria-hidden="true" style=" width: 20px;text-align: center"></i> <span> Depositos</span> <i class="arrow fa fa-chevron-right"></i></a>
         <ul>
             <li <?php if($submenu === 'ndeposito') echo "class='active'" ?>><a href="<?php echo base_url("hd_admision/devoluciones/listarIngreso"); ?>">Nuevo Deposito</a></li>
             
@@ -80,9 +80,19 @@ IF(empty($submenu)){$submenu='';}?>
 <!-- PREFACTURAS-->
 <?php IF($this->session->userdata('perfil') == '11' || $this->session->userdata('perfil') == '12'){?>
 <li class="submenu <?php if($menu === 'prefacturas')echo "active open" ?>">
-    <a href="#"><i class="fa fa-money" aria-hidden="true" style=" width: 20px;text-align: center"></i> <span>Prefacturas</span> <i class="arrow fa fa-chevron-right"></i></a>
+    <a href="#"><i class="far fa-money-bill-alt" aria-hidden="true" style=" width: 20px;text-align: center"></i> <span>Prefacturas</span> <i class="arrow fa fa-chevron-right"></i></a>
         <ul>
             <li <?php if($submenu === 'lprefacturas')  echo "class='active'" ?>><a href="<?php echo base_url("hd_admision/prefacturas/listarPrefacturas"); ?>">Listar Prefacturas</a></li>            
+        </ul> 
+</li>
+<?php }?>
+
+<!-- ASISTENCIA-->
+<?php IF($this->session->userdata('perfil') == '11' || $this->session->userdata('perfil') == '12'){?>
+<li class="submenu <?php if($menu === 'asistencia')echo "active open" ?>">
+    <a href="#"><i class="fas fa-tasks" aria-hidden="true" style=" width: 20px;text-align: center"></i> <span>Asistencia</span> <i class="arrow fa fa-chevron-right"></i></a>
+        <ul>
+            <li <?php if($submenu === 'hdasistencia')  echo "class='active'" ?>><a href="<?php echo base_url("hd_admision/asistencia/listarHD"); ?>">HD</a></li>            
         </ul> 
 </li>
 <?php }?>

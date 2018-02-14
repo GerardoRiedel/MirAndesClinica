@@ -701,8 +701,8 @@ class Ingresos extends CI_Controller {
         
         $rut = $this->input->post('rut');
         $alergia = $this->input->post('alergias');
+        $id = $this->pacientes_model->dameUno($rut);
          IF(!empty($rut) && !empty($alergia)){
-            $id = $this->pacientes_model->dameUno($rut);
             $this->pacientes_model->id = $id->id;
             $this->pacientes_model->alergia = $alergia;
             $this->pacientes_model->guardar($rut,$alergia);
@@ -736,6 +736,7 @@ class Ingresos extends CI_Controller {
         $this->enfermeria_model->enfUsuario         = $this->session->userdata('id_usuario');
         $this->enfermeria_model->enfFechaRegistro   = date('Y-m-d H:i:s');
         $this->enfermeria_model->enfRegistro        = $registro;
+        $this->enfermeria_model->enfPaciente        = $id->id;
         
         $var = $this->input->post('tabacoR');IF(!empty($var)||$var === '0')
         $this->enfermeria_model->enfTabaco          = $this->input->post('tabacoR');
@@ -848,9 +849,10 @@ class Ingresos extends CI_Controller {
         $var = $this->input->post('apetitoR');IF(!empty($var)||$var === '0')
         $this->enfermeria_model->enfApetito          = $this->input->post('apetitoR');
         $this->enfermeria_model->enfFarmacoCritico      = $this->input->post('farmacoCritico');
+        $this->enfermeria_model->enfObservaciones      = $this->input->post('observaciones');
         $this->enfermeria_model->guardarHD(); 
         
-        redirect(base_url().'hd_admision/impresiones/cargarImprimir/'.$registro);
+        redirect(base_url().'hd_admision/ingresos/listarIngreso/');
     
     }
     public function cargarContacto()
@@ -1023,6 +1025,8 @@ class Ingresos extends CI_Controller {
             $this->pacientes_model->guardar($rut,$alergia);
             unset($this->pacientes_model->alergia,$this->pacientes_model->id);
          }
+         $dameIngreso = $this->hd_model->dameIngresoHoy($registro,$id->paciente);
+         IF(!empty($dameIngreso->ingId))$this->hd_model->ingId = $dameIngreso->ingId;
         $this->hd_model->ingPaciente = $id->paciente;
         $this->hd_model->ingRegistro = $registro;
         $this->hd_model->ingUsuario               = $this->session->userdata('id_usuario');
