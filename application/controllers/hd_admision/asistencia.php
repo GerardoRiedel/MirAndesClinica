@@ -42,10 +42,34 @@ class Asistencia extends CI_Controller {
     }
     
     public function listarHD()
-    {
-        $data['pacientes']      = $this->hd_asistencia_model->damePacientes();
-        $data['asistencia']      = $this->hd_asistencia_model->dameAsistenciaHD();
-        //die(var_dump($data['datos']));
+    {//die($mes.'sad');
+        $mes = $this->input->post('mes');//die($mes);
+        IF(empty($mes)||$mes==='0'){$mes=date('m');}
+        $data['pacientes']      = $this->hd_asistencia_model->damePacientes($mes);
+        $data['asistencia']      = $this->hd_asistencia_model->dameAsistenciaHD($mes);
+        $data['pacientesLista']      = $this->hd_asistencia_model->damePacientes();
+        $data['mes']=$mes;
+        $data['breadcumb']  = "paciente";
+        $data['title']      = "Asistencia de pacientes de Hospital de Día";
+        $data['menu']       = 'asistencia';
+        $data['submenu']       = 'hd';
+        Layout_Helper::cargaVista($this,'listar_ingreso',$data,'hd');   
+    }
+    public function agregarPaciente()
+    {//die($mes.'sad');
+        $mes = $this->input->post('mes');
+        IF(empty($mes)||$mes==='0'){$mes=date('m');}
+        $paciente = $this->input->post('pacientes');
+        IF(!empty($paciente)&&$paciente!='0'){
+            $registro = $this->hd_model->dameTodoHD($paciente);
+            $this->hd_asistencia_model->asiFecha=date('Y-'.$mes.'-d');
+            $this->hd_asistencia_model->asiRegistro=$registro[0]->id;
+            $this->hd_asistencia_model->guardarAsistencia();
+        }
+        $data['pacientes']      = $this->hd_asistencia_model->damePacientes($mes);
+        $data['asistencia']      = $this->hd_asistencia_model->dameAsistenciaHD($mes);
+        $data['pacientesLista']      = $this->hd_asistencia_model->damePacientes();
+        $data['mes']=$mes;
         $data['breadcumb']  = "paciente";
         $data['title']      = "Asistencia de pacientes de Hospital de Día";
         $data['menu']       = 'asistencia';

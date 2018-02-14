@@ -14,9 +14,12 @@ class hd_asistencia_model extends CI_Model
         $this->load->database('default');
     }
     
-    public function damePacientes($filtro='')
+    public function damePacientes($mes='')
     {
-        return  $this->db->select(' r.id,p.rut, p.nombres, p.apellidoPaterno, p.apellidoMaterno, a.asiId,a.asiFecha,a.asiEstado')//i.isapre isaNombre, i.id isaId, 
+        IF(!empty($mes)){
+            $this->db->where('asiFecha >= "2018-'.$mes.'-01" AND asiFecha <= "2018-'.$mes.'-31" ');
+        }
+        return  $this->db->select(' r.id,p.id pacId,p.rut, p.nombres, p.apellidoPaterno, p.apellidoMaterno, a.asiId,a.asiFecha,a.asiEstado')//i.isapre isaNombre, i.id isaId, 
                     ->from('ficha_hd_asistencia a')
                     ->join('ficha_hd_registro r','r.id=a.asiRegistro','left')
                     ->join('ficha_pacientes p','r.paciente=p.id','left')
@@ -25,10 +28,10 @@ class hd_asistencia_model extends CI_Model
                     ->where('asiFecha !=',"0000-00-00")
                     ->group_by('p.id')
                     ->get()
-                    ->result();die;
+                    ->result();
     }
     
-    public function dameAsistenciaHD($filtro='')
+    public function dameAsistenciaHD($mes='')
     {
         $return =  $this->db->select(' r.id,p.rut, p.nombres, p.apellidoPaterno, p.apellidoMaterno, a.asiId,a.asiFecha,a.asiEstado')//i.isapre isaNombre, i.id isaId, 
                     ->from('ficha_hd_registro r')
@@ -43,11 +46,14 @@ class hd_asistencia_model extends CI_Model
             foreach ($return as $re){
                 IF(empty($re->asiId)){
                     $this->asiFecha=date('Y-m-d');
-                     $this->asiRegistro=$re->id;
-                            $this->db->insert('ficha_hd_asistencia', $this);
+                    $this->asiRegistro=$re->id;
+                    $this->db->insert('ficha_hd_asistencia', $this);
                 }
             }
-        //die(var_dump($return));
+        
+        IF(!empty($mes)){
+            $this->db->where('asiFecha >= "2018-'.$mes.'-01" AND asiFecha <= "2018-'.$mes.'-31" ');
+        }
         
         return  $this->db->select(' r.id,p.rut, p.nombres, p.apellidoPaterno, p.apellidoMaterno, a.asiId,a.asiFecha,a.asiEstado')//i.isapre isaNombre, i.id isaId, 
                     ->from('ficha_hd_asistencia a')
