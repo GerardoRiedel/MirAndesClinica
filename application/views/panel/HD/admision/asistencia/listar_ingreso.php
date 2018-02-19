@@ -179,7 +179,7 @@ return number_format( substr ( $rut, 0 , -1 ) , 0, "", ".") . '-' . substr ( $ru
 
 
 
- <div id="exportar" style="display:none">
+ <div id="exportar" style="display:true">
             <div class="col-lg-12"></div>
                 <div class="col-lg-9"></div>
                 <div class="col-lg-3">
@@ -217,7 +217,7 @@ return number_format( substr ( $rut, 0 , -1 ) , 0, "", ".") . '-' . substr ( $ru
                                 <?php foreach ($pacientes as $item) : ?>
                             <tr>
                                 <td><?php if(!empty($item->rut)) echo formatearRut ($item->rut); ?></td>
-                                <td><?php echo strtoupper($item->apellidoPaterno).' '.strtoupper($item->apellidoMaterno).' '.strtoupper($item->nombres); ?></td>
+                                <td><?php $nombre = strtoupper($item->apellidoPaterno).' '.strtoupper($item->apellidoMaterno).' '.strtoupper($item->nombres); $nombre= str_replace('é', 'E', $nombre);$nombre= str_replace('í', 'I', $nombre); $nombre= str_replace('ñ', 'N', $nombre); $nombre= str_replace('á', 'A', $nombre); echo $nombre; ?></td>
                                 <td align="center">
                                     
                                     <table>
@@ -293,6 +293,7 @@ return number_format( substr ( $rut, 0 , -1 ) , 0, "", ".") . '-' . substr ( $ru
                             
         //Creamos un Elemento Temporal en forma de enlace
         var tmpElemento = document.createElement('a');
+        
         // obtenemos la informaciÃ³n desde el div que lo contiene en el html
         // Obtenemos la informaciÃ³n de la tabla
         var data_type = 'data:application/vnd.ms-excel';
