@@ -287,6 +287,10 @@ return number_format( substr ( $rut, 0 , -1 ) , 0, "", ".") . '-' . substr ( $ru
     <script>
     $("#btnExport").click(function(e) {
 
+        var mes = $( "#mes").val();
+        var mesMostrar = '';
+        if(mes==='01')mesMostrar='Enero';else if(mes==='02')mesMostrar='Febrero';else if(mes==='03')mesMostrar='Marzo';else if(mes==='04')mesMostrar='Abril';else if(mes==='05')mesMostrar='Mayo';else if(mes==='06')mesMostrar='Junio';else if(mes==='07')mesMostrar='Julio';else if(mes==='08')mesMostrar='Agosto';else if(mes==='09')mesMostrar='Septiembre';else if(mes==='10')mesMostrar='Octubre';else if(mes==='11')mesMostrar='Noviembre';else if(mes==='12')mesMostrar='Diciembre'; else mesMostrar=mes; 
+                            
         //Creamos un Elemento Temporal en forma de enlace
         var tmpElemento = document.createElement('a');
         // obtenemos la informaciÃ³n desde el div que lo contiene en el html
@@ -296,7 +300,7 @@ return number_format( substr ( $rut, 0 , -1 ) , 0, "", ".") . '-' . substr ( $ru
         var tabla_html = tabla_div.outerHTML.replace(/ /g, '%20');
         tmpElemento.href = data_type + ', ' + tabla_html;
         //Asignamos el nombre a nuestro EXCEL
-        tmpElemento.download = 'Registro asistencia HD.xls';
+        tmpElemento.download = 'Registro de Asistencia '+mesMostrar+' HD.xls';
         // Simulamos el click al elemento creado para descargarlo
         tmpElemento.click();
 
