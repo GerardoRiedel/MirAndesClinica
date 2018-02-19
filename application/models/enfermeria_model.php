@@ -56,6 +56,15 @@ class Enfermeria_model extends CI_Model
         else{
         $this->db->insert('enfermeria', $this);}
     }
+    public function dameIngresosEnfermeria()
+    {
+        return $this->db->select('*')
+                ->from('plandeatencion')
+                ->where('plaRegistro',$id)
+                ->order_by('plaId','desc')
+                ->get()
+                ->row();
+    }
     public function dameUnoMedicamento($id='')
     {
         $return= $this->db->select('descripcion,medFarmaco,medFecha,medHora,viaNombre,medEstado,medId,medEvolucion')

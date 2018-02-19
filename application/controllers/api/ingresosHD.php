@@ -293,16 +293,18 @@ class IngresosHD extends CI_Controller
             IF($buscarAsistencia->asiEstado<'3'){$estado = $buscarAsistencia->asiEstado+1;}ELSE {$estado = 0;}
             $this->hd_asistencia_model->asiId=$buscarAsistencia->asiId;
             $this->hd_asistencia_model->asiEstado = $estado;
-            
+            //die ($estado.'aa');
         }ELSE{
         $this->hd_asistencia_model->asiEstado = 1;
         $this->hd_asistencia_model->asiFecha = $dia;
         $this->hd_asistencia_model->asiRegistro = $registro;
+        $estado=1;
         }
         $this->hd_asistencia_model->asiUsuario = $this->session->userdata('id_usuario');;
         $this->hd_asistencia_model->asiFechaRegistro = date('Y-m-d H:i:s');
         $this->hd_asistencia_model->guardarAsistencia();
-        IF(empty($estado))$estado=0;
+        
+        //die($estado.'s');
         $res['registro']=$registro;
         $res['estado']=$estado;
         $res['dia']=$item[1];

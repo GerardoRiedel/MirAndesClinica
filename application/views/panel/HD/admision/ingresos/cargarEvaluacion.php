@@ -174,8 +174,10 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                     <td style="max-width: 500px"><?php echo $eva->evaObservacion;?></td>
                     <td style="max-width: 70px"align="center">
                         <a class="tip-bottom" title="Imprimir Evaluación" href="<?php echo base_url("hd_admision/impresiones/imprimirEvaluacion/".$eva->evaId )?>"><i class="fa fa-print" aria-hidden="true"></i></a>&nbsp;&nbsp;
+                        <?php IF($eva->uspId===$this->session->userdata('id_usuario') && $eva->evaFechaRegistro >= date('Y-m-d 00:00:00') ){ ?>
                         <a class="tip-bottom" title="Modificar Evaluación" href="<?php echo base_url("hd_admision/ingresos/modificarEvaluacion/" . $eva->evaId )?>"><i class="fas fa-edit" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;
                         <a class="tip-bottom" onclick="return confirm('¿Confirma que desea eliminar este registro?')" style="color:red" title="Eliminar Evaluación" href="<?php echo base_url("hd_admision/ingresos/eliminarEvaluaciones/" . $eva->evaId )?>"><i class="fa fa-trash" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <?php } ?>
                     </td>
                 </tr>
             <?php };?>

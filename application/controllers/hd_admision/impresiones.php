@@ -183,6 +183,9 @@ class Impresiones extends CI_Controller {
         $data['opciones']   = $opciones;
         $data['breadcumb']  = "Ingreso";
         $data['title']      = "Ficha de Ingreso";
+        
+        $data['menu']       = 'ingreso';
+        $data['submenu']       = 'lingreso';
         Layout_Helper::cargaVista($this,'imprimirImprimir',$data,'hd');   
         
         

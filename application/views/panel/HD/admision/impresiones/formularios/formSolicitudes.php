@@ -144,7 +144,7 @@
             <span  class=" fucsia" style="font-size:15px"><b>Autorización por equipo</b></span>
             <br><br>
             <div class="cubo2">&nbsp;&nbsp;
-                <span style="font-size:15px">Nombre</span>
+                <span style="font-size:15px">Nombre<b> <?php IF(!empty($datosSol->uspNombre))echo strtoupper($datosSol->uspNombre).' '.strtoupper($datosSol->uspApellidoP); ELSEIF(!empty($datosSol->solProfesional))echo strtoupper($datosSol->solProfesional);?></b></span>
             </div>
             <br>
             <div class="cubo21">&nbsp;&nbsp;

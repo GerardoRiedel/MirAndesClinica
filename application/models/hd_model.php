@@ -357,9 +357,11 @@ class Hd_model extends CI_Model
     }
     public function dameUnaSolicitud($id)
     {
-        return $this->db->select('*')
+        return $this->db->select('r.id,u.uspNombre,u.uspApellidoP,p.nombres,p.apellidoPaterno,p.apellidoMaterno,solId,solRegistro,solFechaRegistro,solUsuario,solTipo,solFecha,solHora,solMotivo,solProfesional')
                         ->from('ficha_hd_solicitudes')
                         ->join('usuarios_panel u','solUsuario=u.uspId','left')
+                        ->join('ficha_hd_registro r','solRegistro=r.id')
+                        ->join('ficha_pacientes p','r.paciente=p.id','left')
                         ->where('solId',$id)
                         ->get()
                         ->row();
@@ -472,6 +474,41 @@ class Hd_model extends CI_Model
         $this->db->update('ficha_hd_ingresosto', $this, array('ingId' => $this->ingId));}
         else{
         $this->db->insert('ficha_hd_ingresosto', $this);}
+    }
+    
+    
+    public function dameProfesionalesHD()
+    {
+        $query1 = $this->db->select('id,nombre,apePat')
+                                    ->from('ficha_hd_toyps')
+                                    ->order_by('apePat','asc')
+                                    ->get()
+                                    ->result();
+         $query2 = $this->db->select('uspId id,uspNombre nombre,uspApellidoP apePat')
+                                    ->from('usuarios_panel')
+                                    ->where('uspEstado',1)
+                                    ->where('uspPerfil >=13')
+                                    ->where('uspPerfil !=16')
+                                    ->order_by('apePat','asc')
+                                    ->get()
+                                    ->result();
+        $query = array_merge($query1, $query2);
+        //asort($query);
+        return  $query;
+    }
+    public function dameUltimaSolicitud($registro)
+    {
+        return $this->db->select('r.id,u.uspNombre,u.uspApellidoP,p.nombres,p.apellidoPaterno,p.apellidoMaterno,solId,solRegistro,solFechaRegistro,solUsuario,solTipo,solFecha,solHora,solMotivo,solProfesional')
+                                   ->from('ficha_hd_solicitudes')
+                                   ->join('usuarios_panel u','solUsuario=u.uspId','left')
+                                   ->join('ficha_hd_registro r','solRegistro=r.id')
+                                   ->join('ficha_pacientes p','r.paciente=p.id','left')
+                                     ->where('solRegistro',$registro)
+                                    ->order_by('solId','desc')
+                                    ->get()
+                                    ->row();
+        
+        
     }
     
     

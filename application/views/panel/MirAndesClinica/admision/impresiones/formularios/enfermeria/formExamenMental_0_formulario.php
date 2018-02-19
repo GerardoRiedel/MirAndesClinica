@@ -57,7 +57,7 @@
         <div align="left">
         EXAMEN FISICO GENERAL
         </div>
-        <textarea name="examenFisico" placeholder="Examen Fisico" style="width:100%;height: 50px"><?php echo $enfermeria->enfExamenFisico;?></textarea>
+        <textarea name="examenFisico" placeholder="Examen Fisico" style="width:100%;height: 100px"><?php echo $enfermeria->enfExamenFisico;?></textarea>
         <br><br>
         <div align="left"><?php  //echo $enfermeria->enfAlcohol;?>
             <table>

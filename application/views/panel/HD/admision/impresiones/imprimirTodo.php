@@ -39,7 +39,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                 
 
 			
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container" style="border-color: #000000;"  >
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container"   >
             <?php $attributes = array('id' => 'form');
             //die(var_dump($datos));
                 echo form_open('hd_admision/impresiones/imprimirImprimir',$attributes);

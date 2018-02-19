@@ -126,7 +126,8 @@ class Fichas extends CI_Controller {
         
         $data['breadcumb']  = "Historico";
         $data['title']      = "Bitácora";
-        $data['menu']       = 'fichas';
+        $data['menu']       = 'ingreso';
+        $data['submenu']       = 'lingreso';
         Layout_Helper::cargaVista($this,'cargarHistorico',$data,'hd');   
     }
 }

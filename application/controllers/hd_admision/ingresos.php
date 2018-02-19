@@ -348,7 +348,8 @@ class Ingresos extends CI_Controller {
     public function cargarSolicitudes($id)
     {   
         $data['solicitud']  = $this->hd_model->dameSolicitudesId($id);
-        
+        $data['profesionales']  = $this->hd_model->dameProfesionalesHD();
+         //die(var_dump($data['profesionales']));
         $data['datos']      = $this->hd_model->dameUno($id);//die(var_dump($data['datos']));
         $data['breadcumb']  = "Ingreso";
         $data['title']      = "Solicitudes";
@@ -367,15 +368,45 @@ class Ingresos extends CI_Controller {
         $this->hd_model->solHora            = $this->input->post('hora');
         $this->hd_model->solTipo            = $this->input->post('motivoSolicitud');
         $this->hd_model->solMotivo          = $this->input->post('motivo');
+        //$this->hd_model->solProfesional          = $this->input->post('profesional');
         $this->hd_model->guardarSolicitudes();
         
-        $data['solicitud']  = $this->hd_model->dameSolicitudesId($registro);
-        $data['datos']      = $this->hd_model->dameUno($registro);
-        $data['breadcumb']  = "Ingreso";
-        $data['title']      = "Solicitudes";
-        $data['menu']       = "ingreso";
-        $data['submenu']    = "lingreso";
-        Layout_Helper::cargaVista($this,'cargarSolicitudes',$data,'hd');   
+        $ultimo = $this->hd_model->dameUltimaSolicitud($registro);
+        
+        
+        $this->enviarCorreoEnfermeria($ultimo);
+        $this->cargarSolicitudes($registro);
+        
+     // $data['solicitud']  = $this->hd_model->dameSolicitudesId($registro);
+     // $data['datos']      = $this->hd_model->dameUno($registro);
+     // $data['profesionales']  = $this->hd_model->dameProfesionalesHD();
+     // $data['breadcumb']  = "Ingreso";
+     // $data['title']      = "Solicitudes";
+     // $data['menu']       = "ingreso";
+     // $data['submenu']    = "lingreso";
+     // Layout_Helper::cargaVista($this,'cargarSolicitudes',$data,'hd');   
+    }
+    public function enviarCorreoEnfermeria($ultimo)
+    {//die(var_dump($ultimo));
+        $id=$ultimo->solId;
+        $nombre=$ultimo->nombres.' '.$ultimo->apellidoPaterno;
+        $asunto = 'Solicitud de Permiso';
+        $destinatario='enfermeriahd@mirandes.cl';
+        //$destinatario= 'gerardo.riedel.c@gmail.com';
+                $resumen = 'Estimados,<br><br>'
+                        . 'Se ha autorizado la solicitud de Permiso N°'.$id.' de '.$nombre.'. Si se encuentra dentro de la ficha seguir el siguiente link para imprimir <a href="'.base_url().'hd_admision/impresiones/imprimirImprimir/'.$id.' ">imprimir</a>.<br><br>'
+                        
+                         .'<br><br>'
+                        .'Atentamente,<br><br>';
+                $resumen .= "&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<img style='width: 100px; ' src='".base_url()."../assets/img/logo_vertical_cetep.png' >";
+                        // . 'LINK: <a href="http://www.cetep.cl/calidad'.$reclamo->recId.'"><b>Responder</b></a>';
+                $headers = "MIME-Version: 1.0\r\n"; 
+                $headers .= "Content-type: text/html; charset=utf-8\r\n"; 
+                $headers .= "From: MirAndes <intranet@cetep.cl>\r\n"; //dirección del remitente 
+                $headers .= "bcc: griedel@cetep.cl";
+                //echo ('7');
+                //echo $resumen;die;
+                mail($destinatario,$asunto,$resumen,$headers) ;
     }
      public function cargarEvaluacion($id)
     {   

@@ -58,7 +58,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                 <div  class="col-lg-12">
                 <br>
                 <div class='col-lg-12'></div>
-                <div class='col-lg-12' style="overflow-x: scroll">
+                <div class='col-lg-12' style="overflow-x: scroll"><?php //die(var_dump($datos));?>
                 <table class='table table-bordered table-hover table-striped data-table'>
                         <thead>
                             <tr>
@@ -96,29 +96,31 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                                     <!--
                                     <a class="tip-bottom" title="Nueva Evalución Enfermeria" href="<?php echo base_url("clinica_enfermeria/ingresos/cargarEvolucionEnfermeria/" . $item->id )?>"><i class="fa fa-sun-o" aria-hidden="true"></i></a>
                                     -->
-                                        <a class="tip-bottom" title="Nueva Evalución Enfermeria" href="<?php echo base_url("clinica_enfermeria/ingresos/cargarNuevoRegistro/" . $item->id )?>"><i class="fa fa-sun-o" aria-hidden="true"></i></a>
+                                         <a class="tip-bottom" title="Nueva Evalución Enfermeria" href="<?php echo base_url("clinica_enfermeria/ingresos/cargarNuevoRegistro/" . $item->id )?>"><i class="far fa-clock" aria-hidden="true" ></i></a>
                                    </td>
                                 <?php } ELSEIF($this->session->userdata('perfil') !== '5') { ?>
                                    <td align="center">
-                                       <a class="tip-bottom" title="Nuevo Registro TENS" href="<?php echo base_url("clinica_enfermeria/ingresos/cargarNuevoRegistro/" . $item->id )?>"><i class="fa fa-sun-o" aria-hidden="true"></i></a>
+                                       <a class="tip-bottom" title="Nuevo Registro TENS" href="<?php echo base_url("clinica_enfermeria/ingresos/cargarNuevoRegistro/" . $item->id )?>"><i class="far fa-clock" aria-hidden="true"></i></a>
                                     </td>
                                     <?php } ?>
-                                <?php IF($this->session->userdata('perfil') === '4'):;?>
+                                <?php IF($this->session->userdata('perfil') === '4'):?>
                                         <td align="center">
                                             <a class="tip-bottom" title="Lista de Insumos" href="<?php echo base_url("clinica_enfermeria/medicamentos/cargarInsumos/" . $item->id."_NO" )?>"><i class="fab fa-medrt" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
                                             <!--
                                             <a class="tip-bottom" title="Medicamento" href="<?php echo base_url("clinica_enfermeria/medicamentos/cargarMedicamentoAsignar/" . $item->id )?>"><i class="fa fa-medkit" aria-hidden="true"></i></a>&nbsp;&nbsp;
                                             -->
-                                            <a class="tip-bottom" title="Nuevo Registro ENFERMERIA" href="<?php echo base_url("clinica_enfermeria/ingresos/cargarNuevoIngresoEnfermeria/" . $item->id )?>"><i class="fa fa-user-md" aria-hidden="true"></i></a>
+                                                <?php IF(!empty($item->enfId))$enfColor = 'green';ELSE $enfColor='red'; ?>
+                                   
+                                            <a class="tip-bottom" title="Registro de Enfermeria" href="<?php echo base_url("clinica_enfermeria/ingresos/cargarNuevoIngresoEnfermeria/" . $item->id )?>"><i class="fa fa-user-md" aria-hidden="true" style="color:<?php echo $enfColor; ?>"></i></a>
                                         </td>
-                                    <?php ELSEIF($this->session->userdata('perfil') === '5'):;?>
+                                    <?php ELSEIF($this->session->userdata('perfil') === '5'):?>
                                         <td align="center">
                                             <a class="tip-bottom" title="Nueva Evolución Médica" href="<?php echo base_url("clinica_enfermeria/medicos/cargarNuevoControl/" . $item->pacId )?>"><i class="fa fa-user-md" aria-hidden="true" style="color: green"></i></a>
                                         </td>
                                     <?php ENDIF;?>
                                     <td align="center">
-                                        <a class="tip-bottom" title="Comentario" href="<?php echo base_url("clinica_enfermeria/ingresos/cargarComentario/" . $item->id )?>"><i class="fa fa-comments-o" aria-hidden="true"></i></a>
+                                        <a class="tip-bottom" title="Comentario" href="<?php echo base_url("clinica_enfermeria/ingresos/cargarComentario/" . $item->id )?>"><i class="fas fa-comment-alt" aria-hidden="true"></i></a>
                                     </td>
                                     <td align="center">
                                         <a class="tip-bottom" title="Antecedentes" href="<?php echo base_url("clinica_enfermeria/impresiones/cargarImprimir/" . $item->id )?>"><i class="fa fa-print" aria-hidden="true"></i></a>

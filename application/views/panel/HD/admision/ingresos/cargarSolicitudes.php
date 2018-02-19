@@ -50,7 +50,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                 
 
 			
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container" style="border-color: #000000;"  >
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container" >
             <?php $attributes = array('id' => 'form');
             //die(var_dump($datos));
                 echo form_open('hd_admision/ingresos/guardarSolicitudes',$attributes);
@@ -160,6 +160,20 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                     <div class="col-lg-4">
                         <input type="time" class="hora" name="hora" title="Ingrese una hora valida" value="<?php IF(!empty($solicitud))echo $solicitud->solHora;?>">
                     </div>
+                <!--
+                <div class="col-lg-12"></div>
+                <div class="col-lg-2">
+                        <label>Profesional Autoriza</label>
+                    </div>
+                    <div class="col-lg-4">
+                        <select name="profesional" id="profesional" style="width:300px">
+                            <option value="0">Seleccione...</option>
+                            <?php FOREACH($profesionales as $pro){ ?>
+                            <option value="<?php echo $pro->apePat.' '.$pro->nombre;?>"><?php echo strtoupper($pro->apePat).' '.strtoupper($pro->nombre); ?></option>
+                            <?php } ?>
+                        </select>
+                    </div>
+                -->
                     <div class="col-lg-12"><br></div>
                     <div class="col-lg-2">
                         <label>Tipo Solicitud</label>
@@ -271,6 +285,11 @@ return number_format( substr ( $rut, 0 , -1 ) , 0, "", ".") . '-' . substr ( $ru
     $(".iconCom").hide();
     if($('input:radio[name=motivoSolicitud]:checked').val()===undefined) {  
         $("#iconMotivo").show();
+    }
+    if($("#profesional").val()==='0') {  
+        //alert('Seleccione profesional que autoriza el permiso');
+    }
+    if($('input:radio[name=motivoSolicitud]:checked').val()===undefined){
         return false;
     }
 });  

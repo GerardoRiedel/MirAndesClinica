@@ -106,7 +106,7 @@
 <div class="container-fluid">
         <div class="row">
             <div class="col-xs-12">
-<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container" style="border-color: #000000;"  >
+<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 bhoechie-tab-container"   >
     
 <div class='widget-content' id="imprimir">
                 <div class="col-lg-10" align="right">

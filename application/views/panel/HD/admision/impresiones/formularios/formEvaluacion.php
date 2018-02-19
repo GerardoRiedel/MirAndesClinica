@@ -84,7 +84,14 @@
                     </thead>
                 <tbody>
                     <tr style="height: 800px; text-align: justify; vertical-align: top">
-                        <td colspan="6" style="max-width:670px; "><?php echo ' '.$evaluacion->evaObservacion;?></td>
+                        <td colspan="6" style="max-width:670px; ">
+                            <?php 
+                                echo '<b>'.strtoupper($evaluacion->uspNombre).' '.strtoupper($evaluacion->uspApellidoP).' '.strtoupper($evaluacion->uspApellidoM).'. ';
+                                $date = new DateTime($evaluacion->evaFechaRegistro);echo $date->format('d-m-Y');
+                                echo '</b><br>';
+                                echo ' '.$evaluacion->evaObservacion;
+                            ?>
+                        </td>
                     </tr>
                 </tbody>
             </table>

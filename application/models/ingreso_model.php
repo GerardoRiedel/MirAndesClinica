@@ -19,14 +19,14 @@ class Ingreso_model extends CI_Model
         IF(empty($administrador))$this->db->where('alta','no');
         //$alta = Es para filtrar los pacientes que se encuentren con o sin alta registrada
         if(empty($filtro) && empty($inicio) && empty($termino)&& empty($altaDesde) && empty($altaHasta) && empty($alta)){
-            return $this->db->select('p.nacionalidad,c.ctaNombre,c.ctaApellido,c.ctaApellidoM,c.ctaRut,b.banNombre,t.tipNombre,c.ctaNumero,c.ctaEmail, p.id pacId, p.fechaNacimiento,p.telefono,p.celular,p.ocupacion,p.direccion,s.comuna comNombre, c.ctaId, r.id, r.ficha, p.nombres, p.apellidoPaterno, p.apellidoMaterno, p.rut, r.dateIn,r.fechaIngreso,r.fechaSalidaReal,r.piso,r.ges')
+            return $this->db->select('e.enfId,p.nacionalidad,c.ctaNombre,c.ctaApellido,c.ctaApellidoM,c.ctaRut,b.banNombre,t.tipNombre,c.ctaNumero,c.ctaEmail, p.id pacId, p.fechaNacimiento,p.telefono,p.celular,p.ocupacion,p.direccion,s.comuna comNombre, c.ctaId, r.id, r.ficha, p.nombres, p.apellidoPaterno, p.apellidoMaterno, p.rut, r.dateIn,r.fechaIngreso,r.fechaSalidaReal,r.piso,r.ges')
                         ->from('ficha_ugh_registro r')
                         ->join('ficha_pacientes p','p.id=r.paciente','left')
                         ->join('cuentas_pacientes c','c.ctaRegistro=r.id','left')
                         ->join('ficha_comunas s','s.id=p.comuna','left')
                      ->join('tipos_cuenta t','t.tipId=c.ctaTipo','left')
                      ->join('bancos b','b.banId=c.ctaBanco','left')
-                       // ->join('apoderados a','a.apoFichaElectronica=r.id','left')
+                        ->join('enfermeria e','e.enfRegistro=r.id','left')
                         //->where('a.apoTipo',2)
                         ->order_by('dateIn','desc')
                         ->where('ingresoMirAndes',1)

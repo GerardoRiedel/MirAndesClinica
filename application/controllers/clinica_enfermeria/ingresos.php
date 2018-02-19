@@ -52,6 +52,7 @@ class Ingresos extends CI_Controller {
         }
             $this->session->set_userdata($data);
         $data['datos']      = $this->ingreso_model->dameIngresos();
+       // $data['ingEnfermeria']      = $this->enfermeria_model->dameIngresosEnfermeria();
         $data['breadcumb']  = "Registros";
         $data['title']      = "Lista de Registros";
         $data['menu']       = "ingreso";

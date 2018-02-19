@@ -106,6 +106,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                                                 ELSEIF($estado==='2'){$estado='P';$color='orange';}
                                                 ELSEIF($estado==='3'){$estado='I';$color='red';}
                                                 ELSEIF($estado==='0'){$estado='';$color='grey';}
+                                                ELSE {$color='grey';}
                                             ?>
                                            <span style="margin-top: -18px; margin-left: -4px; position: absolute;color:<?php echo $color;?>" class="<?php echo $item->id.'_'.$i;?>"><?php echo $estado; ?></span>
 
@@ -232,6 +233,7 @@ return number_format( substr ( $rut, 0 , -1 ) , 0, "", ".") . '-' . substr ( $ru
                                                 ELSEIF($estado==='2'){$estado='P';$color='orange';}
                                                 ELSEIF($estado==='3'){$estado='I';$color='red';}
                                                 ELSEIF($estado==='0'){$estado='';$color='grey';}
+                                                ELSE {$color='grey';}
                                             ?>
                                            <span style="margin-top: -18px; margin-left: -4px; position: absolute;color:<?php echo $color;?>" class="<?php echo $item->id.'_'.$i;?>"><?php echo $estado; ?></span>
 
@@ -271,7 +273,7 @@ return number_format( substr ( $rut, 0 , -1 ) , 0, "", ".") . '-' . substr ( $ru
                     success: function(data){
                         $estado='';
                          $("."+data.registro+"_"+data.dia).hide();
-                         if(data.estado===1)estado=' A';else if(data.estado===2)estado=' P';else if(data.estado===3)estado='  I';else if(data.estado===0)estado=' '
+                         if(data.estado===1)estado=' A';else if(data.estado===2)estado=' P';else if(data.estado===3)estado='  I';else if(data.estado===0)estado=' ';
                         document.getElementById(data.registro+"_"+data.dia).value = estado;
                     }
                 });
