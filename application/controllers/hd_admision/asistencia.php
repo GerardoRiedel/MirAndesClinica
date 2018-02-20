@@ -45,9 +45,11 @@ class Asistencia extends CI_Controller {
     {//die($mes.'sad');
         $mes = $this->input->post('mes');//die($mes);
         IF(empty($mes)||$mes==='0'){$mes=date('m');}
+        $data['pacientesLista']      = $this->hd_asistencia_model->dameListaAsistenciaPacientes();
+        
         $data['pacientes']      = $this->hd_asistencia_model->damePacientes($mes);
         $data['asistencia']      = $this->hd_asistencia_model->dameAsistenciaHD($mes);
-        $data['pacientesLista']      = $this->hd_asistencia_model->damePacientes();
+        //die(var_dump($data['pacientesLista']));
         $data['mes']=$mes;
         $data['breadcumb']  = "paciente";
         $data['title']      = "Asistencia de pacientes de Hospital de Día";
@@ -68,7 +70,7 @@ class Asistencia extends CI_Controller {
         }
         $data['pacientes']      = $this->hd_asistencia_model->damePacientes($mes);
         $data['asistencia']      = $this->hd_asistencia_model->dameAsistenciaHD($mes);
-        $data['pacientesLista']      = $this->hd_asistencia_model->damePacientes();
+        $data['pacientesLista']      = $this->hd_asistencia_model->dameListaAsistenciaPacientes();
         $data['mes']=$mes;
         $data['breadcumb']  = "paciente";
         $data['title']      = "Asistencia de pacientes de Hospital de Día";
