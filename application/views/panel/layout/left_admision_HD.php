@@ -28,6 +28,15 @@ IF(empty($submenu)){$submenu='';}?>
             <li <?php if($submenu === 'lingreso')  echo "class='active'" ?>><a href="<?php echo base_url("hd_admision/ingresos/listarIngreso"); ?>">Listar Registros Activos</a></li>            
         </ul> 
 </li>
+<!-- ASISTENCIA-->
+<?php IF($this->session->userdata('perfil') == '11' || $this->session->userdata('perfil') == '12'){?>
+<li class="submenu <?php if($menu === 'asistencia')echo "active open" ?>">
+    <a href="#"><i class="fas fa-tasks" aria-hidden="true" style=" width: 20px;text-align: center"></i> <span>Asistencia</span> <i class="arrow fa fa-chevron-right"></i></a>
+        <ul>
+            <li <?php if($submenu === 'hdasistencia')  echo "class='active'" ?>><a href="<?php echo base_url("hd_admision/asistencia/listarHD"); ?>">HD</a></li>            
+        </ul> 
+</li>
+<?php }?>
 <!--FICHA-->
 <li class="submenu <?php if($menu === 'fichas')echo "active open" ?>">
     <a href=""><i class="far fa-newspaper" aria-hidden="true" style=" width: 20px;text-align: center"></i>&nbsp;Fichas<i class="arrow fa fa-chevron-right"></i></a>
@@ -87,15 +96,7 @@ IF(empty($submenu)){$submenu='';}?>
 </li>
 <?php }?>
 
-<!-- ASISTENCIA-->
-<?php IF($this->session->userdata('perfil') == '11' || $this->session->userdata('perfil') == '12'){?>
-<li class="submenu <?php if($menu === 'asistencia')echo "active open" ?>">
-    <a href="#"><i class="fas fa-tasks" aria-hidden="true" style=" width: 20px;text-align: center"></i> <span>Asistencia</span> <i class="arrow fa fa-chevron-right"></i></a>
-        <ul>
-            <li <?php if($submenu === 'hdasistencia')  echo "class='active'" ?>><a href="<?php echo base_url("hd_admision/asistencia/listarHD"); ?>">HD</a></li>            
-        </ul> 
-</li>
-<?php }?>
+
 <!-- MANTENEDORES-->
 <?php IF($this->session->userdata('perfil') == '11'){?>
 <li class="submenu <?php if($menu === 'mantenedores')echo "active open" ?>">

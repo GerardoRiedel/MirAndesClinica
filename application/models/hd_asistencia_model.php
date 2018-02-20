@@ -18,15 +18,29 @@ class hd_asistencia_model extends CI_Model
     {
         IF(!empty($mes)){
             $this->db->where('asiFecha >= "2018-'.$mes.'-01" AND asiFecha <= "2018-'.$mes.'-31" ');
+            //$this->db->where('r.alta','no');
+            
         }
         return  $this->db->select(' r.id,p.id pacId,p.rut, p.nombres, p.apellidoPaterno, p.apellidoMaterno, a.asiId,a.asiFecha,a.asiEstado')//i.isapre isaNombre, i.id isaId, 
                     ->from('ficha_hd_asistencia a')
                     ->join('ficha_hd_registro r','r.id=a.asiRegistro','left')
                     ->join('ficha_pacientes p','r.paciente=p.id','left')
                     ->where('r.ingresoMirAndes > "0" AND (r.ficha > "0" OR r.fichaRH > "0")')
-                    ->where('r.alta','no')
                     ->where('asiFecha !=',"0000-00-00")
                     ->group_by('p.id')
+                    ->order_by('apellidoPaterno')
+                    ->get()
+                    ->result();
+    }
+    
+    public function dameListaAsistenciaPacientes($mes='')
+    {
+        return  $this->db->select('r.id,p.id pacId,p.rut, p.nombres, p.apellidoPaterno, p.apellidoMaterno')
+                    ->from('ficha_hd_registro r')
+                    ->join('ficha_pacientes p','r.paciente=p.id','inner')
+                    //->where('r.ingresoMirAndes > "0" AND (r.ficha > "0" OR r.fichaRH > "0")')
+                    ->group_by('p.id')
+                    ->order_by('p.apellidoPaterno')
                     ->get()
                     ->result();
     }
@@ -38,7 +52,7 @@ class hd_asistencia_model extends CI_Model
                     ->join('ficha_pacientes p','p.id=r.paciente','left')
                     ->join('ficha_hd_asistencia a','r.id=a.asiRegistro','left')
                     ->where('r.ingresoMirAndes > "0" AND (r.ficha > "0" OR r.fichaRH > "0")')
-                    ->where('r.alta','no')
+                     ->where('r.alta','no')
                     ->group_by('p.id')
                     ->get()
                     ->result();
@@ -60,9 +74,9 @@ class hd_asistencia_model extends CI_Model
                     ->join('ficha_hd_registro r','r.id=a.asiRegistro','left')
                     ->join('ficha_pacientes p','r.paciente=p.id','left')
                     ->where('r.ingresoMirAndes > "0" AND (r.ficha > "0" OR r.fichaRH > "0")')
-                    ->where('r.alta','no')
+                //    ->where('r.alta','no')
                     ->where('asiFecha !=',"0000-00-00")
-                    ->order_by('p.apellidoPaterno,a.asiFecha')
+                    ->order_by('p.apellidoPaterno')
                     ->get()
                     ->result();
     }

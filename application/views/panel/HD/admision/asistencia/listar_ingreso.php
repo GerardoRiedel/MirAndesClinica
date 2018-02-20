@@ -78,7 +78,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                 <table  class='table table-bordered table-hover table-striped '>
                         <thead>
                             <tr>
-                                <th style="width:100px">Run</th>
+                                <th style="width:110px">Run</th>
                                 <th>Nombre</th>
                                 <th>Asistencia</th>
                             </tr>
@@ -94,26 +94,41 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                                     
                                     <table>
                                         <?php FOR($i=1;$i<=31;$i++) { ?>
-                                       <td style="width:20px;border:1px solid grey;cursor: pointer; "onclick="cambiarEstado(<?php echo $item->id; ?>,<?php echo $i; ?>)"style=" cursor: pointer; " align="center">
-                                           <input id="<?php echo $item->id.'_'.$i;?>"  style="width:20px;border:none;cursor: pointer;" value="" readonly="">
-                                                    <?php FOREACH($asistencia as $asi){ 
-                                                            $fecha = $asi->asiFecha;
-                                                            $dia = new DateTime($fecha);$dia = $dia->format('d'); $dia=$dia*1;
-                                                            IF($item->id ===$asi->id && $dia===$i){ ?>
-                                           <?php 
-                                                $estado = $asi->asiEstado; 
-                                                IF($estado==='1'){$estado='A';  $color='green';}
-                                                ELSEIF($estado==='2'){$estado='P';$color='orange';}
-                                                ELSEIF($estado==='3'){$estado='I';$color='red';}
-                                                ELSEIF($estado==='0'){$estado='';$color='grey';}
-                                                ELSE {$color='grey';}
-                                            ?>
-                                           <span style="margin-top: -18px; margin-left: -4px; position: absolute;color:<?php echo $color;?>" class="<?php echo $item->id.'_'.$i;?>"><?php echo $estado; ?></span>
+                                        
+                                        <?php $f =  date('Y-'.$mes.'-'.$i);
+                                        $f = new DateTime($f);$f=$f->format('w');
+                                        $diaSemana =  date('Y-'.$mes.'-'.$i);$diaSemana = new DateTime($diaSemana);$diaSemana=$diaSemana->format('D');IF($diaSemana==='Mon')$diaSemana='Lunes';ELSEIF($diaSemana==='Tue')$diaSemana='Martes';IF($diaSemana==='Wed')$diaSemana='Miercoles';IF($diaSemana==='Thu')$diaSemana='Jueves';IF($diaSemana==='Fri')$diaSemana='Viernes';
+                                        $feriado = '';
+                                        IF(date('Y-'.$mes.'-'.$i)==='2018-01-1'  || date('Y-'.$mes.'-'.$i)==='2018-01-16'  || date('Y-'.$mes.'-'.$i)==='2018-02-29' || date('Y-'.$mes.'-'.$i)==='2018-02-30' || date('Y-'.$mes.'-'.$i)==='2018-02-31' || date('Y-'.$mes.'-'.$i)==='2018-03-30'  || date('Y-'.$mes.'-'.$i)==='2018-05-1'  || date('Y-'.$mes.'-'.$i)==='2018-05-21'  || date('Y-'.$mes.'-'.$i)==='2018-07-2'  || date('Y-'.$mes.'-'.$i)==='2018-07-16'  || date('Y-'.$mes.'-'.$i)==='2018-08-15'  || date('Y-'.$mes.'-'.$i)==='2018-09-17'  || date('Y-'.$mes.'-'.$i)==='2018-09-18'  || date('Y-'.$mes.'-'.$i)==='2018-09-19'  || date('Y-'.$mes.'-'.$i)==='2018-10-15'  || date('Y-'.$mes.'-'.$i)==='2018-11-1'  || date('Y-'.$mes.'-'.$i)==='2018-11-2'   || date('Y-'.$mes.'-'.$i)==='2018-12-25' )$feriado='si';
+                                        IF ($f==='0' || $f==='6' || $feriado==='si'){ ?>
+                                             <td style=" width:21px;max-height:10px !important;border:1px solid grey;background-color: pink"></td>  
+                                        <?php }ELSE { ;?>
+                                        
+                                            <td style="width:20px;border:1px solid grey;cursor: pointer; " title="<?php echo $diaSemana.', '.$i; ?>"  onclick="cambiarEstado(<?php echo $item->id; ?>,<?php echo $i; ?>)" align="center">
+                                                <input id="<?php echo $item->id.'_'.$i;?>"  style="width:20px;border:none;cursor: pointer;" value="" readonly="">
+                                                         <?php FOREACH($asistencia as $asi){ 
+                                                                 $fecha = $asi->asiFecha;
+                                                                 $dia = new DateTime($fecha);$dia = $dia->format('d'); $dia=$dia*1;
+                                                                 IF($item->id ===$asi->id && $dia===$i){ ?>
+                                                <?php 
+                                                     $estado = $asi->asiEstado; 
+                                                     IF($estado==='1'){$estado='A';  $color='green';}
+                                                     ELSEIF($estado==='2'){$estado='P';$color='orange';}
+                                                     ELSEIF($estado==='3'){$estado='I';$color='red';}
+                                                     ELSEIF($estado==='0'){$estado='';$color='grey';}
+                                                     ELSE {$color='grey';}
+                                                 ?>
+                                                <span style="margin-top: -18px; margin-left: -4px; position: absolute;color:<?php echo $color;?>" title="<?php echo $diaSemana.', '.$i; ?>" class="<?php echo $item->id.'_'.$i;?>"><?php echo $estado; ?></span>
 
-                                                            <?php } 
-                                                     } 
-                                                    ?>
-                                        </td>
+                                                                 <?php } 
+                                                          } 
+                                                         ?>
+                                             </td>
+                                        <?php } ?>
+                                        
+                                        
+                                        
+                                        
                                         <?php } ?>
                                     </table>
                                 </td>
@@ -141,7 +156,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                     <select name="pacientes" style="width:350px">
                         <option value="0">Seleccione...</option>
                         <?php FOREACH($pacientesLista as $pac){ ?>
-                        <option value="<?php echo $pac->pacId;?>"><?php echo $pac->apellidoPaterno.' '.$pac->apellidoMaterno.' '.$pac->nombres;?></option>
+                        <option value="<?php echo $pac->pacId;?>"><?php echo strtoupper($pac->apellidoPaterno).' '.strtoupper($pac->apellidoMaterno).' '.strtoupper($pac->nombres);?></option>
                         <?php } ?>
                     </select>
                     <?php echo form_submit('','Agregar','class="btn btn-primary btn-sm btnCetep"');?>
@@ -174,12 +189,63 @@ function formatearRut( $rut ) {
         $rut=  $rut . $dv;
 return number_format( substr ( $rut, 0 , -1 ) , 0, "", ".") . '-' . substr ( $rut, strlen($rut) -1 , 1 );
 }
-?>
 
 
 
+ function getDiasHabiles($fechainicio, $fechafin, $diasferiados = array()) {
+	// Convirtiendo en timestamp las fechas
+        //die($fechafin.'fin');
+      //      
+	$fechainicio = strtotime($fechainicio);
+                   $fechac= explode(' ', $fechafin);//die($fechafin[0].'fin');
+	$fechafin = strtotime($fechac[0]);
+	//die('inicio'.$fechainicio.'    fin'.$fechafin);
+	// Incremento en 1 dia
+	$diainc = 24*60*60;
+	$diasferiados = array(
+       //FORMATO Y-m-d   
+        '1-1', // Año Nuevo (irrenunciable) 
+        '30-3', // Viernes Santo (feriado religioso) 
+        '31-3', // Sábado Santo (feriado religioso) 
+        '1-5', // Día Nacional del Trabajo (irrenunciable) 
+        '21-5', // Día de las Glorias Navales 
+        '2-7', // San Pedro y San Pablo (feriado religioso) 
+        '16-7', // Virgen del Carmen (feriado religioso) 
+        '15-8', // Asunción de la Virgen (feriado religioso) 
+        '17-9', // Dia Festivo De Prueba EN EL EJEMPLO <-----
+        '18-9', // Dia Festivo De Prueba EN EL EJEMPLO <-----
+        '19-9', // Dia Festivo De Prueba EN EL EJEMPLO <-----
+        '15-10', // Aniversario del Descubrimiento de América 
+        '2-11', // Día Nacional de las Iglesias Evangélicas y Protestantes (feriado religioso) 
+        '1-11', // Día de Todos los Santos (feriado religioso) 
+        '8-12', // Inmaculada Concepción de la Virgen (feriado religioso) 
+       // '13-12', // elecciones presidencial y parlamentarias (puede que se traslade al domingo 13) 
+        '25-12', // Natividad del Señor (feriado religioso) (irrenunciable) 
+        );
+	// Arreglo de dias habiles, inicianlizacion
+	$diashabiles = array();
+	$sumatoria=0;
+	// Se recorre desde la fecha de inicio a la fecha fin, incrementando en 1 dia
+	for ($midia = $fechainicio; $midia <= $fechafin; $midia += $diainc) {
+		// Si el dia indicado, no es sabado o domingo es habil
+		if (!in_array(date('N', $midia), array(5,6,7))) { 
+			// Si no es un dia feriado entonces es habil
+			if (!in_array(date('Y-m-d', $midia), $diasferiados)) {
+                                //EL ARRAY MUESTRA EL DÍA
+				array_push($diashabiles, date('Y-m-d', $midia));
+                                $sumatoria += 1;
+			}
+		}
+	}//die($sumatoria.'s');
+	return $sumatoria;
+    }
+    
+    
+    ?>
 
- <div id="exportar" style="display:true">
+
+
+ <div id="exportar" style="display:none">
             <div class="col-lg-12"></div>
                 <div class="col-lg-9"></div>
                 <div class="col-lg-3">
