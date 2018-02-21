@@ -446,7 +446,7 @@
                     </tr>
                     <tr>
                         <td style="height: 15px;"> Cantidad horas de sueño nocturno</td>
-                        <td colspan="2" align="center"><input style=" border:none; width: 100%"type="text" <?php IF(!empty($enfermeria->enfSueno))echo $enfermeria->enfSueno;?>></td>
+                        <td colspan="2" align="center"><input style=" border:none; width: 100%" type="text" value="<?php IF(!empty($enfermeria->enfSueno))echo $enfermeria->enfSueno;?>"></td>
                     </tr>
                     <tr>
                         <td style="height: 15px;"> Interrupciones del sueño</td>

@@ -187,6 +187,28 @@ class Modificar extends CI_Controller {
             //echo "<script>alert('Usuario ya existe')</script>";
         }
         
+        
+        IF($this->input->post('uspPerfil')==='17'){
+            $this->load->model("profesionales_model");
+            $existe = $this->profesionales_model->dameTO($this->input->post('uspNombre'),$this->input->post('uspApellidoP'),$this->input->post('uspApellidoM'));
+            IF(!empty($existe))$this->profesionales_model->id  = $existe[0]->id;
+            $this->profesionales_model->nombre  = $this->input->post('uspNombre');
+            $this->profesionales_model->apePat   = $this->input->post('uspApellidoP');
+            $this->profesionales_model->apeMat   = $this->input->post('uspApellidoM');
+            $this->profesionales_model->profesion=1;
+            $this->profesionales_model->guardarTO();
+        }
+         ELSEIF($this->input->post('uspPerfil')==='16'){
+            $this->load->model("profesionales_model");
+            $existe = $this->profesionales_model->damePS($this->input->post('uspNombre'),$this->input->post('uspApellidoP'),$this->input->post('uspApellidoM'));
+            IF(!empty($existe))$this->profesionales_model->id  = $existe[0]->id;
+            $this->profesionales_model->nombre  = $this->input->post('uspNombre');
+            $this->profesionales_model->apePat   = $this->input->post('uspApellidoP');
+            $this->profesionales_model->apeMat   = $this->input->post('uspApellidoM');
+            $this->profesionales_model->profesion=2;
+            $this->profesionales_model->guardarTO();
+        }
+        
         $data['datos']      = $this->usuarios_panel_log_model->dameTodoHD();
         $data['breadcumb']  = "usuarios";
         $data['title']      = "Lista de Usuarios";

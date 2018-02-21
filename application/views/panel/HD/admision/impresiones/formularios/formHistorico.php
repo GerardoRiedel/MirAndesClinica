@@ -89,8 +89,9 @@
                                 FOREACH($historico as $his){
                                     echo ' - <b>';
                                     $fecha = new DateTime($his->evaFechaRegistro);
-                                    echo $fecha->format('d/m/Y').' ';
-                                    IF($his->perId >= '14' && $his->perId <= '17' ) echo $his->perNombreCorto; ELSEIF($his->evaUsuario==='10003')echo 'Terapeuta';ELSE echo $his->perNombre;
+                                    echo $fecha->format('d/m/Y').' - ';
+                                    IF($his->perId >= '11' && $his->perId <= '17' ) echo $his->perNombreCorto; ELSEIF($his->evaUsuario==='10003')echo 'Terapeuta';ELSE echo $his->perNombre;
+                                    echo ' - '.$his->uspNombre.' '.$his->uspApellidoP;
                                     echo '</b><br><br><blockquote>';
                                     $alto += strlen($his->evaObservacion);
                                     

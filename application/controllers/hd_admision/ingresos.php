@@ -435,14 +435,18 @@ class Ingresos extends CI_Controller {
     }
     public function guardarEvaluaciones()
     { 
-        $evaluacion                         = $this->input->post('evaluacion');
+        $evaluacion = $this->input->post('evaluacion');
         IF(!empty($evaluacion)) $this->hd_model->evaId = $evaluacion;
-        $registro                           = $this->input->post('fichaElectro');
+        $registro = $this->input->post('fichaElectro');
         $this->hd_model->evaRegistro        = $registro;
         $this->hd_model->evaFechaRegistro   = date('Y-m-d H:i:s');
+        //$fechaIntervencion = $this->input->post('fecha');
+        $date = new DateTime($this->input->post('fecha'));$date = $date->format('Y-m-d');
+        $this->hd_model->evaFechaIntervencion   = $date;
         $this->hd_model->evaUsuario         = $this->session->userdata('id_usuario');
         $mensaje = $this->input->post('observacion');
         $mensaje = str_replace("\r\n","<br>", $mensaje);
+        $mensaje = str_replace("\n","<br>", $mensaje);
         
         $this->hd_model->evaObservacion     = $mensaje;
         $this->hd_model->evaPaciente     = $this->input->post('paciente');

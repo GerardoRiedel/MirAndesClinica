@@ -126,7 +126,8 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                     <div class='col-lg-4' >
                         <div class="input-group input-group-sm date datepicker" required data-date="<?php //echo (new DateTime())->format('Y-m-d H:i:s') ?>" data-date-format="dd-mm-yyyy">
                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
-                            <input type="text" class="form-control datepicker" required readonly="true" placeholder="día-mes-año" style=" width: 158px !important" name="fecha" data-date-format="dd-mm-yyyy" value="<?php IF(!empty($eval->evaFechaRegistro))echo $eval->evaFechaRegistro; ELSE echo date('d-m-Y');?>">
+                            <?php IF(!empty($eval->evaFechaIntervencion))$fechaIntervencion= $eval->evaFechaIntervencion; ELSEIF(!empty($eval->evaFechaRegistro))$fechaIntervencion= $eval->evaFechaRegistro; ELSE $fechaIntervencion= date('d-m-Y'); ?>
+                            <input type="text" class="form-control datepicker" required placeholder="día-mes-año" <?php IF(!empty($eval->evaFechaIntervencion) || !empty($eval->evaFechaRegistro))echo 'readonly'; ?> style=" width: 158px !important" name="fecha" data-date-format="dd-mm-yyyy" value="<?php echo $fechaIntervencion;?>">
                         </div>
                     </div>
                     <div class="col-lg-2">
@@ -140,7 +141,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                         <label>Observaciones</label>
                     </div>
                     <div class='col-lg-8' >
-                        <textarea name="observacion" placeholder="Ingrese sus observaciones" required="true" rows="10" style="width:91%;"id="descripcion" onKeyUp="cuenta()" ><?php IF(!empty($eval->evaObservacion))echo $eval->evaObservacion;?></textarea>
+                        <textarea name="observacion" placeholder="Ingrese sus observaciones" required="true" rows="10" style="width:91%;"id="descripcion" onKeyUp="cuenta()" ><?php IF(!empty($eval->evaObservacion)) {$ob = $eval->evaObservacion; $ob = str_replace("<br>","\n",$ob); echo $ob;}; ?></textarea>
                     </div>
                     <div class="col-lg-12"></div>
                     <div class="col-lg-2"></div>
@@ -169,9 +170,9 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
             <?php FOREACH ($evaluacion as $eva){;?>
                 <tr>
                     <td><?php echo $eva->evaId;?></td>
-                    <td><?php $date = new DateTime($eva->evaFechaRegistro);echo $date->format('d-m-Y H:i');?></td>
+                    <td><?php IF(!empty($eva->evaFechaIntervencion))$date = $eva->evaFechaIntervencion; ELSE $date = $eva->evaFechaRegistro; $date = new DateTime($date);echo $date->format('d-m-Y');?></td>
                     <td><?php echo strtoupper($eva->uspNombre).' '.strtoupper($eva->uspApellidoP).' '.strtoupper($eva->uspApellidoM);?></td>
-                    <td style="max-width: 500px"><?php echo $eva->evaObservacion;?></td>
+                    <td style="max-width: 500px"><?php $ob = str_replace('<br>','    ',$eva->evaObservacion); echo $ob;?></td>
                     <td style="max-width: 70px"align="center">
                         <a class="tip-bottom" title="Imprimir Evaluación" href="<?php echo base_url("hd_admision/impresiones/imprimirEvaluacion/".$eva->evaId )?>"><i class="fa fa-print" aria-hidden="true"></i></a>&nbsp;&nbsp;
                         <?php IF($eva->uspId===$this->session->userdata('id_usuario') && $eva->evaFechaRegistro >= date('Y-m-d 00:00:00') ){ ?>

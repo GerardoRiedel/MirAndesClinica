@@ -122,7 +122,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                         <input name="formIngresoHD" type="checkbox" id="formIngresoHD">
                     </div>
                     <div class="col-lg-4">
-                        <label>Registro de Intervención</label>
+                        <label>Ingreso Administrativo</label>
                     </div>
                     <div class='col-lg-1' align="right">
                         <input name="formDeposito" type="checkbox" id="formDeposito">

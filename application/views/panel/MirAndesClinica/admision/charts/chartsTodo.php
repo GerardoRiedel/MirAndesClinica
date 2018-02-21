@@ -89,16 +89,16 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                        // alert(can);
                         cant2018T = cant2018T * 1 + can;
                         cant2018 = cant2018.concat(can);
-                        var dia = '';
-                        dia = datos[keyVar].mes;
-                        if(dia==='11')dia='Noviembre';if(dia==='12')dia='Diciembre';else if(dia==='1')dia='Enero';else if(dia==='2')dia='Febrero';else if(dia==='3')dia='Marzo';else if(dia==='4')dia='Abril';else if(dia==='5')dia='Mayo';else if(dia==='6')dia='Junio';else if(dia==='7')dia='Julio';else if(dia==='8')dia='Agosto';else if(dia==='9')dia='Septiembre';else if(dia==='10')dia='Octubre';
-                        dias = dias.concat(dia);
+                    //    var dia = '';
+                   //     dia = datos[keyVar].mes;
+                     //   if(dia==='1')dia='Enero';else if(dia==='2')dia='Febrero';else if(dia==='3')dia='Marzo';else if(dia==='4')dia='Abril';else if(dia==='5')dia='Mayo';else if(dia==='6')dia='Junio';else if(dia==='7')dia='Julio';else if(dia==='8')dia='Agosto';else if(dia==='9')dia='Septiembre';else if(dia==='10')dia='Octubre';else if(dia==='11')dia='Noviembre';if(dia==='12')dia='Diciembre';
+                      //  dias = dias.concat(dia);
                         
                         
                            
                     
                     }
-                     cant2016 = cant2016.concat(0).concat(0).concat(0).concat(0).concat(0).concat(0).concat(0).concat(0).concat(0).concat(0).concat(20).concat(45);//;}else if(dia==='Diciembre'){cant2016 = cant2016.concat(45);}else {cant2016 = cant2016.concat(0);};
+                     cant2016 = cant2016.concat(0).concat(0).concat(0).concat(0).concat(0)           .concat(0).concat(0).concat(0).concat(0).concat(0).concat(20).concat(45);//;}else if(dia==='Diciembre'){cant2016 = cant2016.concat(45);}else {cant2016 = cant2016.concat(0);};
                      cant2017 = cant2017.concat(44).concat(34).concat(48).concat(43).concat(47).concat(37).concat(46).concat(48).concat(43).concat(38).concat(48).concat(32);
                       
                     Highcharts.setOptions({
@@ -122,7 +122,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                             title: {
                                 text: 'Mes'
                             },
-                            categories: dias
+                            categories: ['Enero','Febrero','Marzo','Abril','Mayo','Junio','Julio','Agosto','Septiembre','Octubre','Noviembre','Diciembre']
                         },
                         yAxis: {
                             title: {

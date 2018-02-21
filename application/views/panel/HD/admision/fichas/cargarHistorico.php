@@ -134,7 +134,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                     <td style="display:none"><?php echo $eva->evaFechaRegistro;?></td>
                     
                     <td style="width:88px;  " align="center"><?php $date = new DateTime($eva->evaFechaRegistro);echo $date->format('d-m-Y');?></td>
-                    <td style="width:85px" ><?php IF($eva->perId >= '14' && $eva->perId <= '17' ) echo $eva->perNombreCorto; ELSEIF($eva->evaUsuario==='10003')echo 'Terapeuta';ELSE echo $eva->perNombre;?></td>
+                    <td style="width:85px" ><?php IF($eva->perId >= '11' && $eva->perId <= '17' ) echo $eva->perNombreCorto; ELSEIF($eva->evaUsuario==='10003')echo 'Terapeuta';ELSE echo $eva->perNombre;?></td>
                     <td style="width:85px" ><?php echo strtoupper($eva->uspNombre).' '.strtoupper($eva->uspApellidoP);?></td>
                     <td style="width:85px" ><?php echo $eva->evaProceso;?></td>
                     <td align=" justify" style=" max-height: 50px"><?php 
@@ -151,7 +151,10 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                     </td>
                     <td style="width:85px"align="center">
                         <?php IF($eva->evaProceso==='Intervensión'){ //echo $eva->evaId;?>
-                            <a class="tip-bottom" title="Imprimir Evaluación" href="<?php echo base_url("hd_admision/impresiones/imprimirEvaluacion/".$eva->evaId )?>"><i class="fa fa-print" aria-hidden="true"></i></a>&nbsp;&nbsp;
+                            <a class="tip-bottom" title="Imprimir Evaluación" href="<?php echo base_url("hd_admision/impresiones/imprimirEvaluacion/".$eva->evaId )?>"><i class="fa fa-print" aria-hidden="true"></i></a>
+                        <?php }ELSE { ?>
+                            <a class="tip-bottom" title="Imprimir Antecedentes" href="<?php echo base_url("hd_admision/impresiones/cargarImprimir/".$eva->registro )?>"><i class="fa fa-print" aria-hidden="true"></i></a>
+                       
                         <?php } ?>
                         <!--
                         <a class="tip-bottom" title="Imprimir Evaluación" href="<?php echo base_url("hd_admision/impresiones/imprimirEvaluacion/".$eva->evaId )?>"><i class="fa fa-print" aria-hidden="true"></i></a>&nbsp;&nbsp;

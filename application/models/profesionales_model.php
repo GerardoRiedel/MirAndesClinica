@@ -36,8 +36,13 @@ class Profesionales_model extends CI_Model
                         ->get()
                         ->result();
     }
-     public function dameTO()
+     public function dameTO($nombre='',$apePat='',$apeMat='')
     {
+         IF(!empty($nombre)&&!empty($apePat)&&!empty($apeMat)){
+             $this->db->where('nombre',$nombre);
+             $this->db->where('apePat',$apePat);
+             $this->db->where('apeMat',$apeMat);
+         }
         return  $this->db->select('id, nombre,apePat, apeMat')
                         ->from('ficha_hd_toyps')
                         ->where('profesion',1)
@@ -45,8 +50,13 @@ class Profesionales_model extends CI_Model
                         ->get()
                         ->result();
     }
-     public function damePS()
+     public function damePS($nombre='',$apePat='',$apeMat='')
     {
+         IF(!empty($nombre)&&!empty($apePat)&&!empty($apeMat)){
+             $this->db->where('nombre',$nombre);
+             $this->db->where('apePat',$apePat);
+             $this->db->where('apeMat',$apeMat);
+         }
         return  $this->db->select('id, nombre,apePat, apeMat')
                         ->from('ficha_hd_toyps')
                         ->where('profesion',2)
@@ -54,6 +64,14 @@ class Profesionales_model extends CI_Model
                         ->get()
                         ->result();
     }
+    public function guardarTO()
+    {
+        if(isset($this->id)){
+        $this->db->update('ficha_hd_toyps', $this, array('id' => $this->id));}
+        else{
+        $this->db->insert('ficha_hd_toyps', $this);}
+    }
+    
      public function dameUno($id)
     {
         //$db = $this->load->database('ugh', TRUE);

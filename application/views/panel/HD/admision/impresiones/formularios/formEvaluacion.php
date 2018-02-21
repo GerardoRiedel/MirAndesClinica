@@ -87,7 +87,9 @@
                         <td colspan="6" style="max-width:670px; ">
                             <?php 
                                 echo '<b>'.strtoupper($evaluacion->uspNombre).' '.strtoupper($evaluacion->uspApellidoP).' '.strtoupper($evaluacion->uspApellidoM).'. ';
-                                $date = new DateTime($evaluacion->evaFechaRegistro);echo $date->format('d-m-Y');
+                                 IF(!empty($evaluacion->evaFechaIntervencion))$date = $evaluacion->evaFechaIntervencion; ELSE $date = $evaluacion->evaFechaRegistro; 
+                                 $date = new DateTime($date);echo $date->format('d-m-Y');
+                                 //$date = new DateTime($evaluacion->evaFechaRegistro);echo $date->format('d-m-Y');
                                 echo '</b><br>';
                                 echo ' '.$evaluacion->evaObservacion;
                             ?>

@@ -74,8 +74,8 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                 <div class="col-xs-12"><br></div>
                
                 <div class="col-lg-1"></div>
-                <div class="col-lg-10">
-                <table  class='table table-bordered table-hover table-striped '>
+                <div class="col-lg-10" style=" overflow: auto">
+                    <table  class='table table-bordered table-hover table-striped ' style="width:1150px">
                         <thead>
                             <tr>
                                 <th style="width:110px">Run</th>
@@ -92,7 +92,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                                 <td><?php echo strtoupper($item->apellidoPaterno).' '.strtoupper($item->apellidoMaterno).' '.strtoupper($item->nombres); ?></td>
                                 <td align="center">
                                     
-                                    <table>
+                                    <table >
                                         <?php FOR($i=1;$i<=31;$i++) { ?>
                                         
                                         <?php $f =  date('Y-'.$mes.'-'.$i);
@@ -105,7 +105,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                                         <?php }ELSE { ;?>
                                         
                                             <td style="width:20px;border:1px solid grey;cursor: pointer; " title="<?php echo $diaSemana.', '.$i; ?>"  onclick="cambiarEstado(<?php echo $item->id; ?>,<?php echo $i; ?>)" align="center">
-                                                <input id="<?php echo $item->id.'_'.$i;?>"  style="width:20px;border:none;cursor: pointer;" value="" readonly="">
+                                                <input id="<?php echo $item->id.'_'.$i;?>"  style="width:20px;border:none;cursor: pointer;" value=" " readonly="">
                                                          <?php FOREACH($asistencia as $asi){ 
                                                                  $fecha = $asi->asiFecha;
                                                                  $dia = new DateTime($fecha);$dia = $dia->format('d'); $dia=$dia*1;
