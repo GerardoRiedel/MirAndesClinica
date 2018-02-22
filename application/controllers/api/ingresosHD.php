@@ -311,6 +311,27 @@ class IngresosHD extends CI_Controller
         //die(var_dump($res));
         if(!empty($res))echo json_encode($res);
     }
+    public function asociacion($item){
+        $item = explode('_', $item);
+        $pac = $item[0];
+        $taller = $item[1];
+        $msj = $item[2];
+        $fecha = $item[3];
+        $this->load->model('hd_taller_model');
+        $this->hd_taller_model->talAsoPaciente = $pac;
+        $this->hd_taller_model->talAsoObservacion = $msj;
+        $this->hd_taller_model->talAsoTaller = $taller;
+        $this->hd_taller_model->talAsoEstado = 1;
+        $this->hd_taller_model->talAsoUsuario = $this->session->userdata('id_usuario');;
+        $this->hd_taller_model->talAsoFechaRegistro = date('Y-m-d H:i:s');
+        $this->hd_taller_model->talAsoFecha = $fecha;
+        $res = $this->hd_taller_model->guardarAsociacionPaciente();
+        
+        
+        die(var_dump($res));
+        if(!empty($res))echo json_encode($res);
+        
+    }
     
 
 
