@@ -43,7 +43,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                             <?php } ?>
                         </select>
                     </div> 
-                    <div class="col-lg-2" style="margin-top:-25px;margin-left:-100px">
+                    <div class="col-lg-2" style="margin-top:-25px;margin-left:-85px">
                         <?php echo form_submit('','Agregar','class="btn btn-primary btn-sm btnCetep"');?>
                         <?php echo form_close();?>
                     </div>    
@@ -80,8 +80,9 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                                 <td></td>
                                 <td></td>
                                     <?php FOREACH($asociaciones as $aso){ ?>
-                                <td>
-                                    <?php echo $aso->asoFecha.'<br>'.$aso->talDescripcion; ?>
+                                <td style="min-width:65px" align="center">
+                                    <?php $fecha = new DateTime($aso->asoFecha); $fecha= $fecha->format('d-M'); ?>
+                                    <?php echo $fecha.'<br>'.$aso->talDescripcion; ?>
                                 </td>
                                     <?php } ?>
                             </tr>
@@ -92,13 +93,13 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                                 <td><?php echo strtoupper($item->apellidoPaterno).' '.strtoupper($item->apellidoMaterno).' '.strtoupper($item->nombres); ?></td>
                                        
                                          <?php FOREACH($asociaciones as $aso){ ?>
-                                <td onclick="cambiarEstado(<?php echo $item->id; ?>,<?php echo $aso->asoTaller; ?>,'<?php echo $aso->asoFecha; ?>')" >
+                                <td onclick="cambiarEstado(<?php echo $item->id; ?>,<?php echo $aso->asoTaller; ?>,'<?php echo $aso->asoFecha; ?>')" style=" cursor: pointer">
                                     <?php 
                                     $obs = $est = '';
                                     FOREACH($asoPaciente as $as){ 
                                         IF($as->talAsoPaciente===$item->id && $as->talAsoTaller===$aso->asoTaller && $as->talAsoFecha===$aso->asoFecha ){
                                             $est = 1;
-                                            IF(!empty($as->talAsoObservacion)){$obs = $obs.' '.$as->talAsoObservacion;}
+                                            IF(!empty($as->talAsoObservacion)){$obs = $obs.' '.str_replace('%20',' ',$as->talAsoObservacion);}
                                         }
                                      } 
                                      IF(!empty($est))echo $est;

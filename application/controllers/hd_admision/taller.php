@@ -53,7 +53,7 @@ class Taller extends CI_Controller {
         $data['submenu']       = 'ltaller';
         Layout_Helper::cargaVista($this,'listarTaller',$data,'hd');   
     }
-    public function crearTaller($id)
+    public function crearTaller($id='')
     {
         //$data['pacientesLista']      = $this->hd_model->dameIngresosHd();
         
