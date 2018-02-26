@@ -328,7 +328,7 @@ class IngresosHD extends CI_Controller
         $res = $this->hd_taller_model->guardarAsociacionPaciente();
         
         
-        die(var_dump($res));
+        $res['registro']='OK';
         if(!empty($res))echo json_encode($res);
         
     }

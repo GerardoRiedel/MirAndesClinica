@@ -19,23 +19,23 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                 <?php $attributes = array('id' => 'formAsociar');
                         echo form_open('hd_admision/taller/asociarTaller',$attributes);
                     ?>
-                <div class="col-lg-12"> <br></div>
+                <div class="col-lg-1"></div>
+                <div class="col-lg-11"><br><label style="color:#a15ebe">Asociar Taller</label></div>
+                <div class="col-lg-12"><br></div>
                 <div class="col-lg-1"></div>
                 <div class="col-lg-2">
                         <label>Fecha de Taller</label>
                     </div>
-                    <div class='col-lg-4'>
+                    <div class='col-lg-2'>
                         <div class="input-group input-group-sm date datepicker" required data-date="<?php //echo (new DateTime())->format('Y-m-d H:i:s') ?>" data-date-format="yyyy-mm-dd">
                             <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
                             <input type="text" class="form-control" required placeholder="día-mes-año" style=" width: 158px !important" name="fecha" minlength="10" maxlength="10" title="Ingrese una fecha valida" >
                         </div>
                     </div> 
-                    <div class="col-lg-12"> <br></div>
-                    <div class="col-lg-1"></div>
-                    <div class="col-lg-2">
+                    <div class="col-lg-1"style="margin-left:40px">
                         <label>Taller</label>
                     </div>
-                    <div class='col-lg-3'>
+                    <div class='col-lg-2'>
                         <select name="taller" id="taller">
                             <option value="0">Seleccione...</option>
                             <?php FOREACH($talleres as $tal){ ?>
@@ -43,7 +43,8 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                             <?php } ?>
                         </select>
                     </div> 
-                    <div class="col-lg-2" style="margin-top:-25px;margin-left:-85px">
+                    <div class="col-lg-2" style="margin-left:15px">
+                        <input type="hidden" value="<?php IF(!empty($dia))echo $dia; ?>" name="dia">
                         <?php echo form_submit('','Agregar','class="btn btn-primary btn-sm btnCetep"');?>
                         <?php echo form_close();?>
                     </div>    
@@ -51,7 +52,34 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                 <div class="col-lg-1"></div>
                 
                 
-                <div class="col-lg-12"><hr></div>
+                <div class="col-lg-12"><hr style="border: 1px solid black"></div>
+                
+                <?php $attributes = array('id' => 'formAsociar');
+                        echo form_open('hd_admision/taller/listarPacientes',$attributes);
+                    ?>
+                <div class="col-lg-12"> <br></div>
+                <div class="col-lg-1"></div>
+                <div class="col-lg-2">
+                        <label>Buscar Semana</label>
+                    </div>
+                    <div class='col-lg-2'>
+                        <div class="input-group input-group-sm date datepicker" required data-date="<?php //echo (new DateTime())->format('Y-m-d H:i:s') ?>" data-date-format="yyyy-mm-dd">
+                            <span class="input-group-addon"><i class="fa fa-calendar"></i></span>
+                            <input type="text" class="form-control" required placeholder="día-mes-año" style=" width: 158px !important" name="verFecha" minlength="10" maxlength="10" title="Ingrese una fecha valida" value="<?php IF(!empty($dia))echo $dia; ?>">
+                        </div>
+                    </div> 
+                    
+                    
+                    
+                    <div class="col-lg-2" style="margin-left:15px">
+                        <?php echo form_submit('','Ver','class="btn btn-primary btn-sm btnCetep"');?>
+                        <?php echo form_close();?>
+                    </div>    
+                <br>
+                <div class="col-lg-1"></div>
+                
+                
+                
                 <div class="col-lg-9"></div>
                 <div class="col-lg-3">
                     
@@ -79,6 +107,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                             <tr>
                                 <td></td>
                                 <td></td>
+                                
                                     <?php FOREACH($asociaciones as $aso){ ?>
                                 <td style="min-width:65px" align="center">
                                     <?php $fecha = new DateTime($aso->asoFecha); $fecha= $fecha->format('d-M'); ?>
@@ -93,18 +122,23 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                                 <td><?php echo strtoupper($item->apellidoPaterno).' '.strtoupper($item->apellidoMaterno).' '.strtoupper($item->nombres); ?></td>
                                        
                                          <?php FOREACH($asociaciones as $aso){ ?>
-                                <td onclick="cambiarEstado(<?php echo $item->id; ?>,<?php echo $aso->asoTaller; ?>,'<?php echo $aso->asoFecha; ?>')" style=" cursor: pointer">
+                                <td align="center" onclick="cambiarEstado(<?php echo $item->id; ?>,<?php echo $aso->asoTaller; ?>,'<?php echo $aso->asoFecha; ?>')" style=" cursor: pointer">
                                     <?php 
-                                    $obs = $est = '';
+                                    $obs = '';
                                     FOREACH($asoPaciente as $as){ 
                                         IF($as->talAsoPaciente===$item->id && $as->talAsoTaller===$aso->asoTaller && $as->talAsoFecha===$aso->asoFecha ){
-                                            $est = 1;
-                                            IF(!empty($as->talAsoObservacion)){$obs = $obs.' '.str_replace('%20',' ',$as->talAsoObservacion);}
+                                            //$est = 1;
+                                            IF(!empty($as->talAsoObservacion)){$obs = $obs.' '.str_replace('%20',' ',$as->talAsoObservacion).'&#10;';}
                                         }
                                      } 
-                                     IF(!empty($est))echo $est;
-                                     IF(!empty($obs))echo ' - '.$obs;
-                                     ?>
+                                     //IF(!empty($est))echo $est;
+                                     //IF(!empty($obs))echo ' - '.$obs;
+                                     IF(!empty($obs)){ 
+                                         ?>
+                                        <div style="width:100%" title="<?php echo $obs; ?>">
+                                            <i class="fas fa-search"></i>
+                                        </div>
+                                     <?php } ?>
                                 </td>
                                         <?php } ?>
                             </tr>
@@ -133,6 +167,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                         <option value="<?php echo $pac->pacId;?>"><?php echo strtoupper($pac->apellidoPaterno).' '.strtoupper($pac->apellidoMaterno).' '.strtoupper($pac->nombres);?></option>
                         <?php } ?>
                     </select>
+                    <input type="hidden" value="<?php IF(!empty($dia))echo $dia; ?>" name="dia">
                     <?php echo form_submit('','Agregar','class="btn btn-primary btn-sm btnCetep"');?>
                     <?php echo form_close();?>
     </table>
@@ -146,6 +181,10 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
    </div>
 </div><!-- content -->
 </div>
+
+
+
+
 <?php
 function formatearRut( $rut ) {
      while($rut[0] == "0") {
@@ -228,52 +267,24 @@ return number_format( substr ( $rut, 0 , -1 ) , 0, "", ".") . '-' . substr ( $ru
 <script>
        
         function cambiarEstado(pac,taller,fecha){
-            var obs = prompt("Ingrese observación", "");
-            if(obs===null)obs='';
-            
+            var obs = prompt("ingrese nueva observación", "Presente");
+            if(obs!=null){
                     $.ajax({
                     type: "GET",
                     url: "<?php echo base_url(); ?>" + "api/ingresosHD/asociacion/"+pac+"_"+taller+"_"+obs+"_"+fecha,
                     dataType: 'json',
                     success: function(data){
-                        $estado='';
-                         $("."+data.registro+"_"+data.dia).hide();
-                         if(data.estado===1)estado=' A';else if(data.estado===2)estado=' P';else if(data.estado===3)estado='  I';else if(data.estado===0)estado=' ';
-                        document.getElementById(data.registro+"_"+data.dia).value = estado;
+                        window.location.href = window.location.protocol +'//'+ window.location.host + window.location.pathname + window.location.search;
+                        //location.reload();
                     }
                 });
+            }
         }
-         $( document ).ready(function() {
-            //document.getElementById("asistentes").value = $( "#estAsis").val();
-            //document.getElementById("permisos").value = $( "#estPermi").val();
-            //document.getElementById("inasistentes").value = $( "#estInas").val();;
-         });
-    </script>
-    <script>
-    $("#btnExport").click(function(e) {
-
-        var mes = $( "#mes").val();
-        var mesMostrar = '';
-        if(mes==='01')mesMostrar='Enero';else if(mes==='02')mesMostrar='Febrero';else if(mes==='03')mesMostrar='Marzo';else if(mes==='04')mesMostrar='Abril';else if(mes==='05')mesMostrar='Mayo';else if(mes==='06')mesMostrar='Junio';else if(mes==='07')mesMostrar='Julio';else if(mes==='08')mesMostrar='Agosto';else if(mes==='09')mesMostrar='Septiembre';else if(mes==='10')mesMostrar='Octubre';else if(mes==='11')mesMostrar='Noviembre';else if(mes==='12')mesMostrar='Diciembre'; else mesMostrar=mes; 
-                            
-        //Creamos un Elemento Temporal en forma de enlace
-        var tmpElemento = document.createElement('a');
         
-        // obtenemos la informaciÃ³n desde el div que lo contiene en el html
-        // Obtenemos la informaciÃ³n de la tabla
-        var data_type = 'data:application/vnd.ms-excel';
-        var tabla_div = document.getElementById('exportar');
-        var tabla_html = tabla_div.outerHTML.replace(/ /g, '%20');
-        tmpElemento.href = data_type + ', ' + tabla_html;
-        //Asignamos el nombre a nuestro EXCEL
-        tmpElemento.download = 'Registro de Asistencia '+mesMostrar+' HD.xls';
-        // Simulamos el click al elemento creado para descargarlo
-        tmpElemento.click();
-
-        //var htmltable= document.getElementById('imprimir');
-        //var html = htmltable.outerHTML;
-        //window.open('data:application/vnd.ms-excel,' + encodeURIComponent(html));
-    });
-
-</script>
+        $(document).ready(function () {
+            
+           
+        });
+    </script>
+    
 

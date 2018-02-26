@@ -50,7 +50,7 @@ ELSE {
     <br>
 <h4>EXAMEN FISICO GENERAL</h4>
 <div align="center">
-<textarea name="examenFisico" placeholder="Examen Fisico" style="width:95%;height: 100px"><?php IF(!empty($enfermeria->enfExamenFisico))echo $enfermeria->enfExamenFisico;?></textarea>
+<textarea name="examenFisico" placeholder="Examen Fisico" style="width:95%;height: 150px; font-size: 10px"><?php IF(!empty($enfermeria->enfExamenFisico))echo $enfermeria->enfExamenFisico;?></textarea>
 </div>
 <br>
 </div>

@@ -88,31 +88,63 @@ class Taller extends CI_Controller {
         $this->hd_taller_model->guardar();
         $this->listarTaller();
     }
-    public function listarPacientes()
+    public function listarPacientes($dia='')
     {
+        $fecha = $this->input->post('verFecha');
+        IF(!empty($dia)&& empty($fecha)){$fecha=$dia;}
+        
+        IF(!empty($fecha)){
+        
+            $fecha = new datetime($fecha);
+            $year=$fecha->format('Y');
+            $month=$fecha->format('m');
+            $day=$fecha->format('d');
+
+            # Obtenemos el numero de la semana
+            $semana=date("W",mktime(0,0,0,$month,$day,$year));
+            # Obtenemos el día de la semana de la fecha dada
+            $diaSemana=date("w",mktime(0,0,0,$month,$day,$year));
+            # el 0 equivale al domingo...
+            if($diaSemana==0)$diaSemana=7;
+            # A la fecha recibida, le restamos el dia de la semana y obtendremos el lunes
+            $first=date("Y-m-d",mktime(0,0,0,$month,$day-$diaSemana+1,$year));
+            # A la fecha recibida, le sumamos el dia de la semana menos siete y obtendremos el domingo
+            $next=date("Y-m-d",mktime(0,0,0,$month,$day+(7-$diaSemana),$year));
+ 
+        } ELSE {
+            $first = new datetime('last Monday');
+            $first = $first->format('Y-m-d');
+            $next = new datetime('next sunday');
+            $next = $next->format('Y-m-d');
+        }
         $data['pacientesLista']      = $this->hd_asistencia_model->dameListaAsistenciaPacientes();
         $data['pacientes']      = $this->hd_taller_model->damePacientesActivos();
         $data['talleres'] = $this->hd_taller_model->dameTalleres();
-        $data['asociaciones'] = $this->hd_taller_model->dameAsociaciones();
+        $data['asociaciones'] = $this->hd_taller_model->dameAsociaciones($first,$next);
         $data['asoPaciente'] = $this->hd_taller_model->dameAsociacionesPaciente();
+        
+        $data['dia'] = $first;
         $data['breadcumb']  = "";
         $data['title']      = "Lista de talleres";
         $data['menu']       = 'taller';
         $data['submenu']       = 'ptaller';
         Layout_Helper::cargaVista($this,'listarPacientes',$data,'hd');   
     }
+    
     public function agregarPaciente()
     {
+        $dia = $this->input->post('dia');
         $this->hd_taller_model->talUsuario = $this->session->userdata('id_usuario');
         $this->hd_taller_model->talEstado = 1;
         $this->hd_taller_model->talFechaRegistro = date('Y-m-d H:i:s');
         $this->hd_taller_model->talPaciente = $this->input->post('pacientes');
         $this->hd_taller_model->guardarPaciente();
-        $this->listarPacientes();
+        $this->listarPacientes($dia);
        
     }
     public function asociarTaller()
     {
+        $dia = $this->input->post('dia');
         $this->hd_taller_model->asoUsuario = $this->session->userdata('id_usuario');
         $this->hd_taller_model->asoEstado = 1;
         $this->hd_taller_model->asoFechaRegistro = date('Y-m-d H:i:s');
@@ -123,7 +155,7 @@ class Taller extends CI_Controller {
         $fecha     = $date->format('Y-m-d');
         $this->hd_taller_model->asoFecha = $fecha;
         $this->hd_taller_model->guardarAsociacion();
-        $this->listarPacientes();
+        $this->listarPacientes($dia);
        
     }
     

@@ -41,14 +41,19 @@ class hd_taller_model extends CI_Model
                         ->get()
                         ->result();
     }
-    public function dameAsociaciones()
+    public function dameAsociaciones($first,$next)
     {
+        
         return $this->db->select('*')
                         ->from('ficha_hd_talleres_asociacion')
                         ->join('ficha_hd_talleres','asoTaller=talId','inner')
                         ->where('asoEstado !=',5)
+                        ->where('asoFecha >=',"$first")
+                        ->where('asoFecha <=',"$next")
+                        ->order_by('asoFecha')
                         ->get()
                         ->result();
+        //die(var_dump($return));
     }
     public function dameAsociacionesPaciente()
     {
