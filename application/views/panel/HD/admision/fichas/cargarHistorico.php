@@ -138,7 +138,14 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                     <td style="width:85px" ><?php echo strtoupper($eva->uspNombre).' '.strtoupper($eva->uspApellidoP);?></td>
                     <td style="width:85px" ><?php echo $eva->evaProceso;?></td>
                     <td align=" justify" style=" max-height: 50px"><?php 
-                        IF(!empty($eva->evaObservacion))echo $eva->evaObservacion;
+                        IF(!empty($eva->evaObservacion)&& $eva->evaObservacion !=='medico')echo $eva->evaObservacion;
+                        ELSEIF($eva->evaObservacion ==='medico'){
+                            echo '<div style="overflow: auto"> ';
+                            echo '<u>Evaluación:</u><br>'.$eva->evaluacion.'<br>';
+                            echo '<u>Otras Indicaciones:</u><br>'.$eva->indicaciones.'<br>';
+                            echo '<u>Medicamentos:</u><br>'.$eva->medicamentos.'<br>';
+                            echo '</div>';
+                        }
                         ELSEIF(!empty($eva->evaObservacion)||!empty($eva->ingAntGenerales)||!empty($eva->ingInfFamiliar)||!empty($eva->ingConsideraciones) ) {
                             echo '<div style="overflow: auto"> ';
                             echo '<u>Antecedentes Generales:</u><br>'.$eva->ingAntGenerales.'<br>';
@@ -152,7 +159,9 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                     <td style="width:85px"align="center">
                         <?php IF($eva->evaProceso==='Intervensión'){ //echo $eva->evaId;?>
                             <a class="tip-bottom" title="Imprimir Evaluación" href="<?php echo base_url("hd_admision/impresiones/imprimirEvaluacion/".$eva->evaId )?>"><i class="fa fa-print" aria-hidden="true"></i></a>
-                        <?php }ELSE { ?>
+                        <?php }ELSEIF($eva->evaProceso==='Evolución Médica') { ?>
+                            <a class="tip-bottom" title="Imprimir Evolución Médica" href="<?php echo base_url("hd_admision/impresiones/imprimirEvolucionMedica/".$eva->evaId )?>"><i class="fa fa-print" aria-hidden="true"></i></a>
+                        <?php } ELSE { ?>
                             <a class="tip-bottom" title="Imprimir Antecedentes" href="<?php echo base_url("hd_admision/impresiones/cargarImprimir/".$eva->registro )?>"><i class="fa fa-print" aria-hidden="true"></i></a>
                        
                         <?php } ?>

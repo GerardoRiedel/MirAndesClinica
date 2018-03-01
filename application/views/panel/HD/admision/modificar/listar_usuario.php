@@ -42,7 +42,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                                 <td style=" color :<?php echo $color ?>" align="center"><?php if(!empty($item->uspRut)) echo formatearRut($item->uspRut); ?></td>
                                 <td style=" color :<?php echo $color ?>"><?php echo $item->uspNombre; ?></td>
                                 <td style=" color :<?php echo $color ?>"><?php echo $item->uspApellidoP.' '.$item->uspApellidoM; ?></td>
-                                <td style=" color :<?php echo $color ?>"><?php IF($item->uspPerfil === '11')echo 'Administrador';ELSEIF($item->uspPerfil === '12')echo 'Admisión';ELSEIF($item->uspPerfil === '13')echo 'Clínico';ELSEIF($item->uspPerfil === '14')echo 'Enfermero';ELSEIF($item->uspPerfil === '15')echo 'Monitor';ELSEIF($item->uspPerfil === '16')echo 'Psícologo';ELSEIF($item->uspPerfil === '17')echo 'Terapeuta'; ?></td>
+                                <td style=" color :<?php echo $color ?>"><?php IF($item->uspPerfil === '11')echo 'Administrador';ELSEIF($item->uspPerfil === '12')echo 'Admisión';ELSEIF($item->uspPerfil === '13')echo 'Clínico';ELSEIF($item->uspPerfil === '14')echo 'Enfermero';ELSEIF($item->uspPerfil === '15')echo 'Monitor';ELSEIF($item->uspPerfil === '16')echo 'Psícologo';ELSEIF($item->uspPerfil === '17')echo 'Terapeuta';ELSEIF($item->uspPerfil === '18')echo 'Médico'; ?></td>
                                 <td style=" color :<?php echo $color ?>" align="center">
                                     <?php //IF($item->uspEstado === '1')echo 'Activo';ELSE echo 'Desactivo'; ?>
                                     

@@ -66,12 +66,19 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                                 <th>Apellidos</th>
                                 <th>Bitácora</th>
                                 <th>Permisos</th>
+                            <?php IF($this->session->userdata('perfil') !== '18' ){?>
                                 <th style=" width: 120px"><table><td style="width: 100px">Signos Vitales</td><td>Licencias Médicas</td></table></th>
-                                <?php IF($this->session->userdata('perfil') === '13' || $this->session->userdata('perfil') === '14' || $this->session->userdata('perfil') === '11'){;?>
+                            <?php } ?>
+                            <?php IF($this->session->userdata('perfil') === '13' || $this->session->userdata('perfil') === '14' || $this->session->userdata('perfil') === '11'){;?>
                                 <th>Ingreso Enfermeria</th>
-                                <?php };?>
+                            <?php } ?>
+                            <?php IF($this->session->userdata('perfil') !== '18' ){?>
                                 <th>Registro de Intervención</th>
                                 <th>Registro Ingreso HD</th>
+                            <?php } ?>
+                            <?php IF($this->session->userdata('perfil') === '18' || $this->session->userdata('perfil') === '11' ){?>
+                                <th>Registro de Intervención Médica</th>
+                            <?php } ?>
                                 <th>Imprirmir<br>Antecedentes</th>
                                 <th>Alta</th>
                                 <th>Opciones</th>
@@ -94,16 +101,19 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                                 <td align="center">
                                     <a class="tip-bottom" title="Registro Solicitudes" href="<?php echo base_url("hd_admision/ingresos/cargarSolicitudes/" . $item->id )?>"><i class="fa fa-paper-plane" aria-hidden="true" style="color: orangered"></i></a>
                                 </td>
+                            <?php IF($this->session->userdata('perfil') !== '18' ){?>
                                 <td align="center">
                                     <a class="tip-bottom" title="Registro Signos Vitales" href="<?php echo base_url("hd_admision/ingresos/cargarSignos/" . $item->id )?>"><i class="fa fa-medkit" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                     <a class="tip-bottom" title="Solicitud Licencias Médicas" href="<?php echo base_url("hd_admision/ingresos/cargarLicencias/" . $item->paciente )?>"><i class="fa fa-sticky-note" aria-hidden="true"></i></a>
                                 </td>
-                                <?php IF($this->session->userdata('perfil') === '13' || $this->session->userdata('perfil') === '14' || $this->session->userdata('perfil') === '11'){;?>
+                            <?php } ?>
+                            <?php IF($this->session->userdata('perfil') === '13' || $this->session->userdata('perfil') === '14' || $this->session->userdata('perfil') === '11'){;?>
                                 <td align="center">
                                     <?php IF(!empty($item->enfId)){$color='green'; $title='Ver Ingreso de Enfermeria';}ELSE {$color='red'; $title='Sin Registro';}?>
                                     <a class="tip-bottom" title="<?php echo $title; ?>" style="color:<?php echo $color; ?>"  href="<?php echo base_url("hd_admision/ingresos/cargarIngresoEnfermeria/" . $item->id )?>"><i class="fa fa-stethoscope" aria-hidden="true"></i></a>
                                 </td>
-                                <?php };?>
+                            <?php } ?>
+                            <?php IF($this->session->userdata('perfil') !== '18' ){?>
                                 <td align="center">
                                     <a class="tip-bottom" title="Registro de Intervención" href="<?php echo base_url("hd_admision/ingresos/cargarEvaluacion/" . $item->id )?>"><i class="fa fa-user-md" aria-hidden="true"></i></a>
                                 </td>
@@ -111,6 +121,12 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                                     <?php IF(!empty($item->ingId)){$color='green'; $title='Ver Registro de Ingreso';}ELSE {$color='red'; $title='Sin Registro';}?>
                                     <a class="tip-bottom" title="<?php echo $title; ?>" style="color:<?php echo $color; ?>" href="<?php echo base_url("hd_admision/ingresos/cargarIngresoTO/" . $item->id )?>"><i class="far fa-calendar-plus" aria-hidden="true"></i></a>
                                 </td>
+                            <?php } ?>
+                            <?php IF($this->session->userdata('perfil') === '18' || $this->session->userdata('perfil') === '11' ){?>
+                                <td align="center">
+                                    <a class="tip-bottom" title="Registro de Intervención médica" href="<?php echo base_url("hd_admision/medicos/cargarNuevoControl/" . $item->id )?>"><i class="fa fa-user-md" aria-hidden="true"></i></a>
+                                </td>
+                            <?php } ?>
                                 <td align="center">
                                     <a class="tip-bottom" title="Imprimir ficha de admisión" href="<?php echo base_url("hd_admision/impresiones/cargarImprimir/" . $item->id )?>"><i class="fa fa-print" aria-hidden="true" style="color: orangered"></i></a>&nbsp;&nbsp;
                                 </td>

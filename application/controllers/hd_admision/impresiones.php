@@ -109,7 +109,7 @@ class Impresiones extends CI_Controller {
             $opciones[0] = $opciones[1] = $opciones[2] = $opciones[3] = $opciones[5] = $opciones[6] = $opciones[7] = $opciones[8] = $opciones[10] =$opciones[13] = 'off';
         }
         
-        $opciones[9] = $opciones[12] = $opciones[14] = 'off'; //IMPRIMIR FILA 
+        $opciones[9] = $opciones[12] = $opciones[14] = $opciones[15] = 'off'; //IMPRIMIR FILA 
         $data['enfermeria'] = $this->enfermeria_model->dameUnoHD($id);
         $data['registro']   = $this->hd_model->dameSignosFilaCero($id);
         $data['opciones']   = $opciones;
@@ -179,6 +179,29 @@ class Impresiones extends CI_Controller {
         $data['evaluacion'] = $id;
         $data['datos']      = $datos;
         $data['datosApo']   = $this->apoderados_model->dameUnoPorFichaHd($id->evaRegistro);
+
+        $data['opciones']   = $opciones;
+        $data['breadcumb']  = "Ingreso";
+        $data['title']      = "Ficha de Ingreso";
+        
+        $data['menu']       = 'ingreso';
+        $data['submenu']       = 'lingreso';
+        Layout_Helper::cargaVista($this,'imprimirImprimir',$data,'hd');   
+        
+        
+    }
+    public function imprimirEvolucionMedica($id)
+    {
+        
+        $opciones[15]='on';
+        $opciones[0] = $opciones[1] = $opciones[2] = $opciones[3 ]= $opciones[4] = $opciones[5] = $opciones[6] = $opciones[7] = $opciones[8] = $opciones[9] = $opciones[10] = $opciones[11] = $opciones[12] = $opciones[13] = $opciones[14] = 'off';
+        
+        $id                 = $this->hd_model->dameUnaEvolucionMedica($id);
+        //die(var_dump($id));
+        $datos              = $this->hd_model->dameUno($id->registro);
+        $data['evaluacion'] = $id;
+        $data['datos']      = $datos;
+        $data['datosApo']   = $this->apoderados_model->dameUnoPorFichaHd($id->registro);
 
         $data['opciones']   = $opciones;
         $data['breadcumb']  = "Ingreso";

@@ -514,4 +514,24 @@ class Hd_model extends CI_Model
     }
     
     
+    public function dameUnaEvolucionMedica($id)
+    {
+        return $this->db->select('*')
+                        ->from('ficha_hd_evaluacionmedica')
+                        ->join('usuarios_panel u','usuario=u.uspId','left')
+                        ->where('id',$id)
+                        //->where('evaEstado',1)
+                        ->get()
+                        ->row();
+    }
+    public function guardarControlMedico()
+    {
+        //$this->load->database('default',true);
+        if(isset($this->id)){
+        $this->db->update('ficha_hd_evaluacionmedica', $this, array('id' => $this->id));}
+        else{
+        $this->db->insert('ficha_hd_evaluacionmedica', $this);}
+    }
+    
+    
 }

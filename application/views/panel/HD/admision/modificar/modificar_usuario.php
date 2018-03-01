@@ -122,6 +122,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                             <option value="15" <?php IF($perfil === '15')echo 'selected'; ?>>Monitor</option>
                             <option value="16" <?php IF($perfil === '16')echo 'selected'; ?>>Psicologa</option>
                             <option value="17" <?php IF($perfil === '17')echo 'selected'; ?>>Terapeuta</option>
+                            <option value="18" <?php IF($perfil === '18')echo 'selected'; ?>>Médico</option>
                             
                         </select>
                         <?php }ELSE {?>

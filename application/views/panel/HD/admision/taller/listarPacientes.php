@@ -77,7 +77,9 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                     </div>    
                 <br>
                 <div class="col-lg-1"></div>
-                
+                <div class="col-lg-2">
+                    <i class="fa fa-table"  style="color:#1d7044;font-size:18px" title="Exportar Tabla a Excel"> </i><span id="btnExport"style="cursor: pointer; color:#1d7044;font-size: 14px;"> <b>Export</b></span><br>
+                </div>
                 
                 
                 <div class="col-lg-9"></div>
@@ -185,6 +187,62 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
 
 
 
+<div id="exportar" style="display:none">
+                <table  class='table table-bordered table-hover table-striped '>
+                        <thead>
+                            <tr>
+                                <th style="width:110px">Run</th>
+                                <th>Nombre</th>
+                                
+                                <?php 
+                                    $colspan=0;
+                                    FOREACH($asociaciones as $aso){ 
+                                     $colspan = $colspan +1; 
+                                    } ?>
+                                <th colspan="<?php echo $colspan; ?> ">Taller</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td></td>
+                                <td></td>
+                                
+                                    <?php FOREACH($asociaciones as $aso){ ?>
+                                <td style="min-width:65px" align="center">
+                                    <?php $fecha = new DateTime($aso->asoFecha); $fecha= $fecha->format('d-M'); ?>
+                                    <?php echo $fecha.'<br>'.$aso->talDescripcion; ?>
+                                </td>
+                                    <?php } ?>
+                            </tr>
+                                <?php foreach ($pacientes as $item) : ?>
+                            <tr>
+                                <?php //die(var_dump($item));?>
+                                <td><?php if(!empty($item->rut)) echo formatearRut ($item->rut); ?></td>
+                                <td><?php echo strtoupper($item->apellidoPaterno).' '.strtoupper($item->apellidoMaterno).' '.strtoupper($item->nombres); ?></td>
+                                       
+                                         <?php FOREACH($asociaciones as $aso){ ?>
+                                <td align="center">
+                                    <?php 
+                                    $obs = '';
+                                    FOREACH($asoPaciente as $as){ 
+                                        IF($as->talAsoPaciente===$item->id && $as->talAsoTaller===$aso->asoTaller && $as->talAsoFecha===$aso->asoFecha ){
+                                            //$est = 1;
+                                            IF(!empty($as->talAsoObservacion)){$obs = $obs.'<br>'.$as->talAsoObservacion;}
+                                        }
+                                     } 
+                                     //IF(!empty($est))echo $est;
+                                     //IF(!empty($obs))echo ' - '.$obs;
+                                     IF(!empty($obs)){ echo $obs;}
+                                     
+                                     ?>
+                                </td>
+                                        <?php } ?>
+                            </tr>
+                                <?php endforeach; ?>
+                        </tbody>
+                    </table>
+            </div>
+
 <?php
 function formatearRut( $rut ) {
      while($rut[0] == "0") {
@@ -286,5 +344,28 @@ return number_format( substr ( $rut, 0 , -1 ) , 0, "", ".") . '-' . substr ( $ru
            
         });
     </script>
+    <script>
+    $("#btnExport").click(function(e) {
+
+        //Creamos un Elemento Temporal en forma de enlace
+        var tmpElemento = document.createElement('a');
+        
+        // obtenemos la informaciÃ³n desde el div que lo contiene en el html
+        // Obtenemos la informaciÃ³n de la tabla
+        var data_type = 'data:application/vnd.ms-excel';
+        var tabla_div = document.getElementById('exportar');
+        var tabla_html = tabla_div.outerHTML.replace(/ /g, '%20');
+        tmpElemento.href = data_type + ', ' + tabla_html;
+        //Asignamos el nombre a nuestro EXCEL
+        tmpElemento.download = 'Registro de Talleres.xls';
+        // Simulamos el click al elemento creado para descargarlo
+        tmpElemento.click();
+
+        //var htmltable= document.getElementById('imprimir');
+        //var html = htmltable.outerHTML;
+        //window.open('data:application/vnd.ms-excel,' + encodeURIComponent(html));
+    });
+
+</script>
     
 

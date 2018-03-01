@@ -50,8 +50,16 @@ class Hd_historico_model extends CI_Model
                                             ->where('enfPaciente',$paciente)
                                             ->get()
                                             ->result();
+        $query5 = $this->db->select('uspNombre,uspApellidoP,perId,perNombre,perNombreCorto,registro,usuario,paciente as evaPaciente,id as evaId,fechaCreacion as evaFechaRegistro,evaluacion,indicacionesOtro as indicaciones,medicamentos,("medico")  evaObservacion, ("Evolución Médica") evaProceso')
+                                            ->from('ficha_hd_evaluacionmedica')
+                                            ->join('usuarios_panel','uspId=usuario')
+                                            ->join('usuarios_panel_perfiles','uspPerfil=perId')
+                                            //->where('ingEstado !=',5)
+                                            ->where('paciente',$paciente)
+                                            ->get()
+                                            ->result();
         // var_dump($query1);die;
-        $query = array_merge($query1, $query2,$query3,$query4);
+        $query = array_merge($query1, $query2,$query3,$query4,$query5);
         return  $query;
     }
 }

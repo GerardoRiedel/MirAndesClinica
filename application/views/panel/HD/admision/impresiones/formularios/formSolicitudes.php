@@ -148,7 +148,8 @@
             </div>
             <br>
             <div class="cubo21">&nbsp;&nbsp;
-                <span style="font-size:15px">Firma </span>
+                <span style="font-size:15px">Firma </span> 
+                <div><img style="position: relative; top:-55px; left: 80px; width:280px; max-height: 200px" src="<?php echo base_url();?>../assets/img/firmas/<?php echo $datosSol->solUsuario; ?>.png" ></div>
             </div>
             <br>
             <div style="text-align: justify">

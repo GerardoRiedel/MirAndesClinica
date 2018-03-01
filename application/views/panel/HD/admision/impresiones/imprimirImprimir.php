@@ -218,10 +218,17 @@
                 ?>
     <!-- FIN FORMULARIO SIGNOS -->
 <?php ENDIF; ?>
-    <?php IF($opciones[14] === 'on'):?>
+<?php IF($opciones[14] === 'on'):?>
     <!-- INICIO FORMULARIO SIGNOS -->
                 <?php
                 $this->load->view('panel/HD/admision/impresiones/formularios/formHistorico');
+                ?>
+    <!-- FIN FORMULARIO SIGNOS -->
+<?php ENDIF; ?>
+<?php IF($opciones[15] === 'on'):?>
+    <!-- INICIO FORMULARIO SIGNOS -->
+                <?php
+                $this->load->view('panel/HD/admision/impresiones/formularios/formEvolucionMedica');
                 ?>
     <!-- FIN FORMULARIO SIGNOS -->
 <?php ENDIF; ?>
