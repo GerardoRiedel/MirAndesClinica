@@ -47,6 +47,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                         <option value="0">Seleccione...</option>
                         <option value="01" <?php IF($mes==='01')echo 'selected';?>>Enero</option>
                         <option value="02" <?php IF($mes==='02')echo 'selected';?>>Febrero</option>
+                        <option value="02" <?php IF($mes==='03')echo 'selected';?>>Marzo</option>
                     </select>
                     <?php echo form_submit('','Ver','class="btn btn-primary btn-sm btnCetep"');?>
                     <?php echo form_close();?>
