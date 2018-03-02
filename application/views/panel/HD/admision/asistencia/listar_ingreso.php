@@ -76,7 +76,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                
                 <div class="col-lg-1"></div>
                 <div class="col-lg-10" style=" overflow: auto">
-                    <table  class='table table-bordered table-hover table-striped ' style="width:1150px">
+                    <table  class='table table-bordered table-hover table-striped ' style="width:1150px; font-size:11px">
                         <thead>
                             <tr>
                                 <th style="width:110px">Run</th>

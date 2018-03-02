@@ -52,17 +52,17 @@ class hd_asistencia_model extends CI_Model
                     ->join('ficha_pacientes p','p.id=r.paciente','left')
                     ->join('ficha_hd_asistencia a','r.id=a.asiRegistro','left')
                     ->where('r.ingresoMirAndes > "0" AND (r.ficha > "0" OR r.fichaRH > "0")')
-                     ->where('r.alta','no')
+                    ->where('r.alta','no')
                     ->group_by('p.id')
                     ->get()
                     ->result();
          //die(var_dump($return));
             foreach ($return as $re){
-                IF(empty($re->asiId)){
+              //  IF(empty($re->asiId) ){
                     $this->asiFecha=date('Y-m-d');
                     $this->asiRegistro=$re->id;
                     $this->db->insert('ficha_hd_asistencia', $this);
-                }
+               // }
             }
         
         IF(!empty($mes)){

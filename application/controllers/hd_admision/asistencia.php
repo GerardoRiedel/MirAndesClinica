@@ -47,8 +47,8 @@ class Asistencia extends CI_Controller {
         IF(empty($mes)||$mes==='0'){$mes=date('m');}
         $data['pacientesLista']      = $this->hd_asistencia_model->dameListaAsistenciaPacientes();
         
-        $data['pacientes']      = $this->hd_asistencia_model->damePacientes($mes);
         $data['asistencia']      = $this->hd_asistencia_model->dameAsistenciaHD($mes);
+        $data['pacientes']      = $this->hd_asistencia_model->damePacientes($mes);
         //die(var_dump($data['pacientesLista']));
         $data['mes']=$mes;
         $data['breadcumb']  = "paciente";
