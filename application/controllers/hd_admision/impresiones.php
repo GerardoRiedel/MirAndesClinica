@@ -172,7 +172,7 @@ class Impresiones extends CI_Controller {
     {
         
         $opciones[12]='on';
-        $opciones[0] = $opciones[1] = $opciones[2] = $opciones[3 ]= $opciones[4] = $opciones[5] = $opciones[6] = $opciones[7] = $opciones[8] = $opciones[9] = $opciones[10] = $opciones[11] = $opciones[13] = $opciones[14] = 'off';
+        $opciones[0] = $opciones[1] = $opciones[2] = $opciones[3 ]= $opciones[4] = $opciones[5] = $opciones[6] = $opciones[7] = $opciones[8] = $opciones[9] = $opciones[10] = $opciones[11] = $opciones[13] = $opciones[14] = $opciones[15] = 'off';
         
         $id                 = $this->hd_model->dameUnaEvaluacion($id);
         $datos              = $this->hd_model->dameUno($id->evaRegistro);

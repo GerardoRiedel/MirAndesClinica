@@ -50,7 +50,7 @@ ELSE {
     <br>
 <h4>EXAMEN FISICO GENERAL</h4>
 <div align="center">
-<textarea name="examenFisico" placeholder="Examen Fisico" style="width:95%;height: 150px; font-size: 10px"><?php IF(!empty($enfermeria->enfExamenFisico))echo $enfermeria->enfExamenFisico;?></textarea>
+<textarea name="examenFisico" placeholder="Examen Fisico" style="width:95%;height: 130px; font-size: 10px"><?php IF(!empty($enfermeria->enfExamenFisico))echo $enfermeria->enfExamenFisico;?></textarea>
 </div>
 <br>
 </div>
@@ -131,7 +131,7 @@ ELSE {
                         </span> 
                     </div>
         <div class="col-lg-10" align="right">1/3</div>              
-    <div align="right" style="margin-top:-330px">
+    <div align="right" style="margin-top:-340px">
                     <img style="width: 560px;bottom:30px;right:30px;opacity: 0.4" src="<?php echo base_url();?>../assets/img/cerros.png">
                 </div>
     

@@ -43,8 +43,7 @@ class Layout_Helper
         
 		
         elseif($obj->session->userdata('perfil') == '1'){
-        	// accesos de admin = cesfam,enfermedades,envios,plataforma,prestacion,accesos,reportes,sectores,sms,billing,principal,canales
-        	 
+        	
 			$no_vistas_perfil1 = array("ingresos");
 			if (in_array($restriccion, $no_vistas_perfil1)) {
 		        $obj->load->view('panel/layout/head', $data);
@@ -59,8 +58,7 @@ class Layout_Helper
         }
 
         else if($obj->session->userdata('perfil') == '2'  || $obj->session->userdata('perfil') == '6'){
-        	// accesos de some = canalesSome,cesfamSome,enfermedadesSome,especialidadesSome,horasSome,mensajesSome,plataformaSome,principalSome,profesionalesSome,reportesSome,usuariosSome
-			
+        		
 			$no_vistas_perfil1 = array("ingresos");
 			if (in_array($restriccion, $no_vistas_perfil1)) {
 		        $obj->load->view('panel/layout/head', $data);
@@ -73,8 +71,7 @@ class Layout_Helper
 			}
         }
         else if($obj->session->userdata('perfil') == '3' || $obj->session->userdata('perfil') == '4' || $obj->session->userdata('perfil') == '5'){
-        	// accesos de some = canalesSome,cesfamSome,enfermedadesSome,especialidadesSome,horasSome,mensajesSome,plataformaSome,principalSome,profesionalesSome,reportesSome,usuariosSome
-			
+        		
 			$no_vistas_perfil2 = array("clinica");
 			if (in_array($restriccion, $no_vistas_perfil2)) {
 				        	

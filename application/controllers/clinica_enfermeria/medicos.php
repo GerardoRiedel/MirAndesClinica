@@ -52,6 +52,7 @@ class Medicos extends CI_Controller {
         $registro       = $this->input->post('registro');
         $rut                = $this->input->post('rut');
         $id                 = $this->input->post('id');
+        $data['datos']      = $this->ingreso_model->dameUno($registro);
         IF(!empty($id)){
             $this->profesionales_model->id = $id;
             $this->profesionales_model->fechaEdicion = date('Y-m-d H:i:s');
@@ -67,6 +68,7 @@ class Medicos extends CI_Controller {
             $this->profesionales_model->profesionalRut = $profesional->rut;
         }
         $this->profesionales_model->registro = $registro;
+        $this->profesionales_model->paciente  = $data['datos']->paciente;
         $this->profesionales_model->evaluacion  = $this->input->post('evaluacion');
         $this->profesionales_model->tipoReposo  = $this->input->post('tipoReposo');
         $this->profesionales_model->usuario = $this->session->userdata('id_usuario');
@@ -88,7 +90,7 @@ class Medicos extends CI_Controller {
         $controles = $this->profesionales_model->dameTodosControles($registro);
         $data['vias']       = $this->evoluciones_model->dameVias();
         $data['farmacos']   = $this->evoluciones_model->dameFarmacos();
-        $data['datos']      = $this->ingreso_model->dameUno($registro);
+        
 
        //$controlesUGH = $this->profesionales_model->dameTodosControlesUGH($data['datos']->rut);
        //F(!empty($controlesUGH))$controles = array_merge($controles,$controlesUGH);

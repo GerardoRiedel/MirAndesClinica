@@ -77,7 +77,7 @@
         
     ?>
 <div style="page-break-before: always;">
-                    <div class="col-lg-10" align="right" style=" margin-right: 40px">
+                    <div class="col-lg-10" align="right" style=" margin-right: 40px;">
                         <img src="<?php echo base_url();?>../assets/img/mirAndes.png" class="logo">
                     </div>
                     <div class="col-lg-10" align="right">

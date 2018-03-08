@@ -466,7 +466,7 @@ class Ingresos extends CI_Controller {
         IF(empty($registro))redirect(base_url().'hd_admision/ingresos/inicio/');
         
         $this->hd_model->evaId              = $id;
-        $this->hd_model->evaEstado          = 2;
+        $this->hd_model->evaEstado          = 5;
         $this->hd_model->evaFechaRegistro   = date('Y-m-d H:i:s');
         $this->hd_model->evaUsuario         = $this->session->userdata('id_usuario');
         $this->hd_model->guardarEvaluaciones();

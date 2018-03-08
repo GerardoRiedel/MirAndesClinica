@@ -26,7 +26,10 @@ IF(empty($submenu)){$submenu='';}?>
 <li class="submenu <?php if($menu === 'fichas')echo "active open" ?>">
     <a href=""><i class="far fa-newspaper" aria-hidden="true" style=" width: 20px;text-align: center"></i><span>Fichas</span><i class="arrow fa fa-chevron-right"></i></a>
         <ul>
-            <li <?php if($submenu === 'lingreso')  echo "class='active'" ?>><a href="<?php echo base_url("clinica_admision/fichas/listar_paciente"); ?>">Listar Fichas</a></li>            
+            <li <?php if($submenu === 'lingreso')  echo "class='active'" ?>><a href="<?php echo base_url("clinica_admision/fichas/cargando"); ?>">Listar Fichas</a></li>            
+        <!--
+        <li <?php if($submenu === 'lingreso')  echo "class='active'" ?>><a href="<?php echo base_url("clinica_admision/fichas/listar_paciente"); ?>">Listar Fichas</a></li>            
+        -->
         </ul> 
 </li>
 

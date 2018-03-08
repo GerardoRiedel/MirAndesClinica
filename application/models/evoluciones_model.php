@@ -88,13 +88,13 @@ class Evoluciones_model extends CI_Model
     }
     public function dameUnoEnfermeria($registro){
         return $this->db->select('*')
-                                    ->from('evoluciones_enfermeria')
-                                    ->where('evoEnfRegistro',$registro)
-                                    //->where('evoEnfEvoId',$evolucion)
-                                    ->order_by('evoEnfId','desc')
-                                    ->limit(1)
-                                    ->get()
-                                    ->row();
+                        ->from('evoluciones_enfermeria')
+                        ->where('evoEnfRegistro',$registro)
+                        //->where('evoEnfEvoId',$evolucion)
+                        ->order_by('evoEnfId','desc')
+                        //->limit(1)
+                        ->get()
+                        ->row();
     }
     public function guardarEvoEnfermeria()
     {

@@ -17,8 +17,8 @@ class Enfermeria_model extends CI_Model
     public function dameUno($id)
     {
         return $this->db->select('*')
-                ->join('usuarios_panel','enfUsuario=uspId','left')
                 ->from('enfermeria')
+                ->join('usuarios_panel','enfUsuario=uspId','left')
                 ->where('enfRegistro',$id)
                 ->order_by('enfId','desc')
                 ->get()

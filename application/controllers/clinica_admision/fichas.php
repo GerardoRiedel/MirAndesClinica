@@ -34,6 +34,14 @@ class Fichas extends CI_Controller {
         //$days   = floor(($diff - $years * 365*60*60*24 - $months*30*60*60*24)/ (60*60*24));
         return $years;
     }
+    public function cargando(){
+        
+        $data['breadcumb']  = "Registros";
+        $data['menu']       = "depositos";
+        $data['submenu']    = "ldeposito";
+        $data['title']      = "Cargando...";
+        Layout_Helper::cargaVista($this,'cargando',$data,'ingresos');   
+    }
     
     public function listar_paciente()
     {
@@ -107,5 +115,28 @@ class Fichas extends CI_Controller {
         $data['title']      = "Listar Evoluciones";
         $data['menu']       = 'fichas';
         Layout_Helper::cargaVista($this,'imprimirEvolucion',$data,'ingresos');   
+    }
+    public function cargarHistorico($id)
+    {//die($id);
+        $this->load->model("bitacora_model");
+        $data['vias']       = $this->evoluciones_model->dameVias();
+        $data['farmacos']   = $this->evoluciones_model->dameFarmacos();
+        //$evolucion          = $this->evoluciones_model->dameUnoId($id);
+        //$data['evo']        = $evolucion;die(var_dump($evolucion));
+        $dato = $this->ingreso_model->dameTodo($id);
+        $data['datos']      = $dato[0];
+        //die(var_dump($data['datos']));
+        $data['edad']       = $this->calculaedad($data['datos']->fechaNacimiento);
+        $data['evaluaciones']= $this->bitacora_model->dameHistorico($id);
+        $data['regimen']    = $this->pacientes_model->dameRegimen();
+        $data['comuna']     = $this->comunas_model->dameTodo();
+        $data['medico']     = $this->profesionales_model->dameTodo();
+        $data['isapre']     = $this->isapres_model->dameTodo();
+        
+        $data['breadcumb']  = "Historico";
+        $data['title']      = "Bitácora";
+        $data['menu']       = 'ingreso';
+        $data['submenu']       = 'lingreso';
+        Layout_Helper::cargaVista($this,'cargarHistorico',$data,'ingresos');   
     }
 }

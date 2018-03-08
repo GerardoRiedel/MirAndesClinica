@@ -127,6 +127,7 @@ class Ingresos extends CI_Controller {
         $regimen = $this->input->post('regimen');
         $regimen = $this->pacientes_model->dameRegimenId($regimen);
         $this->ingreso_model->id            = $this->input->post('fichaElectro');
+        
         $this->ingreso_model->diagnostico   = $this->input->post('diagnostico');
         $this->ingreso_model->diagnosticoDerivacion     = $this->input->post('diagnosticoDerivacion');
         $this->ingreso_model->nombresMedicoSolicitante  = $this->input->post('medicoSolicitante');
@@ -149,6 +150,7 @@ class Ingresos extends CI_Controller {
         }
         
         IF(!empty($evoId))$this->evoluciones_model->evoId        = $evoId;
+        $this->evoluciones_model->evoPaciente       = $paciente->id;
         $this->evoluciones_model->evoUsuario        = $this->session->userdata('id_usuario');
         $this->evoluciones_model->evoRegistro       = $this->input->post('fichaElectro');
         $this->evoluciones_model->evoFechaRegistro  = date('Y-m-d H:i:s');
@@ -335,6 +337,9 @@ class Ingresos extends CI_Controller {
     {
         $id     = $this->input->post('fichaElectro');
         $rut    = $this->input->post('rut');
+        $data['datos']      = $this->ingreso_model->dameUno($id);
+        //die($data['datos']->paciente);
+        //die(var_dump($data['datos']));
         $enfId  = $this->enfermeria_model->dameUno($id);
         IF(!empty($enfId))$this->enfermeria_model->enfId = $enfId->enfId;
         
@@ -388,6 +393,7 @@ class Ingresos extends CI_Controller {
         //$motivo     = $this->input->post('motivo');
         
         $this->enfermeria_model->enfRegistro    = $id;
+        $this->enfermeria_model->enfPaciente    = $data['datos']->paciente;
         
        //$this->enfermeria_model->enfConciencia  = $conciencia;
        //$this->enfermeria_model->enfOrientacion = $orientacion;
@@ -449,7 +455,7 @@ class Ingresos extends CI_Controller {
         
         
         
-        $data['datos']      = $this->ingreso_model->dameUno($id);
+        
         $data['enfermeria'] = $this->enfermeria_model->dameUno($id);
         $data['breadcumb']  = "Ingreso";
         $data['title']      = "Cargar nuevo registro";

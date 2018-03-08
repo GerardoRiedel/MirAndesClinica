@@ -143,12 +143,16 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                         <label>Medico Asignado: </label>
                     </div>
                     <div class='col-lg-3'>
-                        <select name="medicoAsignado" id="medicoAsignado">
+                        <?php IF($this->session->userdata('perfil') === '4') { ?>
+                        <select name="medicoAsignado" id="medicoAsignado" >
                             <?php foreach($medico as $med): ;?>
                             <?php IF ($med->id === $datos->medicoAsignado) echo '<option value="'.$datos->medicoAsignado.'" selected>'.strtoupper($datos->apellidomedicoAsignado).' '.strtoupper($datos->nombresmedicoAsignado).'</option';?>
                             <option value="<?php echo $med->id; ?>"><?php echo strtoupper($med->apellidoPaterno).' '.strtoupper($med->apellidoMaterno).' '.strtoupper($med->nombres); ?></option>
                             <?php endforeach; ?>
                         </select>
+                        <?php } ELSE { ?>
+                        <?php echo strtoupper($datos->apellidomedicoAsignado).' '.strtoupper($datos->nombresmedicoAsignado); ?>
+                        <?php } ?>
                     </div>
                     <div class="col-lg-2" align="right">
                         <label>Día estadía: </label>
@@ -157,7 +161,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                 
 
                     <div class="col-lg-2">
-                        <input name="evoEstadia" id="diaEstadia" type="text" style=" max-width: 100px" value="<?php echo calculaDias($datos->fechaIngreso); ?>">
+                        <input name="evoEstadia" id="diaEstadia" type="text" readonly="true" style=" max-width: 100px" value="<?php echo calculaDias($datos->fechaIngreso); ?>">
                     </div>
                     <div class="col-lg-1" align="right">
                         <label>Habitación: </label>
@@ -171,14 +175,14 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                     </div>
                     <div class='col-lg-10'>
                         <?php //die($evoAntigua->evoDiagPsiquiatra.'sd'); ?>
-                        <input type="text" style="width: 94%;" name="evoDiagPsiquiatra" id="evoDiagPsiquiatra" value="<?php IF(!empty($evo->evoDiagPsiquiatra))echo $evo->evoDiagPsiquiatra; ELSEIF(!empty($evoAntigua->evoDiagPsiquiatra)) echo $evoAntigua->evoDiagPsiquiatra; ?>">
+                        <input type="text" style="width: 94%;" name="evoDiagPsiquiatra" id="evoDiagPsiquiatra" <?php IF($this->session->userdata('perfil') !== '4') echo 'readonly';?> value="<?php IF(!empty($evo->evoDiagPsiquiatra))echo $evo->evoDiagPsiquiatra; ELSEIF(!empty($evoAntigua->evoDiagPsiquiatra)) echo $evoAntigua->evoDiagPsiquiatra; ?>">
                     </div>
                     <div class="col-lg-12"><br></div>
                     <div class="col-lg-2">
                         <label>Dg Médico: </label>
                     </div>
                     <div class='col-lg-10'>
-                        <input type="text" style="width: 94%;" name="evoDiagMedico"  id="evoDiagMedico"    value="<?php IF(!empty($evo->evoDiagMedico))echo $evo->evoDiagMedico; ELSEIF(!empty($evoAntigua->evoDiagMedico)) echo $evoAntigua->evoDiagMedico;?>">
+                        <input type="text" style="width: 94%;" name="evoDiagMedico"  id="evoDiagMedico"  <?php IF($this->session->userdata('perfil') !== '4') echo 'readonly';?>  value="<?php IF(!empty($evo->evoDiagMedico))echo $evo->evoDiagMedico; ELSEIF(!empty($evoAntigua->evoDiagMedico)) echo $evoAntigua->evoDiagMedico;?>">
                     </div>
                     <div class="col-lg-12"><br></div>
                     <div class="col-lg-2">
@@ -232,8 +236,8 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                     <div class="col-lg-2">
                         <label>Antecedentes Morbidos: </label>
                     </div>
-                    <div class="col-lg-4">
-                        <input type="text" readonly value="<?php IF(!empty($ingEnfermeria->enfMorbidos))echo $ingEnfermeria->enfMorbidos;?>">
+                    <div class="col-lg-10">
+                        <input type="text" style="width:94%" readonly value="<?php IF(!empty($enfermeriaIngreso->enfMorbidos))echo $enfermeriaIngreso->enfMorbidos;?>">
                     </div>
                     
                     
@@ -322,14 +326,14 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                     
                     
                     <div class='col-lg-12'><br></div>
-                    <div class="col-lg-4">
-                        <label>PLAN DE ENFERMERIA</label><br><textarea name="evoPlan" id="evoPlan"><?php IF(!empty($evo->evoPlan))echo $evo->evoPlan; ELSEIF(!empty($evoAntigua->evoPlan)) echo $evoAntigua->evoPlan; ?></textarea>
+                    <div class="col-lg-4"><?php //die(var_dump($evo));?>
+                        <label>PLAN DE ENFERMERIA</label><br><textarea name="evoPlan" id="evoPlan" <?php IF($this->session->userdata('perfil') !== '4') echo 'readonly';?> ><?php IF(!empty($evo->evoPlan))echo $evo->evoPlan; ELSEIF(!empty($evoAntigua->evoPlan)) echo $evoAntigua->evoPlan; ?></textarea>
                     </div>
                     <div class="col-lg-4">
-                        <label>EXAMENES</label><br><textarea name="evoExamenes" id="evoExamenes"><?php IF(!empty($evo->evoExamenes))echo $evo->evoExamenes; ELSEIF(!empty($evoAntigua->evoPlan)) echo $evoAntigua->evoPlan;?></textarea>
+                        <label>EXAMENES</label><br><textarea name="evoExamenes" id="evoExamenes"><?php IF(!empty($evo->evoExamenes))echo $evo->evoExamenes; ELSEIF(!empty($evoAntigua->evoExamenes)) echo $evoAntigua->evoExamenes;?></textarea>
                     </div>
                     <div class="col-lg-4">
-                        <label>OBSERVAR Y AVISAR</label><br><textarea name="evoAvisar" id="evoAvisar"><?php IF(!empty($evo->evoAvisar))echo $evo->evoAvisar; ELSEIF(!empty($evoAntigua->evoPlan)) echo $evoAntigua->evoPlan;?></textarea>
+                        <label>OBSERVAR Y AVISAR</label><br><textarea name="evoAvisar" id="evoAvisar"><?php IF(!empty($evo->evoAvisar))echo $evo->evoAvisar; ELSEIF(!empty($evoAntigua->evoAvisar)) echo $evoAntigua->evoAvisar;?></textarea>
                     </div>
                     <div class="col-lg-12"><br></div>
                      <div class="col-lg-4">

@@ -70,8 +70,10 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                                 <th style=" display:none">Run</th>
                                 <th>Nombre</th>
                                 <th>Apellidos</th>
+                                <th>Bitácora</th>
                                 <?php IF($this->session->userdata('perfil') == '1' ||  $this->session->userdata('perfil') == '2' ){ ?>
                                 <th>Prefacturas</th>
+                                
                                 <?php } ?>
                                 <?php IF($this->session->userdata('perfil') == '1' ||  $this->session->userdata('perfil') == '4' ||  $this->session->userdata('perfil') == '5' ){ ?>
                                 <th  aling="center">Control Médico</th>
@@ -93,6 +95,15 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                                 <td style=" display:none"><?php echo $item->rut; ?></td>
                                 <td align="center"><?php echo strtoupper($item->nombres); ?></td>
                                 <td align="center"><?php echo strtoupper($item->apellidoPaterno).' '.strtoupper($item->apellidoMaterno); ?></td>
+                                <?php IF($this->session->userdata('perfil') == '1' ||  $this->session->userdata('perfil') == '2' ){ ?>
+                                    <td align="center">
+                                        <a class="tip-bottom" title="Bitácora" href="<?php echo base_url("clinica_admision/fichas/cargarHistorico/" . $item->id )?>"><i class="fas fa-history" aria-hidden="true" style="color: green"></i></a>
+                                    </td>
+                                <?php }ELSE{ ?>
+                                    <td align="center">
+                                        <a class="tip-bottom" title="Bitácora" href="<?php echo base_url("clinica_enfermeria/fichas/cargarHistorico/" . $item->id )?>"><i class="fas fa-history" aria-hidden="true" style="color: green"></i></a>
+                                    </td>
+                                <?php } ?>
                                 <?php IF($this->session->userdata('perfil') == '1' ||  $this->session->userdata('perfil') == '2' ){ ?>
                                 <td align="center">
                                     <a class="tip-bottom" title="Cargar Prefacturas" style="color:green" href="<?php echo base_url("clinica_admision/prefacturas/cargarPrefactura/" . $item->id )?>"><i class="fa fa-clipboard" aria-hidden="true"></i></a>
