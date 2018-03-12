@@ -215,4 +215,14 @@ class Parametros_model extends CI_Model
                         ->get()
                         ->row();
     }
+    
+    
+    public function damePack($id)
+    {
+        return $this->db->select('*')
+                        ->from('insumos_pack')
+                        ->where('pakInsumoPack',$id)
+                        ->get()
+                        ->result();
+    }
 }

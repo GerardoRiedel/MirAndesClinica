@@ -26,7 +26,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                         <thead>
                             <tr>
                                 <th>Nombre</th>
-                                <th>Valor</th>
+                                <th style="width:150px">Valor</th>
                                 <th>Estado</th>
                                 <th>Modificar</th>
                             </tr>
@@ -35,7 +35,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                                 <?php foreach ($datos as $item) : ?>
                             <tr>
                                 <td><?php echo STRTOUPPER($item->insNombre); ?></td>
-                                <td><?php IF(!empty($item->insValor))echo '$ '.$item->insValor; ?></td>
+                                <td align="center"><?php IF(!empty($item->insValor))echo '$ '.$item->insValor; ?></td>
                                 <td align="center"><?php IF($item->insEstado === '1')echo 'Activo';ELSE 'Desactivo' ?></td>
                                 <td align="center">
                                     <a class="tip-bottom" title="Modificar Insumo" href="<?php echo base_url("clinica_admision/herramientas/cargar_insumos/".$item->insId )?>"><i class="fas fa-edit" aria-hidden="true"></i></a>

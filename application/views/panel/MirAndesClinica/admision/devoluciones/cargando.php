@@ -26,7 +26,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
 
 <script>
     $(document).ready(function(e) {
-        location.href="<?php echo base_url(); ?>"+"clinica_admision/fichas/listar_paciente";
+        location.href="<?php echo base_url(); ?>"+"clinica_admision/devoluciones/listarDevolucion2";
            
     });
     </script>

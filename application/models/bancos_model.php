@@ -71,11 +71,12 @@ class Bancos_model extends CI_Model
     }
     public function dameTodosDeposito($ficha)
     {
-        return $this->db->select('c.ctaId,c.ctaBanco,v.banNombre banCtaNombre,d.depId,b.banNombre,d.depCuenta,d.depSerie,d.depSuma,d.depTipo,d.depConcepto,d.depFechaRegistro,d.depFechaPrimer,d.depFechaSegundo,d.depFechaTercer')
+        return $this->db->select('c.ctaId,c.ctaBanco,v.banNombre banCtaNombre,d.depId,b.banNombre,d.depCuenta,d.depSerie,d.depSuma,d.depTipo,d.depConcepto,d.depFechaRegistro,d.depFechaPrimer,d.depFechaSegundo,d.depFechaTercer,depConNombre')
                         ->from('depositos d')
                         ->join('bancos b','b.banId=d.depBanco','left')
                         ->join('cuentas_pacientes c','c.ctaRegistro=d.depFichaElectro','left')
                         ->join('bancos v','v.banId=c.ctaBanco','left')
+                        ->join('depositos_conceptos o','o.depConId=d.depConcepto','left')
                         ->where('d.depFichaElectro',$ficha)
                         ->where('d.depEstado != "5"')
                         ->order_by('d.depId','asc')

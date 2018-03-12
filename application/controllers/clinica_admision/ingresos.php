@@ -665,7 +665,11 @@ class Ingresos extends CI_Controller {
         $data['examenes']   = $this->enfermeria_model->dameExamenes();
         $data['datos']      = $this->ingreso_model->dameUno($id);
         
-        $data['insumosAsignados'] = $this->enfermeria_model->dameInsumosAsignados($id);
+        $insumosAsignados = $this->enfermeria_model->dameInsumosAsignados($id);
+        $depositos = $this->bancos_model->dameTodosDeposito($id);
+        //die(var_dump($insumosAsignados));
+        $data['depositos'] = $depositos;
+        $data['insumosAsignados'] = $insumosAsignados;
         $data['breadcumb']  = "Registros";
         $data['title']      = "Lista de Insumos para Prefactura";
         $data['menu']       = "ingreso";
@@ -700,6 +704,13 @@ class Ingresos extends CI_Controller {
             $this->enfermeria_model->inaTipo    = 1;
             $this->enfermeria_model->guardarInsumosAsignados();
             unset($this->enfermeria_model->inaTipo,$this->enfermeria_model->inaInsumo,$this->enfermeria_model->inaValor,$this->enfermeria_model->inaCantidad);
+        
+            ////////////REVISA SI ES PACK/////////////
+            IF($insu[0]==='9'){
+            $this->pack($insu[0],$insu[1],$id,3);
+            }ELSE die();
+            
+            
         }
         $cantidad = $this->input->post('cantidadExamen');
         $exam = explode('_', $this->input->post('examen'));
@@ -776,6 +787,30 @@ class Ingresos extends CI_Controller {
         redirect(base_url().'clinica_admision/ingresos/cargarInsumos/'.$id);
         
     }
+    public function pack($insumo,$valor,$registro,$estado){
+        $pack = $this->parametros_model->damePack($insumo);
+        
+        FOREACH($pack as $pak){
+            IF($estado === 3){
+                $this->enfermeria_model->inaCantidad = 1;
+                $this->enfermeria_model->inaEstado  = $estado;
+                $this->enfermeria_model->inaValor   = $valor;
+                $this->enfermeria_model->inaInsumo  = $pak->pakInsumo;
+                $this->enfermeria_model->inaTipo    = 3;
+                $this->enfermeria_model->inaRegistro        = $registro;
+            } ELSEIF($estado === 2){
+                
+                $this->enfermeria_model->inaId  = 2;   
+                $this->enfermeria_model->inaEstado  = $estado;
+                $this->enfermeria_model->inaFechaRegistro   = date('Y-m-d H:i:s');
+                $this->enfermeria_model->inaUsuario         = $this->session->userdata('id_usuario');
+            }
+            //$this->enfermeria_model->inaBoleta            = $this->input->post('insBoleta');
+            //$this->enfermeria_model->inaOrden            = $this->input->post('exaOrden');
+            $this->enfermeria_model->guardarInsumosAsignados();
+            
+        }
+    }
     public function eliminarInsumo($id)
     {
         $id = explode('_', $id);
@@ -784,6 +819,11 @@ class Ingresos extends CI_Controller {
         $this->enfermeria_model->inaUsuario         = $this->session->userdata('id_usuario');
         $this->enfermeria_model->inaEstado          = 2;
         $this->enfermeria_model->guardarInsumosAsignados();
+        $insumoAsignado = $this->enfermeria_model->dameUnoInsumoAsignado();
+        IF($insumoAsignado->inaInsumo==='9'){
+            
+            $this->pack($insumoAsignado->inaRegistro,$valor=0,$insumoAsignado->inaRegistro,2);
+            }ELSE die();
         redirect(base_url().'clinica_admision/ingresos/cargarInsumos/'.$id[0].'_NO');
     }
     

@@ -82,8 +82,70 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                 </div>
                 
                 <div class="col-lg-12"><br></div>
-                    
-                
+                <div class="col-lg-12">
+                    <label>Detalle</label>
+                    <i id="btnExportDetalle" style="cursor: pointer; color:#1d7044;font-size:16px" title="Exportar Detalle a Excel"> Export</i>  
+                </div>
+                <div class="col-lg-12" align="center">
+                    <table class='table table-bordered table-hover table-striped'>
+                        <tr>
+                            <td><b>Fecha</b></td>
+                            <td><b>Concepto</b></td>
+                            <td><b>Monto</b></td>
+                        </tr>
+                        <?php $sumaDep=$sumaIns=$sumaIna=$sumaExa=0; ?>
+                        <?php FOREACH($depositos as $dep){ ?>
+                        <tr>
+                            <td style="color:green"><?php echo $dep->depFechaRegistro; ?></td>
+                            <td style="color:green"><?php echo $dep->depConNombre; ?></td>
+                            <td style="color:green"><?php echo $dep->depSuma; $sumaDep = $sumaDep+$dep->depSuma; ?></td>
+                        </tr>
+                        <?php } ?>
+                        <tr>
+                            <td style="color:green" colspan="2">Total de Ingresos</td>
+                            <td style="color:green"><?php echo $sumaDep; ?></td>
+                        </tr>
+                        
+                        
+                        <?php foreach ($insumosAsignados as $item) { ?>
+                            
+                                    <?php IF($item->inaTipo==='2'){?>
+                                        <?php $sumaIna += ($item->inaValor*$item->inaCantidad);?>
+                                    <?php }ELSEIF($item->inaTipo==='1'){?>
+                                        <?php $sumaIns += ($item->inaValor*$item->inaCantidad);?>
+                                    <?php }ELSEIF($item->inaTipo==='3'){?>
+                                        <?php $sumaExa += ($item->inaValor*$item->inaCantidad);?>
+                                    <?php } ?>
+                                    
+                        <?php } ?>
+                        <tr>
+                            <td style="color:orangered"></td>
+                            <td style="color:orangered">Farmacos</td>
+                            <td style="color:orangered"><?php echo $sumaIna; ?></td>
+                        </tr>
+                        <tr>
+                            <td style="color:orangered"></td>
+                            <td style="color:orangered">Insumos</td>
+                            <td style="color:orangered"><?php echo $sumaIns; ?></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td style="color:orangered">Examenes</td>
+                            <td style="color:orangered"><?php echo $sumaExa; ?></td>
+                        </tr>
+                        <tr>
+                            <td style="color:orangered" colspan="2">Total de Egresos</td>
+                            <td style="color:orangered"><?php echo $sumaExa+$sumaIns+$sumaIna; ?></td>
+                        </tr>
+                        <tr>
+                            <?php $suma = $sumaDep-$sumaIns-$sumaIna-$sumaExa; ?>
+                            <td colspan="2"style="color:<?php IF($suma <0 )echo 'red'; ELSE echo 'green'; ?>"><b>Total</b></td>
+                            <td style="color:<?php IF($suma <0 )echo 'red'; ELSE echo 'green'; ?>"><b><?php echo $suma; ?></b></td>
+                        </tr>
+                    </table>
+                    <br><br>
+                </div>
+                <div class="col-lg-12"><hr></div>
                 
                 <?php $attributes = array('id' => 'form2');
                     echo form_open('clinica_admision/ingresos/guardarInsumos',$attributes);
@@ -118,7 +180,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                         <label>Insumos</label>
                     </div>
                     <div class="col-lg-3">
-                        <select name="insumo" id="insumo" style=" width:250px">
+                        <select name="insumo" id="insumo" style=" width:400px">
                             <option value="0">Seleccione...</option>
                             <?php FOREACH($insumos as $ins):?>
                             <option value="<?php echo $ins->insId.'_'.$ins->insValor;?>"><?php echo strtoupper($ins->insNombre);?></option>
@@ -184,6 +246,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                     
                     
                 </div>
+                <div class="col-lg-12"><hr></div>
                 <div class="col-lg-12"><br></div>
                 <div class="col-lg-12" align="center">
                     <?php echo form_submit('','Cargar','class="btn btn-primary btn-sm btnCetep"');?>
@@ -246,7 +309,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                                 <td style="border:none">
                                     <i class='fa fa-print' onclick="PrintElem('#imprimir')" style="cursor: pointer; color:#1d1c19; font-size:18px" title="Imprimir Tabla"></i>
                                     &nbsp;&nbsp;
-                                    <i class="fa fa-table" id="btnExport" style="cursor: pointer; color:#1d7044;font-size:18px" title="Exportar Tabla a Excel"> Export</i>  
+                                    <i id="btnExport" style="cursor: pointer; color:#1d7044;font-size:16px" title="Exportar Tabla a Excel"> Export</i>  
                                 </td>
                             </tr>        
                         </tbody>
