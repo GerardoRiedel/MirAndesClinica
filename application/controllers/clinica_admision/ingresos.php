@@ -706,9 +706,9 @@ class Ingresos extends CI_Controller {
             unset($this->enfermeria_model->inaTipo,$this->enfermeria_model->inaInsumo,$this->enfermeria_model->inaValor,$this->enfermeria_model->inaCantidad);
         
             ////////////REVISA SI ES PACK/////////////
-            IF($insu[0]==='9'){
+            IF($insu[0]>34 && $insu[0]<40){
             $this->pack($insu[0],$insu[1],$id,3);
-            }ELSE die();
+            }
             
             
         }
@@ -787,20 +787,21 @@ class Ingresos extends CI_Controller {
         redirect(base_url().'clinica_admision/ingresos/cargarInsumos/'.$id);
         
     }
-    public function pack($insumo,$valor,$registro,$estado){
+    public function pack($insumo,$valor,$registro,$estado){//die($insumo);
         $pack = $this->parametros_model->damePack($insumo);
-        
+
         FOREACH($pack as $pak){
             IF($estado === 3){
+                $insumo = $this->parametros_model->dameUnoInsumos($pak->pakInsumo);
                 $this->enfermeria_model->inaCantidad = 1;
                 $this->enfermeria_model->inaEstado  = $estado;
-                $this->enfermeria_model->inaValor   = $valor;
+                $this->enfermeria_model->inaValor   = $insumo->insValor;
                 $this->enfermeria_model->inaInsumo  = $pak->pakInsumo;
-                $this->enfermeria_model->inaTipo    = 3;
-                $this->enfermeria_model->inaRegistro        = $registro;
+                $this->enfermeria_model->inaTipo    = 1;
+                $this->enfermeria_model->inaRegistro = $registro;
             } ELSEIF($estado === 2){
-                
-                $this->enfermeria_model->inaId  = 2;   
+                $insumoAsignado = $this->enfermeria_model->dameUnoInsumoAsignadoPack($pak->pakInsumo,$registro);
+                $this->enfermeria_model->inaId  = $insumoAsignado->inaId;
                 $this->enfermeria_model->inaEstado  = $estado;
                 $this->enfermeria_model->inaFechaRegistro   = date('Y-m-d H:i:s');
                 $this->enfermeria_model->inaUsuario         = $this->session->userdata('id_usuario');
@@ -819,11 +820,11 @@ class Ingresos extends CI_Controller {
         $this->enfermeria_model->inaUsuario         = $this->session->userdata('id_usuario');
         $this->enfermeria_model->inaEstado          = 2;
         $this->enfermeria_model->guardarInsumosAsignados();
-        $insumoAsignado = $this->enfermeria_model->dameUnoInsumoAsignado();
-        IF($insumoAsignado->inaInsumo==='9'){
+        $insumoAsignado = $this->enfermeria_model->dameUnoInsumoAsignado($id[1]);
+        IF($insumoAsignado->inaInsumo>34 && $insumoAsignado->inaInsumo<40){
             
-            $this->pack($insumoAsignado->inaRegistro,$valor=0,$insumoAsignado->inaRegistro,2);
-            }ELSE die();
+            $this->pack($insumoAsignado->inaInsumo,0,$insumoAsignado->inaRegistro,2);
+            }
         redirect(base_url().'clinica_admision/ingresos/cargarInsumos/'.$id[0].'_NO');
     }
     

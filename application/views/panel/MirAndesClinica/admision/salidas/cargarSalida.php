@@ -174,19 +174,86 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                     <div class='col-lg-4'>
                         <input name="alta" type="checkbox" checked="">
                     </div>
-                    
-                    
-                    
-                   
-</div><!-- FIN DIV FICHA COMPLETA-->
-                    
-                <div class='col-lg-12'></div>
+                    <div class='col-lg-12'></div>
                     <div class="col-lg-12">
                         <?php echo form_submit('','Guardar','class="btn btn-primary btn-sm btnCetep"');?>
                         <?php echo form_close();?>
                     <button onclick="goBack()" class="btn btn-default btn-sm">Cancelar</button><script>function goBack(){window.history.go(-1);}</script>
                 
                     </div>
+                    
+                    
+                    <div class="col-lg-12" align="center"><hr></div>
+                    
+                    <div class="col-lg-12" align="center">
+                    <table class='table table-bordered table-hover table-striped' style="width: 500px">
+                        <tr>
+                            <td align="center" colspan="3" style="color:#a15ebe"><b>Resumen de Ingresos y Egresos</b></td>
+                        </tr>
+                        <tr>
+                            <td align="center"><b>Fecha</b></td>
+                            <td align="center"><b>Concepto</b></td>
+                            <td align="center"><b>Monto</b></td>
+                        </tr>
+                        <?php $sumaDep=$sumaIns=$sumaIna=$sumaExa=0; ?>
+                        <?php FOREACH($depositos as $dep){ ?>
+                        <tr>
+                            <td style="color:green" align="center"><?php $date = new DateTime($dep->depFechaRegistro);echo $date->format('d-m-Y'); ?></td>
+                            <td style="color:green"><?php echo $dep->depConNombre; ?></td>
+                            <td style="color:green"><?php echo $dep->depSuma; $sumaDep = $sumaDep+$dep->depSuma; ?></td>
+                        </tr>
+                        <?php } ?>
+                        <tr>
+                            <td style="color:green" colspan="2" align="right">Total de Ingresos</td>
+                            <td style="color:green"><?php echo $sumaDep; ?></td>
+                        </tr>
+                        
+                        
+                        <?php foreach ($insumosAsignados as $item) { ?>
+                            
+                                    <?php IF($item->inaTipo==='2'){?>
+                                        <?php $sumaIna += ($item->inaValor*$item->inaCantidad);?>
+                                    <?php }ELSEIF($item->inaTipo==='1'){?>
+                                        <?php $sumaIns += ($item->inaValor*$item->inaCantidad);?>
+                                    <?php }ELSEIF($item->inaTipo==='3'){?>
+                                        <?php $sumaExa += ($item->inaValor*$item->inaCantidad);?>
+                                    <?php } ?>
+                                    
+                        <?php } ?>
+                        <tr>
+                            <td style="color:orangered"></td>
+                            <td style="color:orangered">Farmacos</td>
+                            <td style="color:orangered"><?php echo $sumaIna; ?></td>
+                        </tr>
+                        <tr>
+                            <td style="color:orangered"></td>
+                            <td style="color:orangered">Insumos</td>
+                            <td style="color:orangered"><?php echo $sumaIns; ?></td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td style="color:orangered">Examenes</td>
+                            <td style="color:orangered"><?php echo $sumaExa; ?></td>
+                        </tr>
+                        <tr>
+                            <td style="color:orangered" colspan="2" align="right">Total de Egresos</td>
+                            <td style="color:orangered"><?php echo $sumaExa+$sumaIns+$sumaIna; ?></td>
+                        </tr>
+                        <tr>
+                            <?php $suma = $sumaDep-$sumaIns-$sumaIna-$sumaExa; ?>
+                            <td colspan="2"style="color:<?php IF($suma <0 )echo 'red'; ELSE echo 'green'; ?>" align="right"><b>Total</b></td>
+                            <td style="color:<?php IF($suma <0 )echo 'red'; ELSE echo 'green'; ?>"><b><?php echo $suma; ?></b></td>
+                        </tr>
+                    </table>
+                    <br><br>
+                </div>
+                    
+                    
+                    
+                   
+</div><!-- FIN DIV FICHA COMPLETA-->
+                    
+                
 </div><!-- FIN DIV FICHA COMPLETA-->
                 <div class="col-lg-12" ><hr></div>
                 

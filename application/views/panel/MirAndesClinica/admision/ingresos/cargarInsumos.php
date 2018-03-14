@@ -82,27 +82,33 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                 </div>
                 
                 <div class="col-lg-12"><br></div>
-                <div class="col-lg-12">
-                    <label>Detalle</label>
-                    <i id="btnExportDetalle" style="cursor: pointer; color:#1d7044;font-size:16px" title="Exportar Detalle a Excel"> Export</i>  
+                <div class="col-lg-2"></div>
+                <div class="col-lg-4">
+                    
                 </div>
+                
+                
+                
                 <div class="col-lg-12" align="center">
-                    <table class='table table-bordered table-hover table-striped'>
+                    <table class='table table-bordered table-hover table-striped' style="width: 500px">
                         <tr>
-                            <td><b>Fecha</b></td>
-                            <td><b>Concepto</b></td>
-                            <td><b>Monto</b></td>
+                            <td align="center" colspan="3" style="color:#a15ebe"><b>Resumen de Ingresos y Egresos</b></td>
+                        </tr>
+                        <tr>
+                            <td align="center"><b>Fecha</b></td>
+                            <td align="center"><b>Concepto</b></td>
+                            <td align="center"><b>Monto</b></td>
                         </tr>
                         <?php $sumaDep=$sumaIns=$sumaIna=$sumaExa=0; ?>
                         <?php FOREACH($depositos as $dep){ ?>
                         <tr>
-                            <td style="color:green"><?php echo $dep->depFechaRegistro; ?></td>
+                            <td style="color:green" align="center"><?php $date = new DateTime($dep->depFechaRegistro);echo $date->format('d-m-Y'); ?></td>
                             <td style="color:green"><?php echo $dep->depConNombre; ?></td>
                             <td style="color:green"><?php echo $dep->depSuma; $sumaDep = $sumaDep+$dep->depSuma; ?></td>
                         </tr>
                         <?php } ?>
                         <tr>
-                            <td style="color:green" colspan="2">Total de Ingresos</td>
+                            <td style="color:green" colspan="2" align="right">Total de Ingresos</td>
                             <td style="color:green"><?php echo $sumaDep; ?></td>
                         </tr>
                         
@@ -134,16 +140,17 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                             <td style="color:orangered"><?php echo $sumaExa; ?></td>
                         </tr>
                         <tr>
-                            <td style="color:orangered" colspan="2">Total de Egresos</td>
+                            <td style="color:orangered" colspan="2" align="right">Total de Egresos</td>
                             <td style="color:orangered"><?php echo $sumaExa+$sumaIns+$sumaIna; ?></td>
                         </tr>
                         <tr>
                             <?php $suma = $sumaDep-$sumaIns-$sumaIna-$sumaExa; ?>
-                            <td colspan="2"style="color:<?php IF($suma <0 )echo 'red'; ELSE echo 'green'; ?>"><b>Total</b></td>
+                            <td colspan="2"style="color:<?php IF($suma <0 )echo 'red'; ELSE echo 'green'; ?>" align="right"><b>Total</b></td>
                             <td style="color:<?php IF($suma <0 )echo 'red'; ELSE echo 'green'; ?>"><b><?php echo $suma; ?></b></td>
                         </tr>
                     </table>
-                    <br><br>
+                    
+                    
                 </div>
                 <div class="col-lg-12"><hr></div>
                 
@@ -157,6 +164,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                 -->
                 </div>
                 <div class="col-lg-12">
+                    <div class="col-lg-12" style="color:#a15ebe"><b>Agregar Fármaco, insumo o examen a cobrar</b><br><br></div>
                     <div class="col-lg-1">
                         <label>Fármaco</label>
                     </div>
@@ -286,14 +294,11 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                                     <?php };?>
                                     <td align="center"><?php echo $item->inaCantidad; ?></td>
                                     <td align="center"><?php IF($item->inaValor !=='0'&&!empty($item->inaValor))echo '$ '.$item->inaValor; ?></td>
-                                    <td align="center"><?php IF($item->inaValor !=='0'&&!empty($item->inaValor))echo '$ '.$item->inaValor*$item->inaCantidad; ?></td>
+                                    <td align="center" style="min-width:70px"><?php IF($item->inaValor !=='0'&&!empty($item->inaValor))echo '$ '.$item->inaValor*$item->inaCantidad; ?></td>
                                     <?php $total += ($item->inaValor*$item->inaCantidad);?>
                                     <td align="center">
                                         <a class="tip-bottom" title="Modificar registro" href="<?php echo base_url("clinica_admision/ingresos/modificarInsumoAsignado/" . $item->inaId )?>"><i class="fas fa-edit" aria-hidden="true"></i></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    
-                                        <a class="tip-bottom" title="Eliminar Registro" style="color:red"  href="<?php echo base_url("clinica_admision/ingresos/eliminarInsumo/".$item->inaRegistro.'_'.$item->inaId )?>">
-                                            <i class="fa fa-trash" aria-hidden="true"></i>
-                                        </a>
+                                        <a class="tip-bottom" title="Eliminar Registro" style="color:red"  href="<?php echo base_url("clinica_admision/ingresos/eliminarInsumo/".$item->inaRegistro.'_'.$item->inaId )?>"><i class="fa fa-trash" aria-hidden="true"></i></a>
                                     </td>
                             </tr>
                             <?php endforeach; ?>
@@ -306,7 +311,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                                 <td style="border:none" align=" center">
                                     <b><?php echo '$ '.$total;?></b>
                                 </td>
-                                <td style="border:none">
+                                <td style="border:none" align="center">
                                     <i class='fa fa-print' onclick="PrintElem('#imprimir')" style="cursor: pointer; color:#1d1c19; font-size:18px" title="Imprimir Tabla"></i>
                                     &nbsp;&nbsp;
                                     <i id="btnExport" style="cursor: pointer; color:#1d7044;font-size:16px" title="Exportar Tabla a Excel"> Export</i>  

@@ -13,11 +13,20 @@ class Salidas extends CI_Controller {
         $this->load->database('default');
         $this->folder = 'uploads/';
         $this->load->model("ingreso_model");
+        $this->load->model("enfermeria_model");
+        $this->load->model("bancos_model");
         
     }
     public function cargarSalida($id)
     {
         $data['datos']      = $this->ingreso_model->dameUno($id);
+        
+        $insumosAsignados = $this->enfermeria_model->dameInsumosAsignados($id);
+        $depositos = $this->bancos_model->dameTodosDeposito($id);
+        //die(var_dump($insumosAsignados));
+        $data['depositos'] = $depositos;
+        $data['insumosAsignados'] = $insumosAsignados;
+        
         $data['breadcumb']  = "Ingreso";
         $data['title']      = "Datos de Salida";
         

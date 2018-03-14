@@ -239,6 +239,7 @@ class Enfermeria_model extends CI_Model
                     ->get()
                     ->result();
     }
+    
     public function dameExamenes()
     {
         return $this->db->select('*')
@@ -280,6 +281,20 @@ class Enfermeria_model extends CI_Model
                     ->where('inaId',$id)
                     ->get()
                     ->row();
+    }
+    public function dameUnoInsumoAsignadoPack($id,$registro)
+    {
+        $return= $this->db->select('*')
+                    ->from('insumos_asignados')
+                    ->join('insumos','insId=inaInsumo','left')
+                    ->join('farmacos','idfarmaco=inaInsumo','left')
+                    ->join('examenes','exaId=inaInsumo','left')
+                    ->join('usuarios_panel','uspId=inaUsuario')
+                    ->where('inaInsumo',$id)
+                    ->where('inaRegistro',$registro)
+                    ->get()
+                    ->row();
+        return $return;
     }
     
     

@@ -86,7 +86,7 @@ class Ingresos extends CI_Controller {
         
         $data['evoEnfermeria']      = $this->evoluciones_model->dameUnoEnfermeria($data['evo']->evoFechaRegistro);
                 //die($hora.'d'.$horaRegistro);
-                IF($horaRegistro > $hora && $this->session->userdata('id_usuario') === $data['evo']->evoUsuario){
+                IF($horaRegistro > $hora){
                     $data['evoId']    =  $data['evo'];
                 }
                 ELSE {
@@ -135,7 +135,9 @@ class Ingresos extends CI_Controller {
         $this->ingreso_model->regimen       = $regimen->regNombre;
         $this->ingreso_model->guardar();
         
+        $fechaHoy = date('Y-m-d H:i:s');$hora=date('H');IF($hora<'08'){$hora='23:59:59';$dia=date('d');$dia=$dia-1;$fechaHoy=date('Y-m-'.$dia.' '.$hora);}
         
+        //die($fechaHoy);
         
         $evoId = $this->input->post('evoId');
         
@@ -153,7 +155,7 @@ class Ingresos extends CI_Controller {
         $this->evoluciones_model->evoPaciente       = $paciente->id;
         $this->evoluciones_model->evoUsuario        = $this->session->userdata('id_usuario');
         $this->evoluciones_model->evoRegistro       = $this->input->post('fichaElectro');
-        $this->evoluciones_model->evoFechaRegistro  = date('Y-m-d H:i:s');
+        $this->evoluciones_model->evoFechaRegistro  = $fechaHoy;
         $this->evoluciones_model->evoEstadia        = $this->input->post('evoEstadia');
         $this->evoluciones_model->evoHabitacion     = $this->input->post('evoHabitacion');
         $this->evoluciones_model->evoPeso           = $this->input->post('evoPeso');
@@ -452,10 +454,14 @@ class Ingresos extends CI_Controller {
         $this->ingreso_model->regimen       = $regimen->regNombre;
         $this->ingreso_model->guardar(); 
         
-        
-        
-        
-        
+        $evoId = $this->evoluciones_model->dameUnoAntiguo($idd=0,$id);
+        IF(!empty($evoId))$this->evoluciones_model->evoId = $evoId->evoId;
+        $this->evoluciones_model->evoPaciente       = $paciente->id;
+        $this->evoluciones_model->evoUsuario        = $this->session->userdata('id_usuario');
+        $this->evoluciones_model->evoRegistro       = $id;
+        $this->evoluciones_model->evoCSV0           = $vitales;
+        $this->evoluciones_model->guardar();
+        //die($paciente->id);
         $data['enfermeria'] = $this->enfermeria_model->dameUno($id);
         $data['breadcumb']  = "Ingreso";
         $data['title']      = "Cargar nuevo registro";

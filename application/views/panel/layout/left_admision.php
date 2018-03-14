@@ -66,6 +66,15 @@ IF(empty($submenu)){$submenu='';}?>
         </ul> 
 </li>
 
+<!--REPORTES-->
+<li class="submenu <?php if($menu === 'reportes')echo "active open" ?>">
+    <a href=""><i class="fas fa-file" aria-hidden="true" style=" width: 20px;text-align: center"></i> <span> Reportes</span> <i class="arrow fa fa-chevron-right"></i></a>
+        <ul>
+            <li <?php if($submenu === 'ireportes') echo "class='active'" ?>><a href="<?php echo base_url("clinica_admision/reportes/cargarEgresos"); ?>">Egreso de insumos</a></li>            
+            <li <?php if($submenu === 'sreportes') echo "class='active'" ?>><a href="<?php echo base_url("clinica_admision/reportes/cargarStock"); ?>">Stock de insumos</a></li>            
+        </ul> 
+</li>
+
 <?php IF($this->session->userdata('perfil') !== '6') { ?>
 <!-- MANTENEDORES -->
 <li class="submenu <?php if($menu === 'mantenedores')echo "active open" ?>">

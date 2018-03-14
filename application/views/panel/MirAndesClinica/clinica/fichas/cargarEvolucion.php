@@ -175,7 +175,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                     </div>
                     <div class='col-lg-10'>
                         <?php //die($evoAntigua->evoDiagPsiquiatra.'sd'); ?>
-                        <input type="text" style="width: 94%;" name="evoDiagPsiquiatra" id="evoDiagPsiquiatra" <?php IF($this->session->userdata('perfil') !== '4') echo 'readonly';?> value="<?php IF(!empty($evo->evoDiagPsiquiatra))echo $evo->evoDiagPsiquiatra; ELSEIF(!empty($evoAntigua->evoDiagPsiquiatra)) echo $evoAntigua->evoDiagPsiquiatra; ?>">
+                        <input type="text" style="width: 94%;" name="evoDiagPsiquiatra" id="evoDiagPsiquiatra" <?php IF($this->session->userdata('perfil') !== '4') echo 'readonly';?> value="<?php IF(!empty($enfermeriaIngreso->enfMotivo))echo $enfermeriaIngreso->enfMotivo; ELSEIF(!empty($evo->evoDiagPsiquiatra))echo $evo->evoDiagPsiquiatra; ELSEIF(!empty($evoAntigua->evoDiagPsiquiatra)) echo $evoAntigua->evoDiagPsiquiatra; ?>">
                     </div>
                     <div class="col-lg-12"><br></div>
                     <div class="col-lg-2">
@@ -526,23 +526,23 @@ $("#btnImprimir").click(function(){
 <script>
     //////VALIDACIONES DE TECLAS//////
         $("#evoDia").keydown(function () {
-            if (event.keyCode != 219 && (event.keyCode < 48 || event.keyCode > 57))
+            if (event.keyCode != 219 && (event.keyCode < 48 || event.keyCode > 57)&& event.keyCode !== 8 && event.keyCode !== 46)
                 {}
-            else {
-                texto = $( "#evoDia" ).val();
-                texto = texto.substring(0,texto.length-1);
-                document.getElementById("evoDia").value = texto;
-                event.returnValue = false;
+            else if(event.keyCode === 8 ||event.keyCode === 46){event.returnValue = false;
+           //     texto = $( "#evoDia" ).val();
+          //      texto = texto.substring(0,texto.length-1);
+          //      document.getElementById("evoDia").value = texto;
+          //      event.returnValue = false;
             }
         });
         $("#evoNoche").keydown(function () {
-            if (event.keyCode != 219 && (event.keyCode < 48 || event.keyCode > 57))
+            if (event.keyCode != 219 && (event.keyCode < 48 || event.keyCode > 57)&& event.keyCode !== 8 && event.keyCode !== 46)
                 {}
-            else {
-                texto = $( "#evoNoche" ).val();
-                texto = texto.substring(0,texto.length-1);
-                document.getElementById("evoNoche").value = texto;
-                event.returnValue = false;
+            else if(event.keyCode === 8 ||event.keyCode === 46){event.returnValue = false;
+           //     texto = $( "#evoNoche" ).val();
+           //     texto = texto.substring(0,texto.length-1);
+            //    document.getElementById("evoNoche").value = texto;
+            //    event.returnValue = false;
             }
         });
         $("#habitacion").keydown(function () {
