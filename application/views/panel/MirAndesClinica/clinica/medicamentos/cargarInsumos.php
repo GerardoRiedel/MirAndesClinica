@@ -110,9 +110,10 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                     <div class="col-lg-1">
                         <label>Cantidad</label>
                     </div>
-                    <div class='col-lg-7'>
+                    <div class='col-lg-2'>
                         <input type="number" name="cantidadFarmaco" maxlength="2" style="width: 140px;border-radius: 4px;background-image: none;border: 1px solid #CCCCCC;box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;height: 28px;">
                     </div>
+                    <div class="col-lg-12"></div>
                     
                     <div class="col-lg-1">
                         <label>Insumos</label>
@@ -129,9 +130,13 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                     <div class="col-lg-1">
                         <label>Cantidad</label>
                     </div>
-                    <div class='col-lg-7'>
+                    <div class='col-lg-2'>
                         <input type="number" name="cantidadInsumo" maxlength="2" style="width: 140px;border-radius: 4px;background-image: none;border: 1px solid #CCCCCC;box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;height: 28px;">
                     </div>
+                    <div class="col-lg-3">
+                        <input type="number" name="insBoleta" placeholder="N° Boleta" style="width: 180px;border-radius: 4px;background-image: none;border: 1px solid #CCCCCC;box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;height: 28px;">
+                    </div>
+                    <div class="col-lg-12"></div>
                      <div class="col-lg-1">
                         <label>Examen</label>
                     </div>
@@ -147,8 +152,11 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                     <div class="col-lg-1">
                         <label>Cantidad</label>
                     </div>
-                    <div class='col-lg-7'>
+                    <div class='col-lg-2'>
                         <input type="number" name="cantidadExamen" maxlength="2" style="width: 140px;border-radius: 4px;background-image: none;border: 1px solid #CCCCCC;box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;height: 28px;">
+                    </div>
+                    <div class="col-lg-3">
+                        <input type="number" name="exaOrden" placeholder="N° Orden" style="width: 180px;border-radius: 4px;background-image: none;border: 1px solid #CCCCCC;box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;height: 28px;">
                     </div>
                     
                     <div class="col-lg-12"><br><br></div>
@@ -214,7 +222,7 @@ box-shadow: -2px 2px 41px 2px rgba(0,0,0,0.75);z-index: 25 ">
                                     <?php };?>
                                     <td align="center"><?php echo $item->inaCantidad; ?></td>
                                     <td align="center"><?php IF($item->inaValor !=='0')echo '$ '.$item->inaValor; ?></td>
-                                    <td align="center"><?php IF($item->inaValor !=='0')echo '$ '.$item->inaValor*$item->inaCantidad; ?></td>
+                                    <td align="center" style="min-width:70px"><?php IF($item->inaValor !=='0')echo '$ '.$item->inaValor*$item->inaCantidad; ?></td>
                                     <?php $total += ($item->inaValor*$item->inaCantidad);?>
                                     <td align="center">
                                         <a class="tip-bottom" title="Eliminar Registro" style="color:red"  href="<?php echo base_url("clinica_enfermeria/medicamentos/eliminarInsumo/".$item->inaRegistro.'_'.$item->inaId )?>">
